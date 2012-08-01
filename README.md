@@ -49,6 +49,10 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 
     + 目前支持验证普通的 input:text，select:option，textarea，以后会慢慢添加更多类型的表单验证 ^_^
     
+- **脚手架** : 实用的调试工具。
+    
+    + Grid System schematic，栅格系统示意图生成器，TODO 支持IE6+
+    
 ## Zonda搭载的强劲零件
 
 - [`Seajs`](http://seajs.org/docs/#intro) : 国产强劲引擎，作为核心库，进行模块的依赖管理。
