@@ -51,7 +51,9 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
     
 - **脚手架** : 实用的调试工具。
     
-    + Grid System schematic，栅格系统示意图生成器，TODO 支持IE6+
+    + Grid System schematic，栅格系统示意图生成器。
+    
+    + TODO 支持IE6+。
     
 ## Zonda搭载的强劲零件
 
