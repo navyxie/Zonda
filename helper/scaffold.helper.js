@@ -94,6 +94,7 @@ define( function ( require, exports, module ) {
     // 清除栅格系统示意图
     exports.destroyGrid = function () {
         if ( $(".scaffold-grid-wrap")[0] ) {
+            // 直接删除容器DOM
             $(".scaffold-grid-wrap").remove();
         } else {
             console.log('栅格系统示意图未生成!');
