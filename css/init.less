@@ -1,26 +1,15 @@
-/**
- * init.less
- * 主CSS文件
- */
+// init.less
+// ---------
+// 入口文件
+
+// 全局配置
+@import 'config';
+
 // bootstrap
 @import 'lib/bootstrap/bootstrap';
 
 // typo
 @import 'lib/typo/typo';
-
-// 全局样式
-@base-width: 980px;
-@inner-width: 940px;
-
-// 路径配置
-@img : '../../images/';
-
-.wrap {
-    width: @base-width;
-    min-height: 600px;
-
-    margin: 0 auto;
-}
 
 // header / 头部
 @import 'common/header';
@@ -29,7 +18,7 @@
 @import 'common/footer';
 
 // 二级，三级页面布局
-@import 'common/sub';
+@import 'unit/sub';
 
 // index / 首页
 @import 'unit/index';

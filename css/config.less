@@ -1,0 +1,26 @@
+// config.less
+// -----------
+// 配置全局变量
+
+// 外容器宽度
+@base-width: 980px;
+
+// 可用宽度
+@inner-width: 940px;
+
+// 图片路径配置
+@img : '../../images/';
+
+// 公用的body样式预定义
+body {
+    background: #e4e4e4 url('@{img}image.png') no-repeat;
+    background-position: 50% -530px;
+}
+
+.wrap {
+    width: @base-width;
+    min-height: 600px;
+
+    margin: 0 auto;
+}
+
