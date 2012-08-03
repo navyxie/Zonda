@@ -87,7 +87,9 @@ define( function ( require, exports, module ) {
         if ( $(".scaffold-grid-wrap")[0] ) {
             $(".scaffold-grid-wrap").slideToggle('fast');
         } else {
-            console.log('No Grid System Schematic!');
+            if ( window.console ) {
+                console.log('No Grid System Schematic!');
+            }
         }
     };// END toggleGrid
 
@@ -97,7 +99,9 @@ define( function ( require, exports, module ) {
             // 直接删除容器DOM
             $(".scaffold-grid-wrap").remove();
         } else {
-            console.log('Grid System Schematic Destroy!');
+            if ( window.console ) {
+                console.log('Grid System Schematic Destroy!');
+            }
         }
     }; // END hideGrid
 
