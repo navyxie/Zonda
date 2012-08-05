@@ -1,6 +1,6 @@
-Error: Command failed: [31mFileError: 'common/scaffold.less' wasn't found.
-[39m[31m in [39m/home/shiyang/www/Alumni2012/Alumni/cms/statics/alumni/css/init.less[90m:31:0[39m
-[90m30 // 栅格系统脚手架[39m
-31 [7m[31m[1m@[22mimport 'common/scaffold.less';[39m[27m
-[90m32 [39m[0m
+Error: Command failed: [31mFileError: 'config.less' wasn't found.
+[39m[31m in [39m/home/shiyang/Zonda/css/init.less[90m:6:0[39m
+[90m5 // 全局配置[39m
+6 [7m[31m[1m@[22mimport 'config';[39m[27m
+[90m7 [39m[0m
 
