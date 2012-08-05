@@ -55,9 +55,9 @@ define( function ( require, exports, module ) {
             'margin-left' : -1 * ( columnWidth + gutterWidth ) * columnNum / 2 + 'px',
             // 置于最前面
             'z-index' : 1000,
+            'top' : 0,
             // 高度100%
-            'top' : '0',
-            'bottom' : '0',
+            'height' : $(document.documentElement).height(),
             // 背景
             'background' : 'rgba( 255, 255, 255, 0.2)'
         });
