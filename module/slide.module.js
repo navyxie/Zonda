@@ -23,6 +23,8 @@
  *
  * pageNum: true/false，是否在page上显示页码数字
  *
+ * pageThumb : true/false, 是否在page上显示幻灯片缩略图
+ *
  * animation: String，动画方式
  *
  * cutover : true/false，是否在page中加上“上一个”和“下一个”按钮
@@ -81,6 +83,7 @@ define( function ( require, exports, module ) {
         speed     : 2000,
         pageDOM   : null,
         pageNum   : false,
+        pageThumb : false,
         animation : 'fade',
         cutover   : false
     };
@@ -146,7 +149,7 @@ define( function ( require, exports, module ) {
             // 淡入淡出 fade
             if ( exports.config.animation === 'fade' ) {
                 slideArr.fadeOut('slow');
-                slideArr.eq( onPage ).stop().fadeIn('fast');
+                slideArr.eq( onPage ).stop().fadeIn('slow');
             // 淡出后，再淡入
             } else if ( exports.config.animation === 'callBackFade' ) {
                 slideArr.fadeOut('fast', function () {
@@ -257,8 +260,13 @@ define( function ( require, exports, module ) {
 
             slideArr.each( function (i) {
                 if ( exports.config.pageNum ) {
+                    // 有页码的page
                     li = '<li><a class="slide-page-cell" page="' + i + '">' + i + '</a></li>';
+                } else if ( exports.config.pageThumb ) {
+                    // 有缩略图的page
+                    li = '<li><a class="slide-page-cell" page="' + i + '"><img src="' + $(this).find('img').attr('src') + '" /></a></li>';
                 } else {
+                    // 无页码，无缩略图的page
                     li = '<li><a class="slide-page-cell" page="' + i + '"></a></li>';
                 }
 
@@ -282,11 +290,11 @@ define( function ( require, exports, module ) {
             }
 
             // 缓存幻灯片页码的jQuery对象
-            pageArr = $( exports.config.pageDOM ).find('a.slide-page-cell');
+            pageArr = $( exports.config.pageDOM ).find('li');
 
             // 为页面绑定点击事件，点击的时候调用play方法
             pageArr.each( function () {
-                var page = $(this).attr('page');
+                var page = $(this).find('a.slide-page-cell').attr('page');
 
                 $(this).click( function () {
                     exports.play( page );
