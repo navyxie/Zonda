@@ -7,17 +7,17 @@ define( function ( require, exports, module ) {
 
     // 加载 IE 模块
     if ( $.browser.msie ) {
-        require.async('./module/ie/ie');
+        require.async('module/ie/ie');
     }
 
     // index.html
     if ( $("#main").attr('view') === 'index' ) {
-        require.async('./module/index');
+        require.async('module/index');
     }
 
     // footer.html
     if ( $("#footer")[0] ) {
-        require.async('./module/footer');
+        require.async('module/footer');
     }
 
     var jqueryUI = require('jquery-ui');
