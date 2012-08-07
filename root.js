@@ -34,15 +34,8 @@ define( function ( require, exports, module ) {
         require.async('./module/footer');
     }
 
-<<<<<<< HEAD
     var jqueryUI = require('jquery-ui');
     // jqueryUI.init( $ );
     $("#time").datepicker();
-=======
-    // cookie test
-    var cookie = require("module/cookie.module");
-    cookie.set("name","niko");
-    //console.log( cookie.get("name") );
->>>>>>> 01fc9dde8ca3edeec547eae33fc16ff86974a212
 
 }); // END root.js
