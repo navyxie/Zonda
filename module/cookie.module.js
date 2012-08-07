@@ -84,7 +84,7 @@ define( function ( require, exports, module ) {
 	//删除所有cookie
 	function removeAllCookie () {
 
-		var cookieText = dom.cookie;	
+		var cookieText = dom.cookie,	
 			arr = cookieText.split("=");
 
 		for ( var i=arr.length; i--; ) {
