@@ -6,15 +6,17 @@
  *
  * var cookie = require('path/cookie.module');
  *	
- * 设置cookie
+ * 设置cookie 还可跟其他参数，请详见方法注释
  * cookie.setCookie("name","yerya");
  *
  * 读取cookie
  * cookie.getCookie("name");
  *
  * 删除cookie
- *
  * cookie.removeCookie("name");
+ * 
+ * 删除所有cookie
+ * cookie.removeAll();
  *
  * ******************************************************************************
  *
@@ -23,6 +25,11 @@
 define( function ( require, exports, module ) {
 
 	var dom = document;
+
+	//出去空白的工具函数
+	function trim ( cookie ) {
+		return cookie.replace(/^[\s]+|[\s]+$|(;)[\s]+|(=)[\s]+/,'$1');
+	}
 
 	//获取cookie值
 	function getCookie ( name ) {
@@ -74,11 +81,29 @@ define( function ( require, exports, module ) {
 		setCookie( name, "", new Date(0), path, domain, secure );	
 	}
 
+	//删除所有cookie
+	function removeAllCookie () {
+
+		var cookieText = dom.cookie;	
+			arr = cookieText.split("=");
+
+		for ( var i=arr.length; i--; ) {
+			var newArr = arr[i].split(';');	
+			if ( newArr.length > 1 ) {
+				removeCookie( trim ( newArr[1] ) );
+			} else {
+				removeCookie( trim ( newArr[0] ) );
+			}
+		}
+
+	}//end removeAllCookie
+
 	//对外接口
 	module.exports = {
     	set: setCookie,
     	get: getCookie,
-    	remove: removeCookie	
+    	remove: removeCookie,
+    	removeAll: removeAllCookie	
   	};
 
 });

@@ -24,9 +24,4 @@ define( function ( require, exports, module ) {
     // jqueryUI.init( $ );
     $("#time").datepicker();
 
-    // cookie test
-    var cookie = require("module/cookie.module");
-    cookie.set("name","niko");
-    //console.log( cookie.get("name") );
-
 }); // END root.js
