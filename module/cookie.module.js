@@ -26,7 +26,7 @@ define( function ( require, exports, module ) {
 
 	var dom = document;
 
-	//出去空白的工具函数
+	//除去空白的工具函数
 	function trim ( cookie ) {
 		return cookie.replace(/^[\s]+|[\s]+$|(;)[\s]+|(=)[\s]+/,'$1');
 	}

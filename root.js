@@ -38,4 +38,7 @@ define( function ( require, exports, module ) {
     // jqueryUI.init( $ );
     $("#time").datepicker();
 
+    var Tips = require('./module/tips.module');
+    Tips.init({"target":document.getElementById("test")});
+
 }); // END root.js
