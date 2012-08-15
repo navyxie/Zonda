@@ -238,6 +238,17 @@ define( function ( require, exports, module ) {
         exports.play( onPage );
     }; // END prev
 
+    // TODO
+    // 为多 li 幻灯片分组
+    // 对于幻灯片单元为列表的幻灯片进行分割，可配置
+    exports.cutCell = function ( num ) {
+        if ( num <= 0  ) {
+            return 0;
+        } else {
+            console.log( exports.slideLength % num );
+        }
+    };
+
     /**
      * init 方法
      * 初始化slide
