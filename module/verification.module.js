@@ -10,15 +10,14 @@
  *      output { Object } : 返回参数；验证结果，包括以下两个成员；对象
  *          output.status { Number } : 返回参数；验证通过为‘1’，失败为‘0’；对象成员，数字
  *          output.info { String } : 返回参数；验证信息；对象成员，字符串
- *  getData { Function } : 方法；收集数据函数，返回所有需要验证的表单对象；函数；返回值：数组
  *
  *  验证模块使用方法：
  *
  * 验证规则以JSON字符串的形式写在HTML或TPL中
  *  在需要被验证的input/select的节点上加上属性verification，示例如下：
- *  verification = "{'required':true,'type':'email'}"
+ *  ruler = "{'required':true,'type':'email'}"
  *  或
- *  verification = "{'required':true,'type':'select','vacancy':'_0'}"
+ *  ruler = "{'required':true,'type':'select','vacancy':'_0'}"
  *
  *  参数说明：
  *  required 值为true或false，若为true，则此项为必填写项
@@ -36,8 +35,9 @@ define( function ( require, exports, module ) {
     // 加载jQuery模块
     var $ = require('jquery');
 
+    // 数据分类处理，错误信息输出
     // 检查待验证数据格式，为单个数据或一组数据
-    exports.check = function ( input ) {
+    var main = function ( input ) {
         // 返回结果
         var result = {};
         var tmp = {};
@@ -46,8 +46,8 @@ define( function ( require, exports, module ) {
             // 一组数据
             if ( _.isArray( input ) ) {
                 for ( var i = 0; i < input.length; i++ ) {
-                    // 调用rulerCheck检测
-                    tmp = rulerCheck( input[i].name, input[i].data, input[i].ruler, input[i].title );
+                    // 调用check检测
+                    tmp = check( input[i].name, input[i].data, input[i].ruler, input[i].title );
 
                     if ( tmp.status === 0 ) {
                         return tmp;
@@ -58,8 +58,8 @@ define( function ( require, exports, module ) {
 
             // 单个数据
             } else if ( _.isObject( input ) ) {
-                // 调用rulerCheck检测
-                tmp = rulerCheck( input.name, input.data, input.ruler, input.title );
+                // 调用check检测
+                tmp = check( input.name, input.data, input.ruler, input.title );
 
                 if ( tmp.status === 0 ) {
                     return tmp;
@@ -73,7 +73,7 @@ define( function ( require, exports, module ) {
                 throw new Error('待验证数据格式不正确!');
             }
         } catch (e) {
-            if ( typeof console === undefined ) {
+            if ( typeof console !== undefined ) {
                 console.error( e.message );
             } else {
                 console = {};
@@ -81,66 +81,61 @@ define( function ( require, exports, module ) {
             }
         }
 
+        // 返回数据
         return result;
-    };// END check 检查数据
 
+    };// END  检查数据
+
+    // 验证方法 check
     // 验证规则
-    var rulerCheck = function ( name, data, ruler, title ) {
+    var check = function ( name, data, ruler, title ) {
         var result = {};
-        ruler = eval( '(' + ruler + ')' );
+        //ruler = eval( '(' + ruler + ')' );
+        // 使用JSON方式解析
+        ruler = JSON.parse( ruler );
+
+        if ( title === undefined ) {
+            title = '此项';
+        }
 
         // 是否允许为空
         if ( ruler.required && /^\s*$/.test( data ) ) {
-            result.info = ' " ' + title + ' " ' + '不能为空';
+            result.info = title + '不能为空';
             result.status = 0;
             return result;
         }
 
         // 数据类型为数字
         if ( ruler.type === 'number' && !/^(\d{1,}-){0,}\d*$/.test( data ) ) {
-            result.info = ' " ' + title + ' " ' + '格式不是数字';
+            result.info = title + '格式不是数字';
             result.status = 0;
             return result;
         }
 
         // 数据类型为邮箱
         if ( ruler.type === 'email' && !/^\w{1,}@.{1,}\.{1,}\w{1,}$/.test( data ) ) {
-            result.info = ' " ' + title + ' " ' + '格式不正确';
+            result.info = title + '格式不为Email';
             result.status = 0;
             return result;
         }
 
         // 验证select表单
         if ( ruler.type === 'select' && ruler.vacancy === data ) {
-            result.info = ' " ' + title + ' " ' + '未选择';
+            result.info = title + '未选择';
             result.status = 0;
             return result;
         }
 
         // 验证全部通过
         result.status = 1;
-        result.info = '"' + title + '"' + '通过验证';
+        result.info = title + '通过验证';
 
         return result;
     };// END check
 
-    // 验证信息
-    exports.output = {};
+    // API / 对外接口
+    module.exports = {
+        check : main
+    };
 
-    // 收集当前页面上所有需要验证的表单值
-    exports.getInputData = function () {
-        // 数据队列
-        var data = [];
-
-        $("[verification]").each(function(i){
-            data.push({
-                name  : $(this).attr('name'),
-                data  : $(this).val(),
-                ruler : $(this).attr('verification'),
-                title : $(this).attr('title')
-            });
-        });
-
-        return data;
-    };// END getData
 });
