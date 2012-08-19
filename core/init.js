@@ -6,10 +6,11 @@
 // 配置loader
 seajs.config({
     //顶级标识
-    base : '/',
+    base : '/Zonda',
 
     // 配置别称
     alias : {
+        'util' : 'module/util.module',
         'underscore' : 'lib/underscore-min.js',
         'jquery' : 'lib/jquery-1.7.2.min.js',
         'jquery-ui' : 'lib/jquery-ui/jquery-ui-1.8.22.min.js',

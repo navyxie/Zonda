@@ -39,4 +39,7 @@ define( function ( require, exports, module ) {
         require.async('./module/header');
     }
 
+    // 测试代码
+    require('./module/demo');
+
 }); // END root.js
