@@ -51,19 +51,15 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
     
     + Grid System schematic，栅格系统示意图生成器。
     
-    + TODO 支持IE6+。
-    
 ## Zonda搭载的强劲零件
 
 - [`Seajs`](http://seajs.org/docs/#intro) : 国产强劲引擎，作为核心库，进行模块的依赖管理。
 
-- [`Typo`](http://typo.sofish.de/) : 钟表式仪表盘，获得更美观的中文排版。
-
-- [`Modernizr`](http://modernizr.com/) : 进口行车电脑，检测浏览器对HTML5和CSS3的支持。
+- [`Less`](http://lesscss.org/) : 进口涡轮增压装置，对CSS进行组织，将CSS代码模块化，可配置。
 
 - [`Bootstrap`](http://twitter.github.com/bootstrap/index.html) : 进口碳素纤维车身，强力的UI，对IE的支持不好，自己进行了一些改装，使之在IE6+环境中能正常使用。
 
-- [`Less`](http://lesscss.org/) : 进口涡轮增压装置，对CSS进行组织，将CSS代码模块化，可配置。
+- [`Modernizr`](http://modernizr.com/) : 进口行车电脑，检测浏览器对HTML5和CSS3的支持。
 
 谢谢Seajs，Less的作者，他们让前端写代码变成一件愉悦的事情，维护起来也不再那么头疼了。
 
