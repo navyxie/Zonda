@@ -24,20 +24,12 @@ define( function ( require, exports, module ) {
         require.async('./module/ie/ie');
     }
 
+    // 示例
     // index.html
     if ( $("#main").attr('view') === 'index' ) {
         require.async('./module/index');
     }
-
-    // footer.html
-    if ( $("#footer")[0] ) {
-        require.async('./module/footer');
-    }
-
-    // header.html
-    if ( $("#header")[0] ) {
-        require.async('./module/header');
-    }
+    // END 示例
 
     // 测试代码
     require('./module/demo');

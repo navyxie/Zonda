@@ -27,6 +27,7 @@
                         return i;
                     }//end if
                 }//end for
+                return -1;
             };
         } // END indexOf
 

@@ -1,9 +1,8 @@
-/**
- * SeaJS 入口文件
- * author shiyang@epptime.com
- * copyright epp.studio
- */
-// 配置loader
+// SeaJS 入口文件
+// --------------
+// author degas.yerya
+
+// 配置
 seajs.config({
     //顶级标识
     base : '/Zonda',
@@ -12,6 +11,7 @@ seajs.config({
     alias : {
         'util' : 'module/util.module',
         'underscore' : 'lib/underscore-min.js',
+        'bootstrap' : 'lib/bootstrap.min.js',
         'jquery' : 'lib/jquery-1.7.2.min.js',
         'jquery-ui' : 'lib/jquery-ui/jquery-ui-1.8.22.min.js',
         'backbone' : 'lib/backbone-min.js',
