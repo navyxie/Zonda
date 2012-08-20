@@ -13,7 +13,7 @@ seajs.config({
         'underscore' : 'lib/underscore-min.js',
         'bootstrap' : 'lib/bootstrap.min.js',
         'jquery' : 'lib/jquery-1.7.2.min.js',
-        'jquery-ui' : 'lib/jquery-ui/jquery-ui-1.8.22.min.js',
+        'jquery-ui' : 'lib/jquery-ui/1.8.22/jquery-ui-1.8.22.min.js',
         'backbone' : 'lib/backbone-min.js',
         'fancybox' : 'lib/jquery.fancybox-1.3.4.pack.js',
         'pngFix' : 'lib/DD_belatedPNG_0.0.8a-min.js'
