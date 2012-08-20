@@ -1,0 +1,9 @@
+{
+    "name" : "Zonda",
+    "version" : "0.0.1",
+    "dependencies" : {
+    },
+    "output" : {
+        'sea.js' : '.'
+    }
+}

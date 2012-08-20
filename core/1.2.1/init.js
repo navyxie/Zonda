@@ -12,7 +12,7 @@ seajs.config({
         'util' : 'module/util.module',
         'underscore' : 'lib/underscore-min.js',
         'bootstrap' : 'lib/bootstrap.min.js',
-        'jquery' : 'lib/jquery-1.7.2.min.js',
+        'jquery' : 'lib/jquery/1.7.2/jquery-1.7.2.min.js',
         'jquery-ui' : 'lib/jquery-ui/1.8.22/jquery-ui-1.8.22.min.js',
         'backbone' : 'lib/backbone-min.js',
         'fancybox' : 'lib/jquery.fancybox-1.3.4.pack.js',
@@ -22,7 +22,7 @@ seajs.config({
     // 预加载
     preload : [
         'lib/modernizr',
-        'core/plugin-text',
+        'core/1.2.1/plugin-text',
         window.JSON ? '' : 'lib/json',
         Function.prototype.bind ? '' : 'lib/es5-safe'
     ],
