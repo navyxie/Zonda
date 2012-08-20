@@ -33,10 +33,12 @@ define('seajs/plugin-debug', [], function() {
 
   // Calls pre-called `seajs.use`
   var args = seajs._useArgs
-  for (var i = 0; i < args.length; i++) {
-    seajs.use(args[i][0], args[i][1])
+  if (args) {
+    for (var i = 0; i < args.length; i++) {
+      seajs.use(args[i][0], args[i][1])
+    }
+    delete seajs._useArgs
   }
-  delete seajs._useArgs
 
 
   // Shows console
@@ -107,7 +109,7 @@ define('seajs/plugin-debug', [], function() {
     buttons[1].onclick = function() {
       config.console = 0
       saveConfig(config)
-      loc.replace(loc.href.replace(/(?:\?|&)seajs-debug/, ''))
+      loc.replace(loc.href.replace('seajs-debug', ''))
     }
 
     // refresh
@@ -126,7 +128,7 @@ define('seajs/plugin-debug', [], function() {
     buttons[0].onclick = function() {
       config.debug = 0
       saveConfig(config)
-      loc.replace(loc.href.replace(/(?:\?|&)seajs-debug/, ''))
+      loc.replace(loc.href.replace('seajs-debug', ''))
     }
   }
 
@@ -134,7 +136,7 @@ define('seajs/plugin-debug', [], function() {
     var cookie = '', m
 
     if ((m = document.cookie.match(
-        /(?:^| )seajs(?:(?:=([^;]*))|;|$)/))) {
+        /(?:^| )seajs-debug(?:(?:=([^;]*))|;|$)/))) {
       cookie = m[1] ? decodeURIComponent(m[1]) : ''
     }
 
@@ -150,8 +152,8 @@ define('seajs/plugin-debug', [], function() {
     var date = new Date()
     date.setTime(date.getTime() + 30 * 86400000) // 30 days
 
-    document.cookie = 'seajs=' + o.debug + '`' + o.mapfile + '`' + o.console +
-        '; path=/; expires=' + date.toUTCString()
+    document.cookie = 'seajs-debug=' + o.debug + '`' + o.mapfile + '`' +
+        o.console + '; path=/; expires=' + date.toUTCString()
   }
 
 
