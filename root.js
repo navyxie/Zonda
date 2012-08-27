@@ -39,6 +39,6 @@ define( function ( require, exports, module ) {
     $("#time").datepicker();
 
     var Tips = require('./module/tips.module');
-    Tips.init({"target":document.getElementById("test")});
+    Tips.some({"target":$(".test")});
 
 }); // END root.js
