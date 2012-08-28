@@ -1,0 +1,6 @@
+{
+    "name" : "Zonda",
+    "output" : {
+        "util/util.module.js" : '.'
+    }
+}

@@ -19,6 +19,7 @@
         "backbone" : "backbone",
         "util" : "util"
     },
+    /**
     "output" : {
         "util/util.module.js" : '.',
         "module/slide.module.js" : '.',
@@ -27,4 +28,5 @@
         "module/cookie.module.js" : ".",
         "module/tips.module.js" : ".",
     }
+    */
 }
