@@ -8,7 +8,9 @@
     },
     "output" : {
         "lib/bootstrap/2.1.0/bootstrap.js" : ".",
+        "lib/fancybox/1.3.4/jquery.fancybox.js" : ".",
         "module/slide.module.js" : ".",
+        "module/verification.module.js" : ".",
         "root.js" : "."
     }
 }

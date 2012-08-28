@@ -2,14 +2,9 @@
  * root.js
  * 以视图的唯一DOM加载所需脚本
  */
-define( function ( require, exports, module ) {
+define("#Zonda/0.0.1-dev/root-debug", ["jquery-debug", "helper/scaffold.helper-debug", "module/tips.module-debug"], function ( require, exports, module ) {
     var $ = require('jquery-debug');
 
-    // 使用jqueryUI
-    // ------------
-    // var jui = require('undefined-debug');
-    // jui('#input').datepicker();
-    
     // 使用脚手架
     var scaffold = require('undefined-debug');
 
@@ -30,5 +25,8 @@ define( function ( require, exports, module ) {
         require.async('module/index');
     }
     // END 示例
+
+    var Tips = require('undefined-debug');
+    Tips.some({"target":$(".test")});
 
 }); // END root.js

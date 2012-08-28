@@ -2,7 +2,7 @@
 // --------------
 // author degas.yerya
 
-// 配置
+// 配置seajs
 seajs.config({
     //顶级标识
     base : '/Zonda',
@@ -30,5 +30,10 @@ seajs.config({
     charset : 'utf-8'
 });
 
-// 加载主文件
-seajs.use('root');
+// DOM 路由
+seajs.use('util', function ( Util ) {
+    Util.route({
+        '#index' : 'index.module',
+        '#header' : 'header.module'
+    });
+});
