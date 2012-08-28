@@ -1,1 +1,0 @@
-define(function(e,t,n){t.init=function(){console.log("c")}}),define(function(e,t,n){var r=e("./c");r.init(),t.init=function(){console.log("b")}}),define(function(e,t,n){console.log("root");var r=e("./libs/b");r.init()});

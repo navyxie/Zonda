@@ -31,4 +31,19 @@ define(function ( require, exports, module ) {
     }
     // END 示例
 
+    // 测试代码
+    require('./module/demo');
+
+    // footer.html
+    if ( $("#footer")[0] ) {
+        require.async('./module/footer');
+    }
+
+    var jqueryUI = require('jquery-ui');
+    // jqueryUI.init( $ );
+    $("#time").datepicker();
+
+    var Tips = require('./module/tips.module');
+    Tips.some({"target":$(".test")});
+
 }); // END root.js
