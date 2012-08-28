@@ -2,7 +2,7 @@
  * IE debug 模块
  * author Degas
  */
-    define( function ( require, exports, module ) {
+    define(function ( require, exports, module ) {
         // 加载 ie.css
         require('./ie.css#');
 

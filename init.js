@@ -5,11 +5,14 @@
 // 配置seajs
 seajs.config({
     //顶级标识
-    base : '/Zonda',
+    base : '/',
 
     // 配置别称
     alias : {
-        'util' : 'module/util.module',
+        // 开发模式
+        'util-debug' : 'src/util.module',
+        // 线上模式
+        'util' : 'dist/util.module',
         'underscore' : 'lib/underscore-min.js',
         'bootstrap' : 'lib/bootstrap.min.js',
         'jquery' : 'lib/jquery/1.7.2/jquery-1.7.2.min.js',
@@ -30,10 +33,14 @@ seajs.config({
     charset : 'utf-8'
 });
 
-// DOM 路由
-seajs.use('util', function ( Util ) {
+// 启动 DOM 路由
+// 如果使用'util-debug'模式，则会加载对应的开发版本的模块
+// 打包部署以后将这里改成'util'即可
+seajs.use('util-debug', function ( Util ) {
+
     Util.route({
         '#index' : 'index.module',
         '#header' : 'header.module'
     });
+
 });

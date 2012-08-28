@@ -28,7 +28,7 @@
  *      则表示此select未选择，验证不通过
  */
 
-define( function ( require, exports, module ) {
+define(function ( require, exports, module ) {
     // 加载Underscore模块
     var _ = require('underscore');
     

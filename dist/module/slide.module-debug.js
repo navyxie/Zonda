@@ -66,7 +66,7 @@
  * });
  *
  */
-define( function ( require, exports, module ) {
+define("#Zonda/0.0.1-dev/module/slide.module-debug", ["underscore-debug", "jquery-debug"], function ( require, exports, module ) {
     var _ = require('underscore-debug');
     var $ = require('jquery-debug');
 

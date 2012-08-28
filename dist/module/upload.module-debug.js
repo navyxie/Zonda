@@ -21,15 +21,15 @@
  *          loading : 事件，upload方法正在向服务器推送数据
  *          ready   : 事件，服务器响应准备就绪
  */
-define( function( require, exports, module ) {
+define("#Zonda/0.0.1-dev/module/upload.module-debug", ["underscore-debug", "jquery-debug", "backbone-debug"], function( require, exports, module ) {
     // 加载 Underscore 模块
-    var _ = require('underscore');
+    var _ = require('underscore-debug');
 
     // 加载 jQuery 模块
-    var $ = require('jquery');
+    var $ = require('jquery-debug');
 
     // 加载 Backbone 模块
-    var Backbone = require('backbone');
+    var Backbone = require('backbone-debug');
 
     // 用 Backbone 为 exports 做扩展
     _.extend( exports, Backbone.Events );

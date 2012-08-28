@@ -28,7 +28,7 @@
  *      则表示此select未选择，验证不通过
  */
 
-define( function ( require, exports, module ) {
+define("#Zonda/0.0.1-dev/module/verification.module-debug", ["underscore-debug", "jquery-debug"], function ( require, exports, module ) {
     // 加载Underscore模块
     var _ = require('underscore-debug');
     

@@ -1,16 +1,30 @@
 {
     "name" : "Zonda",
     "version" : "0.0.1-dev",
+    "description" : "Degas自家用的前端框架",
+    "author" : "Degas,Niko",
+    "homepage" : "https://github.com/smallsmallwolf/Zonda",
+    "repository" : {
+        "type" : "git",
+        "url"  : "git://github.com/smallsmallwolf/Zonda.git"
+    },
+    "license" : "MIT",
+    "bugs" : {
+        "url" : "https://github.com/smallsmallwolf/Zonda/issues",
+        "email" : "smallsmallwolf@gmail.com"
+    },
     "dependencies" : {
         "jquery" : "jquery",
         "underscore" : "underscore",
+        "backbone" : "backbone",
         "util" : "util"
     },
     "output" : {
-        "lib/bootstrap/2.1.0/bootstrap.js" : ".",
-        "lib/fancybox/1.3.4/jquery.fancybox.js" : ".",
-        "module/slide.module.js" : ".",
-        "module/verification.module.js" : ".",
-        "root.js" : "."
+        "util/util.module.js" : '.',
+        "module/slide.module.js" : '.',
+        "module/upload.module.js" : '.',
+        "module/verification.module.js" : '.',
+        "module/cookie.module.js" : ".",
+        "module/tips.module.js" : ".",
     }
 }
