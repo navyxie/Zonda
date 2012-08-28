@@ -1,9 +1,14 @@
 {
     "name" : "Zonda",
-    "version" : "0.0.1",
+    "version" : "0.0.1-dev",
     "dependencies" : {
+        "jquery" : "jquery",
+        "underscore" : "underscore",
+        "util" : "util"
     },
     "output" : {
-        'sea.js' : '.'
+        "lib/bootstrap/2.1.0/bootstrap.js" : ".",
+        "module/slide.module.js" : ".",
+        "root.js" : "."
     }
 }
