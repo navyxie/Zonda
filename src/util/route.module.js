@@ -7,4 +7,15 @@
 // 性能会受到很大的影响，先实现，再优化，或者再废弃这种方式
 
 define(function ( require, exports, module) {
+    return function ( ruler ) {
+        var $ = require('jquery');
+        var _ = require('underscore');
+
+        _.each( ruler, function ( action, selector ) {
+            if ( $(selector)[0] ) {
+                eval('require.async("../app/' + action + '")');
+            }
+        });
+
+    };
 });

@@ -38,16 +38,9 @@ seajs.config({
 // 打包部署以后将这里改成'util'即可
 seajs.use('util-debug', function ( Util ) {
 
-    /**
     Util.route({
-        '#index' : 'index.module',
-        '#header' : 'header.module'
+        '#index' : 'index',
+        '#header' : 'header'
     });
-    */
 
-});
-
-define(function ( require, exports, module) {
-    var $ = require('jquery-ui');
-    $("#hh").datepicker();
 });
