@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" href="/css/build/init.css" />
 <style type="text/css">
     .tips-box {
-        max-width: 100px;
+        max-width: 200px;
         min-width: 60px;
 
         padding: 5px;
@@ -25,10 +26,60 @@
 </head>
 <body>
     <div id="header">
+        <br />
+        <h1>Tips模块测试</h1>
         <p>
         动物园，进进出出太多人。各色人等各色<a href="#" class="tips" tips-info="情绪 =。=" tips-action="hover" >表情</a>。看那些被囚禁的<a href="#" class="tips" tips-info="动物：人也是动物~" tips-action="hover" >动物</a>，我看它，它看我。
         </p>
+        <br />
+
+        <h1>jQuery UI模块测试</h1>
         <input id="hh" name="" type="text" />
+
+        <br />
+        <h1>Bootstrap测试</h1>
+
+        <div class="btn-group">
+            <a class="btn dropdown-toggle btn-inverse" data-toggle="dropdown" href="#">
+                Action
+                <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+                <li>
+                    <a href="#"><i class="icon-twitter"></i> Hello</a>
+                </li>
+
+                <li>
+                    <a href="#">Bootstrap</a>
+                </li>
+
+                <li class="divider"></li>
+
+                <li class="dropdown-submenu">
+                    <a tabindex="-1" href="#">More options</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">login</a>
+                        </li>
+                        <li>
+                            <a href="#">logout</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+        <br />
+        <br />
+        <div class="btn-group">
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+        </div>
+
     </div>
 </body>
 <script src="/core/1.2.1/sea.js" data-main="/init"></script>

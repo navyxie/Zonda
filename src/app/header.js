@@ -14,4 +14,7 @@ define(function ( require, exports, module) {
         "target" : $('.tips')
     });
 
+    // test bootstrap
+    var bootstrap = require('bootstrap');
+
 });
