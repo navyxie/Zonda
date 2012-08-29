@@ -8,14 +8,14 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 
 ## Zonda 原厂零件
 
-- **tips模块** : 简单强大的tooltips模块
+- **tips模块** : 简单强大的tooltips模块，by [Niko](http://niko-blog.com/)
 
     + 自定义触发tips的事件
 
     + tips内容可传入字符串或DOM字符串
 
     + 可直接在HTML中定义tips，也可在创建时通过对象传入
-    
+
 
 - **上传模块** : 自家实现的跨浏览器多文件上传。
     
