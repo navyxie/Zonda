@@ -54,6 +54,7 @@ a:hover{color:#005580;text-decoration:underline;}
 .container:after{clear:both;}
 .container-fluid{padding-right:20px;padding-left:20px;*zoom:1;zoom:1;}.container-fluid:before,.container-fluid:after{display:table;content:"";}
 .container-fluid:after{clear:both;}
+.span1,.span2,.span3,.span4,.span5,.span6,.span7,.span8,.span9,.span10,.span11,.span12,.span13,.span14,.span15,.span16,.span17,.span18,.span19,.span20{float:left;margin-left:20px;_display:inline;}
 p{margin:0 0 9px;}p small{font-size:11px;color:#999999;}
 .lead{margin-bottom:18px;font-size:20px;font-weight:200;line-height:27px;}
 h1,h2,h3,h4,h5,h6{margin:0;font-family:inherit;font-weight:bold;color:inherit;text-rendering:optimizelegibility;}h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{font-weight:normal;color:#999999;}
@@ -126,6 +127,19 @@ select:focus,input[type="file"]:focus,input[type="radio"]:focus,input[type="chec
 .input-xxlarge{width:530px;}
 input[class*="span"],select[class*="span"],textarea[class*="span"],.uneditable-input[class*="span"],.row-fluid input[class*="span"],.row-fluid select[class*="span"],.row-fluid textarea[class*="span"],.row-fluid .uneditable-input[class*="span"]{float:none;margin-left:0;}
 .input-append input[class*="span"],.input-append .uneditable-input[class*="span"],.input-prepend input[class*="span"],.input-prepend .uneditable-input[class*="span"],.row-fluid .input-prepend [class*="span"],.row-fluid .input-append [class*="span"]{display:inline-block;}
+input,textarea,.uneditable-input{margin-left:0;}
+input.span12, textarea.span12, .uneditable-input.span12{width:930px;}
+input.span11, textarea.span11, .uneditable-input.span11{width:850px;}
+input.span10, textarea.span10, .uneditable-input.span10{width:770px;}
+input.span9, textarea.span9, .uneditable-input.span9{width:690px;}
+input.span8, textarea.span8, .uneditable-input.span8{width:610px;}
+input.span7, textarea.span7, .uneditable-input.span7{width:530px;}
+input.span6, textarea.span6, .uneditable-input.span6{width:450px;}
+input.span5, textarea.span5, .uneditable-input.span5{width:370px;}
+input.span4, textarea.span4, .uneditable-input.span4{width:290px;}
+input.span3, textarea.span3, .uneditable-input.span3{width:210px;}
+input.span2, textarea.span2, .uneditable-input.span2{width:130px;}
+input.span1, textarea.span1, .uneditable-input.span1{width:50px;}
 input,textarea,.uneditable-input{margin-left:0;}
 input.span12, textarea.span12, .uneditable-input.span12{width:930px;_width:940px;}
 input.span11, textarea.span11, .uneditable-input.span11{width:850px;_width:860px;}

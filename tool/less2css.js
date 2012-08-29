@@ -101,3 +101,16 @@ fs.watch( cssPath + '/lib/bootstrap', function ( event, name ) {
         lessToCss( 'init.less' );
     }
 });
+
+// 监听目录ie目录
+fs.watch( cssPath + '/ie', function ( event, name ) {
+    if ( event === 'change' ) {
+        console.log(name + ' is ' + event);
+
+        if ( !/\.less$/.test( name ) ) {
+            return false;
+        }
+
+        lessToCss( 'init.less' );
+    }
+});
