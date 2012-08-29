@@ -5,27 +5,27 @@
 // 配置seajs
 seajs.config({
     //顶级标识
-    base : '/',
+    base : '../',
 
     // 配置别称
     alias : {
         // 开发模式
-        'util-debug' : 'src/util.module',
+        'util-debug' : 'src/util/util.module',
         // 线上模式
-        'util' : 'dist/util.module',
-        'underscore' : 'lib/underscore-min.js',
-        'bootstrap' : 'lib/bootstrap.min.js',
-        'jquery' : 'lib/jquery/1.7.2/jquery-1.7.2.min.js',
-        'jquery-ui' : 'lib/jquery-ui/1.8.22/jquery-ui-1.8.22.min.js',
-        'backbone' : 'lib/backbone-min.js',
-        'fancybox' : 'lib/jquery.fancybox-1.3.4.pack.js',
-        'pngFix' : 'lib/DD_belatedPNG_0.0.8a-min.js'
+        'util' : 'dist/util/util.module',
+        'underscore' : 'lib/underscore/1.3.3/underscore',
+        'bootstrap' : 'lib/bootstrap/2.1.0/bootstrap',
+        'jquery' : 'lib/jquery/1.8.0/jquery',
+        'jquery-ui' : 'lib/jquery-ui/1.8.22/jquery-ui',
+        'backbone' : 'lib/backbone/0.9.2/backbone'
     },
 
     // 预加载
     preload : [
-        'lib/modernizr',
+        'lib/modernizr/2.6.1/modernizr',
         'core/1.2.1/plugin-text',
+        // 开发模式
+        'core/1.2.1/plugin-debug',
         window.JSON ? '' : 'lib/json',
         Function.prototype.bind ? '' : 'lib/es5-safe'
     ],
@@ -38,9 +38,16 @@ seajs.config({
 // 打包部署以后将这里改成'util'即可
 seajs.use('util-debug', function ( Util ) {
 
+    /**
     Util.route({
         '#index' : 'index.module',
         '#header' : 'header.module'
     });
+    */
 
+});
+
+define(function ( require, exports, module) {
+    var $ = require('jquery-ui');
+    $("#hh").datepicker();
 });
