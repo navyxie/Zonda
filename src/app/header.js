@@ -8,13 +8,11 @@ define(function ( require, exports, module) {
     $("#hh").datepicker();
 
     // test tips
-    /**
     var Tips = require('../module/tips.module');
 
     Tips.some({
         "target" : $('.tips')
     });
-    */
 
     // test bootstrap
     var bootstrap = require('bootstrap');
