@@ -9,8 +9,9 @@ define(function ( require, exports, module) {
 
     // test tips
     var Tips = require('../module/tips.module');
+
     Tips.some({
-        "target" : $("#tips-p")
+        "target" : $('.tips')
     });
 
 });
