@@ -4,17 +4,17 @@
 
 define(function ( require, exports, module ) {
 
-    // 可根据需要自己配置util提供的功能
+    var $ = require('jquery');
 
-    //var ie = require('./ie');
-    var verify = require('./verify.module');
-    var route = require('./route.module');
+    // IE debug
+    if ( $.browser.msie ) {
+        require.async('./ie');
+    }
 
     // API
     module.exports = {
-        //ie : ie,
-        verify : verify,
-        route : route
+        verify : require('./verify.module'),
+        route : require('./route.module')
     };
 
 });

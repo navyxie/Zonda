@@ -18,6 +18,13 @@ define(function ( require, exports, module) {
     var bootstrap = require('bootstrap');
 
     // test fancybox
-    //var fb = require('lib/fancybox/1.3.4/jquery.fancybox');
+    var fb = require('lib/fancybox/1.3.4/jquery.fancybox');
+
+    fb('.fancybox-test').fancybox({
+        'easingIn' : 'easeOutBack',
+        'easingOut' : 'easeInBack',
+        'transitionIn'	: 'elastic',
+        'transitionOut'	: 'elastic'
+    });
 
 });

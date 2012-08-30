@@ -8,9 +8,6 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var path = require('path');
 
-// 设置lessc路径
-//var lessc = path.resolve('/home/shiyang/node_modules/less/bin/lessc');
-
 // 设置css路径
 var cssPath = path.resolve( './', '../');
 
@@ -19,8 +16,9 @@ cssPath = path.dirname( module.filename );
 cssPath = path.join( cssPath, '../css' );
 
 // 调用shell运行lessc编译.less文件
-var lessToCss = function ( fileName ) {
+var lessToCss = function ( fileName, event ) {
 
+    // 判断是否为less文件
     if ( !/\.less$/.test( fileName ) ) {
         return false;
     }

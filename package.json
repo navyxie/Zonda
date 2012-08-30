@@ -15,6 +15,7 @@
     },
     dependencies : {
         "jquery" : "jquery",
+        "easing" : "easing",
         "underscore" : "underscore",
         "backbone" : "backbone",
         "util" : "util"
