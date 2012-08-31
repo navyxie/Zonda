@@ -19,3 +19,28 @@ define(function ( require, exports, module) {
 
     };
 });
+
+/* add by niko just suggest */
+/*
+Util.route({
+	'#index' : function(){
+		require.async("../app/index/");	
+	},
+	'#header' : function(){
+		require.async("../app/header/");	
+	} 
+});
+
+define(function ( require, exports, module) {
+    return function ( ruler ) {
+        var $ = require('jquery');
+        var _ = require('underscore');
+
+        _.each( ruler, function ( action, selector ) {
+            if ( $(selector)[0] ) {
+            	action(); 
+            }
+        });
+    };
+});
+*/
