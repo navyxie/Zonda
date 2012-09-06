@@ -40,8 +40,7 @@ seajs.config({
 seajs.use('util-debug', function ( Util ) {
 
     Util.route({
-        '#index' : 'index',
-        '#header' : 'header'
+        '#demo' : 'demo'
     });
 
 });

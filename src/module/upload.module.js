@@ -1,26 +1,47 @@
+// upload.module.js
+// ----------------
+// 上传模块
+//
+// Usage : (在app目录下的应用脚本调用)
+//
+// HTML
 /**
- * 上传文件模块 upload.js
- * author : Degas
- *
- * 文件对象构造函数为 File
- * API分为
- * 1,上传接口: 以XHR方式上传，可显示进度条;
- *             以同步表单提交的方式，需要新建form和iframe，并在上传成功后删除form和iframe
- * 2,DOM接口: add方法新建File对象的DOM形态
- *            delete方法删除File对象的DOM形态
- *            uploading方法控制DOM形态的“上传中”和“上传成功/失败”等状态
- *
- * 配置参数:
- *          url      : {string} 服务端脚本
- *          fileType : {string} 文件类型,用英文逗号","隔开
- *          DOMWrap  : {DOM} 原生DOM对象，文件列表包裹器
- *          msg      : {function} 消息回调函数
- *          tpl      : {string} 字符串或文本对象，文件DOM形态模板
- *
- * 模块事件:
- *          loading : 事件，upload方法正在向服务器推送数据
- *          ready   : 事件，服务器响应准备就绪
- */
+<form id="upload-form" target="upload_iframe_hidden" method="POST" name="file-upload-form" action="/attach/addfile" enctype="multipart/form-data">
+    <input id="upload-input-file" name="file" type="file" multiple="multiple" />
+</form>
+<iframe id="upload_iframe_hidden" name="upload_iframe_hidden" style="display:none" src="" frameborder="0"></iframe>
+*/
+
+// Javascript
+/**
+var FILE = require('../module/file.module');
+
+FILE.config = {
+    url : 'server', // {STRING} 请求服务器脚本
+    fileType : 'png, bmp, zip, rar', // {STRING} 允许上传的文件类型，暂不支持正则
+    fileTpl  : require('tpl/file.cell.tpl'), // {TEMPLATE} 默认为"tpl/file.cell.tpl"，可自定义，已经包括一个操作系统进度条和删除按钮。file对象将会实例化为一个已经事件绑定好了的<li>，在文件初始化上传后将插入fileList
+    fileList : $('#upload-block ul')[0], // {DOM} 实例化后的file对象<li>，将插入的目标<ul>
+    msg : function ( msg ) { console.log(msg) }, // {FUNCTION}, {msg: OBJECT} 消息回调函数，处理'文件格式错误'等消息，返回参数'msg'，为对象
+    uploadForm : $("#upload-form")[0] // {DOM} 为兼容IE浏览器，需要使用<form>配合隐藏<iframe>的方式模拟异步上传文件
+                                      // 所以在IE下使用upload模块时，需要先在页面中写好异步上传的<form>，<input:file>和<iframe:hidden>
+};
+
+FILE.upload( files ); // {files: HTML5 files 对象} 将HTML5的'files'对象传入upload方法，并启动上传
+
+// 监听upload模块loading事件
+// 在开始上传文件时触发
+FILE.loading( function ( msg ) {
+    $("#load-gif").fadeIn('fast');
+});
+
+// 监听upload模块ready事件
+// 在全部文件上传完毕后触发
+FILE.ready( function ( msg ) {
+    $("#load-gif").stop().fadeOut('fast');
+});
+
+*/
+
 define(function( require, exports, module ) {
     // 加载 Underscore 模块
     var _ = require('underscore');
@@ -57,18 +78,19 @@ define(function( require, exports, module ) {
     var need = {
         url      : '',
         fileType : '',
-        DOMWrap  : '',
-        msg      : '',
-        tpl      : ''
+        fileList : '',
+        msg      : ''
     };
 
     // 如果为IE浏览器，则需要配置文件上传表单
     if ( $.browser.msie ) {
-        need.ieUploadForm = '';
+        need.uploadForm = '';
     }
 
-    // 模块内部缓存配置
-    var _config = {};
+    // 默认配置 / 模块内部缓存配置
+    var _config = {
+        fileTpl  : require('tpl/file.cell.tpl')
+    };
 
     /**
      * 检查配置，并重写配置
@@ -78,7 +100,11 @@ define(function( require, exports, module ) {
         if ( _.isEqual( _config, exports.config ) ) {
             return false;
         } else {
-            _config = exports.config;
+            // 将当前配置与默认/缓存配置合并
+            _.extend( _config, exports.config );
+
+            // 将合并的配置保存到当前配置中
+            exports.config = _config;
         }
 
         // 检查是否包含必须的配置项
@@ -124,14 +150,17 @@ define(function( require, exports, module ) {
             error_msg.push( '暂不支持直接上传文件夹，请压缩后上传<br />' );
         } else if ( $.browser.msie ) {
             //兼容IE，检测文件名
-            var name = $( exports.config.ieUploadForm ).find('input:file').val().split('.');
+            var name = $( exports.config.uploadForm ).find('input:file').val().split('.');
             // 后缀，转换为小写
             var suffix = _.last( name ).toLowerCase();
 
             if ( !_.include( exports.config.fileType, suffix ) ) {
                 error_msg.push( '<span class="black">[ ' + name + ' ]</span> 为不允许上传的文件类型<br />' );
 
-                exports.config.msg( error_msg.toString(), 'error' );
+                exports.config.msg({
+                    'status' : 0,
+                    'info'   : error_msg.toString()
+                });
 
                 return 0;
             } else {
@@ -158,8 +187,19 @@ define(function( require, exports, module ) {
             } // END if
         }); // END each
 
-        // 输出错误消息
-        exports.config.msg( error_msg.toString(), 'error' );
+        if ( error_msg.length === 0 ) {
+            exports.config.msg({
+                'status' : 1,
+                'info'   : 'success'
+            });
+
+        } else {
+            // 输出错误消息
+            exports.config.msg({
+                'status' : 0,
+                'info'   : error_msg.toString()
+            });
+        }
 
         //返回正确的文件队列
         return correctFileList;
@@ -204,13 +244,13 @@ define(function( require, exports, module ) {
         this.fileSize = fileSize;
 
         // 加载模板文件并编译
-        var file_DOM = _.template( exports.config.tpl, this);
+        var file_DOM = _.template( exports.config.fileTpl, this);
 
         // 插入文件DOM列表中
-        $( exports.config.DOMWrap ).find('ul').prepend( file_DOM );
+        $( exports.config.fileList ).prepend( file_DOM );
 
         // 获得该DOM节点
-        this.dom = $( exports.config.DOMWrap ).find('li').eq(0);
+        this.dom = $( exports.config.fileList ).find('li').eq(0);
 
         var _this = this;
 
@@ -234,7 +274,7 @@ define(function( require, exports, module ) {
     // ieUpload 内置方法，使用同步表单+iframe形式模拟AJAX提交
     var ieUpload = function () {
         // 获取input:file中要上传的文件名，赋给uploadCurrentFileName
-        uploadCurrentFileName = $( exports.config.ieUploadForm ).find('input:file').val();
+        uploadCurrentFileName = $( exports.config.uploadForm ).find('input:file').val();
 
         // 检查要上传的文件类型是否配置要求
         if ( !checkFileType( uploadCurrentFileName ) ) {
@@ -245,7 +285,7 @@ define(function( require, exports, module ) {
 
         // 根据配置（同步表单的target）取得返回结果用的iframe，并缓存（性能）
         if ( uploadIframe === null ) {
-            uploadIframe = $( 'iframe[name="' + exports.config.ieUploadForm.target + '"]' );
+            uploadIframe = $( 'iframe[name="' + exports.config.uploadForm.target + '"]' );
         }
 
         // 为该iframe绑定事件，根据配置提供的同步文件上传form的target确定目标iframe
@@ -258,14 +298,18 @@ define(function( require, exports, module ) {
                 var File = new DOM( uploadCurrentFileName );
 
                 try {
-                    var data = window.frames[ exports.config.ieUploadForm.target ].data;
+                    var data = window.frames[ exports.config.uploadForm.target ].data;
 
                     if ( data.status === 1 ) {
                         File.dom.find('a').attr('href', data.data.url );
 
                         exports.trigger('ready', 'Ready');
                     } else {
-                        exports.config.msg('发生错误: ' + File.fileName + data.info, 'error' );
+
+                        exports.config.msg({
+                            'status' : 0,
+                            'info'   : '发生错误: ' + File.fileName + data.info
+                        });
 
                         File.dom.remove();
 
@@ -273,7 +317,11 @@ define(function( require, exports, module ) {
                     }
 
                 } catch (e) {
-                    exports.config.msg('发生错误: ' + File.fileName + e, 'error' );
+
+                    exports.config.msg({
+                        'status' : 0,
+                        'info'   : '发生错误: ' + File.fileName + e
+                    });
 
                     File.dom.remove();
 
@@ -283,13 +331,11 @@ define(function( require, exports, module ) {
         } // END bind event
 
         // JS提交表单
-        $( exports.config.ieUploadForm ).submit();
+        $( exports.config.uploadForm ).submit();
 
     }; // END ieUpload
 
-    /**
-     * upload 对外方法，接受文件对象，并发送文件到服务器
-     */
+    // upload 对外方法，接受文件对象，并发送文件到服务器
     exports.upload = function ( fileList ) {
         // 检查配置是否满足要求
         checkConfig();
@@ -355,14 +401,22 @@ define(function( require, exports, module ) {
 
                             exports.trigger('ready', '完成');
                         } else {
-                            exports.config.msg('发生错误: ' + File.fileName + data.info, 'error' );
+
+                            exports.config.msg({
+                                'status' : 0,
+                                'info'   : '发生错误: ' + File.fileName + data.info
+                            });
 
                             File.dom.remove();
 
                             exports.trigger('ready', 'Error');
                         }
                     } catch (e) {
-                        exports.config.msg('发生错误: ' + e, 'error' );
+
+                        exports.config.msg({
+                            'status' : 0,
+                            'info'   : '发生错误: ' + e
+                        });
 
                         exports.trigger('ready', 'Error');
                     }// END try catch
@@ -375,12 +429,5 @@ define(function( require, exports, module ) {
         });
 
     }; // END upload
-
-    /**
-     * needConfig 对外方法，读取必须配置项
-     */
-    exports.needConfig = function () {
-        return need;
-    };
 
 });

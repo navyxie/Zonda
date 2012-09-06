@@ -25,7 +25,7 @@
 </style>
 </head>
 <body>
-    <div id="header">
+    <div id="demo">
         <br />
         <h1>Tips模块测试</h1>
         <p>
@@ -133,6 +133,35 @@
     </style>
     <div href="http://cdntest.aliyun.com/faxianla/wood/m594809-1346217219305.jpg" class="span3 fancybox-test">
         <img src="http://cdntest.aliyun.com/faxianla/wood/m594809-1346217219305.jpg" alt="" />
+    </div>
+
+    <div class="clearfix"></div>
+
+    <h1>upload模块测试</h1>
+    <style type="text/css">
+        #upload-block {
+            width: 500px;
+            height: auto;
+
+            border: 3px dashed #eee;
+
+            margin-bottom: 200px;
+
+            padding: 10px;
+        }
+    </style>
+    <br />
+    <p>拖拽到虚线框内上传</p>
+    <br />
+    <div id="upload-block">
+        <form target="upload_iframe_hidden" method="POST" id="upload-form" name="contribute-file-upload-form" action="/demo/file.php" enctype="multipart/form-data">
+            <input name="file" type="file" multiple="multiple" />
+        </form>
+        <p id="upload-status"></p>
+        <div id="upload-list-wrap">
+            <ul>
+            </ul>
+        </div>
     </div>
 
 </body>
