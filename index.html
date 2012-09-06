@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Zonda : Zonda——Degas自家用的前端框架。" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Zonda</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/smallsmallwolf/Zonda">View on GitHub</a>
+
+          <h1 id="project_title">Zonda</h1>
+          <h2 id="project_tagline">Zonda——Degas自家用的前端框架。</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/smallsmallwolf/Zonda/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/smallsmallwolf/Zonda/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Zonda</h1>
+
+<p>Zonda——Degas自家用的前端框架。</p>
+
+<p>感谢和我一起建造Zonda的朋友，亲爱的<a href="http://niko-blog.com/">Niko</a>同学。</p>
+
+<p>BUG还很多，发现一个修复一个。已在几个项目中使用，不断更新，不断学习~</p>
+
+<h2>Zonda 原厂零件</h2>
+
+<ul>
+<li>
+<p><strong>tips模块</strong> : 简单强大的tooltips模块，by <a href="http://niko-blog.com/">Niko</a></p>
+
+<ul>
+<li>自定义触发tips的事件</li>
+<li>tips内容可传入字符串或DOM字符串</li>
+<li>可直接在HTML中定义tips，也可在创建时通过对象传入</li>
+</ul>
+</li>
+<li>
+<p><strong>上传模块</strong> : 自家实现的跨浏览器多文件上传。</p>
+
+<ul>
+<li>使用XHR上传，进度条显示；对于不能使用XHR上传的浏览器则使用iframe+同步表单上传</li>
+<li>跨浏览器，IE6+</li>
+<li>可配置的允许上传的文件类型</li>
+<li>两个模块事件，loading，ready</li>
+<li>自动生成上传文件列表</li>
+<li>自定义错误消息</li>
+<li>TODO，自动生成的上传文件列表是根据一个模板来渲染的，考虑去掉这个模板，采用配置的方式生成DOM节点取代之</li>
+</ul>
+</li>
+<li>
+<p><strong>幻灯片模块</strong> : 自家用的幻灯片模块。</p>
+
+<ul>
+<li>自动生成带数字或不带数字的页码，或是带缩略图的页码，以及‘next’，‘prev’按钮</li>
+<li>跨浏览器，IE6+</li>
+<li>next，prev，play，stop功能</li>
+<li>多种切换效果，逐步增加中</li>
+<li>简洁可扩展的核心play()函数</li>
+</ul>
+</li>
+<li>
+<p><strong>数据验证模块</strong> : 自家用的表单验证模块。</p>
+
+<ul>
+<li>附加方法verify，方便的验证<a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>form中的表单</li>
+<li>Email验证，数字验证，必填项验证</li>
+<li>跨浏览器，IE6+</li>
+<li>简洁可爱的核心检测方式，可扩展</li>
+<li>TODO，自定义错误事件，回调消息函数</li>
+<li>目前支持验证普通的 input:text，select:option，textarea，以后会慢慢添加更多类型的表单验证 ^_^</li>
+</ul>
+</li>
+<li>
+<p><strong>脚手架</strong> : 实用的调试工具。</p>
+
+<ul>
+<li>Grid System schematic，栅格系统示意图生成器。</li>
+</ul>
+</li>
+</ul><h2>Zonda搭载的强劲零件</h2>
+
+<ul>
+<li><p><a href="http://seajs.org/docs/#intro"><code>Seajs</code></a> : 国产强劲引擎，作为核心库，进行模块的依赖管理</p></li>
+<li><p><a href="http://lesscss.org/"><code>Less</code></a> : 进口涡轮增压装置，对CSS进行组织，将CSS代码模块化，可配置</p></li>
+<li><p><a href="http://twitter.github.com/bootstrap/index.html"><code>Bootstrap</code></a> : 进口碳素纤维车身，强力的UI，对IE的支持不好，自己进行了一些改装，使之在IE6+环境中能正常使用</p></li>
+<li><p><a href="http://modernizr.com/"><code>Modernizr</code></a> : 进口行车电脑，检测浏览器对HTML5和CSS3的支持</p></li>
+</ul><p>谢谢Seajs，Less的作者，他们让前端写代码变成一件愉悦的事情，维护起来也不再那么头疼了</p>
+
+<h3>Zonda名字来源</h3>
+
+<p><code>Pagani</code>的超级跑车<a href="http://www.pagani.com/zonda/default.aspx"><code>Zonda</code></a>，意大利语“风之子”之意。
+<img src="http://www.widescreenbackgrounds.net/wallpapers/background-widescreen-white-pagani-zonda-wallpapers.jpg" alt="alt text" title="Zonda"></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Zonda maintained by <a href="https://github.com/smallsmallwolf">smallsmallwolf</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
