@@ -26,6 +26,39 @@
 </head>
 <body>
     <div id="demo">
+        <h1>Dialog 模块测试</h1>
+        <br />
+        <br />
+        <button id="dialog-toggle-btn" class="btn btn-success">打开Dialog</button>
+        <br />
+        <br />
+        <pre>
+
+            // dialog模块测试
+            var Util = require('util');
+
+            $("#dialog-toggle-btn").click(function() {
+                // 配置dialog
+                Util.dialog({
+                    title : 'Dialog Module',
+                    content : '基于Bootstrap Modal的Dialog',
+                    button : {
+                        '呵呵' : function () {
+                            alert('呵呵 callback');
+                        },
+                        '嘿嘿' : function () {
+                            alert('嘿嘿 callback');
+                        },
+                        '点我将延时1秒关闭' : function () {
+                            Util.dialog.close(1000);
+                        }
+                    }
+                });
+
+                Util.dialog.open();
+            });
+        </pre>
+
         <br />
         <h1>Tips模块测试</h1>
         <p>

@@ -33,14 +33,21 @@
 
         // PNG Fix in IE6
         if ( IE6() ) {
-            // 背景图片修复
-            window.DD_belatedPNG.fix('.pngfix');
+            require.async('pngFix', function ( DD_belatedPNG ) {
+                this.DD_belatedPNG = DD_belatedPNG;
 
-            // img 标签修复
-            $(".apps img").each( function () {
-                window.DD_belatedPNG.fixPng( $(this)[0] );
+                // 背景图片修复
+                DD_belatedPNG.fix(
+                    '#header .menu,' +
+                    '#header .first-menu-cell'
+                );
+
+                // img 标签修复
+                $(".apps img").each( function () {
+                    DD_belatedPNG.fixPng( $(this)[0] );
+                });
+
             });
-
         } // END png fix
 
     });// END define

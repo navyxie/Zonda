@@ -10,9 +10,9 @@ seajs.config({
     // 配置别称
     alias : {
         // 开发模式
-        'util-debug' : 'src/util/util.module',
+        'util' : 'src/util/util.module',
         // 线上模式
-        'util' : 'dist/util/util.module',
+        //'util' : 'dist/util/util.module',
         'underscore' : 'lib/underscore/1.3.3/underscore',
         'bootstrap' : 'lib/bootstrap/2.1.0/bootstrap',
         'jquery' : 'lib/jquery/1.8.0/jquery',
@@ -37,7 +37,7 @@ seajs.config({
 // 启动 DOM 路由
 // 如果使用'util-debug'模式，则会加载对应的开发版本的模块
 // 打包部署以后将这里改成'util'即可
-seajs.use('util-debug', function ( Util ) {
+seajs.use('util', function ( Util ) {
 
     Util.route({
         '#demo' : 'demo'

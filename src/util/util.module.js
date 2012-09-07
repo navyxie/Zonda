@@ -13,8 +13,9 @@ define(function ( require, exports, module ) {
 
     // API
     module.exports = {
-        route : require('src/util/route.module'),
-        verify : require('src/util/verify.module')
+        verify : require('./verify.module'),
+        route : require('./route.module'),
+        dialog : require('./dialog.module')
     };
 
 });

@@ -80,4 +80,28 @@ define(function ( require, exports, module) {
         FILE.upload( this.files );
     });
 
+    // dialog模块测试
+    var Util = require('util');
+
+    $("#dialog-toggle-btn").click(function() {
+        // 配置dialog
+        Util.dialog({
+            title : 'Dialog Module',
+            content : '基于Bootstrap Modal的Dialog',
+            button : {
+                '呵呵' : function () {
+                    alert('呵呵 callback');
+                },
+                '嘿嘿' : function () {
+                    alert('嘿嘿 callback');
+                },
+                '点我将延时1秒关闭' : function () {
+                    Util.dialog.close(1000);
+                }
+            }
+        });
+
+        Util.dialog.open();
+    });
+
 });
