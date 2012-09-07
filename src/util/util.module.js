@@ -13,8 +13,8 @@ define(function ( require, exports, module ) {
 
     // API
     module.exports = {
-        verify : require('./verify.module'),
-        route : require('./route.module')
+        route : require('src/util/route.module'),
+        verify : require('src/util/verify.module')
     };
 
 });

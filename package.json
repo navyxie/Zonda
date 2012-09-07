@@ -18,6 +18,8 @@
         "easing" : "easing",
         "underscore" : "underscore",
         "backbone" : "backbone",
-        "util" : "util"
+        "util" : "util",
+        "jquery-ui" : "jquery-ui",
+        "bootstrap" : "bootstrap"
     }
 }

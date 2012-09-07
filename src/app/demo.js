@@ -8,7 +8,7 @@ define(function ( require, exports, module) {
     $("#hh").datepicker();
 
     // test tips
-    var Tips = require('../module/tips.module');
+    var Tips = require('src/module/tips.module');
 
     Tips.some({
         "target" : $('.tips')
@@ -28,7 +28,7 @@ define(function ( require, exports, module) {
     });
 
     // 测试上传文件模块
-    var FILE = require('../module/upload.module');
+    var FILE = require('src/module/upload.module');
 
     // 配置上传文件模块
     FILE.config = {
