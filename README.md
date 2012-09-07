@@ -8,7 +8,7 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 
 ## Usage ##
 
-详见[demo](https://github.com/smallsmallwolf/Zonda/blob/master/demo/index.html)。
+Read [demo](https://github.com/smallsmallwolf/Zonda/blob/master/demo/index.html)。
 
 Demo和文档正在建设中，目前每个模块代码中都有详细的Usage可以参阅，有什么建议和批评意见可以留下Issue，谢谢~:cat:
 
