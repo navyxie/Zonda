@@ -49,7 +49,7 @@ define(function( require, exports, module ){
     var Constructor = function ( config ) {
 
         // 插入对话框
-        $(document.documentElement).append(
+        $(document.body).append(
             _.template( dialogTPL, {
                 'title' : config.title,
                 'content' : config.content
