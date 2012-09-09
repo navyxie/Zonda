@@ -17,7 +17,11 @@ Util.dialog({
          '提交' : function() {...},
          '更多' : function() {...}
          // ...
-    }
+    },
+    css : {
+        height: 122,
+        top: 10
+    } // 传入css，API参照jQuery $('#sel').css()
 });
 
 // 打开dialog
@@ -51,6 +55,11 @@ define(function( require, exports, module ){
                 'content' : config.content
             }) // 模板编译
         );
+
+        // 自定义css
+        if ( config.css ) {
+            $("#dialog").css( config.css );
+        }
 
         // 动态创建button
         _.each( config.button, function ( callback, buttonName ) {
