@@ -11,13 +11,14 @@ var Util = require('util');
 
 // 配置
 Util.rightClickMenu({
-    scope : '#sel',
+    scope : '#sel', // 使用自定义右键菜单的区域
+    target: '.sel', // 右键事件的期望目标
     option : {
         '新建列表' : function () {
-            alert(1);
+            alert('new!');
         },
         '删除' : function () {
-            alert(2);
+            alert('delete');
         }
     }
 });
