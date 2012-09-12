@@ -11,14 +11,13 @@ var Util = require('util');
 
 // 配置
 Util.rightClickMenu({
-    scope : '#sel', // 使用自定义右键菜单的区域
-    target: '.sel', // 右键事件的期望目标
+    scope : '#sel',
     option : {
         '新建列表' : function () {
-            alert('new!');
+            alert(1);
         },
         '删除' : function () {
-            alert('delete');
+            alert(2);
         }
     }
 });
@@ -58,8 +57,6 @@ define(function( require, exports, module ){
 
         // 右键事件发生DOM
         var $target = $(event.target);
-
-        console.log($target);
 
         // 寻找目标DOM
         $target.parents().each(function () {

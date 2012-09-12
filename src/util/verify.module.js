@@ -92,4 +92,7 @@ define(function ( require, exports, module ) {
 
     }; // END verify
 
+    // API
+    module.exports = verify;
+
 });

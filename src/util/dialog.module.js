@@ -17,11 +17,7 @@ Util.dialog({
          '提交' : function() {...},
          '更多' : function() {...}
          // ...
-    },
-    css : {
-        height: 122,
-        top: 10
-    } // 传入css，API参照jQuery $('#sel').css()
+    }
 });
 
 // 打开dialog
@@ -47,6 +43,11 @@ define(function( require, exports, module ){
 
     // dialog对象构造函数
     var Constructor = function ( config ) {
+
+        // 已存在dialogDOM时，不打开新窗口
+        if ( $("#dialog:visible")[0] ) {
+            return false;
+        }
 
         // 插入对话框
         $(document.body).append(
