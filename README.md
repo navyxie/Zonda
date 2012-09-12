@@ -1,10 +1,6 @@
 # Zonda
 
-Zonda——Degas自家用的前端框架。
-
 感谢和我一起建造Zonda的朋友，亲爱的[Niko](http://niko-blog.com/)同学。
-
-BUG还很多，发现一个修复一个。已在几个项目中使用，不断更新，不断学习~
 
 ## Usage ##
 
@@ -12,7 +8,7 @@ Read [demo](https://github.com/smallsmallwolf/Zonda/blob/master/demo/index.html)
 
 Demo和文档正在建设中，目前每个模块代码中都有详细的Usage可以参阅，有什么建议和批评意见可以留下Issue，谢谢~:cat:
 
-基本上你可以认为Zonda是一些面向桌面浏览器端开发的前端必须组件的集合。
+基本上你可以认为Zonda是一些面向桌面浏览器端或WebAPP开发的前端必须组件的集合，Zonda最终的目标是Cross Everything。
 
 Zonda在尝试将javascript，CSS，Tpl，Image等前端常用文件以更好的形式组织，比如使用Seajs和Less。
 对于javascript文件，Zonda试着将应用的代码和框架的代码分开放置。
