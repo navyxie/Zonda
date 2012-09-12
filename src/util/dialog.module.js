@@ -17,7 +17,11 @@ Util.dialog({
          '提交' : function() {...},
          '更多' : function() {...}
          // ...
-    }
+    },
+    css : {
+        height: 200,
+        color: '#fff'
+    } // 传入css，API参照jQuery $('#sel').css()
 });
 
 // 打开dialog
