@@ -15,7 +15,8 @@ define(function ( require, exports, module ) {
     module.exports = {
         verify : require('./verify.module'),
         route : require('./route.module'),
-        dialog : require('./dialog.module')
+        dialog : require('./dialog.module'),
+        rightClickMenu : require('./right.click.menu.module')
     };
 
 });
