@@ -34,7 +34,9 @@ define(function( require, exports, module ){
 
     // 点击隐藏事件
     $(window).click(function (event) {
-        $("#right-click-menu").empty().hide();
+        if ( event.button !== 2 ) {
+            $("#right-click-menu").empty().hide();
+        }
     });
 
     // 主控制器
@@ -42,6 +44,7 @@ define(function( require, exports, module ){
 
         // 右键事件
         $( config.scope ).contextmenu(function (event) {
+            event.stopPropagation();
 
             // 调用菜单控制
             menu(event, config);
