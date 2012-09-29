@@ -40,7 +40,8 @@ seajs.config({
 seajs.use('util', function ( Util ) {
 
     Util.route({
-        '#demo' : 'demo'
+        '#demo' : 'demo',
+        '#run' : 'run'
     });
 
 });
