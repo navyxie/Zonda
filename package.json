@@ -1,19 +1,19 @@
 {
-    name : "Zonda",
-    version : "0.0.1-dev",
-    description : "Degas自家用的前端框架",
-    author : "Degas,Niko",
-    homepage : "https://github.com/smallsmallwolf/Zonda",
-    repository : {
-        type : "git",
-        url  : "git://github.com/smallsmallwolf/Zonda.git"
+    "name" : "Zonda",
+    "version" : "0.0.1-dev",
+    "description" : "Degas自家用的前端框架",
+    "author" : "Degas,Niko",
+    "homepage" : "https://github.com/smallsmallwolf/Zonda",
+    "repository" : {
+        "type" : "git",
+        "url"  : "git://github.com/smallsmallwolf/Zonda.git"
     },
-    license : "MIT",
-    bugs : {
-        url : "https://github.com/smallsmallwolf/Zonda/issues",
-        email : "smallsmallwolf@gmail.com"
+    "license" : "MIT",
+    "bugs" : {
+        "url" : "https://github.com/smallsmallwolf/Zonda/issues",
+        "email" : "smallsmallwolf@gmail.com"
     },
-    dependencies : {
+    "dependencies" : {
         "jquery" : "jquery",
         "easing" : "easing",
         "underscore" : "underscore",
