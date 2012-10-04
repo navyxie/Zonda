@@ -13,13 +13,13 @@ define(function ( require, exports, module ) {
 
     // API
     module.exports = {
-        verify         : require('./verify.module'),
-        route          : require('./route.module'),
-        dialog         : require('./dialog.module'),
-        StateMachine   : require('./state.machine.module'),
-        gif            : require('./gif.module'),
-        rightClickMenu : require('./right.click.menu.module'),
-        ajax           : require('./ajax.module')
+        verify         : require('src/util/verify.module'),
+        route          : require('src/util/route.module'),
+        dialog         : require('src/util/dialog.module'),
+        StateMachine   : require('src/util/state.machine.module'),
+        gif            : require('src/util/gif.module'),
+        rightClickMenu : require('src/util/right.click.menu.module'),
+        ajax           : require('src/util/ajax.module')
     };
 
 });

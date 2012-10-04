@@ -5,7 +5,7 @@
 // 配置seajs
 seajs.config({
     //顶级标识
-    base : '../',
+    base : '/Zonda',
 
     // 配置别称
     alias : {
@@ -25,8 +25,6 @@ seajs.config({
     preload : [
         'lib/modernizr/2.6.1/modernizr',
         'core/1.2.1/plugin-text',
-        // 开发模式
-        'core/1.2.1/plugin-debug',
         window.JSON ? '' : 'lib/json',
         Function.prototype.bind ? '' : 'lib/es5-safe'
     ],
@@ -41,7 +39,7 @@ seajs.use('util', function ( Util ) {
 
     Util.route({
         '#demo' : 'demo',
-        '#run' : 'run'
+        '#run'  : 'run'
     });
 
 });
