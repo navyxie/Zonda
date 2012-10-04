@@ -1,7 +1,6 @@
 // route.module.js
 // ---------------
 // DOM 路由器
-// TODO:由于seajs对require的设计是只能require直接量，不能使用变量
 // 但是对于路由来说，加载是一个自动的的过程，需要使用变量
 // 于是使用 eval('require("' + a + '")') 实现
 // 性能会受到很大的影响，先实现，再优化，或者再废弃这种方式
@@ -28,9 +27,9 @@ define(function ( require, exports, module) {
             // 传入callback形式
             if ( $(selector)[0] && _.isFunction(action) ) {
                 action();
+            // 传入字符串，将在app目录下寻找文件，异步加载
             } else if ( $(selector)[0] && _.isString(action) ) {
-                // 传入字符串
-                eval('require.async("../app/' + action + '")');
+                require.async( '../app/' + action );
             } // END if
         });
 
