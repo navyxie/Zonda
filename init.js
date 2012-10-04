@@ -35,11 +35,4 @@ seajs.config({
 // 启动 DOM 路由
 // 如果使用'util-debug'模式，则会加载对应的开发版本的模块
 // 打包部署以后将这里改成'util'即可
-seajs.use('util', function ( Util ) {
-
-    Util.route({
-        '#demo' : 'demo',
-        '#run'  : 'run'
-    });
-
-});
+seajs.use('src/app/app');

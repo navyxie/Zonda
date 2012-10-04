@@ -20,10 +20,12 @@
         "backbone" : "backbone",
         "util" : "util",
         "jquery-ui" : "jquery-ui",
-        "bootstrap" : "bootstrap",
-        "tpl/dialog.tpl" : "tpl/dialog.tpl"
+        "bootstrap" : "bootstrap"
     },
     "output" : {
-        "app.js" : "."
+        "app.js" : {
+            "includes" : "*",
+            "excludes" : [""]
+        }
     }
 }
