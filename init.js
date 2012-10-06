@@ -9,7 +9,7 @@ seajs.config({
 
     // 配置别称
     alias : {
-        'util' : 'util/dist/util',
+        'util' : 'util/util',
         'underscore' : 'lib/underscore/1.3.3/underscore',
         'bootstrap' : 'lib/bootstrap/2.1.0/bootstrap',
         'jquery' : 'lib/jquery/1.8.0/jquery',

@@ -8,11 +8,11 @@ define(function(require, exports, module){
 
     $("#btn-app-init").click(function () {
 
-        Util({
+        Util.dialog({
             title : 'Util.dialog',
             content : 'Hello world!'
         });
 
-        Util.open();
+        Util.dialog.open();
     });
 });
