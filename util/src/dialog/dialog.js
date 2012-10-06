@@ -43,7 +43,7 @@ define(function( require, exports, module ){
     var _ = require('underscore');
 
     // 准备模板
-    var dialogTPL = require('tpl/dialog.tpl');
+    var dialogTPL = require('./dialog.tpl');
 
     // dialog对象构造函数
     var Constructor = function ( config ) {

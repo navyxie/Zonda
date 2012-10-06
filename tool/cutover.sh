@@ -5,7 +5,7 @@
 case $1 in
     build)
         cd ../
-        spm build
+        spm build --src=./util --dist=./util --global-config=./init.js -v
     ;;
     lib)
         cd ../

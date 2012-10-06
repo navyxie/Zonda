@@ -1,0 +1,13 @@
+{
+    "name" : "util",
+    "description" : "Zonda框架组件",
+    "dependencies" : {
+        "jquery" : "jquery",
+        "backbone" : "backbone",
+        "underscore" : "underscore",
+        "bootstrap" : "bootstrap"
+    },
+    "output" : {
+        "util" : "."
+    }
+}

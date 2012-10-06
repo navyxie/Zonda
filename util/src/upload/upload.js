@@ -19,7 +19,6 @@ var FILE = require('../module/file.module');
 FILE.config = {
     url : 'server', // {STRING} 请求服务器脚本
     fileType : 'png, bmp, zip, rar', // {STRING} 允许上传的文件类型，暂不支持正则
-    fileTpl  : require('tpl/file.cell.tpl'), // {TEMPLATE} 默认为"tpl/file.cell.tpl"，可自定义，已经包括一个操作系统进度条和删除按钮。file对象将会实例化为一个已经事件绑定好了的<li>，在文件初始化上传后将插入fileList
     fileList : $('#upload-block ul')[0], // {DOM} 实例化后的file对象<li>，将插入的目标<ul>
     msg : function ( msg ) { console.log(msg) }, // {FUNCTION}, {msg: OBJECT} 消息回调函数，处理'文件格式错误'等消息，返回参数'msg'，为对象
     uploadForm : $("#upload-form")[0] // {DOM} 为兼容IE浏览器，需要使用<form>配合隐藏<iframe>的方式模拟异步上传文件
@@ -89,7 +88,7 @@ define(function( require, exports, module ) {
 
     // 默认配置 / 模块内部缓存配置
     var _config = {
-        fileTpl  : require('tpl/file.cell.tpl')
+        fileTpl  : require('./file.tpl')
     };
 
     /**

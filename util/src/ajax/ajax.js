@@ -4,7 +4,7 @@
 
 define(function( require, exports, module ) {
     var $ = require('jquery');
-    var dialog = require('src/util/dialog.module');
+    var dialog = require('../dialog/dialog');
 
     $.ajaxSetup({
         type : 'POST',

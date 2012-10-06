@@ -13,7 +13,7 @@ define(function ( require, exports, module ) {
         var re = [];
 
         // 通过表单的ruler检查，并且只检查可见的表单的ruler
-        var verify = require("src/module/verification.module");
+        var verify = require("./verification.module");
 
         var $ = require('jquery');
 
