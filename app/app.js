@@ -1,18 +1,10 @@
-// app.js
-// 测试样例
+/**
+ * app.js
+ * 地阿杜
+ */
 define(function(require, exports, module){
-    var $ = require('jquery');
-    var Util = require('util');
+    var Util = require("util");
 
-    window.Util = Util;
+    console.info(Util);
 
-    $("#btn-app-init").click(function () {
-
-        Util.dialog({
-            title : 'Util.dialog',
-            content : 'Hello world!'
-        });
-
-        Util.dialog.open();
-    });
 });

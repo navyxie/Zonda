@@ -6,11 +6,12 @@ case $1 in
     #打包Zonda-Util模块
     util)
         cd ../util
-        spm build -v
+        spm build -v 
         cp dist/util.js ./
         rm -rf dist
+        echo Util模块打包完成
     ;;
     *)
-        echo $1 ? 表示没有这个选项 =。=
+        echo $1 ? 没有选项 =。=
     ;;
 esac

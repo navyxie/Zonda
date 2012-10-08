@@ -1,5 +1,6 @@
 {
     "name" : "Zonda",
+    "sources": ["http://module.zonda.dashu.us:22221"],
     "version" : "0.0.1-dev",
     "description" : "Degas自家用的前端框架",
     "author" : "Degas,Niko",
