@@ -19,4 +19,11 @@ define(function(require, exports, module){
         $(this).slideDown(1000, 'easeOutBounce');
     });
 
+    // TEST jquery-ui
+    $ = require('jquery-ui');
+
+    $('body').append('<input id="jui-date" type="text" />');
+
+    $("#jui-date").datepicker();
+
 });

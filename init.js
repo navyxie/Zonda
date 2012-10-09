@@ -6,7 +6,7 @@ seajs.config({
         'underscore' : 'lib/underscore/1.3.3/underscore',
         'bootstrap' : 'lib/bootstrap/2.1.0/bootstrap',
         'jquery' : 'lib/jquery/1.8.2/jquery',
-        'jquery-ui' : 'lib/jquery-ui/1.8.22/jquery-ui',
+        'jquery-ui' : 'lib/jquery-ui/1.9.0/jquery-ui',
         'easing' : 'lib/easing/1.3.0/easing',
         'backbone' : 'lib/backbone/0.9.2/backbone'
     },
