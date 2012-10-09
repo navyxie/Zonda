@@ -3,11 +3,20 @@
  * 地阿杜
  */
 define(function(require, exports, module){
-    //var Util = require("util");
+    // TEST jquery
     var $ = require("jquery");
 
-    //console.info(Util);
-    console.info($);
     window.$ = $;
+
+    // TEST jquery.easing
+    $ = require("easing");
+
+    window.$ = $;
+
+    $('body').append('<div id="div-easing" style="margin: 20px; background: olive; width: 100px;height: 100px; border: 1px solid #eee;"></div>');
+
+    $("#div-easing").slideUp(1000, 'easeInOutCirc', function () {
+        $(this).slideDown(1000, 'easeOutBounce');
+    });
 
 });
