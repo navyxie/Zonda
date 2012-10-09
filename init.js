@@ -3,7 +3,7 @@ seajs.config({
 
     alias : {
         'util' : 'util/util',
-        'underscore' : 'lib/underscore/1.3.3/underscore',
+        'underscore' : 'lib/underscore/1.4.2/underscore',
         'bootstrap' : 'lib/bootstrap/2.1.0/bootstrap',
         'jquery' : 'lib/jquery/1.8.2/jquery',
         'jquery-ui' : 'lib/jquery-ui/1.9.0/jquery-ui',
@@ -22,3 +22,4 @@ seajs.config({
 });
 
 seajs.use('app/app');
+seajs.use('app/leo');
