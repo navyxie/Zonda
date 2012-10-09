@@ -4,10 +4,11 @@
  */
 define(function(require, exports, module){
     //var Util = require("util");
-    var $ = require("jquery");
+    //var $ = require("jquery");
+    var _ = require('underscore');
 
     //console.info(Util);
-    console.info($);
-    window.$ = $;
-
+    //console.info($);
+    console.info(_);
+    window._ = _;
 });
