@@ -2,12 +2,14 @@ seajs.config({
     base : '/Zonda',
 
     alias : {
-        'util' : 'util/util',
+        'util' : '0.1.0',
         'underscore' : 'lib/underscore/1.4.2/underscore',
-        'bootstrap' : 'lib/bootstrap/2.1.0/bootstrap',
+        'bootstrap' : 'lib/bootstrap/2.1.1/bootstrap',
         'jquery' : 'lib/jquery/1.8.2/jquery',
         'jquery-ui' : 'lib/jquery-ui/1.9.0/jquery-ui',
         'easing' : 'lib/easing/1.3.0/easing',
+        'modernizr' : 'lib/modernizr/2.6.1/modernizr',
+        'zepto' : 'lib/zepto/1.0.1/zepto',
         'backbone' : 'lib/backbone/0.9.2/backbone'
     },
 
