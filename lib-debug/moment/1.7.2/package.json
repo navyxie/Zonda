@@ -1,8 +1,8 @@
 {
-    "name": "jquery",
-    "version": "1.8.0",
+    "name": "moment",
+    "version": "1.7.2",
     "output": {
-        "jquery": "."
+        "moment": "."
     },
     "sources": ["http://module.zonda.dashu.us:22221"]
 }

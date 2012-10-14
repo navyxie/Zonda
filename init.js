@@ -9,6 +9,7 @@ seajs.config({
         'jquery-ui' : 'lib/jquery-ui/1.9.0/jquery-ui',
         'easing' : 'lib/easing/1.3.0/easing',
         'modernizr' : 'lib/modernizr/2.6.1/modernizr',
+        'moment' : 'lib/moment/1.7.2/moment',
         'zepto' : 'lib/zepto/1.0.1/zepto',
         'backbone' : 'lib/backbone/0.9.2/backbone'
     },

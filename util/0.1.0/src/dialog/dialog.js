@@ -49,7 +49,7 @@ define(function( require, exports, module ){
     var Constructor = function ( config ) {
 
         // 已存在dialogDOM时，不打开新窗口
-        if ( $("#dialog:visible")[0] ) {
+        if ( $("#util-dialog:visible")[0] ) {
             return false;
         }
 
@@ -63,7 +63,7 @@ define(function( require, exports, module ){
 
         // 自定义css
         if ( config.css ) {
-            $("#dialog").css( config.css );
+            $("#util-dialog").css( config.css );
         }
 
         // 动态创建button
@@ -72,7 +72,7 @@ define(function( require, exports, module ){
             var uid = _.uniqueId('dialog-button-');
 
             // 插入<button>
-            $("#dialog .modal-footer").append(
+            $("#util-dialog .modal-footer").append(
                 '<button id="' + uid + '" class="btn btn-success">' +
                 buttonName +
                 '</button>'
@@ -83,9 +83,9 @@ define(function( require, exports, module ){
         });
 
         // 关闭窗口时摧毁dialog对象
-        $("#dialog").on( 'hide', function(){
-            delete $("#dialog").modal;
-            $("#dialog").remove();
+        $("#util-dialog").on( 'hide', function(){
+            delete $("#util-dialog").modal;
+            $("#util-dialog").remove();
         });
 
         return this;
@@ -94,7 +94,7 @@ define(function( require, exports, module ){
 
     // 打开窗口方法
     Constructor.open = function () {
-        $("#dialog").modal({
+        $("#util-dialog").modal({
             'show' : true,
             'backdrop' : false
         });
@@ -108,11 +108,11 @@ define(function( require, exports, module ){
         if ( delay ) {
             // 延时关闭
             setTimeout(function() {
-                $("#dialog").modal('hide');
+                $("#util-dialog").modal('hide');
             }, delay);
 
         } else {
-            $("#dialog").modal('hide');
+            $("#util-dialog").modal('hide');
         }
     };
 

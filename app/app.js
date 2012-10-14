@@ -40,6 +40,8 @@ define(function(require, exports, module){
                 }
             }
         });
+
+        Util.dialog.open();
     });
 
     // TEST zepto
@@ -50,5 +52,9 @@ define(function(require, exports, module){
     zepto('#div-easing').swipe(function(){
         $(this).fadeOut('fast').delay(800).fadeIn('slow');
     });
+
+    // TEST moment
+    var moment = require('moment');
+    console.log(moment().format());
 
 });
