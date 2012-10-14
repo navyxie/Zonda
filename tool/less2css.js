@@ -16,14 +16,14 @@ cssPath = path.dirname( module.filename );
 cssPath = path.join( cssPath, '../css' );
 
 // 调用shell运行lessc编译.less文件
-var lessToCss = function ( fileName, event ) {
+function lessToCss ( fileName, filePath ) {
 
     // 判断是否为less文件
     if ( !/\.less$/.test( fileName ) ) {
         return false;
     }
 
-    console.log( fileName + ' is going render!');
+    console.log( fileName + ' 编译中...');
 
     var baseName = path.basename( fileName, '.less' );
     
@@ -31,84 +31,136 @@ var lessToCss = function ( fileName, event ) {
      * 通过Shell调用lessc
      * 使用 lessc -x 打包
      */
-    exec( 'lessc -x ' + cssPath + '/' + fileName + ' > ' + cssPath + '/build/' + baseName + '.css', { encoding: ''},
+    exec( 'lessc -x ' + filePath + '/' + fileName + ' > ' + cssPath + '/build/' + baseName + '.css', { encoding: ''},
+
         function ( err, stdout, stderr ) {
+
+            // 出现错误
             if ( err !== null ) {
-                console.log( err );
+
+                console.log(err);
+
                 fs.writeFile( cssPath + '/log/' +  baseName + '.log', err, '', function ( error ) {
                     if ( error ) {
                         console.log( 'Write file error: ' + error );
                     }
                 }); // END writeFile
+
+            // 正确
             } else {
-                console.log( baseName + '.css has render.');
+
+                // 非init.less
+                if ( baseName !== 'init' ) {
+                    // 编译init.less
+                    lessToCss( 'init.less', cssPath );
+                }
+
+                console.log( baseName + '.css 编译成功！');
+
             }
         } // END callBack
+
     ); // END exec
-}; // toCss
 
-// 监听目录css根目录
-fs.watch( cssPath, function ( event, name ) {
-    if ( event === 'change' ) {
-        console.log(name + ' is ' + event);
-        lessToCss( name );
-    }
-});
+    /**
+     * less的node版本实现
+     * less in node 无法解决相对路径问题
+     */
+    /**
+    var less = require('less');
+    var compiler = new (less.Parser)({});
 
-// 监听目录unit目录
-fs.watch( cssPath + '/unit', function ( event, name ) {
-    if ( event === 'change' ) {
-        console.log(name + ' is ' + event);
+    var lessDATA = fs.readFileSync( filePath + '/' + fileName ,'utf8');
 
-        //lessToCss( '/unit/' + name );
-
-        if ( !/\.less$/.test( name ) ) {
-            return false;
+    compiler.parse( lessDATA, function(err, tree){
+        if ( err !== null ) {
+            console.error(err);
         }
 
-        lessToCss( 'init.less' );
+        try{
+            fs.writeFileSync(cssPath + '/build/' + baseName + '.css', tree.toCSS({ compress: false }), 'utf8');
+        }catch(e){
+            console.error(e);
+        }
+    });
+
+    // 编译入口文件
+    if ( fileName !== 'init.less' ) {
+        fs.readFile( cssPath + '/' + 'init.less', 'utf8', function (err,data){
+            if ( err !== null ) {
+                console.error(err);
+            } else {
+                compiler.parse( data, function (err,tree){
+                    if ( err !== null ) {
+                        console.error(err);
+                    }
+
+                    try{
+                        fs.writeFileSync(cssPath + '/build/init.css', tree.toCSS({ compress: false }), 'utf8');
+                    }catch(e){
+                        console.error(e);
+                    }
+                });
+            }
+        });
     }
-});
 
-// 监听目录common目录
-fs.watch( cssPath + '/common', function ( event, name ) {
-    if ( event === 'change' ) {
-        console.log(name + ' is ' + event);
 
-        //lessToCss( '/common/' + name );
+    console.log( fileName + '编译完成');
+    */
 
-        if ( !/\.less$/.test( name ) ) {
-            return false;
+} // lessToCss
+
+/**
+ * 文件目录递归封装
+ * 回调函数
+ * function ( type, path ) {
+ *      // type : 'file' / 'dir'
+ * }
+ */
+function fileAll ( dir, callBack, depth ) {
+    if ( depth <= 0 ) {
+        return false;
+    }
+
+    var files = [];
+    var dirFiles = fs.readdirSync(dir);
+
+    // 转为绝对路径
+    for (var i = 0; i < dirFiles.length; i++) {
+        dirFiles[i] = fs.realpathSync( dir + '/' + dirFiles[i] );
+    }
+
+    // 递归
+    for (var j = 0, l = dirFiles.length; j < l; j++) {
+
+        // 是文件
+        if ( fs.statSync(dirFiles[j]).isFile() ) {
+            callBack( 'file', dirFiles[j] );
+        // 是目录
+        } else {
+            fileAll( dirFiles[j], callBack, depth-1 );
+            callBack( 'dir', dirFiles[j] );
         }
 
-        lessToCss( 'init.less' );
     }
-});
 
-// 监听目录bootstrap目录
-fs.watch( cssPath + '/lib/bootstrap', function ( event, name ) {
-    if ( event === 'change' ) {
-        console.log(name + ' is ' + event);
+} // END watchAll
 
-        //lessToCss( '/common/' + name );
-
-        if ( !/\.less$/.test( name ) ) {
-            return false;
-        }
-
-        lessToCss( 'init.less' );
+// 监听文件改变，编译less
+fileAll( cssPath, function( type, path ){
+    if ( type === 'dir' ) {
+        fs.watch( path, function (event, name) {
+            if ( event === 'change' ) {
+                lessToCss(name, path);
+            }
+        });
     }
-});
+}, 15);
 
-// 监听目录ie目录
-fs.watch( cssPath + '/ie', function ( event, name ) {
+// 监听入口文件
+fs.watch( cssPath, function (event, name) {
     if ( event === 'change' ) {
-        console.log(name + ' is ' + event);
-
-        if ( !/\.less$/.test( name ) ) {
-            return false;
-        }
-
-        lessToCss( 'init.less' );
+        lessToCss(name, cssPath);
     }
 });
