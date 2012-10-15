@@ -1,0 +1,12 @@
+{
+    "name": "jplayer",
+    "version": "1.8.2",
+    "root" : "lib",
+    "dependencies": {
+        "jquery" : "jquery"
+    },
+    "output": {
+        "jplayer": "."
+    },
+    "sources": ["http://module.zonda.dashu.us:22221"]
+}

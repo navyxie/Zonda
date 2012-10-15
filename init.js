@@ -12,8 +12,8 @@ seajs.config({
         'moment' : 'lib/moment/1.7.2/moment',
         'zepto' : 'lib/zepto/1.0.1/zepto',
         'backbone' : 'lib/backbone/0.9.2/backbone',
-        'fancybox' : 'lib/fancybox/1.3.4/fancybox'
-        //'fancybox' : 'lib/fancybox/1.3.4/src/fancybox'
+        'fancybox' : 'lib/fancybox/1.3.4/fancybox',
+        'jplayer' : 'lib/jplayer/2.1.0/jplayer'
     },
 
     preload : [
