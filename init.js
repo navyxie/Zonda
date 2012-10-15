@@ -11,18 +11,20 @@ seajs.config({
         'modernizr' : 'lib/modernizr/2.6.1/modernizr',
         'moment' : 'lib/moment/1.7.2/moment',
         'zepto' : 'lib/zepto/1.0.1/zepto',
-        'backbone' : 'lib/backbone/0.9.2/backbone'
+        'backbone' : 'lib/backbone/0.9.2/backbone',
+        'fancybox' : 'lib/fancybox/1.3.4/fancybox'
+        //'fancybox' : 'lib/fancybox/1.3.4/src/fancybox'
     },
 
     preload : [
-        'lib/modernizr/2.6.1/modernizr',
+        //'lib/modernizr/2.6.1/modernizr',
+        Function.prototype.bind ? '' : 'lib/es5-safe',
         'core/1.2.1/plugin-text',
-        window.JSON ? '' : 'lib/json',
-        Function.prototype.bind ? '' : 'lib/es5-safe'
+        window.JSON ? '' : 'lib/json2/1.1.1/json2'
     ],
 
     charset : 'utf-8'
 });
 
 seajs.use('app/app');
-seajs.use('app/leo');
+//seajs.use('app/leo');

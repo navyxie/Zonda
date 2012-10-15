@@ -55,6 +55,16 @@ define(function(require, exports, module){
 
     // TEST moment
     var moment = require('moment');
-    console.log(moment().format());
+    //console.log(moment().format());
+
+    // TEST fancybox
+    $ = require('fancybox');
+
+    $("#img-fancybox").fancybox({
+        'easingIn' : 'easeOutBack',
+        'easingOut' : 'easeOutBack',
+        'transitionIn': 'elastic',
+        'transitionOut': 'elastic'
+    });
 
 });

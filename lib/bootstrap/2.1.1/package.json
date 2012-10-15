@@ -1,0 +1,12 @@
+{
+    "name" : "bootstrap",
+    "version" : "2.1.1",
+    "root" : "lib",
+    "dependencies" : {
+        "jquery" : "jquery"
+    },
+    "output" : {
+        "bootstrap" : "."
+    },
+    "sources": ["http://module.zonda.dashu.us:22221"]
+}

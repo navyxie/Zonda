@@ -1,0 +1,12 @@
+{
+    "name": "fancybox",
+    "version": "1.3.4",
+    "root" : "lib",
+    "dependencies": {
+        "easing" : "easing"
+    },
+    "output": {
+        "fancybox": "."
+    },
+    "sources": ["http://module.zonda.dashu.us:22221"]
+}

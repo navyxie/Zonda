@@ -1,0 +1,8 @@
+{
+    "name": "es5-safe",
+    "version": "0.9.2",
+    "output": {
+        "es5-safe": "."
+    },
+    "sources": ["http://module.zonda.dashu.us:22221"]
+}
