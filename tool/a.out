@@ -1,0 +1,206 @@
+[37m [LOG] file encoding: utf8  [39m
+Scanning for projects...
+
+------------------------------------------------------------------------
+Building app 
+------------------------------------------------------------------------
+[37m [LOG] --- SPM PLUGIN CLEAN ---  [39m
+[37m [LOG] SPM PLUGIN CLEAN EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN RESOURCES ---  [39m
+[37m [LOG] SPM PLUGIN RESOURCES EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN COFFEE ---  [39m
+[37m [LOG] SPM PLUGIN COFFEE EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN LESS ---  [39m
+[37m [LOG] SPM PLUGIN LESS EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN LINT ---  [39m
+[37m [LOG] SPM PLUGIN LINT EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN LOADSOURCECONFIG ---  [39m
+[37m [LOG] merge source config error!  [39m
+[37m [LOG] SPM PLUGIN LOADSOURCECONFIG EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN DEPENDENCIES ---  [39m
+PORCESS MODULE app.js
+GENERATE ID    #app/app
+[37m [LOG] FOUND DEPENDENCIES "app.js":  [ 'jquery',
+  'easing',
+  'jquery-ui',
+  'util',
+  'zepto',
+  'moment',
+  'fancybox' ]  [39m
+[37m [LOG] BEGIN RESOLVE GLOBAL DEPENDENCIES ...... ./app,jquery,easing,jquery-ui,util,zepto,moment,fancybox  [39m
+[37m [LOG] from source getModule: jquery/1.8.2/jquery  [39m
+[37m [LOG] fetch module jquery/1.8.2/jquery  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/jquery/1.8.2/jquery.js  [39m
+[37m [LOG] mergeModules------> [ '#jquery/1.8.2/jquery', 'jquery' ]  [39m
+[37m [LOG] from source getModule: easing/1.3.0/easing  [39m
+[37m [LOG] fetch module easing/1.3.0/easing  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/easing/1.3.0/easing.js  [39m
+[37m [LOG] mergeModules------> [ '#easing/1.3.0/easing' ]  [39m
+[37m [LOG] from source getModule: jquery-ui/1.9.0/jquery-ui  [39m
+[37m [LOG] fetch module jquery-ui/1.9.0/jquery-ui  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/jquery-ui/1.9.0/jquery-ui.js  [39m
+[37m [LOG] mergeModules------> [ '#jquery-ui/1.9.0/jquery-ui' ]  [39m
+[37m [LOG] from source getModule: util/0.1.0/util  [39m
+[37m [LOG] fetch module util/0.1.0/util  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/util/0.1.0/util.js  [39m
+[37m [LOG] mergeModules------> [ '#util/0.1.0/route/route',
+  '#util/0.1.0/cookie/cookie',
+  '#util/0.1.0/gif/gif',
+  '#util/0.1.0/dialog/dialog',
+  '#util/0.1.0/verify/verification',
+  '#util/0.1.0/verify/verify',
+  '#util/0.1.0/stateMachine/stateMachine',
+  '#util/0.1.0/rightClickMenu/rightClickMenu',
+  '#util/0.1.0/ajax/ajax',
+  '#util/0.1.0/slide/slide',
+  '#util/0.1.0/tips/tips',
+  '#util/0.1.0/scaffold/scaffold',
+  '#util/0.1.0/upload/upload',
+  '#util/0.1.0/util' ]  [39m
+[37m [LOG] from source getModule: zepto/1.0.1/zepto  [39m
+[37m [LOG] fetch module zepto/1.0.1/zepto  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/zepto/1.0.1/zepto.js  [39m
+[37m [LOG] mergeModules------> [ '#zepto/1.0.1/zepto' ]  [39m
+[37m [LOG] from source getModule: moment/1.7.2/moment  [39m
+[37m [LOG] fetch module moment/1.7.2/moment  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/moment/1.7.2/moment.js  [39m
+[37m [LOG] mergeModules------> [ '#moment/1.7.2/moment', 'moment' ]  [39m
+[33m [WARN] Not Found fancybox dependency!  [39m
+[37m [LOG] RESOLVE DEPENDENCIES "app.js":  #jquery/1.8.2/jquery, #easing/1.3.0/easing, #jquery-ui/1.9.0/jquery-ui, #util/0.1.0/util, #underscore/1.4.2/underscore, #bootstrap/2.1.1/bootstrap, #backbone/0.9.2/backbone, #zepto/1.0.1/zepto, #moment/1.7.2/moment, fancybox  [39m
+PORCESS MODULE leo.js
+GENERATE ID    #app/leo
+[37m [LOG] FOUND DEPENDENCIES "leo.js":  [ 'backbone' ]  [39m
+[37m [LOG] BEGIN RESOLVE GLOBAL DEPENDENCIES ...... ./leo,backbone  [39m
+[37m [LOG] from source getModule: backbone/0.9.2/backbone  [39m
+[37m [LOG] fetch module backbone/0.9.2/backbone  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/backbone/0.9.2/backbone.js  [39m
+[37m [LOG] mergeModules------> [ '#backbone/0.9.2/backbone' ]  [39m
+[37m [LOG] RESOLVE DEPENDENCIES "leo.js":  #backbone/0.9.2/backbone, #underscore/1.4.2/underscore, #jquery/1.8.2/jquery  [39m
+PORCESS MODULE app-org.js
+GENERATE ID    #app/app-org
+[37m [LOG] FOUND DEPENDENCIES "app-org.js":  [ 'jquery',
+  'easing',
+  'jquery-ui',
+  'util',
+  'zepto',
+  'moment',
+  'fancybox' ]  [39m
+[37m [LOG] BEGIN RESOLVE GLOBAL DEPENDENCIES ...... ./app-org,jquery,easing,jquery-ui,util,zepto,moment,fancybox  [39m
+[37m [LOG] from source getModule: #jquery/1.8.2/jquery  [39m
+[37m [LOG] fetch module #jquery/1.8.2/jquery  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/jquery/1.8.2/jquery.js  [39m
+[37m [LOG] mergeModules------> [ '#jquery/1.8.2/jquery', 'jquery' ]  [39m
+[37m [LOG] from source getModule: #easing/1.3.0/easing  [39m
+[37m [LOG] fetch module #easing/1.3.0/easing  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/easing/1.3.0/easing.js  [39m
+[37m [LOG] mergeModules------> [ '#easing/1.3.0/easing' ]  [39m
+[37m [LOG] from source getModule: #jquery-ui/1.9.0/jquery-ui  [39m
+[37m [LOG] fetch module #jquery-ui/1.9.0/jquery-ui  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/jquery-ui/1.9.0/jquery-ui.js  [39m
+[37m [LOG] mergeModules------> [ '#jquery-ui/1.9.0/jquery-ui' ]  [39m
+[37m [LOG] from source getModule: #util/0.1.0/util  [39m
+[37m [LOG] fetch module #util/0.1.0/util  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/util/0.1.0/util.js  [39m
+[37m [LOG] mergeModules------> [ '#util/0.1.0/route/route',
+  '#util/0.1.0/cookie/cookie',
+  '#util/0.1.0/gif/gif',
+  '#util/0.1.0/dialog/dialog',
+  '#util/0.1.0/verify/verification',
+  '#util/0.1.0/verify/verify',
+  '#util/0.1.0/stateMachine/stateMachine',
+  '#util/0.1.0/rightClickMenu/rightClickMenu',
+  '#util/0.1.0/ajax/ajax',
+  '#util/0.1.0/slide/slide',
+  '#util/0.1.0/tips/tips',
+  '#util/0.1.0/scaffold/scaffold',
+  '#util/0.1.0/upload/upload',
+  '#util/0.1.0/util' ]  [39m
+[37m [LOG] from source getModule: #zepto/1.0.1/zepto  [39m
+[37m [LOG] fetch module #zepto/1.0.1/zepto  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/zepto/1.0.1/zepto.js  [39m
+[37m [LOG] mergeModules------> [ '#zepto/1.0.1/zepto' ]  [39m
+[37m [LOG] from source getModule: #moment/1.7.2/moment  [39m
+[37m [LOG] fetch module #moment/1.7.2/moment  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/moment/1.7.2/moment.js  [39m
+[37m [LOG] mergeModules------> [ '#moment/1.7.2/moment', 'moment' ]  [39m
+[33m [WARN] Not Found fancybox dependency!  [39m
+[37m [LOG] RESOLVE DEPENDENCIES "app-org.js":  #jquery/1.8.2/jquery, #easing/1.3.0/easing, #jquery-ui/1.9.0/jquery-ui, #util/0.1.0/util, #underscore/1.4.2/underscore, #bootstrap/2.1.1/bootstrap, #backbone/0.9.2/backbone, #zepto/1.0.1/zepto, #moment/1.7.2/moment, fancybox  [39m
+[37m [LOG] SPM PLUGIN DEPENDENCIES EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN DEPCHECK ---  [39m
+[33m [WARN] Find conflicted module [#jquery/1.8.2 : #jquery-ui/1.9.0]  [39m
+
+[33m [WARN]   #easing/1.3.0/easing ----> #jquery/1.8.2  [39m
+[33m [WARN]   #jquery-ui/1.9.0/jquery-ui ----> #jquery/1.8.2 #jquery-ui/1.9.0  [39m
+[33m [WARN]   #util/0.1.0/util ----> #jquery/1.8.2  [39m
+[33m [WARN]   #app/app ----> #jquery/1.8.2 #jquery-ui/1.9.0  [39m
+[33m [WARN]   #backbone/0.9.2/backbone ----> #jquery/1.8.2  [39m
+[33m [WARN]   #app/leo ----> #jquery/1.8.2  [39m
+[33m [WARN]   #app/app-org ----> #jquery/1.8.2 #jquery-ui/1.9.0  [39m
+------------------------------------------------------------------------
+[37m [LOG] SPM PLUGIN DEPCHECK EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN TPL ---  [39m
+[37m [LOG] SPM PLUGIN TPL EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN CSS ---  [39m
+[37m [LOG] SPM PLUGIN CSS EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN OUTPUT ---  [39m
+[37m [LOG] ---- #jquery/1.8.2/jquery -1  [39m
+[37m [LOG] ---- #easing/1.3.0/easing -1  [39m
+[37m [LOG] ---- #jquery-ui/1.9.0/jquery-ui -1  [39m
+[37m [LOG] ---- #util/0.1.0/util -1  [39m
+[37m [LOG] ---- #underscore/1.4.2/underscore -1  [39m
+[37m [LOG] ---- #bootstrap/2.1.1/bootstrap -1  [39m
+[37m [LOG] ---- #backbone/0.9.2/backbone -1  [39m
+[37m [LOG] ---- #zepto/1.0.1/zepto -1  [39m
+[37m [LOG] ---- #moment/1.7.2/moment -1  [39m
+[37m [LOG] ---- app.js -1  [39m
+[37m [LOG] fetch module #jquery/1.8.2/jquery-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/jquery/1.8.2/jquery-debug.js  [39m
+[37m [LOG] fetch module #jquery/1.8.2/jquery  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/jquery/1.8.2/jquery.js  [39m
+[37m [LOG] fetch module #easing/1.3.0/easing-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/easing/1.3.0/easing-debug.js  [39m
+[37m [LOG] fetch module #easing/1.3.0/easing  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/easing/1.3.0/easing.js  [39m
+[37m [LOG] fetch module #jquery-ui/1.9.0/jquery-ui-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/jquery-ui/1.9.0/jquery-ui-debug.js  [39m
+[37m [LOG] fetch module #jquery-ui/1.9.0/jquery-ui  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/jquery-ui/1.9.0/jquery-ui.js  [39m
+[37m [LOG] fetch module #util/0.1.0/util-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/util/0.1.0/util-debug.js  [39m
+[37m [LOG] fetch module #util/0.1.0/util  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/util/0.1.0/util.js  [39m
+[37m [LOG] fetch module #underscore/1.4.2/underscore-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/underscore/1.4.2/underscore-debug.js  [39m
+[37m [LOG] fetch module #underscore/1.4.2/underscore  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/underscore/1.4.2/underscore.js  [39m
+[37m [LOG] fetch module #bootstrap/2.1.1/bootstrap-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/bootstrap/2.1.1/bootstrap-debug.js  [39m
+[37m [LOG] fetch module #bootstrap/2.1.1/bootstrap  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/bootstrap/2.1.1/bootstrap.js  [39m
+[37m [LOG] fetch module #backbone/0.9.2/backbone-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/backbone/0.9.2/backbone-debug.js  [39m
+[37m [LOG] fetch module #backbone/0.9.2/backbone  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/backbone/0.9.2/backbone.js  [39m
+[37m [LOG] fetch module #zepto/1.0.1/zepto-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/zepto/1.0.1/zepto-debug.js  [39m
+[37m [LOG] fetch module #zepto/1.0.1/zepto  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/zepto/1.0.1/zepto.js  [39m
+[37m [LOG] fetch module #moment/1.7.2/moment-debug  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/moment/1.7.2/moment-debug.js  [39m
+[37m [LOG] fetch module #moment/1.7.2/moment  [39m
+[37m [LOG] find requestUrl---> /home/shiyang/.spm/sources/module.zonda.dashu.us-22221/moment/1.7.2/moment.js  [39m
+[33m [WARN] Not Found fancybox dependency!  [39m
+[33m [WARN] Not Found fancybox dependency!  [39m
+[37m [LOG] SPM PLUGIN OUTPUT EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN MIN ---  [39m
+[37m [LOG] SPM PLUGIN MIN EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN INSTALL ---  [39m
+[37m [LOG] SPM PLUGIN INSTALL EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN ZIP ---  [39m
+[37m [LOG] SPM PLUGIN ZIP EXECUTION SUCCESS!  [39m
+[37m [LOG] --- SPM PLUGIN CLEAN ---  [39m
+[37m [LOG] SPM PLUGIN CLEAN EXECUTION SUCCESS!  [39m
+------------------------------------------------------------------------
+BUILD SUCCESS!
+------------------------------------------------------------------------
+App打包完成
