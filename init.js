@@ -19,7 +19,7 @@ seajs.config({
     preload : [
         //'lib/modernizr/2.6.1/modernizr',
         Function.prototype.bind ? '' : 'lib/es5-safe',
-        'core/1.2.1/plugin-text',
+        //'core/1.2.1/plugin-text',
         window.JSON ? '' : 'lib/json2/1.1.1/json2'
     ],
 

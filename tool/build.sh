@@ -24,6 +24,13 @@ case $1 in
         rm -rf dist/ src/
         echo App打包完成
     ;;
+    # 开发模式
+    dev)
+    cd ../
+    cp app/app-org.js app/app.js
+    rm app/app-org.js app/app-debug.js
+    echo 切换至开发模式
+    ;;
     *)
         echo $1 ? 没有选项 =。=
     ;;
