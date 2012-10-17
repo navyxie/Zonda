@@ -2,7 +2,7 @@
 
 Zonda——Degas自家用的前端框架。
 
-感谢和我一起建造Zonda的朋友，亲爱的[Niko](http://niko-blog.com/)同学。
+感谢和我一起建造Zonda的朋友们，亲爱的[Niko](http://niko-blog.com/)，[leohgbs](https://github.com/leohgbs)，[bronze1man](http://bs.ikm.me/)。
 
 BUG还很多，发现一个修复一个。已在几个项目中使用，不断更新，不断学习~
 
