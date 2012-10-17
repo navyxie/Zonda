@@ -1,8 +1,0 @@
-{
-    "name": "moment",
-    "version": "1.7.2",
-    "output": {
-        "moment": "."
-    },
-    "sources": ["http://module.zonda.dashu.us:22221"]
-}
