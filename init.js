@@ -27,4 +27,3 @@ seajs.config({
 });
 
 seajs.use('app/app');
-//seajs.use('app/leo');

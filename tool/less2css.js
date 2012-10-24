@@ -31,35 +31,31 @@ function lessToCss ( fileName, filePath ) {
      * 通过Shell调用lessc
      * 使用 lessc -x 打包
      */
-    exec( 'lessc -x ' + filePath + '/' + fileName + ' > ' + cssPath + '/build/' + baseName + '.css', { encoding: ''},
-
+    // 先直接编译init.less
+    exec( 'lessc -x ' + cssPath + '/init.less > ' + cssPath + '/build/init.css', { encoding: ''},
         function ( err, stdout, stderr ) {
-
-            // 出现错误
+            // init.less 出现错误
             if ( err !== null ) {
-
+                console.log('init.less 编译失败，请检查其包含的文件');
                 console.log(err);
-
-                fs.writeFile( cssPath + '/log/' +  baseName + '.log', err, '', function ( error ) {
-                    if ( error ) {
-                        console.log( 'Write file error: ' + error );
+                // 再打包改变的文件
+                exec( 'lessc -x ' + filePath + '/' + fileName + ' > ' + cssPath + '/build/' + baseName + '.css', { encoding: ''},
+                    function ( err, stdout, stderr ) {
+                        if ( err !== null ) {
+                            console.log('\r');
+                            console.error('>>>>>>>>>> ' + fileName + ' 编译错误！ <<<<<<<<<<\n\r');
+                            console.log(err);
+                        } else {
+                            console.log( baseName + '.css 编译成功！');
+                        }
                     }
-                }); // END writeFile
+                );
 
             // 正确
             } else {
-
-                // 非init.less
-                if ( baseName !== 'init' ) {
-                    // 编译init.less
-                    lessToCss( 'init.less', cssPath );
-                }
-
-                console.log( baseName + '.css 编译成功！');
-
+                console.log( 'init.css 编译成功！');
             }
         } // END callBack
-
     ); // END exec
 
     /**

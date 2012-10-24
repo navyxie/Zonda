@@ -3,23 +3,10 @@
  * 入口
  */
 define(function(require, exports, module){
-    var Backbone  = require('backbone');
+    var $ = require('jquery-ui');
 
-    var Route = Backbone.Router.extend({
+    $("#jui").datepicker();
 
-        routes :  {
-            ""     : "index",
-            "todo" : "todo"
-        },
-
-        index : function () {
-        },
-
-        todo  : require('app/todo/controller')
-    });
-
-    new Route();
-
-    Backbone.history.start();
+    $("#jui-div").dialog();
 
 });
