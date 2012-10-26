@@ -99,6 +99,13 @@ define(function( require, exports, module ){
             'backdrop' : false
         });
 
+        // 计算高度，垂直居中
+        var outerHeight = $("#util-dialog").outerHeight();
+
+        $("#util-dialog").css({
+            'margin-top' : -outerHeight/2
+        });
+
         return this;
     };
 
