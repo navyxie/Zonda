@@ -105,6 +105,20 @@ define(function ( require, exports, module ) {
             return result;
         }
 
+        // 是否允许含有空格
+        if ( ruler.noblank && /\s{1,}/.test( data ) ) {
+            result.info = title + '此项内容不能包含空格';
+            result.status = 0;
+            return result;
+        }
+
+        // 验证不安全字符
+        if ( ruler.xxs && /<{1,}|>{1,}/.test( data ) ) {
+            result.info = title + '“<”“>”为非法字符';
+            result.status = 0;
+            return result;
+        }
+
         // 数据类型为数字
         if ( ruler.type === 'number' && !/^(\d{1,}-){0,}\d*$/.test( data ) ) {
             result.info = title + '格式不是数字';
@@ -113,7 +127,7 @@ define(function ( require, exports, module ) {
         }
 
         // 数据类型为邮箱
-        if ( ruler.type === 'email' && !/^\w{1,}@.{1,}\.{1,}\w{1,}$/.test( data ) ) {
+        if ( ruler.type === 'email' && !/^.{1,}@.{1,}\.{1,}\w{1,}$/.test( data ) ) {
             result.info = title + '格式不为Email';
             result.status = 0;
             return result;
