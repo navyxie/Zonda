@@ -2,12 +2,26 @@
 // ----------------
 // 表单验证，for Bootstrap Form
 // 使用verification.module作为验证核心，为Bootsrap表单处理DOM
+//
+// Util.verify('pre','#sel'); 为'#sel'下的input做预验证，绑定change事件
+// Util.verify('all','#sel'); 立即验证'#sel'下的所有input做验证，返回布尔值
+// verify 的第二个参数'#sel'参数可省略，省略后默认为'body'
 
 define(function ( require, exports, module ) {
 
     var _ = require('underscore');
 
-    var verify = function ( type ) {
+    var verify = function ( type, scope ) {
+        // 默认type值为pre
+        if ( type === void 0 ) {
+            type = 'pre';
+        }
+
+        // 默认scope为body
+        if ( scope === void 0 ) {
+            scope = 'body';
+        }
+
         // 验证结果
         // 数组，如果该数组含有0则表明某项数据验证失败
         var re = [];
@@ -35,7 +49,7 @@ define(function ( require, exports, module ) {
         }; // END msg
 
         // 为需要验证的表单项绑定事件
-        $(".control-group").each( function () {
+        $( scope ).find(".control-group").each( function () {
             // 只检查“可见”表单的ruler
             var cell = $(this).find("[ruler]:visible");
             var _this = this;
@@ -62,7 +76,7 @@ define(function ( require, exports, module ) {
             re = [];
 
             // 遍历所有需要检查的表单
-            $(".control-group").each( function () {
+            $( scope ).find(".control-group").each( function () {
                 // 只检查“可见”表单的ruler
                 var cell = $(this).find("[ruler]:visible");
                 var _this = this;
@@ -84,7 +98,7 @@ define(function ( require, exports, module ) {
 
         // 结果分析，返回
         if ( _.include( re, 0 ) ) {
-            $(".control-group.error").eq(0).find('[ruler]:visible').focus();
+            $( scope ).find(".control-group.error").eq(0).find('[ruler]:visible').focus();
             return false;
         } else {
             return true;
