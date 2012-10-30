@@ -11,13 +11,14 @@ var Util = require('util');
 
 // 配置
 Util.rightClickMenu({
-    scope : '#sel',
+    scope : 'ul#sel',
+    target : 'li.sub',
     option : {
-        '新建列表' : function () {
-            alert(1);
+        '新建列表' : function ( $target ) {
+            console.log( $target );
         },
-        '删除' : function () {
-            alert(2);
+        '删除' : function ( $target ) {
+            console.log( $target );
         }
     }
 });
