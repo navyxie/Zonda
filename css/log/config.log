@@ -1,6 +1,0 @@
-Error: Command failed: [31mFileError: 'lib/bootstrap/bootstrap.less' wasn't found.
-[39m[31m in [39m/home/shiyang/www/Zonda-Demo/Zonda/css/common/config.less[90m:6:0[39m
-[90m5 // bootstrap UI组件[39m
-6 [7m[31m[1m@[22mimport 'lib/bootstrap/bootstrap';[39m[27m
-[90m7 [39m[0m[0m
-
