@@ -9,6 +9,6 @@ define(function(require, exports, module){
 
     $("#jui-div").dialog();
 
-    //require('tpl/tpl.tpl');
+    require('fancybox');
 
 });
