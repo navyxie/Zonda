@@ -17,13 +17,16 @@ case $1 in
         cd ../
         echo 开始打包Zonda
 
-        #通过init.js判断当前Zonda状态
-        if [  ];then
+        #通过app.js判断当前Zonda状态
+        #若app.js文件仅有一行，则为线上版本
+        if [ `wc -l app/app.js | awk '{print $1}'` -eq 1 ];then
+            #app.js为线上版本
+            cp app-debug.js app.js
+            cp app.js app-debug.js
+        else
+            #app.js为开发版本
+            cp app.js app-debug.js
         fi
-
-        #拷贝app.js副本
-        cp app-debug.js app.js
-        cp app.js app-debug.js
 
         #修改init.js中的线上版本为开发版本
         sed -i "s/app_version_type='dev'/app_version_type='prod'/g" ./init.js
