@@ -923,5 +923,5 @@ h1,h2,h3,h4,h5,h6{font-weight:500;font-weight:800\9;color:#333;}
 .typo-em,.typo em{font-weight:700;}
 .vertical-align{display:table-cell;vertical-align:middle;writing-mode:tb-rl;text-align:center;}
 .clear{clear:both;zoom:1;}
-body{background:#fff;padding-left:30px;}
+body{padding:10px;background:#fff;}
 #ajax-loader{width:76px;height:30px;display:none;padding-left:35px;margin-left:-35px;background:#545454 url('../../images/load.gif') no-repeat;background-position:7px 7px;position:fixed;top:15%;left:50%;z-index:1000;box-shadow:0 0 5px rgba(0, 0, 0, 0.2);border-radius:5px;line-height:30px;color:#fff;}

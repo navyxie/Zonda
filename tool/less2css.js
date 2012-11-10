@@ -3,6 +3,7 @@
  * less.js
  * node 程序，监听css文件夹，less文件改变时，编译
  */
+console.log('启动less编译...');
 
 var fs = require('fs');
 var exec = require('child_process').exec;
@@ -160,3 +161,6 @@ fs.watch( cssPath, function (event, name) {
         lessToCss(name, cssPath);
     }
 });
+
+// 启动时，自动编译init.less
+lessToCss('init.less', cssPath);
