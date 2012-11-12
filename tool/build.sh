@@ -19,13 +19,13 @@ case $1 in
 
         #通过app.js判断当前Zonda状态
         #若app.js文件仅有一行，则为线上版本
-        if [ `wc -l app/app.js | awk '{print $1}'` -eq 1 ];then
+        if [ `wc -l app/app.js | awk '{print $1}'` -le 1 ];then
             #app.js为线上版本
-            cp app-debug.js app.js
-            cp app.js app-debug.js
+            cp app/app-debug.js app/app.js
+            cp app/app.js app/app-debug.js
         else
             #app.js为开发版本
-            cp app.js app-debug.js
+            cp app/app.js app/app-debug.js
         fi
 
         #修改init.js中的线上版本为开发版本
@@ -51,7 +51,13 @@ case $1 in
         cd ../
 
         #从app-deub.js复原app.js
-        cp app/app-debug.js app/app.js
+        if [ `wc -l app/app.js | awk '{print $1}'` -le 1 ];then
+            #app.js为线上版本
+            cp app/app-debug.js app/app.js
+        else
+            #app.js为开发版本
+            cp app/app.js app/app-debug.js
+        fi
 
         #替换init.js中Zonda的状态为开发版本
         sed -i "s/app_version_type='prod'/app_version_type='dev'/g" ./init.js
