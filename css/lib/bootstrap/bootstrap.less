@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.1.0
+ * Bootstrap v2.2.1
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -9,8 +9,7 @@
  */
 
 // CSS Reset
-//@import "reset.less";
-// 使用typo代替bootstrap的reset
+@import "reset.less";
 
 // Core variables and mixins
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
@@ -20,8 +19,6 @@
 @import "scaffolding.less";
 @import "grid.less";
 @import "layouts.less";
-// 支持IE6
-@import "ie/ie.bootstrap";
 
 // Base CSS
 @import "type.less";
@@ -30,6 +27,7 @@
 @import "tables.less";
 
 // Components: common
+//@import "sprites.less";
 // 将自带的雪碧小图标换为Font-Awesome字体图标
 @import "lib/Font-Awesome/less/font-awesome.less";
 @import "dropdowns.less";
@@ -56,6 +54,7 @@
 
 // Components: Misc
 @import "thumbnails.less";
+@import "media.less";
 @import "labels-badges.less";
 @import "progress-bars.less";
 @import "accordion.less";

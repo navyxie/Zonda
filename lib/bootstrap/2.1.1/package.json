@@ -1,9 +1,8 @@
 {
     "name" : "bootstrap",
-    "version" : "2.1.1",
-    "root" : "lib",
+    "version" : "2.2.1",
     "dependencies" : {
-        "jquery" : "jquery"
+        "jquery" : "1.8.2"
     },
     "output" : {
         "bootstrap" : "."
