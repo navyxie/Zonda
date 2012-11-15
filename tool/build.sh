@@ -16,7 +16,7 @@ case $1 in
         echo 开始打包Zonda
 
         #修改init.js中的线上版本为开发版本
-        sed -i "s/app_version_type='dev'/app_version_type='prod'/g" ./init.js
+        sed -i "s/app_version_type='\w*'/app_version_type='prod'/g" ./init.js
 
         #模拟spm标准目录
         mkdir src
@@ -38,9 +38,17 @@ case $1 in
         cd ../
 
         #替换init.js中Zonda的状态为开发版本
-        sed -i "s/app_version_type='prod'/app_version_type='dev'/g" ./init.js
+        sed -i "s/app_version_type='\w*'/app_version_type='dev'/g" ./init.js
 
         echo Zonda切换至开发模式
+    ;;
+    test)
+        cd ../
+
+        #替换init.js中Zonda的状态为开发版本
+        sed -i "s/app_version_type='\w*';/app_version_type='test';/g" ./init.js
+
+        echo Zonda切换至测试模式
     ;;
     *)
         echo $1 ? 没有选项 =。=

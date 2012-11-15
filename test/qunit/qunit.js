@@ -1,4 +1,10 @@
 /**
+ * 封装QUnit为CMD模块
+ */
+define(function(require, exports, module){
+    var QUnit = {};
+
+/**
  * QUnit v1.11.0pre - A JavaScript Unit Testing Framework
  *
  * http://qunitjs.com
@@ -10,7 +16,7 @@
 
 (function( window ) {
 
-var QUnit,
+var //QUnit,
 	assert,
 	config,
 	onErrorFnPrev,
@@ -2022,3 +2028,8 @@ if ( typeof exports !== "undefined" ) {
 
 // get at whatever the global object is, like window in browsers
 }( (function() {return this;}.call()) ));
+
+return QUnit;
+
+}); // END def
+

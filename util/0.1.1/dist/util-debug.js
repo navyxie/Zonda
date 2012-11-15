@@ -233,8 +233,8 @@ Util.dialog.open().close(1300);
 
 */
 
-define("#util/0.1.1/dialog/dialog-debug", ["#bootstrap/2.1.1/bootstrap-debug", "#jquery/1.8.2/jquery-debug", "#underscore/1.4.2/underscore-debug"], function( require, exports, module ){
-    var $ = require('#bootstrap/2.1.1/bootstrap-debug');
+define("#util/0.1.1/dialog/dialog-debug", ["#bootstrap/2.2.1/bootstrap-debug", "#jquery/1.8.2/jquery-debug", "#underscore/1.4.2/underscore-debug"], function( require, exports, module ){
+    var $ = require('#bootstrap/2.2.1/bootstrap-debug');
     var _ = require('#underscore/1.4.2/underscore-debug');
 
     // 准备模板
@@ -733,8 +733,8 @@ Util.rightClickMenu({
 });
 */
 
-define("#util/0.1.1/rightClickMenu/rightClickMenu-debug", ["#bootstrap/2.1.1/bootstrap-debug", "#jquery/1.8.2/jquery-debug", "#underscore/1.4.2/underscore-debug"], function( require, exports, module ){
-    var $ = require('#bootstrap/2.1.1/bootstrap-debug');
+define("#util/0.1.1/rightClickMenu/rightClickMenu-debug", ["#bootstrap/2.2.1/bootstrap-debug", "#jquery/1.8.2/jquery-debug", "#underscore/1.4.2/underscore-debug"], function( require, exports, module ){
+    var $ = require('#bootstrap/2.2.1/bootstrap-debug');
     var _ = require('#underscore/1.4.2/underscore-debug');
 
     // 插入菜单
@@ -825,7 +825,7 @@ define("#util/0.1.1/rightClickMenu/rightClickMenu-debug", ["#bootstrap/2.1.1/boo
 // --------------
 // 封装jQuery的ajax API
 
-define("#util/0.1.1/ajax/ajax-debug", ["../dialog/dialog-debug", "#jquery/1.8.2/jquery-debug", "#bootstrap/2.1.1/bootstrap-debug", "#underscore/1.4.2/underscore-debug"], function( require, exports, module ) {
+define("#util/0.1.1/ajax/ajax-debug", ["../dialog/dialog-debug", "#jquery/1.8.2/jquery-debug", "#bootstrap/2.2.1/bootstrap-debug", "#underscore/1.4.2/underscore-debug"], function( require, exports, module ) {
     var $ = require('#jquery/1.8.2/jquery-debug');
     var dialog = require('../dialog/dialog-debug');
 
@@ -1745,7 +1745,7 @@ define("#util/0.1.1/upload/upload-debug", ["#underscore/1.4.2/underscore-debug",
  * util.js
  * 框架组件
  */
-define("#util/0.1.1/util-debug", ["./route/route-debug", "./cookie/cookie-debug", "./gif/gif-debug", "./dialog/dialog-debug", "./verify/verify-debug", "./verify/verification-debug", "./stateMachine/stateMachine-debug", "./rightClickMenu/rightClickMenu-debug", "./ajax/ajax-debug", "./slide/slide-debug", "./scaffold/scaffold-debug", "./upload/upload-debug", "#jquery/1.8.2/jquery-debug", "#underscore/1.4.2/underscore-debug", "#bootstrap/2.1.1/bootstrap-debug", "#easing/1.3.0/easing-debug", "#backbone/0.9.2/backbone-debug"], function(require, exports, module){
+define("#util/0.1.1/util-debug", ["./route/route-debug", "./cookie/cookie-debug", "./gif/gif-debug", "./dialog/dialog-debug", "./verify/verify-debug", "./verify/verification-debug", "./stateMachine/stateMachine-debug", "./rightClickMenu/rightClickMenu-debug", "./ajax/ajax-debug", "./slide/slide-debug", "./scaffold/scaffold-debug", "./upload/upload-debug", "#jquery/1.8.2/jquery-debug", "#underscore/1.4.2/underscore-debug", "#bootstrap/2.2.1/bootstrap-debug", "#easing/1.3.0/easing-debug", "#backbone/0.9.2/backbone-debug"], function(require, exports, module){
 
     var Util = {
         route          : require('./route/route-debug'),
