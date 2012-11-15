@@ -57,7 +57,7 @@ switch( app_version_type ) {
                 'jplayer' : 'lib/jplayer/2.1.0/jplayer',
                 'countdown' : 'lib/countdown/1.0/countdown',
                 'cloud-zoom' : 'lib/cloud-zoom/1.0.3/cloud-zoom',
-                'qunit' : 'test/qunit/1.11.0pre/qunit'
+                'qunit' : 'test/qunit/1.10.0/qunit'
             },
             preload : [
                 Function.prototype.bind ? '' : 'lib/es5-safe',

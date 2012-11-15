@@ -2,9 +2,12 @@
  * test
  */
 define(function(require, exports, module){
-    var QUnit = require('test/qunit/qunit');
+    // QUit样式
+    require('test/qunit/1.10.0/qunit.css');
 
-    QUnit.module('page');
+    // test page
+    require('./case/page');
 
-    QUnit.module('comment');
+    // test comment
+    require('./case/comment');
 });
