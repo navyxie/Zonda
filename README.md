@@ -18,7 +18,7 @@ Zonda在尝试将javascript，CSS，Tpl，Image等前端常用文件以更好的
 对于javascript文件，Zonda试着将应用的代码和框架的代码分开放置。
 应用的代码将会放到src/app下，并全部遵循CMD规范。
 
-整个项目在开发模式下，页面可能会有30个以上的Javascript文件请求，但是不用担心，只需要到tool目录下，执行`./build. app`，即可将连接数降低至3个左右；如果需要切换回到开发模式，只需要到tool目录下，执行`./build.sh dev`。
+整个项目在开发模式下，页面可能会有30个以上的Javascript文件请求，但是不用担心，只需要到tool目录下，执行`./build.sh prod`，即可将连接数降低至3个左右；如果需要切换回到开发模式，只需要到tool目录下，执行`./build.sh dev`。
 
 这样的方便的切换项目的状态，完全拜[SPM](https://github.com/seajs/spm)所赐。
 
