@@ -18,11 +18,15 @@ Zonda在尝试将javascript，CSS，Tpl，Image等前端常用文件以更好的
 对于javascript文件，Zonda试着将应用的代码和框架的代码分开放置。
 应用的代码将会放到src/app下，并全部遵循CMD规范。
 
-整个项目在开发模式下，页面可能会有30个以上的Javascript文件请求，但是不用担心，只需要到tool目录下，执行`./build.dev app`，即可将连接数降低至3个左右；如果需要切换回到开发模式，只需要到tool目录下，执行`./build.sh dev`。
+整个项目在开发模式下，页面可能会有30个以上的Javascript文件请求，但是不用担心，只需要到tool目录下，执行`./build. app`，即可将连接数降低至3个左右；如果需要切换回到开发模式，只需要到tool目录下，执行`./build.sh dev`。
 
 这样的方便的切换项目的状态，完全拜[SPM](https://github.com/seajs/spm)所赐。
 
 ## Zonda 原厂零件
+
+- **dialog** : 封装自Bootstrap的Modal
+
+    + 自定义按钮，动态生成按钮，并设置点击事件回调
 
 - **tips模块** : 简单强大的tooltips模块，by [Niko](http://niko-blog.com/)
 
