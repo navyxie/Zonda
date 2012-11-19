@@ -4,18 +4,20 @@
 // 可复用
 
 define(function( require, exports, module) {
+    require('./gif.css');
+
     var $ = require('jquery');
 
     // 增加配置
     var main = function ( config ) {
         try {
-            // 清楚之前的ajax-loader
+            // 清掉之前的ajax-loader
             $("#ajax-loader").remove();
         } catch (e) {
         }
 
         $(document.body).append(
-            '<div id="ajax-loader">Loading ...</div>'
+            '<div id="ajax-loader" style="display: none;">Loading ...</div>'
         );
 
         // 含有配置，采用配置

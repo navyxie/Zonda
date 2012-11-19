@@ -9,7 +9,7 @@ define(function(require, exports, module){
     Q.module("comment");
 
     // 待测试模块：评论数据层
-    var pageModel = require('app/detail/comment/model');
+    var pageModel = require('app/comment/model');
 
     // 完全正常的参数
     Q.test('test CommentModel normal data', function () {

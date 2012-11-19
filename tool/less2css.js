@@ -144,8 +144,6 @@ function fileAll ( dir, callBack, depth ) {
 
 } // END fileAll
 
-module.exports = fileAll;
-
 // 监听文件改变，编译less
 fileAll( cssPath, function( type, path ){
     if ( type === 'dir' ) {

@@ -19,8 +19,16 @@ function fileAll ( dir, callBack, depth ) {
         dirFiles = fs.readdirSync( dir );
     }
 
-    // 转为绝对路径
+    // 清除缓存文件
     for (var i = 0; i < dirFiles.length; i++) {
+        if ( /.~$/.test( dirFiles[i] ) || /.swp$/.test( dirFiles[i] ) ) {
+            dirFiles.splice( i, 1 );
+        }
+    }
+
+    // 转为绝对路径
+    for ( i = 0; i < dirFiles.length; i++) {
+
         dirFiles[i] = {
             realpath : fs.realpathSync( dir + '/' + dirFiles[i] ),
             name : dirFiles[i]
@@ -28,15 +36,15 @@ function fileAll ( dir, callBack, depth ) {
     }
 
     // 递归
-    for ( var j = 0, l = dirFiles.length; j < l; j++ ) {
+    for ( i = 0; i < dirFiles.length; i++ ) {
 
         // 是文件
-        if ( fs.statSync( dirFiles[j].realpath ).isFile() ) {
-            callBack( 'file', dirFiles[j] );
+        if ( fs.statSync( dirFiles[i].realpath ).isFile() ) {
+            callBack( 'file', dirFiles[i] );
         // 是目录
         } else {
-            fileAll( dirFiles[j].realpath, callBack, depth-1 );
-            callBack( 'dir', dirFiles[j] );
+            fileAll( dirFiles[i].realpath, callBack, depth-1 );
+            callBack( 'dir', dirFiles[i] );
         }
 
     }

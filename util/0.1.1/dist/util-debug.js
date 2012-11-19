@@ -155,18 +155,20 @@ define("#util/0.1.1/cookie/cookie-debug", [], function ( require, exports, modul
 // 可复用
 
 define("#util/0.1.1/gif/gif-debug", ["#jquery/1.8.2/jquery-debug"], function( require, exports, module) {
+    seajs.importStyle('#ajax-loader{width:76px;height:30px;display:none;padding-left:35px;margin-left:-35px;background:#545454 url("/Zonda/images/load.gif") no-repeat;background-position:7px 7px;position:fixed;top:15%;left:50%;z-index:1000;box-shadow:0 0 5px rgba(0,0,0,.2);border-radius:5px;line-height:30px;color:#fff;font-size:14px}', '#util/0.1.1/gif/gif');
+
     var $ = require('#jquery/1.8.2/jquery-debug');
 
     // 增加配置
     var main = function ( config ) {
         try {
-            // 清楚之前的ajax-loader
+            // 清掉之前的ajax-loader
             $("#ajax-loader").remove();
         } catch (e) {
         }
 
         $(document.body).append(
-            '<div id="ajax-loader">Loading ...</div>'
+            '<div id="ajax-loader" style="display: none;">Loading ...</div>'
         );
 
         // 含有配置，采用配置
@@ -1745,7 +1747,7 @@ define("#util/0.1.1/upload/upload-debug", ["#underscore/1.4.2/underscore-debug",
  * util.js
  * 框架组件
  */
-define("#util/0.1.1/util-debug", ["./route/route-debug", "./cookie/cookie-debug", "./gif/gif-debug", "./dialog/dialog-debug", "./verify/verify-debug", "./verify/verification-debug", "./stateMachine/stateMachine-debug", "./rightClickMenu/rightClickMenu-debug", "./ajax/ajax-debug", "./slide/slide-debug", "./scaffold/scaffold-debug", "./upload/upload-debug", "#jquery/1.8.2/jquery-debug", "#underscore/1.4.2/underscore-debug", "#bootstrap/2.2.1/bootstrap-debug", "#easing/1.3.0/easing-debug", "#backbone/0.9.2/backbone-debug"], function(require, exports, module){
+define("#util/0.1.1/util-debug", ["./route/route-debug", "./cookie/cookie-debug", "./gif/gif-debug", "./gif.css", "./dialog/dialog-debug", "./verify/verify-debug", "./verify/verification-debug", "./stateMachine/stateMachine-debug", "./rightClickMenu/rightClickMenu-debug", "./ajax/ajax-debug", "./slide/slide-debug", "./scaffold/scaffold-debug", "./upload/upload-debug", "#jquery/1.8.2/jquery-debug", "#underscore/1.4.2/underscore-debug", "#bootstrap/2.2.1/bootstrap-debug", "#easing/1.3.0/easing-debug", "#backbone/0.9.2/backbone-debug"], function(require, exports, module){
 
     var Util = {
         route          : require('./route/route-debug'),
