@@ -49,6 +49,11 @@ case $1 in
         sed -i "s/app_version_type='\w*';/app_version_type='test';/g" ./init.js
 
         echo Zonda切换至测试模式
+
+        echo 开启测试模式Node服务，测试完成之前请勿关闭此进程!
+
+        cd tool/unit
+        node case.js
     ;;
     *)
         echo $1 ? 没有选项 =。=

@@ -3,6 +3,7 @@
  */
 define(function(require, exports, module){
     var _ = require('underscore');
+    var $ = require('jquery');
 
     // 依赖Sinon
     require('sinon');
@@ -13,11 +14,19 @@ define(function(require, exports, module){
     // 新主题
     require('test/themes/ninja.css');
 
-    // 加载PHP渲染的测试样例数据
-    // TODO 后端考虑改成Nodejs的
-    var caseDate = window.php_var;
-
-    _.each( caseDate, function( cell ) {
-        require.async( cell.url );
+    // 通过Node服务器获取case下的测试文件路径，并动态加载
+    // Node服务器端:11122
+    $.ajax({
+        url : location.origin + ':11122',
+        dataType : "JSON",
+        success : function ( data ) {
+            _.each( data, function( cell ) {
+                require.async( cell.path );
+                // DEBUG
+                console.log(cell);
+                // END DEBUG
+            });
+        }
     });
+
 });
