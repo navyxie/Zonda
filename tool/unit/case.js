@@ -18,10 +18,6 @@ console.log('测试目录' + casePath);
 // 更新case信息
 function updateCaseDIR ( event, fileName ) {
 
-    // DEBUG
-    console.log('事件'+event);
-    // END DEBUG
-
     // 判断是否为js文件
     if ( !/\.js$/.test( fileName ) ) {
         return false;

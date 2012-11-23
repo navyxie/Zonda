@@ -16,7 +16,8 @@ define(function(require, exports, module){
         slide          : require('./slide/slide'),
         //tips           : require('./tips/tips'),
         scaffold       : require('./scaffold/scaffold'),
-        upload         : require('./upload/upload')
+        upload         : require('./upload/upload'),
+        rpc            : require('./rpc/rpc')
     };
 
     // API

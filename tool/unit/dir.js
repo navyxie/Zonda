@@ -26,27 +26,33 @@ function fileAll ( dir, callBack, depth ) {
         }
     }
 
+    // TODO
+    // 清除缓存文件后，还是会出现缓存文件，正则没有问题，其他原因？？
     // 转为绝对路径
-    for ( i = 0; i < dirFiles.length; i++) {
+    try {
+        for ( i = 0; i < dirFiles.length; i++) {
 
-        dirFiles[i] = {
-            realpath : fs.realpathSync( dir + '/' + dirFiles[i] ),
-            name : dirFiles[i]
-        };
-    }
-
-    // 递归
-    for ( i = 0; i < dirFiles.length; i++ ) {
-
-        // 是文件
-        if ( fs.statSync( dirFiles[i].realpath ).isFile() ) {
-            callBack( 'file', dirFiles[i] );
-        // 是目录
-        } else {
-            fileAll( dirFiles[i].realpath, callBack, depth-1 );
-            callBack( 'dir', dirFiles[i] );
+            dirFiles[i] = {
+                realpath : fs.realpathSync( dir + '/' + dirFiles[i] ),
+                name : dirFiles[i]
+            };
         }
 
+        // 递归
+        for ( i = 0; i < dirFiles.length; i++ ) {
+
+            // 是文件
+            if ( fs.statSync( dirFiles[i].realpath ).isFile() ) {
+                callBack( 'file', dirFiles[i] );
+            // 是目录
+            } else {
+                fileAll( dirFiles[i].realpath, callBack, depth-1 );
+                callBack( 'dir', dirFiles[i] );
+            }
+
+        }
+
+    } catch (err) {
     }
 
 } // END fileAll

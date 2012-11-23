@@ -14,7 +14,13 @@ define(function(require, exports, module){
     // 新主题
     //require('test/themes/ninja.css');
 
+    require('./case/rpc');
+
+    require('./case/comment');
+
     // 读取当前目录下的case.json
+    /**
+     * Node监听目录变化不靠谱，暂无解决办法，先手动解决
     $.ajax({
         url : "/Zonda/test/case.json",
         dataType : "JSON",
@@ -25,5 +31,6 @@ define(function(require, exports, module){
 
         }
     }); // END ajax
+    */
 
 });
