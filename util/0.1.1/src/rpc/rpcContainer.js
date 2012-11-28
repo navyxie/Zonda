@@ -5,35 +5,26 @@
 define(function(require, exports, module){
     var _ = require('underscore');
 
-    var RpcClient = require('...');
-    var HttpClientTransport = require('...');
+    var RpcClient = require('./client/rpcClient');
+    var HttpClientTransport = require('./transport/httpClientTransport');
 
-    var Container = function ( config ) {
+    // 依赖注入
+    var Combination = function ( config ) {
 
-        var client = function () {
-            return new RpcClient();
-        };
+        // 默认传输协议为HTTP
+        this.transport = new HttpClientTransport();
 
-        var clientTransport = function () {
-            // 默认HTTP协议
-            return new HttpClientTransport();
-        };
+        // 合并配置，可能会配置transport
+        _.extend( this, config );
 
-        // 依赖注入
-        var combination = _.extend({
-
-            client : client(),
-            transport : clientTransport()
-
-        }, config ); // END combination
-
-        this.newClient = function () {
-        };
+        // 根据配置的transport实例化client
+        this.client = new RpcClient( this.transport );
 
         return this;
 
-    }; // END Rpc
+    }; // END Combination
 
-    module.exports = Container;
-    
+    // API
+    module.exports = Combination;
+
 });

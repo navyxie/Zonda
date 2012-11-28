@@ -7,7 +7,7 @@ define(function(require, exports, module){
 
     Q.module("Rpc模块API测试");
 
-    var Rpc = require('#util/0.1.1/src/rpc/rpc');
+    var Rpc = require('util').rpc;
     var HttpClientTransport = require('#util/0.1.1/src/rpc/transport/httpClientTransport');
 
     // 完全正常的参数
