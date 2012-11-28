@@ -10,10 +10,23 @@ define(function(require, exports, module){
     var Client = Backbone.Model.extend({
 
         initialize : function ( transport ) {
+            var _this = this;
+
             this.transport = transport;
 
-            // Hack 只期望获得transport协议层的事件
-            _.extend( this, transport );
+            var transportEvents = [
+                'ready:request',
+                'error:request',
+                'ready:dial',
+                'error:dial'
+            ];
+
+            _.each( transportEvents, function(event) {
+                _this.transport.on( event, function(res, data){
+                    _this.trigger( event, res, data );
+                });
+            });
+
         },
 
         // 连接服务器
@@ -32,6 +45,8 @@ define(function(require, exports, module){
                 url : this.url,
                 data : data
             };
+
+            this.transport.request( DATA , callback );
 
         }
 

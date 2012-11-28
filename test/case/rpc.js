@@ -144,19 +144,38 @@ define(function(require, exports, module){
             ]
         ); // END server.respondWith
 
-        // dial回调返回值
-        var dialRES;
-
         // 链接到Mock服务器
-        rpcClient.dial('/mock', function (res) {
-            dialRES = res;
+        rpcClient.dial('/mock');
+
+        // request回调返回值
+        var RES;
+
+        // rpcClient request 回调
+        var rpcRequestCallback = function (res) {
+            RES = res;
+        }; // END rpcRequestCallback
+
+        rpcClient.on('request:ready',function(){
+            // DEBUG
+            console.log(1);
+            // END DEBUG
         });
 
-        // 想Mock服务器发送一组消息
-        rpcClient.request('add', {},function (res) {
-        });
+        rpcClient.request('add',{
+            'a' : 1,
+            'b' : 2
+        }, rpcRequestCallback );
 
         server.respond();
+
+        Q.strictEqual( rpcClient.url, "/mock", '将传入的url缓存到ClientModel中');
+
+        Q.strictEqual( rpcClient.transport.constructor, (new HttpClientTransport()).constructor, '检查ClientModel的协议层对象');
+
+        Q.ok( RES, 'request 返回存在');
+
+        Q.strictEqual( RES.status, 1, '获得正确的响应');
+
     });
 
     Q.test('request，发送失败，没有发送参数', function () {

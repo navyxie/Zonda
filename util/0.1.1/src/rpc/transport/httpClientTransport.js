@@ -24,6 +24,8 @@ define(function(require, exports, module){
 
             var _this = this;
 
+            callback = callback || function(){};
+
             // 尝试连接Rpc服务器，不发送任何数据
             $.ajax({
 
@@ -52,6 +54,8 @@ define(function(require, exports, module){
         this.request = function ( data, callback ) {
             var _this = this;
 
+            callback = callback || function(){};
+
             $.ajax({
 
                 url : this.url,
@@ -67,10 +71,10 @@ define(function(require, exports, module){
                 },
 
                 success : function ( res ) {
+
                     switch ( res.status ) {
                         case 1:
                             _this.trigger('ready:request', res, data);
-                            callback( res, data ); // 调用回调
                             break;
                         case 0:
                             _this.trigger('error:request', res, data);
@@ -78,6 +82,10 @@ define(function(require, exports, module){
                         default:
                             _this.trigger('ready:request', res, data);
                     } // END switch
+
+                    // 调用回调
+                    callback( res, data);
+
                 } // END success
             }); // END ajax
         }; // END request
