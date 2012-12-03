@@ -10,8 +10,6 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 
 ## Usage ##
 
-Read [demo](https://github.com/smallsmallwolf/Zonda/blob/master/demo/index.html)。
-
 Demo和文档正在建设中，目前每个模块代码中都有详细的Usage可以参阅，有什么建议和批评意见可以留下Issue，谢谢~:cat:
 
 基本上你可以认为Zonda是一些面向桌面浏览器端开发的前端必须组件的集合。
@@ -22,7 +20,7 @@ Zonda在尝试将javascript，CSS，Tpl，Image等前端常用文件以更好的
 
 整个项目在开发模式下，页面可能会有30个以上的Javascript文件请求，但是不用担心，只需要到tool目录下，执行`./build.sh prod`，即可将连接数降低至3个左右；如果需要切换回到开发模式，只需要到tool目录下，执行`./build.sh dev`；进行测试时，需要执行`./build.sh test`，切换到测试模式，然后就可以使用Qunit进行测试了。
 
-这样的方便的切换项目的状态，完全拜[SPM](https://github.com/seajs/spm)所赐。
+这样的方便的切换项目的状态，完全拜[SPM](https://github.com/spmjs/spm)所赐。
 
 ## Zonda 原厂零件
 
