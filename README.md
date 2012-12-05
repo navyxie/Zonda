@@ -1,5 +1,7 @@
 # Zonda
 
+-------------
+
 Zonda——Degas自家用的前端框架。
 
 感谢和我一起建造Zonda的朋友们，亲爱的[Niko](http://niko-blog.com/)，[leohgbs](https://github.com/leohgbs)，[bronze1man](http://bs.ikm.me/)。
@@ -7,8 +9,6 @@ Zonda——Degas自家用的前端框架。
 BUG还很多，发现一个修复一个。已在几个项目中使用，不断更新，不断学习~
 
 ## Usage ##
-
-Read [demo](https://github.com/smallsmallwolf/Zonda/blob/master/demo/index.html)。
 
 Demo和文档正在建设中，目前每个模块代码中都有详细的Usage可以参阅，有什么建议和批评意见可以留下Issue，谢谢~:cat:
 
@@ -18,11 +18,19 @@ Zonda在尝试将javascript，CSS，Tpl，Image等前端常用文件以更好的
 对于javascript文件，Zonda试着将应用的代码和框架的代码分开放置。
 应用的代码将会放到src/app下，并全部遵循CMD规范。
 
-整个项目在开发模式下，页面可能会有30个以上的Javascript文件请求，但是不用担心，只需要到tool目录下，执行`./build.sh prod`，即可将连接数降低至3个左右；如果需要切换回到开发模式，只需要到tool目录下，执行`./build.sh dev`。
+整个项目在开发模式下，页面可能会有30个以上的Javascript文件请求，但是不用担心，只需要到tool目录下，执行`./build.sh prod`，即可将连接数降低至3个左右；如果需要切换回到开发模式，只需要到tool目录下，执行`./build.sh dev`；进行测试时，需要执行`./build.sh test`，切换到测试模式，然后就可以使用Qunit进行测试了。
 
-这样的方便的切换项目的状态，完全拜[SPM](https://github.com/seajs/spm)所赐。
+这样的方便的切换项目的状态，完全拜[SPM](https://github.com/spmjs/spm)所赐。
 
 ## Zonda 原厂零件
+
+- **JSON RPC** : RPC，数据层
+
+    + 协议层为HTTP，可扩展WebSocket协议层
+    
+    + RPC客户端
+    
+    + RPC服务端，还未实现...
 
 - **dialog** : 封装自Bootstrap的Modal
 
