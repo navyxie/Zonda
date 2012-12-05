@@ -35,6 +35,10 @@ Zonda在尝试将javascript，CSS，Tpl，Image等前端常用文件以更好的
 - **dialog** : 封装自Bootstrap的Modal
 
     + 自定义按钮，动态生成按钮，并设置点击事件回调
+    
+- **Backbone.sync LocalStorage 适配器**
+
+    + 在使用Backbone时，可以将数据同步到LocalStorage
 
 - **tips模块** : 简单强大的tooltips模块，by [Niko](http://niko-blog.com/)
 
