@@ -912,4 +912,4 @@ a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 .affix{position:fixed;}
 .vertical-align{display:table-cell;vertical-align:middle;writing-mode:tb-rl;text-align:center;}
 .clear{clear:both;zoom:1;}
-@media (min-width:1200px){}@media (max-width:980px){}@media (min-width:768px) and (max-width:980px){}@media (max-width:767px){}@media (max-width:480px){}body{border-top:5px solid #8DC21F;}body .wrap{width:960px;min-height:600px;margin:0 auto;}body .wrap #main{width:960px;display:table;}
+@media (min-width:1200px){}@media (max-width:980px){}@media (min-width:768px) and (max-width:980px){}@media (max-width:767px){}@media (max-width:480px){}body .wrap{width:960px;min-height:600px;margin:0 auto;}body .wrap #main{width:960px;display:table;}

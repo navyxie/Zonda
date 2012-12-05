@@ -17,7 +17,8 @@ define(function(require, exports, module){
         //tips           : require('./tips/tips'),
         scaffold       : require('./scaffold/scaffold'),
         upload         : require('./upload/upload'),
-        rpc            : require('./rpc/rpc')
+        rpc            : require('./rpc/rpc'),
+        sync           : require('./localStorageSync/sync')
     };
 
     // API

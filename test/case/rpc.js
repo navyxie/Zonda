@@ -178,16 +178,4 @@ define(function(require, exports, module){
 
     });
 
-    Q.test('request，发送失败，没有发送参数', function () {
-        Q.ok(1);
-    });
-
-    Q.test('request，发送成功，不可用的响应', function () {
-        Q.ok(1);
-    });
-
-    Q.test('Rpc HttpClientTransport协议层', function () {
-        Q.ok(1);
-    });
-
 });

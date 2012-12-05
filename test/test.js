@@ -14,9 +14,11 @@ define(function(require, exports, module){
     // 新主题
     //require('test/themes/ninja.css');
 
+    // JSON RPC 模块
     require('./case/rpc');
 
-    require('./case/comment');
+    // localStorageSync for Backbone
+    require('./case/localStorageSync');
 
     // 读取当前目录下的case.json
     /**
