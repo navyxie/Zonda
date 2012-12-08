@@ -5,6 +5,7 @@ switch( app_version_type ) {
             base : '/Zonda',
             alias : {
                 'util' : 'util/0.1.1/src/util',
+                'mustache' : 'lib/mustache/0.7.1/mustache',
                 'underscore' : 'lib/underscore/1.4.2/underscore',
                 'bootstrap' : 'lib/bootstrap/2.2.1/bootstrap',
                 'jquery' : 'lib/jquery/1.8.2/jquery',
@@ -17,7 +18,7 @@ switch( app_version_type ) {
                 'fancybox' : 'lib/fancybox/1.3.4/fancybox'
             },
             preload : [
-                Function.prototype.bind ? '' : 'lib/es5-safe',
+                Function.prototype.bind ? '' : 'lib/es5-shim/2.0.5/es5-shim',
                 'core/1.3.0-dev/plugin-text',
                 window.JSON ? '' : 'lib/json2/1.1.1/json2'
             ],
@@ -29,7 +30,7 @@ switch( app_version_type ) {
         seajs.config({
             base : '/Zonda',
             preload : [
-                Function.prototype.bind ? '' : 'lib/es5-safe',
+                Function.prototype.bind ? '' : 'lib/es5-shim/2.0.5/es5-shim',
                 window.JSON ? '' : 'lib/json2/1.1.1/json2'
             ],
             charset : 'utf-8'
@@ -41,6 +42,7 @@ switch( app_version_type ) {
             base : '/Zonda',
             alias : {
                 'util' : 'util/0.1.1/src/util',
+                'mustache' : 'lib/mustache/0.7.1/mustache',
                 'underscore' : 'lib/underscore/1.4.2/underscore',
                 'bootstrap' : 'lib/bootstrap/2.2.1/bootstrap',
                 'jquery' : 'lib/jquery/1.8.2/jquery',
@@ -55,7 +57,7 @@ switch( app_version_type ) {
                 'sinon' : 'test/addons/sinon'
             },
             preload : [
-                Function.prototype.bind ? '' : 'lib/es5-safe',
+                Function.prototype.bind ? '' : 'lib/es5-shim/2.0.5/es5-shim',
                 'core/1.3.0-dev/plugin-text',
                 window.JSON ? '' : 'lib/json2/1.1.1/json2'
             ],
