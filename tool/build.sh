@@ -15,6 +15,9 @@ case $1 in
         cd ../
         echo 开始打包Zonda
 
+        echo 清除HOME目录下的Zonda模块缓存，重新从源服务器下载
+        rm -rf ~/.spm/sources/*
+
         #修改init.js中的线上版本为开发版本
         sed -i "s/app_version_type='\w*'/app_version_type='prod'/g" ./init.js
 
