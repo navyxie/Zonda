@@ -9,14 +9,12 @@
 /**
 var Util = require('util');
 
-// 配置
-Util.dialog({
+Util.dialog({ // 配置
     title : 'dialog标题' ,
     content : 'dialog内部html或者文本', // 这里将会向dialog内部嵌入编译好的HTML
     button : {  // 按钮，会实例化为按钮对象，绑定点击事件到后面的callback
          '提交' : function() {...},
          '更多' : function() {...}
-         // ...
     },
     css : {
         height: 200,
@@ -24,17 +22,13 @@ Util.dialog({
     } // 传入css，API参照jQuery $('#sel').css()
 });
 
-// 打开dialog
-Util.dialog.open();
+Util.dialog.open(); // 打开dialog
 
-// 关闭dialog
-Util.dialog.close();
+Util.dialog.close(); // 关闭dialog
 
-// 延时1300毫秒关闭
-Util.dialog.close(1300);
+Util.dialog.close(1300); // 延时1300毫秒关闭
 
-// 链式调用
-Util.dialog.open().close(1300);
+Util.dialog.open().close(1300); // 链式调用
 
 */
 
@@ -71,7 +65,7 @@ define(function( require, exports, module ){
             // 生成唯一ID
             var uid = _.uniqueId('dialog-button-');
 
-            // 插入<button>
+            // 插入button
             $("#util-dialog .modal-footer").append(
                 '<button id="' + uid + '" class="btn btn-success">' +
                 buttonName +
