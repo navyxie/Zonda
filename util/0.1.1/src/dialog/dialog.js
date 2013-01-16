@@ -93,6 +93,11 @@ define(function( require, exports, module ){
             'backdrop' : false
         });
 
+        // 计算当前浏览器窗口可用高度，改变dialog最大高度
+        $("#util-dialog .modal-body").css({
+            "max-height" : window.innerHeight - 141
+        });
+
         // 计算高度，垂直居中
         var outerHeight = $("#util-dialog").outerHeight();
 
