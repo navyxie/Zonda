@@ -126,10 +126,6 @@ define(function(require, exports, module){
 
             // 读取所有的 model
             } else {
-                // DEBUG
-                console.log(tmp[model.url]);
-                // END DEBUG
-
                 options.success(tmp[model.url]);
 
                 return tmp[model.url];
