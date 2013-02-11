@@ -1,4 +1,4 @@
-var app_version_type='dev';
+var app_version_type='test';
 switch( app_version_type ) {
     case 'dev':
         seajs.config({
