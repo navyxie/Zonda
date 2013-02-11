@@ -19,7 +19,7 @@ switch( app_version_type ) {
             },
             preload : [
                 Function.prototype.bind ? '' : 'lib/es5-shim/2.0.5/es5-shim',
-                'core/1.3.0-dev/plugin-text',
+                'core/1.3.0/plugin-text',
                 window.JSON ? '' : 'lib/json2/1.1.1/json2'
             ],
             charset : 'utf-8'
@@ -58,7 +58,7 @@ switch( app_version_type ) {
             },
             preload : [
                 Function.prototype.bind ? '' : 'lib/es5-shim/2.0.5/es5-shim',
-                'core/1.3.0-dev/plugin-text',
+                'core/1.3.0/plugin-text',
                 window.JSON ? '' : 'lib/json2/1.1.1/json2'
             ],
             charset : 'utf-8'
