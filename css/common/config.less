@@ -1,46 +1,33 @@
 // config.less
 // -----------
-// 配置全局变量
 
-// bootstrap UI组件
+// Bootstrap by Twitter
 @import '../lib/bootstrap/bootstrap';
 
-// typo 更好的中文显示
-// 可选:如果需要typo，则应该在css/lib/bootstrap/bootstrap.less中将bootstrap的reset注释
-//@import '../lib/typo/typo';
-
-// 自定义mixin
+// mixin
 @import '../common/mixin';
 
-// 启用bootstrap响应式布局
-//  可选
+// Responsive of Bootstrap
 //@import '../lib/bootstrap/responsive';
 
-// 响应式布局
+// responsive for app
 @import '../common/responsive';
 
-// 页面基本宽度
 @base-width: 960px;
 
-// 图片路径配置
+// Alias of images' path
 @img : '../../images/';
 
-// 公用的body样式预定义
+// define body for app,just rewrite it.
 body {
-
-    // 外容器
     .wrap {
         width: @base-width;
         min-height: 600px;
 
         margin: 0 auto;
 
-        // 公用主体
         #main {
             width: @base-width;
-
-            display: table;
         }
-
     }
 }
