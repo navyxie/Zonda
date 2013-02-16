@@ -1,7 +1,5 @@
 # Zonda
 
-[![Build Status](https://travis-ci.org/smallsmallwolf/Zonda.png?branch=master)](https://travis-ci.org/smallsmallwolf/Zonda)
-
 -------------
 
 Zonda——Degas自家用的前端框架。
