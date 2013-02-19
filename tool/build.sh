@@ -1,6 +1,27 @@
 #!/bin/bash
 
 case $1 in
+  # 初始化一个新项目
+  init)
+    cd ../
+    mkdir assets # 前端资源根目录
+    cd ./assets
+    mkdir vendor
+    mkdir src
+    mkdir etc
+    mkdir dist
+    mkdir test
+    mkdir tool
+    mkdir css
+    mkdir images
+
+    cp -r ./Zonda ./assets/vendor
+
+    dev: html:
+      css: /assets/dist/dist-版本号.css
+      script: /assets/dist/dist-版本号.js
+      script: /assets/dist/frameworks-版本号.js
+  ;;
   # 初始化lib目录
   config)
     node ./unit/config.js
