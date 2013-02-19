@@ -43,11 +43,11 @@ function fileAll ( dir, callBack, depth ) {
 
             // 是文件
             if ( fs.statSync( dirFiles[i].realpath ).isFile() ) {
-                callBack( 'file', dirFiles[i] );
+                callBack( 'file', dirFiles[i], depth );
             // 是目录
             } else {
                 fileAll( dirFiles[i].realpath, callBack, depth-1 );
-                callBack( 'dir', dirFiles[i] );
+                callBack( 'dir', dirFiles[i], depth );
             }
 
         }
