@@ -1,9 +1,0 @@
-{
-    "name": "jquery",
-    "version": "1.8.2",
-    "root" : "lib",
-    "output": {
-        "jquery": "."
-    },
-    "sources": ["http://module.zonda.dashu.us:22221"]
-}
