@@ -136,11 +136,20 @@ cd Zonda/tool
 
 ...
   
-<script src="/assets/dist/dist-dev.js" type="text/javascript"></script>
 <script src="/assets/dist/framework-dev.js" type="text/javascript"></script>
+<script src="/assets/dist/dist-dev.js" type="text/javascript"></script>
 </body>
 </html>
 ```
+
+CSS：引入的一个文件在开发时，内部`@import`了多个CSS，在上线后将用Less重新编译成一个文件，并带一个MD5版本号
+Javascript：一个是项目依赖代码`framework-dev.js`，由Zonda提供；一个是当前应用程序的代码`dist-dev.js`。
+
+当项目处于开发阶段模式时，都只是做一个入口，他们分别引用了：`vender`目录中的各种模块，`src`中的应用程序代码。
+
+当项目开发完成打包上线时，Zonda将会把`vendor`中的代码打包压缩，生成一个带MD5值的文件`framework-MD5版本号`，用于替换`dist`目录下的`framework-dev.js`；上线时还会将`src`目录下的项目代码打包成一个文件`dist-MD5版本号`，替换`dist`目录下的`dist-dev.js`。
+
+这样做的目的在于，`framework-x.js`这个文件包含了大部分常用库(jQuery,Backbone...)是不会常常变动的，当项目发布时，可以更长时间的缓存与客户端；而应用的代码`dist-x.js`随着需求的更迭，可能会在一段时间陆续更新多个版本。这样就把客户端每次更新该项目需要下载的文件数量降低到一个较小的水平。
 
 ### 开发目录结构
 
