@@ -1,0 +1,13 @@
+{
+    "name": "fancybox",
+    "version": "1.3.4",
+    "root" : "lib",
+    "dependencies": {
+        "easing" : "easing",
+        "jquery" : "jquery"
+    },
+    "output": {
+        "fancybox": "."
+    },
+    "sources": ["http://module.zonda.dashu.us:22221"]
+}

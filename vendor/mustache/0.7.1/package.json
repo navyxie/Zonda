@@ -1,0 +1,9 @@
+{
+    "name": "mustache",
+    "version": "0.7.1",
+    "root" : "lib",
+    "output": {
+        "mustache": "."
+    },
+    "sources": ["http://module.zonda.dashu.us:22221"]
+}

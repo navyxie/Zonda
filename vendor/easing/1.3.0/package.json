@@ -1,0 +1,13 @@
+{
+    "name": "easing",
+    "version": "1.3.0",
+    "description": "jquery easing 插件",
+    "root" : "lib",
+    "dependencies": {
+        "jquery" : "jquery"
+    },
+    "output": {
+        "easing.js": "."
+    },
+    "sources" : ["http://module.zonda.dashu.us:22221"]
+}

@@ -16,11 +16,9 @@ case $1 in
     mkdir images
 
     cp -r ../Zonda ./vendor
+    cp -r ../Zonda/etc/* ./etc
+    cp -r ../Zonda/test/* ./test
 
-    dev: html:
-      css: /assets/dist/dist-版本号.css
-      script: /assets/dist/dist-版本号.js
-      script: /assets/dist/frameworks-版本号.js
   ;;
   # 初始化lib目录
   config)

@@ -1,0 +1,13 @@
+{
+    "name": "backbone",
+    "version": "0.9.10",
+    "root" : "lib",
+    "dependencies": {
+        "jquery" : "jquery",
+        "underscore" : "underscore"
+    },
+    "output": {
+        "backbone.js": "."
+    },
+    "sources": ["http://module.zonda.dashu.us:22221"]
+}
