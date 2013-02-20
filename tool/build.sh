@@ -3,7 +3,7 @@
 case $1 in
   # 初始化一个新项目
   init)
-    cd ../
+    cd ../../
     mkdir assets # 前端资源根目录
     cd ./assets
     mkdir vendor
@@ -15,7 +15,7 @@ case $1 in
     mkdir css
     mkdir images
 
-    cp -r ./Zonda ./assets/vendor
+    cp -r ../Zonda ./vendor
 
     dev: html:
       css: /assets/dist/dist-版本号.css
