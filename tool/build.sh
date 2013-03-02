@@ -1,29 +1,6 @@
 #!/bin/bash
 
 case $1 in
-  # 初始化一个新项目
-  init)
-    cd ../../
-    mkdir assets # 前端资源根目录
-    cd ./assets
-    mkdir vendor
-    mkdir src
-    mkdir etc
-    mkdir dist
-    mkdir test
-    mkdir tool
-    mkdir css
-    mkdir images
-
-    cp -r ../Zonda ./vendor
-    cp -r ../Zonda/etc/* ./etc
-    cp -r ../Zonda/test/* ./test
-
-  ;;
-  # 初始化lib目录
-  config)
-    node ./unit/config.js
-  ;;
   # 打包项目
   prod)
 
