@@ -1,6 +1,17 @@
 #!/bin/bash
 
 case $1 in
+  # make a new project template from this project
+  makeTemplate)
+    cd ../
+
+    cp -r etc vendor/Zonda/project-template
+    cp -r ui vendor/Zonda/project-template
+    cp -r tool vendor/Zonda
+
+    echo "Success!"
+  ;;
+
   # 打包项目
   prod)
 
