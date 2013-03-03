@@ -11,7 +11,7 @@ exec = require('child_process').exec;
 
 path = require('path');
 
-recursivePath = require("./unit/recursivePath");
+recursivePath = require("./recursivePath");
 
 lessc_command = "lessc -x";
 

@@ -10,7 +10,7 @@ fs = require 'fs'
 exec = require('child_process').exec
 path = require 'path'
 
-recursivePath = require "./unit/recursivePath"
+recursivePath = require "./recursivePath"
 
 # command of Less
 lessc_command = "lessc -x"
