@@ -147,9 +147,9 @@ cd Zonda/tool
 ### CSS/Less & Images
 - - -
 
-less dir: `assets/ui/less`，放置你的项目的样式
+Less dir: `assets/ui/less`，放置你的项目的样式
 
-images dir: `assets/ui/images`，你项目中用到的图片文件
+Images dir: `assets/ui/images`，你项目中用到的图片文件
 
 Bootstrap dir: `assets/vendor/Zonda/ui/less`，Zonda默认提供使用Bootstrap作为UI基础，在`assets/ui/less/config.less`中，`@import`了Bootstrap的Less源文件，如果不需要Bootstrap，可以在`config.less`将该行注释，** 但真心不建议这么做，Bootstrap可是个好东西 **
 
@@ -174,9 +174,20 @@ lessc_command = "lessc"
 
 `lessCompiler.coffee`缺少一个不将Less合并成一个CSS的功能，还缺少将`dist-dev.css`压缩的功能，以后会尝试实现的，欢迎Issue~
 
-###
+### JavaScript/CoffeeScript
 
-Javascript：一个是项目依赖代码`framework-dev.js`，由Zonda提供；一个是当前应用程序的代码`dist-dev.js`。
+Javascript dir: `assets/src`，这里放置你的项目源代码
+
+Zonda dir: `assets/vendor/Zonda`，这里是Zonda的框架代码，框架里已经包含了一些必要的库，通常会及时更新，包括：
+
+```
+SeaJs
+jQuery
+Underscore
+Backbone
+Bootstrap(jQuery plugins)
+Mustache
+```
 
 当项目处于开发阶段模式时，`framework-dev.js`和`dist-dev.js`都只是做一个入口，他们分别引用了：`vender`目录中的各种模块，`src`中的应用程序代码。
 
