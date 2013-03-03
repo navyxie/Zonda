@@ -1,9 +1,0 @@
-{
-    "name": "es5-shim",
-    "version": "2.0.5",
-    "root" : "lib",
-    "output": {
-        "es5-shim.js": "."
-    },
-    "sources": ["http://module.zonda.dashu.us:22221"]
-}
