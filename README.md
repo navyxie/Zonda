@@ -12,6 +12,10 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 
 Building!
 
+重构进度：
+完成Less和图片文件的摆放和编译工作。
+正在进行Javascript文件目录和开发模式部分的重构。
+
 ## Zonda 原厂零件
 
 - **JSON RPC** : RPC，数据层
@@ -120,7 +124,7 @@ cd Zonda/tool
 ./build.sh init
 ```
 
-这样Zonda会将前端项目展开，包括创建前端根目录`assets`，然后将自己也移入`assets`目录中，这样就完成了初始化。
+这样Zonda会将前端项目展开，包括创建前端根目录`assets`，然后将自己也移入`assets/vendor`目录中，这样就完成了初始化。
 
 在HTML中加入CSS和Javascript的引用：
 
@@ -133,25 +137,52 @@ cd Zonda/tool
   <link rel="stylesheet" href="/assets/dist/dist-dev.css" />
 </head>
 <body>
-
-...
-  
+... 
 <script src="/assets/dist/framework-dev.js" type="text/javascript"></script>
 <script src="/assets/dist/dist-dev.js" type="text/javascript"></script>
 </body>
 </html>
 ```
 
-CSS：引入的一个文件在开发时，内部`@import`了多个CSS，在上线后将用Less重新编译成一个文件，并带一个MD5版本号
+### CSS/Less & Images
+- - -
+
+less dir: `assets/ui/less`，放置你的项目的样式
+
+images dir: `assets/ui/images`，你项目中用到的图片文件
+
+Bootstrap dir: `assets/vendor/Zonda/ui/less`，Zonda默认提供使用Bootstrap作为UI基础，在`assets/ui/less/config.less`中，`@import`了Bootstrap的Less源文件，如果不需要Bootstrap，可以在`config.less`将该行注释，** 但真心不建议这么做，Bootstrap可是个好东西 **
+
+Less实时编译工具，这个工具可能有点小Bug，欢迎Issue：
+
+```shell
+cd assets/tool
+./less-compile.sh
+```
+
+执行上面的命令将会开始监听`assets/ui/less`目录，如果文件有修改，则会编译，并将所有`@import`的Less编译成一个CSS文件(包括Bootstrap和Font Awesome)输出到`assets/dist/dist-dev.css`，也就是页面上引入的那个CSS文件。
+
+Less编译工具使用NodeJs(v0.8.21)和Lessc(v1.3.3)，源文件在`tool/module/lessCompiler.coffee`。它目前只能提供简单的监听文件改变并编译的功能，并且将所有的Less文件编译成一个CSS。
+
+`lessCompiler.coffee`默认会将Less中的注释去掉，如果需要保留注释以便调试，则将文件中的：
+
+```coffeescript
+lessc_command = "lessc -x"
+# 去掉 -x，改成下面这样即可
+lessc_command = "lessc"
+```
+
+`lessCompiler.coffee`缺少一个不将Less合并成一个CSS的功能，还缺少将`dist-dev.css`压缩的功能，以后会尝试实现的，欢迎Issue~
+
+###
+
 Javascript：一个是项目依赖代码`framework-dev.js`，由Zonda提供；一个是当前应用程序的代码`dist-dev.js`。
 
-当项目处于开发阶段模式时，都只是做一个入口，他们分别引用了：`vender`目录中的各种模块，`src`中的应用程序代码。
+当项目处于开发阶段模式时，`framework-dev.js`和`dist-dev.js`都只是做一个入口，他们分别引用了：`vender`目录中的各种模块，`src`中的应用程序代码。
 
 当项目开发完成打包上线时，Zonda将会把`vendor`中的代码打包压缩，生成一个带MD5值的文件`framework-MD5版本号`，用于替换`dist`目录下的`framework-dev.js`；上线时还会将`src`目录下的项目代码打包成一个文件`dist-MD5版本号`，替换`dist`目录下的`dist-dev.js`。
 
 这样做的目的在于，`framework-x.js`这个文件包含了大部分常用库(jQuery,Backbone...)是不会常常变动的，当项目发布时，可以更长时间的缓存与客户端；而应用的代码`dist-x.js`随着需求的更迭，可能会在一段时间陆续更新多个版本。这样就把客户端每次更新该项目需要下载的文件数量降低到一个较小的水平。
-
-### 开发目录结构
 
 ### 实时编译Less
 
