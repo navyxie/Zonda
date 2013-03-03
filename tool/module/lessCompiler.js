@@ -21,7 +21,7 @@ output_dir = "dist";
 
 input_dir = "ui/less";
 
-main_file = "main.less";
+main_file = "config.less";
 
 compile = function(file, callback) {
   var command;

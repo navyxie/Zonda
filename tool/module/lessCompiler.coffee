@@ -19,7 +19,7 @@ lessc_command = "lessc -x"
 project_dir = path.resolve './', '../'
 output_dir = "dist"
 input_dir = "ui/less"
-main_file = "main.less"
+main_file = "config.less"
 
 # compile
 # invoke lessc to compile
