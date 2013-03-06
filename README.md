@@ -133,8 +133,8 @@ cd assets/tool/
 
 `/assets/dist/framework-dev.js`
 实现思路：
-在开发模式下(dev)，该文件就是 SeaJs 源码加上 SeaJs 配置文件。
-SeaJs 的配置文件为 env.js (以后有时间了可以考虑使用 Yaml，或者直接 CoffeeScript )，用工具将 `assets/vendor/Zonda/vendor` 以及 `assets/vendor/` 读取一遍，生成出 env.js 需要使用的 SeaJs 的 `alias`，然后将生成好的 env.js cat 到 SeaJs 源代码底部，这样就不需要SeaJs的data-main了。当有第三方模块更新，或者 SeaJs 更新时，只需要重新执行 `./build.sh dev` 即可。
+在开发模式下(dev)，该文件就是 SeaJs 源码 + SeaJs plugin(没有加入 combo，flush，插件);
+SeaJs 的配置文件为 env.js (以后有时间了可以考虑使用 Yaml，或者直接 CoffeeScript )，用工具将 `assets/vendor/Zonda/vendor` 以及 `assets/vendor/` 读取一遍，生成出 env.js 需要使用的 SeaJs 的 `alias`，然后将生成好的 env.js cat 到 SeaJs 源代码底部，当有第三方模块更新，或者 SeaJs 更新时，只需要重新执行 `./build.sh dev` 即可。
 
 env.js 应该大概是这个样子：
 
@@ -143,9 +143,7 @@ seajs.config({
   base: "/assets",
   alias: {
     "jquery" : "vendor/Zonda/vendor/jquery/1.9.1/jquery/src/jquery"
-    // ...
   },
-  plugins: ["text","nocache"],
   charset: "utf-8"
 });
 ```
@@ -153,10 +151,8 @@ seajs.config({
 实现思路：
 在开发模式下(dev)，该文件只有一行：
 ```javascript
-seajs.use("/assets/src/app");seajs.flush();
+seajs.use("/assets/src/app");
 ```
-
-这里调用`seajs.flush()`是因为之前加载了所有的 SeaJS 的插件所致(有待改善)。
 
 **PROD模式**
 
@@ -170,7 +166,7 @@ seajs.use("/assets/src/app");seajs.flush();
 实现思路：
 在线上模式(prod)，该文件为`assets/src/app.js`将其`src`内的依赖打包合并后的文件，需要在最后一行加上：
 ```javascript
-seajs.use("/assets/dist/app.js");seajs.flush();
+seajs.use("/assets/dist/app.js");
 ```
 
 以便 SeaJS 将它视作应用入口。
