@@ -42,7 +42,7 @@ assets/ # 前端项目根目录
   dist/ # 线上版本的应用程序代码
     dist-dev.css
     framework-dev.js
-    dist-dev.js   
+    app-dev.js   
   tool/ # 工具(打包应用程序，Less编译工具等等)
 ```
 
@@ -60,7 +60,7 @@ assets/ # 前端项目根目录
 
 ... 
 
-<script src="/assets/dist/framework-dev.js" id="seajsnode" data-main="/assets/dist/dist-dev.js" ></script>
+<script src="/assets/dist/framework-dev.js" id="seajsnode" data-main="/assets/dist/app-dev.js" ></script>
   
 </body>
 </html>
@@ -107,7 +107,7 @@ Zonda dir: `assets/vendor/Zonda`，这里是Zonda的框架代码，框架里已�
 
 ```
 SeaJs v2.0.0pre
-jQuery
+jQuery v1.9.1
 Underscore
 Backbone
 Bootstrap(jQuery plugins)
