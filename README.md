@@ -123,7 +123,7 @@ cd assets/tool/
 # 切换至开发模式：生成 framework-dev.js，app-dev.js
 ./build.sh dev
 
-# 切换至线上模式：生成 framework-md5.js，app-md5.js
+# 切换至线上模式：生成 framework-version.js，app-version.js
 ./build.sh prod
 ```
 
@@ -156,15 +156,15 @@ seajs.use("/assets/src/app");
 
 **PROD模式**
 
-期望实现的目标：将 SeaJS，jQuery 等第三方模块压缩合并到`framework-md5.js`，将`src`下应用程序源码压缩合并到`app-md5.js`，最终将 Javascript 文件的连接数优化为2个，并且带有文件MD5值的版本号，以便控制其发布。
+期望实现的目标：将 SeaJS，jQuery 等第三方模块压缩合并到`framework-version.js`，将`src`下应用程序源码压缩合并到`app-version.js`，最终将 Javascript 文件的连接数优化为2个，并且带有文件MD5值的版本号，以便控制其发布。
 
-`assets/dist/framework-md5.js`
+`assets/dist/framework-version.js`
 实现思路：
 在线上模式(prod)，该文件包含了`framework-dev.js`，`vendor/`下的各个第三方模块。
 
-`assets/dist/app-md5.js`
+`assets/dist/app-version.js`
 实现思路：
-在线上模式(prod)，该文件为`assets/src/app.js`将其`src`内的依赖打包合并后的文件，需要在最后一行加上：
+在线上模式(prod)，该文件为`assets/src/app-version.js`将其`src`内的依赖打包合并后的文件，需要在最后一行加上：
 ```javascript
 seajs.use("/assets/dist/app.js");
 ```
@@ -188,7 +188,7 @@ seajs.use("/assets/dist/app.js");
   "sources": ["http://module.zonda.dashu.us:22221"]
 }
 ```
-这里对`require("jquery")`这样的第三方依赖没有做处理，是因为`jquery`模块已经打包压缩到`framework-md5.js`中了，并且其模块ID为`env.js`中配置的`alias`所指明的ID。所以`app-md5.js`中调用`require("jquery")`时会根据`seajs.config`中`alias`的配置去调用，这里就没有问题了。
+这里对`require("jquery")`这样的第三方依赖没有做处理，是因为`jquery`模块已经打包压缩到`framework-version.js`中了，并且其模块ID为`env.js`中配置的`alias`所指明的ID。所以`app-version.js`中调用`require("jquery")`时会根据`seajs.config`中`alias`的配置去调用，这里就没有问题了。
 
 ### 调用框架模块
 

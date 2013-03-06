@@ -1,0 +1,9 @@
+{
+  "name": "underscore",
+  "root": "/assets/vendor/Zonda/vendor",
+  "version": "1.4.4",
+  "output": {
+    "underscore.js": "."
+  },
+  "sources": ["http://module.zonda.dashu.us:22221"]
+}
