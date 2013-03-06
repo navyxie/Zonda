@@ -42,7 +42,7 @@ assets/ # 前端项目根目录
   dist/ # 线上版本的应用程序代码
     dist-dev.css
     framework-dev.js
-    dist-dev.js   
+    app-dev.js   
   tool/ # 工具(打包应用程序，Less编译工具等等)
 ```
 
@@ -60,7 +60,7 @@ assets/ # 前端项目根目录
 
 ... 
 
-<script src="/assets/dist/framework-dev.js" id="seajsnode" data-main="/assets/dist/dist-dev.js" ></script>
+<script src="/assets/dist/framework-dev.js" id="seajsnode" data-main="/assets/dist/app-dev.js" ></script>
   
 </body>
 </html>
@@ -107,12 +107,29 @@ Zonda dir: `assets/vendor/Zonda`，这里是Zonda的框架代码，框架里已�
 
 ```
 SeaJs v2.0.0pre
-jQuery
+jQuery v1.9.1
 Underscore
 Backbone
 Bootstrap(jQuery plugins)
 Mustache
 ```
+
+### 开发模式(dev)与线上模式(prod)
+- - -
+
+```shell
+cd assets/tool/
+
+# 切换至开发模式：生成 framework-dev.js，app-dev.js
+./build.sh dev
+
+# 切换至线上模式：生成 framework-md5.js，app-md5.js
+./build.sh prod
+```
+
+**DEV模式**
+
+期望实现的目标：不压缩合并任何应用代码和第三方模块。
 
 `/assets/dist/framework-dev.js`
 实现思路：
@@ -132,11 +149,50 @@ seajs.config({
   charset: "utf-8"
 });
 ```
+`assets/dist/app-dev.js`
+实现思路：
+在开发模式下(dev)，该文件只有一行：
+```javascript
+seajs.use("/assets/src/app");seajs.flush();
+```
 
-** Todo **
-测试 SeaJs v2.0.0pre，并打包一个jQuery，并在项目中调用SeaJs和jQuery API
+这里调用`seajs.flush()`是因为之前加载了所有的 SeaJS 的插件所致(有待改善)。
 
-### 实时编译Less
+**PROD模式**
+
+期望实现的目标：将 SeaJS，jQuery 等第三方模块压缩合并到`framework-md5.js`，将`src`下应用程序源码压缩合并到`app-md5.js`，最终将 Javascript 文件的连接数优化为2个，并且带有文件MD5值的版本号，以便控制其发布。
+
+`assets/dist/framework-md5.js`
+实现思路：
+在线上模式(prod)，该文件包含了`framework-dev.js`，`vendor/`下的各个第三方模块。
+
+`assets/dist/app-md5.js`
+实现思路：
+在线上模式(prod)，该文件为`assets/src/app.js`将其`src`内的依赖打包合并后的文件，需要在最后一行加上：
+```javascript
+seajs.use("/assets/dist/app.js");seajs.flush();
+```
+
+以便 SeaJS 将它视作应用入口。
+
+**spm build**
+
+这里使用`spm`工具来实现 prod 模式，但是 spm 没有实现这里"将第三方模块与应用程序代码分别打包"的需求，所以目前只能手动解决，那就是配置`package.json`：
+```json
+{
+  "name" : "Zonda-Project",
+  "version" : "",
+  "root": "/assets/dist",
+  "dependencies" : {
+    "jquery" : "jquery"
+  },
+  "output" : {
+    "app.js" : "."
+  },
+  "sources": ["http://module.zonda.dashu.us:22221"]
+}
+```
+这里对`require("jquery")`这样的第三方依赖没有做处理，是因为`jquery`模块已经打包压缩到`framework-md5.js`中了，并且其模块ID为`env.js`中配置的`alias`所指明的ID。所以`app-md5.js`中调用`require("jquery")`时会根据`seajs.config`中`alias`的配置去调用，这里就没有问题了。
 
 ### 调用框架模块
 
