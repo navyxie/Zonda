@@ -133,7 +133,7 @@ cd assets/tool/
 
 `/assets/dist/framework-dev.js`
 实现思路：
-在开发模式下(dev)，该文件就是 SeaJs 源码 + SeaJs plugin(没有加入 combo，flush，插件);
+在开发模式下(dev)，该文件就是 SeaJs 源码 + SeaJs plugin(没有加入 combo，flush插件);
 SeaJs 的配置文件为 env.js (以后有时间了可以考虑使用 Yaml，或者直接 CoffeeScript )，用工具将 `assets/vendor/Zonda/vendor` 以及 `assets/vendor/` 读取一遍，生成出 env.js 需要使用的 SeaJs 的 `alias`，然后将生成好的 env.js cat 到 SeaJs 源代码底部，当有第三方模块更新，或者 SeaJs 更新时，只需要重新执行 `./build.sh dev` 即可。
 
 env.js 应该大概是这个样子：
