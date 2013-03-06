@@ -125,7 +125,6 @@ env.js 应该大概是这个样子：
 seajs.config({
   base: "/assets",
   alias: {
-    "util": "vendor/Zonda/util/0.1.1/src/util",
     "jquery" : "vendor/Zonda/vendor/jquery/1.9.1/jquery/src/jquery"
     // ...
   },

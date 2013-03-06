@@ -1,0 +1,9 @@
+{
+  "name": "jquery",
+  "root": "/assets/vendor/Zonda/vendor",
+  "version": "1.9.1",
+  "output": {
+    "jquery.js": "."
+  },
+  "sources": ["http://module.zonda.dashu.us:22221"]
+}
