@@ -29,4 +29,6 @@ echo "Copy Zonda to assets/vendor..."
 
 mv $zonda_dir $assets_dir/vendor
 
+cd $assets_dir
+
 echo "Zonda project is ready now!"
