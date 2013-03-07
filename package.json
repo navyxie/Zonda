@@ -5,7 +5,9 @@
   "engines": {
     "node": ">= 0.6.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vows": "0.7.0"
+  },
   "main": "test.js",
   "scripts": {
     "test": "vows test.js --spec"
