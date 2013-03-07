@@ -8,6 +8,6 @@
   "dependencies": {},
   "main": "test.js",
   "scripts": {
-    "test": "vows --spec"
+    "test": "vows test.js --spec"
   }
 }
