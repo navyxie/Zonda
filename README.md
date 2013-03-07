@@ -190,6 +190,8 @@ seajs.use("/assets/dist/app.js");
 ```
 这里对`require("jquery")`这样的第三方依赖没有做处理，是因为`jquery`模块已经打包压缩到`framework-version.js`中了，并且其模块ID为`env.js`中配置的`alias`所指明的ID。所以`app-version.js`中调用`require("jquery")`时会根据`seajs.config`中`alias`的配置去调用，这里就没有问题了。
 
+需要注意的是这里将第三方模块打包到`framework-version.js`是由Zonda的工具来完成的，并不是由spm，所以`framework-version.js`里到底 combo 了哪些第三方模块，已经这些模块的顺序，全部都由`etc/package.json`中的`dependencies`决定的。
+
 ### 调用框架模块
 
 ### 使用Qunit和Sinon测试
