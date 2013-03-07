@@ -1,27 +1,41 @@
-// division-by-zero-test.js
-
 var vows = require('vows'),
     assert = require('assert');
 
-// Create a Test Suite
-vows.describe('Division by Zero').addBatch({
-    'when dividing a number by zero': {
-        topic: function () { return 42 / 0 },
+var theGoodThings = require('./the-good-things');
 
-        'we get Infinity': function (topic) {
-            assert.equal (topic, Infinity);
+var Strawberry   = theGoodThings.Strawberry,
+    Banana       = theGoodThings.Banana,
+    PeeledBanana = theGoodThings.PeeledBanana;
+
+vows.describe('The Good Things').addBatch({
+    'A strawberry': {
+        topic: new(Strawberry),
+
+        'is red': function (strawberry) {
+            assert.equal (strawberry.color, '#ff0000');
+        },
+        'and tasty': function (strawberry) {
+            assert.isTrue (strawberry.isTasty());
         }
     },
-    'but when dividing zero by zero': {
-        topic: function () { return 0 / 0 },
+    'A banana': {
+        topic: new(Banana),
 
-        'we get a value which': {
-            'is not a number': function (topic) {
-                assert.isNaN (topic);
+        'when peeled *synchronously*': {
+            topic: function (banana) {
+                return banana.peelSync();
             },
-            'is not equal to itself': function (topic) {
-                assert.notEqual (topic, topic);
+            'returns a `PeeledBanana`': function (result) {
+                assert.instanceOf (result, PeeledBanana);
+            }
+        },
+        'when peeled *asynchronously*': {
+            topic: function (banana) {
+                banana.peel(this.callback);
+            },
+            'results in a `PeeledBanana`': function (err, result) {
+                assert.instanceOf (result, PeeledBanana);
             }
         }
     }
-}).run(); // Run it
+}).export(module); // Export the Suite
