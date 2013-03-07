@@ -1,6 +1,4 @@
   "name": "test",
-  "title": "TEST",
-  "description": "A Test",
   "version": "1.0.0",
   "keywords": ["module", "loader"],
   "engines": {
