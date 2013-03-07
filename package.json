@@ -1,0 +1,14 @@
+  "name": "test",
+  "title": "TEST",
+  "description": "A Test",
+  "version": "1.0.0",
+  "keywords": ["module", "loader"],
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "dependencies": {},
+  "main": "test.js",
+  "scripts": {
+    "test": "vows --spec"
+  }
+}
