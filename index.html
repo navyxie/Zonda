@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,20 +16,23 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Zonda</h1>
-        <p>Zonda——Degas自家用的前端框架。</p>
-
-        <p class="view"><a href="https://github.com/smallsmallwolf/Zonda">View the Project on GitHub <small>smallsmallwolf/Zonda</small></a></p>
-
+        <h1 class="header">Zonda</h1>
+        <p class="header">Zonda——Degas自家用的前端框架。</p>
 
         <ul>
-          <li><a href="https://github.com/smallsmallwolf/Zonda/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/smallsmallwolf/Zonda/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/smallsmallwolf/Zonda">View On <strong>GitHub</strong></a></li>
+          <li class="download"><a class="buttons" href="https://github.com/smallsmallwolf/Zonda/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/smallsmallwolf/Zonda/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/smallsmallwolf/Zonda">View On GitHub</a></li>
         </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/smallsmallwolf">smallsmallwolf</a></p>
+
+
       </header>
       <section>
         <h1>Zonda</h1>
+
+<p><a href="https://travis-ci.org/smallsmallwolf/Zonda"><img src="https://travis-ci.org/smallsmallwolf/Zonda.png?branch=master" alt="Build Status"></a></p>
 
 <hr><p>Zonda——Degas自家用的前端框架。</p>
 
@@ -36,118 +40,197 @@
 
 <p>BUG还很多，发现一个修复一个。已在几个项目中使用，不断更新，不断学习~</p>
 
-<h2>Usage</h2>
+<h2>Zonda行车手册</h2>
 
-<p>Demo和文档正在建设中，目前每个模块代码中都有详细的Usage可以参阅，有什么建议和批评意见可以留下Issue，谢谢~<img class="emoji" title=":cat:" alt=":cat:" src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/cat.png" height="20" width="20" align="absmiddle"></p>
+<p><strong>目前正在对整车进行重构，处于无法发动状态，技师正在紧张的修复中。</strong></p>
 
-<p>基本上你可以认为Zonda是一些面向桌面浏览器端开发的前端必须组件的集合。</p>
+<h3>点火，起步！</h3>
 
-<p>Zonda在尝试将javascript，CSS，Tpl，Image等前端常用文件以更好的形式组织，比如使用Seajs和Less。
-对于javascript文件，Zonda试着将应用的代码和框架的代码分开放置。
-应用的代码将会放到src/app下，并全部遵循CMD规范。</p>
+<hr><p><code>git clone https://github.com/smallsmallwolf/Zonda.git</code> 将Zonda拉到Web服务的文件根目录(Web服务器<code>/</code>的位置，放到这里主要是为了方便)，然后执行：</p>
 
-<p>整个项目在开发模式下，页面可能会有30个以上的Javascript文件请求，但是不用担心，只需要到tool目录下，执行<code>./build.sh prod</code>，即可将连接数降低至3个左右；如果需要切换回到开发模式，只需要到tool目录下，执行<code>./build.sh dev</code>；进行测试时，需要执行<code>./build.sh test</code>，切换到测试模式，然后就可以使用Qunit进行测试了。</p>
+<pre lang="shell"><code>cd Zonda/tool
+./build.sh init
+</code></pre>
 
-<p>这样的方便的切换项目的状态，完全拜<a href="https://github.com/spmjs/spm">SPM</a>所赐。</p>
+<p>执行完毕后，Zonda会根据<code>Zonda/project-template</code>创建一个前端项目模板，目录结构大致是这样的：</p>
 
-<h2>Zonda 原厂零件</h2>
+<div class="highlight"><pre><span class="nx">assets</span><span class="o">/</span> <span class="c1"># 前端项目根目录</span>
+  <span class="nx">etc</span><span class="o">/</span> <span class="c1"># 项目配置文件  </span>
+  <span class="nx">vendor</span><span class="o">/</span> <span class="c1"># 第三方组件</span>
+    <span class="nx">Zonda</span><span class="o">/</span>   
+  <span class="nx">src</span><span class="o">/</span> <span class="c1"># 你的应用程序源代码 </span>
+  <span class="nx">ui</span><span class="o">/</span> <span class="c1"># 你的应用程序的UI文件</span>
+    <span class="nx">less</span><span class="o">/</span>
+      <span class="nx">config</span><span class="p">.</span><span class="nx">less</span>
+      <span class="nx">mixin</span><span class="p">.</span><span class="nx">less</span>
+      <span class="nx">responsive</span><span class="p">.</span><span class="nx">less</span>
+    <span class="nx">images</span><span class="o">/</span>
+    <span class="nx">ie</span><span class="o">/</span>
+      <span class="nx">ie</span><span class="p">.</span><span class="nx">css</span>      
+  <span class="nx">test</span><span class="o">/</span> <span class="c1"># 测试你的应用程序  </span>
+  <span class="nx">dist</span><span class="o">/</span> <span class="c1"># 线上版本的应用程序代码</span>
+    <span class="nx">dist</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">css</span>
+    <span class="nx">framework</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">js</span>
+    <span class="nx">app</span><span class="o">-</span><span class="nx">dev</span><span class="p">.</span><span class="nx">js</span>   
+  <span class="nx">tool</span><span class="o">/</span> <span class="c1"># 工具(打包应用程序，Less编译工具等等)</span>
+</pre></div>
 
-<ul>
-<li>
-<p><strong>JSON RPC</strong> : RPC，数据层</p>
+<p>页面上将要引入的CSS和Javascript文件如下：</p>
 
-<ul>
-<li>协议层为HTTP，可扩展WebSocket协议层</li>
-<li>RPC客户端</li>
-<li>RPC服务端，还未实现...</li>
-</ul>
-</li>
-<li>
-<p><strong>dialog</strong> : 封装自Bootstrap的Modal</p>
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Let's Rock!<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"/assets/dist/dist-dev.css"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
 
-<ul>
-<li>自定义按钮，动态生成按钮，并设置点击事件回调</li>
-</ul>
-</li>
-<li>
-<p><strong>Backbone.sync LocalStorage 适配器</strong></p>
+... 
 
-<ul>
-<li>在使用Backbone时，可以将数据同步到LocalStorage</li>
-</ul>
-</li>
-<li>
-<p><strong>tips模块</strong> : 简单强大的tooltips模块，by <a href="http://niko-blog.com/">Niko</a></p>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/assets/dist/framework-dev.js"</span> <span class="na">id=</span><span class="s">"seajsnode"</span> <span class="na">data-main=</span><span class="s">"/assets/dist/app-dev.js"</span> <span class="nt">&gt;&lt;/script&gt;</span>
 
-<ul>
-<li>自定义触发tips的事件</li>
-<li>tips内容可传入字符串或DOM字符串</li>
-<li>可直接在HTML中定义tips，也可在创建时通过对象传入</li>
-</ul>
-</li>
-<li>
-<p><strong>上传模块</strong> : 自家实现的跨浏览器多文件上传。</p>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
 
-<ul>
-<li>使用XHR上传，进度条显示；对于不能使用XHR上传的浏览器则使用iframe+同步表单上传</li>
-<li>跨浏览器，IE6+</li>
-<li>可配置的允许上传的文件类型</li>
-<li>两个模块事件，loading，ready</li>
-<li>自动生成上传文件列表</li>
-<li>自定义错误消息</li>
-<li>TODO，自动生成的上传文件列表是根据一个模板来渲染的，考虑去掉这个模板，采用配置的方式生成DOM节点取代之</li>
-</ul>
-</li>
-<li>
-<p><strong>幻灯片模块</strong> : 自家用的幻灯片模块。</p>
+<p>Nice，Zonda现在已经发动了，驾驶着它在前端的赛道上驰骋吧~</p>
 
-<ul>
-<li>自动生成带数字或不带数字的页码，或是带缩略图的页码，以及‘next’，‘prev’按钮</li>
-<li>跨浏览器，IE6+</li>
-<li>next，prev，play，stop功能</li>
-<li>多种切换效果，逐步增加中</li>
-<li>简洁可扩展的核心play()函数</li>
-</ul>
-</li>
-<li>
-<p><strong>数据验证模块</strong> : 自家用的表单验证模块。</p>
+<h3>CSS/Less &amp; Images</h3>
 
-<ul>
-<li>附加方法verify，方便的验证<a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>form中的表单</li>
-<li>Email验证，数字验证，必填项验证</li>
-<li>跨浏览器，IE6+</li>
-<li>简洁可爱的核心检测方式，可扩展</li>
-<li>TODO，自定义错误事件，回调消息函数</li>
-<li>目前支持验证普通的 input:text，select:option，textarea，以后会慢慢添加更多类型的表单验证 ^_^</li>
-</ul>
-</li>
-<li>
-<p><strong>脚手架</strong> : 实用的调试工具。</p>
+<hr><p>Less dir: <code>assets/ui/less</code>，放置你的项目的样式</p>
 
-<ul>
-<li>Grid System schematic，栅格系统示意图生成器。</li>
-</ul>
-</li>
-</ul><h2>Zonda搭载的强劲零件</h2>
+<p>Images dir: <code>assets/ui/images</code>，你项目中用到的图片文件</p>
 
-<ul>
-<li><p><a href="http://seajs.org/docs/#intro"><code>Seajs</code></a> : 国产强劲引擎，作为核心库，进行模块的依赖管理</p></li>
-<li><p><a href="http://lesscss.org/"><code>Less</code></a> : 进口涡轮增压装置，对CSS进行组织，将CSS代码模块化，可配置</p></li>
-<li><p><a href="http://twitter.github.com/bootstrap/index.html"><code>Bootstrap</code></a> : 进口碳素纤维车身，强力的UI，对IE的支持不好，自己进行了一些改装，使之在IE6+环境中能正常使用</p></li>
-<li><p><a href="http://modernizr.com/"><code>Modernizr</code></a> : 进口行车电脑，检测浏览器对HTML5和CSS3的支持</p></li>
-</ul><p>谢谢Seajs，Less的作者，他们让前端写代码变成一件愉悦的事情，维护起来也不再那么头疼了</p>
+<p>Bootstrap dir: <code>assets/vendor/Zonda/ui/less</code>，Zonda默认提供使用Bootstrap作为UI基础，在<code>assets/ui/less/config.less</code>中，<code>@import</code>了Bootstrap的Less源文件，如果不需要Bootstrap，可以在<code>config.less</code>将该行注释，但真心不建议这么做，Bootstrap可是个好东西。</p>
 
-<h3>Zonda名字来源</h3>
+<p>Less实时编译工具，这个工具可能有点小Bug，欢迎Issue：</p>
 
-<p><code>Pagani</code>的超级跑车<a href="http://www.pagani.com/zonda/default.aspx"><code>Zonda</code></a>，意大利语“风之子”之意。
-<img src="http://www.widescreenbackgrounds.net/wallpapers/background-widescreen-white-pagani-zonda-wallpapers.jpg" alt="alt text" title="Zonda"></p>
+<pre lang="shell"><code>cd assets/tool
+./less-compile.sh
+</code></pre>
+
+<p>执行上面的命令将会开始监听<code>assets/ui/less</code>目录，如果文件有修改，则会编译，并将所有<code>@import</code>的Less编译成一个CSS文件(包括Bootstrap和Font Awesome)输出到<code>assets/dist/dist-dev.css</code>，也就是页面上引入的那个CSS文件。</p>
+
+<p>Less编译工具使用NodeJs(v0.8.21)和Lessc(v1.3.3)，源文件在<code>tool/module/lessCompiler.coffee</code>。它目前只能提供简单的监听文件改变并编译的功能，并且将所有的Less文件编译成一个CSS。</p>
+
+<p><code>lessCompiler.coffee</code>默认会将Less中的注释去掉，如果需要保留注释以便调试，则将文件中的：</p>
+
+<div class="highlight"><pre><span class="nv">lessc_command = </span><span class="s">"lessc -x"</span>
+<span class="c1"># 去掉 -x，改成下面这样即可</span>
+<span class="nv">lessc_command = </span><span class="s">"lessc"</span>
+</pre></div>
+
+<p><code>lessCompiler.coffee</code>缺少一个不将Less合并成一个CSS的功能，还缺少将<code>dist-dev.css</code>压缩的功能，以后会尝试实现的，欢迎Issue~</p>
+
+<h3>JavaScript</h3>
+
+<hr><p>Javascript dir: <code>assets/src</code>，这里放置你的项目源代码。如果使用CoffeeScript，那么直接将Coffee文件编译到当前目录下就行了，推荐一个Vim-CoffeeScript插件<a href="https://github.com/kchmck/vim-coffee-script">vim-coffee-script</a></p>
+
+<p>Zonda dir: <code>assets/vendor/Zonda</code>，这里是Zonda的框架代码，框架里已经包含了一些必要的库，都已做成seajs module，包括：</p>
+
+<pre><code>SeaJs v2.0.0pre
+jQuery v1.9.1
+Underscore
+Backbone
+Bootstrap(jQuery plugins)
+Mustache
+</code></pre>
+
+<h3>开发模式(dev)与线上模式(prod)</h3>
+
+<hr><pre lang="shell"><code>cd assets/tool/
+
+# 切换至开发模式：生成 framework-dev.js，app-dev.js
+./build.sh dev
+
+# 切换至线上模式：生成 framework-version.js，app-version.js
+./build.sh prod
+</code></pre>
+
+<p><strong>DEV模式</strong></p>
+
+<p>期望实现的目标：不压缩合并任何应用代码和第三方模块。</p>
+
+<p><code>/assets/dist/framework-dev.js</code>
+实现思路：
+在开发模式下(dev)，该文件就是 SeaJs 源码 + SeaJs plugin(没有加入 combo，flush插件);
+SeaJs 的配置文件为 env.js (以后有时间了可以考虑使用 Yaml，或者直接 CoffeeScript )，用工具将 <code>assets/vendor/Zonda/vendor</code> 以及 <code>assets/vendor/</code> 读取一遍，生成出 env.js 需要使用的 SeaJs 的 <code>alias</code>，然后将生成好的 env.js cat 到 SeaJs 源代码底部，当有第三方模块更新，或者 SeaJs 更新时，只需要重新执行 <code>./build.sh dev</code> 即可。</p>
+
+<p>env.js 应该大概是这个样子：</p>
+
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
+  <span class="nx">base</span><span class="o">:</span> <span class="s2">"/assets"</span><span class="p">,</span>
+  <span class="nx">alias</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"jquery"</span> <span class="o">:</span> <span class="s2">"vendor/Zonda/vendor/jquery/1.9.1/jquery/src/jquery"</span>
+  <span class="p">},</span>
+  <span class="nx">charset</span><span class="o">:</span> <span class="s2">"utf-8"</span>
+<span class="p">});</span>
+</pre></div>
+
+<p><code>assets/dist/app-dev.js</code>
+实现思路：
+在开发模式下(dev)，该文件只有一行：</p>
+
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">"/assets/src/app"</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>PROD模式</strong></p>
+
+<p>期望实现的目标：将 SeaJS，jQuery 等第三方模块压缩合并到<code>framework-version.js</code>，将<code>src</code>下应用程序源码压缩合并到<code>app-version.js</code>，最终将 Javascript 文件的连接数优化为2个，并且带有文件MD5值的版本号，以便控制其发布。</p>
+
+<p><code>assets/dist/framework-version.js</code>
+实现思路：
+在线上模式(prod)，该文件包含了<code>framework-dev.js</code>，<code>vendor/</code>下的各个第三方模块。</p>
+
+<p><code>assets/dist/app-version.js</code>
+实现思路：
+在线上模式(prod)，该文件为<code>assets/src/app-version.js</code>将其<code>src</code>内的依赖打包合并后的文件，需要在最后一行加上：</p>
+
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">"/assets/dist/app.js"</span><span class="p">);</span>
+</pre></div>
+
+<p>以便 SeaJS 将它视作应用入口。</p>
+
+<p><strong>spm build</strong></p>
+
+<p>这里使用<code>spm</code>工具来实现 prod 模式，但是 spm 没有实现这里"将第三方模块与应用程序代码分别打包"的需求，所以目前只能手动解决，那就是配置<code>package.json</code>：</p>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">"name"</span> <span class="p">:</span> <span class="s2">"Zonda-Project"</span><span class="p">,</span>
+  <span class="nt">"version"</span> <span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="nt">"root"</span><span class="p">:</span> <span class="s2">"/assets/dist"</span><span class="p">,</span>
+  <span class="nt">"dependencies"</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"jquery"</span> <span class="p">:</span> <span class="s2">"jquery"</span>
+  <span class="p">},</span>
+  <span class="nt">"output"</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"app.js"</span> <span class="p">:</span> <span class="s2">"."</span>
+  <span class="p">},</span>
+  <span class="nt">"sources"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"http://module.zonda.dashu.us:22221"</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>这里对<code>require("jquery")</code>这样的第三方依赖没有做处理，是因为<code>jquery</code>模块已经打包压缩到<code>framework-version.js</code>中了，并且其模块ID为<code>env.js</code>中配置的<code>alias</code>所指明的ID。所以<code>app-version.js</code>中调用<code>require("jquery")</code>时会根据<code>seajs.config</code>中<code>alias</code>的配置去调用，这里就没有问题了。</p>
+
+<p>需要注意的是这里将第三方模块打包到<code>framework-version.js</code>是由Zonda的工具来完成的，并不是由spm，所以<code>framework-version.js</code>里到底 combo 了哪些第三方模块，已经这些模块的顺序，全部都由<code>etc/package.json</code>中的<code>dependencies</code>决定的。</p>
+
+<h3>调用框架模块</h3>
+
+<p>doing</p>
+
+<h3>使用Qunit和Sinon测试</h3>
+
+<p>doing</p>
+
+<h3>升级Zonda</h3>
+
+<p>doing</p>
       </section>
       <footer>
-        <p>This project is maintained by <a href="https://github.com/smallsmallwolf">smallsmallwolf</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
   </body>
 </html>
