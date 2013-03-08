@@ -12,3 +12,4 @@ RemoteSystemsTempFiles/
 /OtherServer/
 nohup*
 .DS_Store
+node_modules
