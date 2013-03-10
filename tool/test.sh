@@ -12,10 +12,13 @@ fi
 cd $dir
 # go to the this shell dir
 
+# Generate env.js
+node module/config.js
+
 cd ../
 
 # install Zonda Test
-npm install
+#npm install
 
 npm test
 

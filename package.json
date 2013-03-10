@@ -1,15 +1,15 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "keywords": ["module", "loader"],
+  "name": "Zonda",
+  "version": "0.2.0",
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.8.0"
   },
   "dependencies": {
-    "vows": "0.7.0"
+    "seajs": "2.0.0b3",
+    "vows": "0.7.0",
+    "sinon": "1.6.0"
   },
-  "main": "test.js",
   "scripts": {
-    "test": "vows test.js --spec"
+    "test": "vows test/*.js --spec"
   }
 }
