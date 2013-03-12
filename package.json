@@ -10,6 +10,6 @@
     "sinon": "1.6.0"
   },
   "scripts": {
-    "test": "vows test/*.js --spec"
+    "test": "vows test/*/util-*.js --spec"
   }
 }
