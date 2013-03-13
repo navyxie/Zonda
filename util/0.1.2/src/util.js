@@ -3,7 +3,6 @@
 define(function(require, exports, module) {
   return module.exports = {
     base64: require("./base64/base64"),
-    dialog: require("./dialog/dialog"),
     StateMachine: require("./StateMachine/StateMachine")
   };
 });

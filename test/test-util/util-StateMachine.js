@@ -9,6 +9,8 @@ require("seajs");
 
 require("../../etc/env");
 
+require("../mock-module/window");
+
 StateMachine = require("../../util/0.1.2/src/StateMachine/StateMachine");
 
 vows.describe("StateMachine").addBatch({

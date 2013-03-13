@@ -12,14 +12,17 @@ fi
 cd $dir
 # go to the this shell dir
 
+# nodejs static server port
+port=3000
+
 # Generate env.js
 node module/config.js
 
 cd ../
 
-# install Zonda Test
-#npm install
+node tool/module/server.js &
 
-npm test
+phantomjs tool/module/runner.js http://localhost:$port/test/index.html
 
-#rm -rf node_modules
+kill -9 `cat tool/module/pid.tmp`
+rm tool/module/pid.tmp
