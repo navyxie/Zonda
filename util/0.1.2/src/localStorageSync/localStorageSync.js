@@ -105,33 +105,35 @@ define(function(require, exports, module){
         var tmp = store.get(),
             model_list = tmp[model.url];
 
-        try {
-            // 读取某个 model
-            if ( model.id !== undefined ) {
-                var where = -1;
+        // 读取某个 model
+        if ( model.id !== undefined ) {
+            var where = -1;
 
-                _.each( model_list, function ( cell, key ) {
-                    if ( cell.id === model.id ) {
-                        where = key;
-                    }
-                });
-
-                // 没有该 model 则抛出一个错误
-                if ( where === -1 ) {
-                    options.error( options.error, model );
-                } else {
-                    options.success(model);
-                    return tmp[model.url][where];
+            _.each( model_list, function ( cell, key ) {
+                if ( cell.id === model.id ) {
+                    where = key;
                 }
+            });
 
-            // 读取所有的 model
+            // 没有该 model 则抛出一个错误
+            if ( where === -1 ) {
+                options.error( options.error, model );
             } else {
-                options.success(tmp[model.url]);
-
-                return tmp[model.url];
+                options.success(model);
+                return tmp[model.url][where];
             }
-        } catch (err) {
-            options.error( options.error, model );
+
+        // 读取所有的 model
+        } else {
+
+          if ( model_list ) {
+            options.success(model.url);
+
+            return tmp[model.url];
+          } else {
+            alert (1);
+          }
+
         }
     }; // END Read
 
@@ -181,6 +183,24 @@ define(function(require, exports, module){
     // 对外接口
     // 符合Backbone.sync的API
 	var sync = function ( method, model, options ) {
+
+    var success = options.success;
+
+    options.success = function(data) {
+      if (success) {
+        success(model, data, options);
+      }
+      model.trigger('sync', model, data, options);
+    };
+
+    var error = options.error;
+
+    options.error = function(err) {
+      if (error) {
+        error(model, err, options);
+      }
+      model.trigger('error', model, err, options);
+    };
 
 		switch ( method ) {
 			case "create":

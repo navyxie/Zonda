@@ -133,8 +133,6 @@ vows.describe("LocalStorage Server for Backbone.sync").addBatch({
       collection = JSON.stringify(collection);
       return collection;
     },
-    "fetch to update the Collection": function(res) {
-      return console.dir(res);
-    }
+    "fetch to update the Collection": function(res) {}
   }
 })["export"](module);

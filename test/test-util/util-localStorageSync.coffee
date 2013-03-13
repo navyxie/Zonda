@@ -132,8 +132,6 @@ vows.describe("LocalStorage Server for Backbone.sync").addBatch
       return collection
 
     "fetch to update the Collection": ( res ) ->
-      console.dir res
-
       #assert.ok res
       #assert.ok res.old
       #assert.ok res.new

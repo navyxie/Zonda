@@ -3,11 +3,11 @@ define ( require, exports, module ) ->
 
   module.exports =
     base64: require "./base64/base64"
-    localStorageSync: require "./localStorageSync/localStorageSync"
-    #dialog: require "./dialog/dialog"
+    dialog: require "./dialog/dialog"
+    StateMachine: require "./StateMachine/StateMachine"
+    #localStorageSync: require "./localStorageSync/localStorageSync"
     #verify: require "./verify/verify"
     #slide: require "./slide/slide"
-    #stateMachine: require "./stateMachine/stateMachine"
     #upload: require "./upload/upload"
     #rpc: require "./rpc/rpc"
     #rightClickMenu: require "./rightClickMenu/rightClickMenu"
