@@ -228,7 +228,7 @@ Util.base64.decode "eyJjb25kaXRpb24iOiJcdTRlM2VcdTU5MzRcdTY3MWJcdTY2MGVcdTY3MDgi
 
 ### State Machine (stable)
 - - -
-**功能**
+**功能：**
 Util.StateMachine 返回状态机构造器，stateMachine = new Util.StateMachine，获得状态机实例，每个状态机实例相互独立；
 每个状态机里可以存储多个“视图状态”，假设有一个列表视图`list_view`，为这个视图状态申明两个动作：
 - 激活动作：这个动作触发时，`list_view`视图将被激活，我们要为这个视图状态呈现哪些DOM；
