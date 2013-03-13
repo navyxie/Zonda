@@ -21,7 +21,7 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 
 ```shell
 cd Zonda/tool
-./build.sh init
+./setup.sh
 ```
 
 执行完毕后，Zonda会根据`Zonda/project-template`创建一个前端项目模板，目录结构大致是这样的：
@@ -195,6 +195,61 @@ seajs.use("/assets/dist/app.js");
 需要注意的是这里将第三方模块打包到`framework-version.js`是由Zonda的工具来完成的，并不是由spm，所以`framework-version.js`里到底 combo 了哪些第三方模块，已经这些模块的顺序，全部都由`etc/package.json`中的`dependencies`决定的。
 
 ### 调用框架模块
+
+```coffeescript
+Util = require "util"
+
+Util.base64.encode "床前明月光"
+```
+
+### Base64 模块 (stable)
+- - -
+**Usage**
+```coffeescript
+Util = require "util"
+
+Util.base64.encode "疑是地上霜"
+
+# return "eyJjb25kaXRpb24iOiJcdTc1OTFcdTY2MmZcdTU3MzBcdTRlMGFcdTk3MWMiLCJiYXNlX2lkIjoiMSJ9"
+
+Util.base64.decode "eyJjb25kaXRpb24iOiJcdTRlM2VcdTU5MzRcdTY3MWJcdTY2MGVcdTY3MDgiLCJiYXNlX2lkIjoiMSJ9"
+
+# return "举头望明月"
+```
+
+### State Machine (test)
+- - -
+**需求**
+Util.StateMachine 返回状态机构造器，stateMachine = new Util.StateMachine，获得状态机实例，每个状态机实例相互独立；
+每个状态机里可以存储多个“视图状态”，假设有一个列表视图`list_view`，为这个视图状态申明两个动作：
+- 激活动作：这个动作触发时，`list_view`视图将被激活，我们要为这个视图状态呈现哪些DOM；
+- 关闭动作：当`list_view`视图被关闭时，我们将要隐藏哪些DOM；
+
+状态机中的“视图状态”都是互斥的，比如`list_view`是在登陆之后可见，那么`login_view`和`list_view`比如是互斥的。所以在激活某一个状态机中一个视图状态时，该状态机中的其他视图将被关闭。
+
+**实现：**
+基于Backbone的Event实现，先申明某一个视图状态及其“激活”和“关闭”动作，然后将它加入到某个状态机中（或某几个状态机中），在使用时直接调用该视图状态的`active`方法即可。
+
+**Usage**
+```coffeescript
+Util = require "Util"
+
+mainStateMachine = new Util.StateMachine()
+
+list_view =
+  activate: ->
+    $("#main-list").show()
+    $("#main-list-nav").show()
+  deactivate: ->
+    $("#main-list").hide()
+    $("#main-list-nav").hide()
+    
+mainStateMachine.add list_view
+
+module.exports =
+  list: list_view
+
+```
 
 ### 使用Qunit和Sinon测试
 
