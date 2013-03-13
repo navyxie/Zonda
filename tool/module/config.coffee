@@ -18,10 +18,12 @@ alias = JSON.stringify vendor_list.alias
 
 env = """
   seajs.config({
-    base: "./",
+    base: "/",
     charset: "utf-8",
     alias: #{alias}
   });
+
+  seajs.use("/test/case-list");
 """
 
 fs.writeFileSync "#{project_dir}/etc/env.js", env

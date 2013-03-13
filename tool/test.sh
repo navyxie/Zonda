@@ -22,7 +22,7 @@ cd ../
 
 node tool/module/server.js &
 
-phantomjs tool/module/runner.js http://localhost:$port/test/index.html
+phantomjs test/addons/phantomjs/runner.js http://localhost:$port/test/index.html
 
 kill -9 `cat tool/module/pid.tmp`
 rm tool/module/pid.tmp

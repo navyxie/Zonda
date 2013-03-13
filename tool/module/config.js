@@ -15,6 +15,6 @@ vendor_list = listVendor("" + project_dir + "/" + zonda_vendor_dir, zonda_vendor
 
 alias = JSON.stringify(vendor_list.alias);
 
-env = "seajs.config({\n  base: \"./\",\n  charset: \"utf-8\",\n  alias: " + alias + "\n});";
+env = "seajs.config({\n  base: \"/\",\n  charset: \"utf-8\",\n  alias: " + alias + "\n});\n\nseajs.use(\"/test/case-list\");";
 
 fs.writeFileSync("" + project_dir + "/etc/env.js", env);
