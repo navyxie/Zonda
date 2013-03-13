@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/smallsmallwolf/Zonda.png?branch=master)](https://travis-ci.org/smallsmallwolf/Zonda)
 
--------------
+- - -
 
 Zonda——Degas自家用的前端框架。
 
@@ -13,6 +13,15 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 ## Zonda行车手册
 
 **目前正在对整车进行重构，处于无法发动状态，技师正在紧张的修复中。**
+
+### 依赖
+- - -
+- Linux/Unix/Mac OS X
+- NodeJs v0.8.21
+- SPM v1.8.0-dev
+- Less v1.3.3
+- CoffeeScript v1.6.1
+
 
 ### 点火，起步！
 - - -
