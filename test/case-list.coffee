@@ -3,10 +3,9 @@
 # import cases
 define ( require ) ->
 
-
   module "TEST"
 
   test "test", ->
-    ok true
+    ok false
 
 # END define

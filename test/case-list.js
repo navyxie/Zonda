@@ -3,6 +3,6 @@
 define(function(require) {
   module("TEST");
   return test("test", function() {
-    return ok(true);
+    return ok(false);
   });
 });

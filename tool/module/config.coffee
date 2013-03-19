@@ -26,4 +26,6 @@ env = """
   seajs.use("/test/case-list");
 """
 
+"{()}"
+
 fs.writeFileSync "#{project_dir}/etc/env.js", env
