@@ -109,7 +109,7 @@ lessc_command = "lessc"
 
 `lessCompiler.coffee`缺少一个不将Less合并成一个CSS的功能，还缺少将`dist-dev.css`压缩的功能，以后会尝试实现的，欢迎Issue~
 
-### JavaScript
+### JavaScript/CoffeeScript
 - - -
 
 Javascript dir: `assets/src`，这里放置你的项目源代码。如果使用CoffeeScript，那么直接将Coffee文件编译到当前目录下就行了，推荐一个Vim-CoffeeScript插件[vim-coffee-script](https://github.com/kchmck/vim-coffee-script)
@@ -119,9 +119,10 @@ Zonda dir: `assets/vendor/Zonda`，这里是Zonda的框架代码，框架里已�
 ```
 SeaJs v2.0.0pre
 jQuery v1.9.1
-Underscore
-Backbone
-Bootstrap(jQuery plugins)
+Underscore v1.4.4
+Backbone v0.9.10
+Bootstrap(jQuery plugins) v2.3.1
+Modernizr v2.6.2
 Mustache
 ```
 
