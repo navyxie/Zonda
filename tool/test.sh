@@ -22,9 +22,9 @@ cd ../
 
 node tool/module/server.js &
 
-#grunt test --debug
+grunt test --debug
 
-phantomjs test/addons/phantomjs/runner.js http://localhost:$port/test/index.html
+#phantomjs test/addons/phantomjs/runner.js http://localhost:$port/test/index.html
 
 kill -9 `cat tool/module/pid.tmp`
 rm tool/module/pid.tmp

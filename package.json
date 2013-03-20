@@ -14,5 +14,8 @@
   },
   "scripts": {
     "test": "tool/test.sh"
+  },
+  "devDependencies": {
+    "grunt-contrib-connect": "~0.2.0"
   }
 }
