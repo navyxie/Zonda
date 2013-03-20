@@ -3,7 +3,7 @@ define(function(require){
     // Test Module
     module("Test Base64");
 
-    var Base64 = require("util/0.1.2/src/util").base64;
+    var Base64 = require("util").base64;
 
     var str_chinese = "热烈庆祝18大顺利召开，哈哈！"
     var str_special_symbols = "\"\'\\?!@#$%^&*()_+,./?><|=-[]{}"

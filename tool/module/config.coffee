@@ -14,6 +14,8 @@ zonda_vendor_dir = "vendor"
 
 vendor_list = listVendor "#{project_dir}/#{zonda_vendor_dir}", zonda_vendor_dir
 
+vendor_list.alias.util = "util/0.1.2/src/util"
+
 alias = JSON.stringify vendor_list.alias
 
 env = """
