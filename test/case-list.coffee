@@ -1,11 +1,6 @@
 # case-list
 #
-# import cases
+# just import cases
 define ( require ) ->
-
-  module "TEST"
-
-  test "test", ->
-    ok false
-
+  require "./case/base64"
 # END define
