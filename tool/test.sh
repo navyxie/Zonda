@@ -17,4 +17,8 @@ node module/config.js
 
 cd ../
 
+npm uninstall -g grunt
+
+npm install -g grunt-cli
+
 grunt test
