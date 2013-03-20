@@ -17,4 +17,4 @@ node module/config.js
 
 cd ../
 
-grunt test --debug
+grunt test
