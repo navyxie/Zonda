@@ -11,21 +11,32 @@ define(function(require) {
   syb_64 = "";
   test("API", function() {
     ok(Base64.encode);
+    return ok(Base64.decode);
+  });
+  test("Method", function() {
+    ok(Base64.encode);
     ok(Base64.decode);
     strictEqual(typeof Base64.encode, "function");
     return strictEqual(typeof Base64.decode, "function");
   });
-  test("Test encode", function() {
+  test("Test encode CN", function() {
     CN_64 = Base64.encode(CN);
     ok(CN_64);
     syb_64 = Base64.encode(syb);
     return ok(syb_64);
   });
-  return test("Test decode", function() {
-    var res_CN, res_syb;
+  test("Test encode syb", function() {
+    syb_64 = Base64.encode(syb);
+    return ok(syb_64);
+  });
+  test("Test decode CN", function() {
+    var res_CN;
     res_CN = Base64.decode(CN_64);
     ok(res_CN);
-    equal(res_CN, CN);
+    return equal(res_CN, CN);
+  });
+  return test("Test decode syb", function() {
+    var res_syb;
     res_syb = Base64.decode(syb_64);
     ok(res_syb);
     return equal(res_syb, syb);

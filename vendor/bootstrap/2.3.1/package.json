@@ -1,0 +1,9 @@
+{
+  "name": "bootstrap",
+  "root": "/assets/vendor/Zonda/vendor",
+  "version": "2.3.1",
+  "output": {
+    "bootstrap.js": "."
+  },
+  "sources": ["http://module.zonda.dashu.us:22221"]
+}
