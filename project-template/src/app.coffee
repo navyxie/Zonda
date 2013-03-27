@@ -1,23 +1,34 @@
 # app.coffee
 # setup the app
 define ( require, exports, module ) ->
-  $ = require "jquery"
+  Util = require "util"
 
-  setTimeout ->
-    $(".alert")
-      .text("Try to test Zonda...")
-  , 1300
+  stateMachine = new Util.StateMachine
 
-  setTimeout ->
-    $(".alert")
-      .fadeOut "fast", ->
-        $(@).addClass "alert-info"
-        $(@).fadeIn "slow"
-        $(@).text "Finished!"
-  , 3300
+  main_view =
+    activate: ->
+      alert "main_view active!"
+    deactivate: ->
+      console.log "main_view deactive!"
 
-  tpl = require "./tpl/main.tpl"
+  sub_view =
+    activate: ->
+      alert "sub_view active!"
+    deactivate: ->
+      console.log "sub_view deactive!"
 
-  console.log tpl
+  list_view =
+    activate: ->
+      alert "list_view active!"
+    deactivate: ->
+      console.log "list_view deactive!"
+
+  stateMachine.add main_view
+  stateMachine.add sub_view
+  stateMachine.add list_view
+
+  window.main_view = main_view
+  window.sub_view = sub_view
+  window.list_view = list_view
 
 # END define

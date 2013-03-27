@@ -30,6 +30,9 @@ main = ( vendor_root_dir, relative_root_dir ) ->
     alias[vendor_name] = "#{relative_root_dir}/#{vendor_name}/#{version_list[0]}/#{vendor_name}"
     dependencies[vendor_name] = "#{vendor_name}"
 
+  alias.util = "vendor/Zonda/util/util"
+  dependencies.util = "util"
+
   # remove SeaJS
   delete alias.sea
   delete dependencies.sea

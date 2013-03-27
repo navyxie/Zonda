@@ -28,7 +28,7 @@ case $1 in
   # change project's status to "dev"
   dev)
   cd $project_dir/tool
-  # make alias and plugins of SeaJs config
+  # make alias, plugins of SeaJs config, and package.json for SPM
   node module/config.js
 
   # build the framework-dev.js
@@ -38,7 +38,6 @@ case $1 in
   cat sea-debug.js \
       plugin-text.js \
       plugin-debug.js \
-      plugin-nocache.js \
       plugin-shim.js \
       plugin-warning.js \
       $project_dir/etc/env.js \
@@ -55,6 +54,9 @@ case $1 in
   # change project's status to "prod"
   prod)
   cd $project_dir/tool
+  # make alias, plugins of SeaJs config, and package.json for SPM
+  node module/config.js
+
   # combo vendor file
   node module/comboVendor.js
 

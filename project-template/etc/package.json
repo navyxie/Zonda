@@ -1,13 +1,8 @@
 {
     "name": "dist",
-    "version": "",
     "root": "/assets",
-    "dependencies" : {
-        "jquery" : "jquery",
-        "underscore" : "underscore"
-    },
-    "output" : {
+    "dependencies": {"underscore":"underscore","bootstrap":"bootstrap","jquery":"jquery","backbone":"backbone","modernizr":"modernizr","util":"util"},
+    "output": {
         "app.js" : "."
-    },
-    "sources": ["http://module.zonda.dashu.us:22221"]
+    }
 }

@@ -14,6 +14,7 @@ zonda_vendor_dir = "vendor/Zonda/vendor"
 vendor_list = listVendor "#{project_dir}/#{zonda_vendor_dir}", zonda_vendor_dir
 
 alias = JSON.stringify vendor_list.alias
+dependencies = JSON.stringify vendor_list.dependencies
 
 env = """
   seajs.config({
@@ -24,3 +25,16 @@ env = """
 """
 
 fs.writeFileSync "#{project_dir}/etc/env.js", env
+
+package_info = """
+{
+    "name": "dist",
+    "root": "/assets",
+    "dependencies": #{dependencies},
+    "output": {
+        "app.js" : "."
+    }
+}
+"""
+
+fs.writeFileSync "#{project_dir}/etc/package.json", package_info
