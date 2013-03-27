@@ -1,6 +1,5 @@
 # config.coffee
 #
-# for Test Suite
 # Generate the etc/env.js, for configure the SeaJS
 
 fs = require "fs"
@@ -14,8 +13,6 @@ zonda_vendor_dir = "vendor"
 
 vendor_list = listVendor "#{project_dir}/#{zonda_vendor_dir}", zonda_vendor_dir
 
-vendor_list.alias.util = "util/src/util"
-
 alias = JSON.stringify vendor_list.alias
 
 env = """
@@ -27,7 +24,5 @@ env = """
 
   seajs.use("/test/case-list");
 """
-
-"{()}"
 
 fs.writeFileSync "#{project_dir}/etc/env.js", env

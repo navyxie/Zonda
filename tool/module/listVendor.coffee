@@ -27,8 +27,10 @@ main = ( vendor_root_dir, relative_root_dir ) ->
   for vendor_name in list
     version_list = fs.readdirSync "#{vendor_root_dir}/#{vendor_name}"
     # just use the first version, the only one!
-    alias[vendor_name] = "#{relative_root_dir}/#{vendor_name}/#{version_list[0]}/#{vendor_name}"
+    alias[vendor_name] = "#{relative_root_dir}/#{vendor_name}/#{version_list[0]}/src/#{vendor_name}"
     dependencies[vendor_name] = "#{vendor_name}"
+
+    alias.util = "util/src/util"
 
   # remove SeaJS
   delete alias.sea

@@ -19,8 +19,9 @@ main = function(vendor_root_dir, relative_root_dir) {
   for (_i = 0, _len = list.length; _i < _len; _i++) {
     vendor_name = list[_i];
     version_list = fs.readdirSync("" + vendor_root_dir + "/" + vendor_name);
-    alias[vendor_name] = "" + relative_root_dir + "/" + vendor_name + "/" + version_list[0] + "/" + vendor_name;
+    alias[vendor_name] = "" + relative_root_dir + "/" + vendor_name + "/" + version_list[0] + "/src/" + vendor_name;
     dependencies[vendor_name] = "" + vendor_name;
+    alias.util = "util/src/util";
   }
   delete alias.sea;
   delete dependencies.sea;
