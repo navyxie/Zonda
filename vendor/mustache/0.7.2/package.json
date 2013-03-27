@@ -1,0 +1,9 @@
+{
+  "name": "mustache",
+  "root": "/assets/vendor/Zonda/vendor",
+  "version": "0.7.2",
+  "output": {
+    "mustache.js": "."
+  },
+  "sources": ["http://module.zonda.dashu.us:22221"]
+}

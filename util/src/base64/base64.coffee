@@ -1,6 +1,6 @@
 ###
 
-Zonda Base64 (c) Degas
+Zonda Base64.coffee (c) Degas
 https://github.com/smallsmallwolf/Zonda
 
 jQuery port (c) 2010 Carlo Zottmann
