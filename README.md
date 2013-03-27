@@ -49,12 +49,22 @@ assets/ # 前端项目根目录
     images/
     ie/
       ie.css      
-  test/ # 测试你的应用程序  
+  test/ # 测试你的应用程序
+    index.html # 测试页面
+    case-list.coffee # require 你的测试用例
+    case-list.js # case-list.coffee 的编译结果
+    qunit/ # Qunit 的必要文件
+      qunit.js
+      qunit.css
+    case/ # 你的应用程序的测试用例
+      base64.coffee # Zonda.Util.base64 的测试用例，放到这里做个示例
+      base64.js # base64.coffee 的编译结果
   dist/ # 线上版本的应用程序代码
     dist-dev.css
     framework-dev.js
     app-dev.js   
   tool/ # 工具(打包应用程序，Less编译工具等等)
+  Gruntfile.js # Grunt 配置，用于测试你的应用程序
 ```
 
 页面上将要引入的CSS和Javascript文件如下：
@@ -249,10 +259,29 @@ module.exports =
 ```
 
 ### 使用Qunit和Sinon测试
+- - -
 
 #### 测试应用代码
-这里你需要使用 [Grunt](http://gruntjs.com/)
+这里你需要使用 [Grunt](http://gruntjs.com/)，你的项目的根目录下已经有了一个 Grunt 文件，并且已经有了在 CLI 环境下测试必要的 node_module，这些都是在执行 Zonda 的 `setup.sh` 时完成的。
+
+在 /assets/test 你会发现，有一个 index.html，那就是测试页面，你可以直接在浏览器上访问它
+```
+http://yoursite.address/assets/test/index.html
+```
+这时，Qunit 会跑你的测试。这是在本机的浏览器上跑测试的方式，还可以用 Grunt 的 Qunit + Phantom 插件在 CLI 上跑测试：
+```shell
+/assets/tool/test.sh
+```
+这样就会使用 Phantom 在 CLI 下去跑我们的测试页面。
+
+关于此类 Headless Test，可以参见笔者的这个介绍 [Headless Test：前端自动测试实践](https://github.com/smallsmallwolf/Zonda/issues/46)。
+
+在 Qunit 中使用 [Sinon](http://sinonjs.org/) 来 mock Ajax，可以参照这篇文章 [Using Sinon.JS with QUnit](http://cjohansen.no/en/javascript/using_sinon_js_with_qunit)，当然，Sinon 还能做很多高级的事情~
 
 ### 升级Zonda
+- - -
 
-### 打包上线
+`git clone`一个最新的 Zonda，然后将你的项目中的 vendor/Zonda 里的 Zonda 替换即可，so easy。
+从这个版本开始，Zonda 的目录结果和组织方式已经稳定下来了。经历了几个复杂项目的考验，Zonda 被重构了3次左右，每一次都解决了一些实际开发中大家反馈回来的问题，Zonda 变得更快更高效了，我也成长了很多。
+
+在未来，Zonda 还会是一个默默无闻的框架，但是我会持续的开发它，因为它在和我一起成长，一起变老。
