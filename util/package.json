@@ -1,6 +1,6 @@
 {
   "name": "util",
-  "root": "/assets/vendor/Zonda/vendor",
+  "root": "/assets/vendor/Zonda",
   "output": {
     "util.js": "."
   },
