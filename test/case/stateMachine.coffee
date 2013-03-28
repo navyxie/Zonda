@@ -30,6 +30,10 @@ define ( require ) ->
     deactivate: ->
       sub_state = false
 
+  mainStateMachine.add main_view
+  mainStateMachine.add list_view
+  mainStateMachine.add sub_view
+
   test "API", ->
     ok StateMachine
     strictEqual typeof StateMachine, "function"
@@ -43,10 +47,6 @@ define ( require ) ->
     strictEqual typeof mainStateMachine.add, "function"
 
   test "Active::main_view", ->
-    mainStateMachine.add main_view
-    mainStateMachine.add list_view
-    mainStateMachine.add sub_view
-
     main_view.active()
 
     ok main_state
@@ -54,10 +54,6 @@ define ( require ) ->
     strictEqual sub_state, false
 
   test "Active::list_view", ->
-    mainStateMachine.add main_view
-    mainStateMachine.add list_view
-    mainStateMachine.add sub_view
-
     list_view.active()
 
     ok list_state
@@ -65,9 +61,47 @@ define ( require ) ->
     strictEqual sub_state, false
 
   test "Active::sub_view", ->
-    mainStateMachine.add main_view
-    mainStateMachine.add list_view
-    mainStateMachine.add sub_view
+
+    sub_view.active()
+
+    ok sub_state
+    strictEqual main_state, false
+    strictEqual list_state, false
+
+  test "other StateMachine", ->
+    otherStateMachine = new StateMachine()
+
+    a_state = false
+    b_state = false
+    c_state = false
+
+    a_view =
+      activate: ->
+        a_state = true
+      deactivate: ->
+        a_state = false
+
+    b_view =
+      activate: ->
+        b_state = true
+      deactivate: ->
+        b_state = false
+
+    c_view =
+      activate: ->
+        c_state = true
+      deactivate: ->
+        c_state = false
+
+    otherStateMachine.add a_view
+    otherStateMachine.add b_view
+    otherStateMachine.add c_view
+
+    a_view.active()
+
+    ok a_state
+    strictEqual b_state, false
+    strictEqual c_state, false
 
     sub_view.active()
 
