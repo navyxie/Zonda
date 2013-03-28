@@ -30,7 +30,7 @@ main = ( vendor_root_dir, relative_root_dir ) ->
     alias[vendor_name] = "#{relative_root_dir}/#{vendor_name}/#{version_list[0]}/src/#{vendor_name}"
     dependencies[vendor_name] = "#{vendor_name}"
 
-    alias.util = "util/src/util"
+    alias.util = "util/util"
 
   # remove SeaJS
   delete alias.sea

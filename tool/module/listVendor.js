@@ -21,7 +21,7 @@ main = function(vendor_root_dir, relative_root_dir) {
     version_list = fs.readdirSync("" + vendor_root_dir + "/" + vendor_name);
     alias[vendor_name] = "" + relative_root_dir + "/" + vendor_name + "/" + version_list[0] + "/src/" + vendor_name;
     dependencies[vendor_name] = "" + vendor_name;
-    alias.util = "util/src/util";
+    alias.util = "util/util";
   }
   delete alias.sea;
   delete dependencies.sea;

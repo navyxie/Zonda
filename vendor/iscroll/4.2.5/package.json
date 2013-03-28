@@ -1,8 +1,9 @@
 {
-  "name": "util",
+  "name": "iscroll",
   "root": "/assets/vendor/Zonda/vendor",
+  "version": "4.2.5",
   "output": {
-    "util.js": "."
+    "iscroll.js": "."
   },
   "sources": ["http://module.zonda.dashu.us:22221"]
 }

@@ -4,15 +4,27 @@ define ( require ) ->
 
   Util = require "util"
 
-  dialog = Util.dialog
+  $ = require "jquery"
 
-  test "API", ->
-    ok dialog
-    ok dialog.open
-    ok dialog.close
+  title = "title"
+  content = "content"
 
-    strictEqual typeof dialog, "function"
-    strictEqual typeof dialog.open, "function"
-    strictEqual typeof dialog.close, "function"
-  
+  $ ->
+    test "API", ->
+      ok Util.dialog
+      ok Util.dialog.open
+      ok Util.dialog.close
+
+      strictEqual typeof Util.dialog, "function"
+      strictEqual typeof Util.dialog.open, "function"
+      strictEqual typeof Util.dialog.close, "function"
+
+    test "dialog.open", ->
+      Util.dialog
+        title: title
+        content: content
+
+      ok $("#zonda-util-dialog")[0]
+      ok true
+
 # END define

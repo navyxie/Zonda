@@ -82,6 +82,3 @@ define ( require, exports, module ) ->
   module.exports = dialog
   
 # END define
-#
-# 冯胜清
-# 18086834521
