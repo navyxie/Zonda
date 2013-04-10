@@ -1,9 +1,0 @@
-{
-  "name": "backbone",
-  "root": "/assets/vendor/Zonda/vendor",
-  "version": "0.9.10",
-  "output": {
-    "backbone.js": "."
-  },
-  "sources": ["http://module.zonda.dashu.us:22221"]
-}

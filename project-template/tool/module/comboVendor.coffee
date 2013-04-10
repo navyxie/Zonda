@@ -1,6 +1,6 @@
 # comboVendor.coffee
-#
-# combo all of the "/assets/vendor/Zonda/vendor" to "/assets/dist/vendor-combo.js"
+# ------------------
+# combo all of the "$app_root/vendor/Zonda/vendor" to "$app_root/dist/vendor-combo.js"
 
 fs = require "fs"
 path = require "path"
@@ -22,12 +22,12 @@ fs.writeFileSync "#{project_dir}/dist/vendor-combo.js", ""
 # the realpath of vendor-combo.js
 combo = "#{project_dir}/dist/vendor-combo.js"
 
-# read etc/package.json to get the order of vendor
-package_info = fs.readFileSync "#{project_dir}/etc/package.json", "utf8"
-package_info = JSON.parse package_info
+# read etc/spm_build_config.json to get the order of vendor
+spm_build_config_info = fs.readFileSync "#{project_dir}/etc/spm_build_config.json", "utf8"
+spm_build_config_info = JSON.parse spm_build_config_info
 
-# combo vendor order by package.json's dependencies
-for name of package_info.dependencies
+# combo vendor order by spm_build_config.json's dependencies
+for name of spm_build_config_info.dependencies
   _vendor_content = fs.readFileSync "#{project_dir}/#{vendor_list.alias[name]}.js"
   fs.appendFileSync combo, _vendor_content
 

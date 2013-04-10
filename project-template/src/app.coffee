@@ -31,4 +31,18 @@ define ( require, exports, module ) ->
   window.sub_view = sub_view
   window.list_view = list_view
 
+  Util.dialog
+    title: "Hello"
+    content: "call me maybe~"
+    backdrop: false
+    button:
+      "checkout": ->
+        alert "checkout"
+      "test": ->
+        alert "test"
+
+  Util.dialog.open()
+
+  console.log typeof $("#zonda-util-dialog")[0]
+
 # END define

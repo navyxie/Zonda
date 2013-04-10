@@ -1,13 +1,18 @@
 # config.coffee
-#
+# -------------
 # Generate the etc/env.js, for configure the SeaJS
 
 fs = require "fs"
 path = require "path"
 
+
 listVendor = require "./listVendor"
 
 project_dir = path.resolve './', '../'
+
+app_root = fs.readFileSync "#{project_dir}/tool/.app_root", "utf8"
+
+app_root = app_root.replace "\n", ""
 
 zonda_vendor_dir = "vendor/Zonda/vendor"
 
@@ -18,7 +23,7 @@ dependencies = JSON.stringify vendor_list.dependencies
 
 env = """
   seajs.config({
-    base: "/assets",
+    base: "#{app_root}",
     charset: "utf-8",
     alias: #{alias}
   });
@@ -26,10 +31,10 @@ env = """
 
 fs.writeFileSync "#{project_dir}/etc/env.js", env
 
-package_info = """
+spm_build_config = """
 {
     "name": "dist",
-    "root": "/assets",
+    "root": "#{app_root}",
     "dependencies": #{dependencies},
     "output": {
         "app.js" : "."
@@ -37,4 +42,4 @@ package_info = """
 }
 """
 
-fs.writeFileSync "#{project_dir}/etc/package.json", package_info
+fs.writeFileSync "#{project_dir}/etc/spm_build_config.json", spm_build_config

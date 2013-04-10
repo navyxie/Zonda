@@ -33,9 +33,6 @@ define(function(require) {
       return sub_state = false;
     }
   };
-  mainStateMachine.add(main_view);
-  mainStateMachine.add(list_view);
-  mainStateMachine.add(sub_view);
   test("API", function() {
     ok(StateMachine);
     return strictEqual(typeof StateMachine, "function");
@@ -49,60 +46,27 @@ define(function(require) {
     return strictEqual(typeof mainStateMachine.add, "function");
   });
   test("Active::main_view", function() {
+    mainStateMachine.add(main_view);
+    mainStateMachine.add(list_view);
+    mainStateMachine.add(sub_view);
     main_view.active();
     ok(main_state);
     strictEqual(list_state, false);
     return strictEqual(sub_state, false);
   });
   test("Active::list_view", function() {
+    mainStateMachine.add(main_view);
+    mainStateMachine.add(list_view);
+    mainStateMachine.add(sub_view);
     list_view.active();
     ok(list_state);
     strictEqual(main_state, false);
     return strictEqual(sub_state, false);
   });
-  test("Active::sub_view", function() {
-    sub_view.active();
-    ok(sub_state);
-    strictEqual(main_state, false);
-    return strictEqual(list_state, false);
-  });
-  return test("other StateMachine", function() {
-    var a_state, a_view, b_state, b_view, c_state, c_view, otherStateMachine;
-    otherStateMachine = new StateMachine();
-    a_state = false;
-    b_state = false;
-    c_state = false;
-    a_view = {
-      activate: function() {
-        return a_state = true;
-      },
-      deactivate: function() {
-        return a_state = false;
-      }
-    };
-    b_view = {
-      activate: function() {
-        return b_state = true;
-      },
-      deactivate: function() {
-        return b_state = false;
-      }
-    };
-    c_view = {
-      activate: function() {
-        return c_state = true;
-      },
-      deactivate: function() {
-        return c_state = false;
-      }
-    };
-    otherStateMachine.add(a_view);
-    otherStateMachine.add(b_view);
-    otherStateMachine.add(c_view);
-    a_view.active();
-    ok(a_state);
-    strictEqual(b_state, false);
-    strictEqual(c_state, false);
+  return test("Active::sub_view", function() {
+    mainStateMachine.add(main_view);
+    mainStateMachine.add(list_view);
+    mainStateMachine.add(sub_view);
     sub_view.active();
     ok(sub_state);
     strictEqual(main_state, false);

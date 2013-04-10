@@ -33,5 +33,20 @@ define(function(require, exports, module) {
   stateMachine.add(list_view);
   window.main_view = main_view;
   window.sub_view = sub_view;
-  return window.list_view = list_view;
+  window.list_view = list_view;
+  Util.dialog({
+    title: "Hello",
+    content: "call me maybe~",
+    backdrop: false,
+    button: {
+      "checkout": function() {
+        return alert("checkout");
+      },
+      "test": function() {
+        return alert("test");
+      }
+    }
+  });
+  Util.dialog.open();
+  return console.log(typeof $("#zonda-util-dialog")[0]);
 });

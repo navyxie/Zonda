@@ -2,6 +2,5 @@
 
 define(function(require) {
   require("./case/base64");
-  require("./case/stateMachine");
-  return require("./case/dialog");
+  return require("./case/stateMachine");
 });
