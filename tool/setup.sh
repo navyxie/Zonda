@@ -32,3 +32,7 @@ mv $zonda_dir $assets_dir/vendor
 cd $assets_dir
 
 echo "Zonda project is ready now!"
+
+ls -al
+
+bash tool/test.sh
