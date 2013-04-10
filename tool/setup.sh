@@ -36,7 +36,7 @@ echo "Zonda project is ready now!"
 ls -al
 
 # Install Grunt CLI
-npm uninstall grunt
-npm install grunt-cli
+sudo npm uninstall -g grunt
+sudo npm install -g grunt-cli
 
 bash tool/test.sh
