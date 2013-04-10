@@ -22,6 +22,7 @@ cd assets/
 assets_dir=`pwd`
 
 cp -r $zonda_dir/project-template/* $assets_dir
+mv $zonda_dir/node_modules/ $assets_dir
 
 mkdir vendor
 
