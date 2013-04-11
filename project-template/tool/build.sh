@@ -53,6 +53,10 @@ seajs_dir=`pwd`
 cd $project_dir
 cd dist/
 dist_dir=`pwd`
+
+cd $project_dir
+cd mobile-dist/
+mobile_dist_dir=`pwd`
 # --------
 # Set Path
 
@@ -94,6 +98,12 @@ function frameMaker () {
       > $dist_dir/framework-dev.js
 
   echo "Framework ready..."
+  echo "------------------------------------------------------------------------"
+
+  echo "Compiling New dist-$app_version.css..."
+  echo "------------------------------------------------------------------------"
+  lessc -x $project_dir/ui/less/config.less > $project_dir/dist/dist-dev.css
+
 }
 # -------------------
 # Function frameMaker
@@ -111,6 +121,7 @@ case $1 in
   echo "seajs.use(\"$app_root/src/app\");" > $dist_dir/app-dev.js
 
   echo "Zonda in 'DEV' status Now."
+  echo "------------------------------------------------------------------------"
 
   ;;
   # -----------
@@ -143,13 +154,86 @@ case $1 in
   echo "seajs.use(\"$app_root/dist/app\");" >> $dist_dir/app-$app_version.js
 
   echo "Zonda in 'PROD' status Now."
+  echo "------------------------------------------------------------------------"
 
   ;;
   # ------------
   # Status::PROD
 
+  # Status::Mobile
+  # --------------
+  # Build the Hybrid APP for PhoneGap or AppCan
+  mobile)
+  # Change $app_root to $mobile_root
+  app_root=$mobile_root
+
+  # Clear dir
+  rm -rf $mobile_dist_dir/*
+
+  # Initialize framework.js
+  frameMaker;
+
+  cd $project_dir/tool
+
+  # combo vendor file
+  node module/comboVendor.js
+
+  cd $project_dir
+
+  # Copy the dist/ files to $mobile_dist_dir
+  cp $dist_dir/* $mobile_dist_dir/
+
+  # cat the vendor-combo.js to framework-{{framework_version}}.js
+  cat $mobile_dist_dir/vendor-combo.js >> $mobile_dist_dir/framework-$framework_version.js
+
+  # use spm
+  spm --build-config=./etc/spm_build_config.json --skip=coffee --to $mobile_dist_dir -v build
+
+  # rename the app.js to be app-{{app_version}}.js
+  mv $mobile_dist_dir/app.js $mobile_dist_dir/app-$app_version.js
+  rm $mobile_dist_dir/app-debug.js $mobile_dist_dir/vendor-combo.js
+
+  # add SeaJS bootstrap
+  echo "seajs.use(\"$mobile_root/dist/app\");" >> $mobile_dist_dir/app-$app_version.js
+
+  # Make the dir for Mobile
+  cd $mobile_dist_dir/
+
+  mkdir dist
+  mv $mobile_dist_dir/* $mobile_dist_dir/dist/
+
+  mkdir ui
+  cp -r $project_dir/ui/images $mobile_dist_dir/ui
+
+  cd $mobile_dist_dir
+  mkdir vendor
+  cd vendor/
+  mkdir Zonda
+  cd Zonda/
+  mkdir ui
+  cd ui/
+  mkdir less
+  cd less/
+  mkdir Font-Awesome
+  cd Font-Awesome/
+  mkdir font
+  cd font/
+
+  cp $project_dir/vendor/Zonda/ui/less/Font-Awesome/font/* ./
+
+  echo "PhoneGap/AppCan Version is ready Now, all in $mobile_root"
+  echo "------------------------------------------------------------------------"
+
+  # Back to "DEV" status
+  cd $project_dir
+  bash tool/build.sh dev
+
+  ;;
+  # --------------
+  # Status::Mobile
+
   # Help::CLEAR
-  # ------------
+  # -----------
   clear)
   rm -rf ~/.spm \
     $project_dir/tool/.app_root \
@@ -157,8 +241,9 @@ case $1 in
     $project_dir/tool/.framework_version
 
   echo "Clear the Cache of Zonda and SPM ~"
+  echo "------------------------------------------------------------------------"
   ;;
-  # ------------
+  # -----------
   # Help::CLEAR
 
   *)

@@ -5,7 +5,6 @@
 fs = require "fs"
 path = require "path"
 
-
 listVendor = require "./listVendor"
 
 project_dir = path.resolve './', '../'
@@ -43,3 +42,16 @@ spm_build_config = """
 """
 
 fs.writeFileSync "#{project_dir}/etc/spm_build_config.json", spm_build_config
+
+less_path_config = """
+// Path of ROOT
+@root: "#{app_root}";
+
+// Path of images
+@img: "#{app_root}/ui/images";
+
+// Path of FontAwesome Font
+@FontAwesomePath: "#{app_root}/vendor/Zonda/ui/less/Font-Awesome/font";
+"""
+
+fs.writeFileSync "#{project_dir}/etc/less_path_config.less", less_path_config

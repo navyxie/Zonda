@@ -41,6 +41,7 @@ rm -rf $zonda_project_template/*
 
 cp -r dist/ $zonda_project_template
 cp -r etc/ $zonda_project_template
+cp -r mobile-dist/ $zonda_project_template
 cp -r src/ $zonda_project_template
 cp -r test/ $zonda_project_template
 cp -r tool/ $zonda_project_template
@@ -48,5 +49,6 @@ cp -r ui/ $zonda_project_template
 cp -r Gruntfile.js $zonda_project_template
 
 echo "Nice, Update Zonda Success ~"
+echo "------------------------------------------------------------------------"
 # ---------------------------------------
 # Copy the list to Zonda/project-template
