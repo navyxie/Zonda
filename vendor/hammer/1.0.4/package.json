@@ -1,0 +1,9 @@
+{
+  "name": "hammer",
+  "root": "/assets/vendor/Zonda/vendor",
+  "version": "1.0.4",
+  "output": {
+    "hammer.js": "."
+  },
+  "sources": ["http://module.zonda.dashu.us:22221"]
+}
