@@ -7,12 +7,25 @@ alias = {
 }
 */
 
-var fs, main;
+var app_root, fs, main, path, project_dir, updateVendor;
 
 fs = require("fs");
 
+path = require("path");
+
+project_dir = path.resolve('./', '../');
+
+app_root = fs.readFileSync("" + project_dir + "/tool/.app_root", "utf8");
+
+app_root = app_root.replace("\n", "");
+
+updateVendor = require("./updateVendor");
+
 main = function(vendor_root_dir, relative_root_dir) {
   var alias, dependencies, list, vendor_name, version_list, _i, _len;
+  console.log("------------------------------------------------------------------------");
+  console.log("Update Vendors");
+  console.log("------------------------------------------------------------------------");
   alias = {};
   dependencies = {};
   list = fs.readdirSync(vendor_root_dir);
@@ -21,11 +34,15 @@ main = function(vendor_root_dir, relative_root_dir) {
     version_list = fs.readdirSync("" + vendor_root_dir + "/" + vendor_name);
     alias[vendor_name] = "" + relative_root_dir + "/" + vendor_name + "/" + version_list[0] + "/" + vendor_name;
     dependencies[vendor_name] = "" + vendor_name;
+    updateVendor(vendor_name, version_list[0], app_root);
   }
   alias.util = "vendor/Zonda/util/util";
   dependencies.util = "util";
   delete alias.sea;
   delete dependencies.sea;
+  console.log("------------------------------------------------------------------------");
+  console.log("Update Vendors Success!");
+  console.log("------------------------------------------------------------------------");
   return {
     alias: alias,
     dependencies: dependencies
