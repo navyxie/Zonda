@@ -221,7 +221,8 @@ define("/assets/vendor/Zonda/util/dialog/dialog-debug", [ "bootstrap-debug", "un
         dialog.$dom = $("#" + prefix + "-dialog");
         $("#" + prefix + "-dialog").on("hide", function() {
             delete $("#" + prefix + "-dialog").modal;
-            return $("#" + prefix + "-dialog").remove();
+            $("#" + prefix + "-dialog").remove();
+            return $(".modal-backdrop").remove();
         });
         return dialog;
     };

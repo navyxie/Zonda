@@ -112,6 +112,7 @@ define ( require, exports, module ) ->
     $("##{prefix}-dialog").on "hide", ->
       delete $("##{prefix}-dialog").modal
       $("##{prefix}-dialog").remove()
+      $(".modal-backdrop").remove()
 
     return dialog
   
