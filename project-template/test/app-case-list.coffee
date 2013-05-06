@@ -2,6 +2,6 @@
 #
 # just import cases
 define ( require ) ->
-  require "./case/base64"
-  require "./case/stateMachine"
+  require "./case/app/base64"
+  require "./case/app/stateMachine"
 # END define

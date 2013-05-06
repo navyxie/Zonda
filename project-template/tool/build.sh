@@ -8,16 +8,19 @@
 # @framework_version: version of framework
 # @sea_version: version of SeaJS
 
+server_root=''
+prod_server_root=''
+
 app_root=/assets
 mobile_root=/android_asset/www
 
+css_version=dev
 app_version=dev
 framework_version=dev
 
 sea_version=2.0.0
-
 # --------------
-# Config Version
+# Config Versio
 
 # Render the index.html
 # ---------------------
@@ -66,6 +69,8 @@ mobile_dist_dir=`pwd`
 function cacheConfig () {
   cd $project_dir/tool
 
+  echo $server_root > .server_root
+
   echo $app_root > .app_root
 
   echo $app_version > .app_version
@@ -95,14 +100,14 @@ function frameMaker () {
       plugin-shim.js \
       plugin-warning.js \
       $project_dir/etc/env.js \
-      > $dist_dir/framework-dev.js
+      > $dist_dir/framework-$framework_version.js
 
   echo "Framework ready..."
   echo "------------------------------------------------------------------------"
 
   echo "Compiling New dist-$app_version.css..."
   echo "------------------------------------------------------------------------"
-  lessc -x $project_dir/ui/less/config.less > $project_dir/dist/dist-dev.css
+  lessc -x $project_dir/ui/less/config.less > $project_dir/dist/dist-$css_version.css
 
 }
 # -------------------
@@ -131,6 +136,16 @@ case $1 in
   # ------------
   # change project's status to "prod"
   prod)
+  if [ -z $2 ]; then
+    echo "No Version => "dev""
+  else
+    echo "Version is $2"
+    css_version=$2
+    app_version=$2
+    framework_version=$2
+  fi
+
+  server_root=$prod_server_root
   # Initialize framework.js
   frameMaker;
 
@@ -166,6 +181,7 @@ case $1 in
   mobile)
   # Change $app_root to $mobile_root
   app_root=$mobile_root
+  server_root=$prod_server_root
 
   # Clear dir
   rm -rf $mobile_dist_dir/*
@@ -231,6 +247,18 @@ case $1 in
   ;;
   # --------------
   # Status::Mobile
+
+  # Help::CLEAR
+  # -----------
+  vendor)
+  cd $project_dir/tool
+  node module/updateVendor.js
+
+  echo "Update the vendor to Zonda..."
+  echo "------------------------------------------------------------------------"
+  ;;
+  # -----------
+  # Help::CLEAR
 
   # Help::CLEAR
   # -----------

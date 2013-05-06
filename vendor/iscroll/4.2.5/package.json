@@ -4,6 +4,5 @@
   "version": "4.2.5",
   "output": {
     "iscroll.js": "."
-  },
-  "sources": ["http://module.zonda.dashu.us:22221"]
+  }
 }

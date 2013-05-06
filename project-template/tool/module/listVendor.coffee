@@ -25,10 +25,6 @@ app_root = fs.readFileSync "#{project_dir}/tool/.app_root", "utf8"
 
 app_root = app_root.replace "\n", ""
 
-# updateVendor
-# ------------
-updateVendor = require "./updateVendor"
-
 main = ( vendor_root_dir, relative_root_dir ) ->
   console.log "------------------------------------------------------------------------"
   console.log "Update Vendors"
@@ -36,6 +32,7 @@ main = ( vendor_root_dir, relative_root_dir ) ->
 
   alias = {}
   dependencies = {}
+  info = {}
 
   list = fs.readdirSync vendor_root_dir
 
@@ -45,20 +42,16 @@ main = ( vendor_root_dir, relative_root_dir ) ->
     # just use the first version, the only one!
     alias[vendor_name] = "#{relative_root_dir}/#{vendor_name}/#{version_list[0]}/#{vendor_name}"
     dependencies[vendor_name] = "#{vendor_name}"
+    info[vendor_name] = "#{version_list[0]}"
 
-    # update the vendor dir
-    # ---------------------
-    updateVendor vendor_name, version_list[0], app_root
-    # ---------------------
-    # update the vendor dir
-
+  # add Util
   alias.util = "vendor/Zonda/util/util"
   dependencies.util = "util"
 
   # remove SeaJS
   delete alias.sea
   delete dependencies.sea
-
+  delete info.sea
 
   console.log "------------------------------------------------------------------------"
   console.log "Update Vendors Success!"
@@ -67,6 +60,7 @@ main = ( vendor_root_dir, relative_root_dir ) ->
   return {
     alias : alias
     dependencies : dependencies
+    info: info
   }
 
 # END main

@@ -12,40 +12,38 @@ fs = require "fs"
 path = require "path"
 exec = require("child_process").exec
 
-project_dir = path.resolve "./", "../"
+listVendor = require "./listVendor"
+
+project_dir = path.resolve './', '../'
 
 app_root = fs.readFileSync "#{project_dir}/tool/.app_root", "utf8"
+server_root = fs.readFileSync "#{project_dir}/tool/.server_root", "utf8"
 
 app_root = app_root.replace "\n", ""
+server_root = server_root.replace "\n", ""
 
+zonda_vendor_dir = "vendor/Zonda/vendor"
+
+vendor_list = listVendor "#{project_dir}/#{zonda_vendor_dir}", zonda_vendor_dir
+
+# build
+# -----
+# Use the SPM to build
 build = ( path, name, version ) ->
-  exec "cd #{path} && spm build && cp ./dist/#{name}.js ./", ( err, stdout, stderr ) ->
+  exec "cd #{path} && spm build && cp ./dist/#{name}.js ./", ( err, stdout ) ->
     if err isnt null
       console.log "ERROR".red.inverse + "build the " + "#{name}.#{version}".red.underline + " failed!"
+      console.dir err
       return false
 
     console.log stdout
+# -----
+# build
 
-# Build Zonda.Util
-# ----------------
-util_dir = "#{project_dir}/vendor/Zonda/util"
-
-fs.writeFileSync "#{project_dir}/vendor/Zonda/util/package.json", """
-  {
-    "name": "util",
-    "root": "#{app_root}/vendor/Zonda",
-    "output": {
-      "util.js": "."
-    }
-  }
-"""
-
-build util_dir, "Util", "Zonda Util package"
-
-# ----------------
-# Build Zonda.Util
-
-module.exports = ( name, version, app_root ) ->
+# main
+# ----
+# To build every vendors
+main = ( name, version ) ->
   module_dir = path.resolve "#{project_dir}/vendor/Zonda/vendor/#{name}/#{version}"
 
   console.log "Update the vendor: " + "#{name}/#{version}".green
@@ -66,7 +64,7 @@ module.exports = ( name, version, app_root ) ->
 
     console.log "Generate the package.json for " + "#{name}.#{version}".green.underline + "\n"
 
-    exec "cd #{module_dir} && spm build && cp ./dist/#{name}.js ./", ( err, stdout, stderr ) ->
+    exec "cd #{module_dir} && spm build && cp ./dist/#{name}.js ./", ( err, stdout ) ->
       if err isnt null
         console.log "ERROR".red.inverse + "build the " + "#{name}.#{version}".red.underline + " failed!"
         return false
@@ -75,3 +73,32 @@ module.exports = ( name, version, app_root ) ->
 
   else
     console.log "WAR".inverse.red + " vendor #{name}".underline + " has no " + "package.json".yellow
+# END main
+
+module.exports = ->
+
+  # Build Zonda.Util
+  # ----------------
+  util_dir = "#{project_dir}/vendor/Zonda/util"
+
+  fs.writeFileSync "#{project_dir}/vendor/Zonda/util/package.json", """
+    {
+      "name": "util",
+      "root": "#{app_root}/vendor/Zonda",
+      "output": {
+        "util.js": "."
+      }
+    }
+  """
+
+  build util_dir, "util", "Zonda Util package"
+  # ----------------
+  # Build Zonda.Util
+
+  for name of vendor_list.info
+    main name, vendor_list.info[name]
+
+# END module.exports
+
+# For bash run
+do module.exports

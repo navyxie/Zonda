@@ -10,8 +10,10 @@ listVendor = require "./listVendor"
 project_dir = path.resolve './', '../'
 
 app_root = fs.readFileSync "#{project_dir}/tool/.app_root", "utf8"
+server_root = fs.readFileSync "#{project_dir}/tool/.server_root", "utf8"
 
 app_root = app_root.replace "\n", ""
+server_root = server_root.replace "\n", ""
 
 zonda_vendor_dir = "vendor/Zonda/vendor"
 
@@ -22,6 +24,7 @@ dependencies = JSON.stringify vendor_list.dependencies
 
 env = """
   seajs.config({
+    server_root: "#{server_root}",
     base: "#{app_root}",
     charset: "utf-8",
     alias: #{alias}

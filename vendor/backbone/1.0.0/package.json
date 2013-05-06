@@ -4,6 +4,5 @@
   "version": "1.0.0",
   "output": {
     "backbone.js": "."
-  },
-  "sources": ["http://module.zonda.dashu.us:22221"]
+  }
 }
