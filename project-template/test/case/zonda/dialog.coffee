@@ -64,6 +64,7 @@ define ( require ) ->
 
     setTimeout ->
       strictEqual num, 2
+      ok Dialog.$dom.find(".modal-footer button.btn-success").hasClass "disabled"
       do start
     , 300
 

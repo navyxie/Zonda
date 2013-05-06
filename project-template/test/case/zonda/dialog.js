@@ -56,6 +56,7 @@ define(function(require) {
     Dialog.$dom.find(".modal-footer button.btn-success").trigger("click");
     return setTimeout(function() {
       strictEqual(num, 2);
+      ok(Dialog.$dom.find(".modal-footer button.btn-success").hasClass("disabled"));
       return start();
     }, 300);
   });
