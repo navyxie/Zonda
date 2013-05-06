@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     qunit: {
       all: {
         options: {
+          timeout: 10000,
           urls: [
             "http://localhost:3000/assets/test/zonda.html",
             "http://localhost:3000/assets/test/app.html"

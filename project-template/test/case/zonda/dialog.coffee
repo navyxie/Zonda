@@ -46,7 +46,7 @@ define ( require ) ->
 
     do Dialog.close
     
-  test "Dialog button callback", ->
+  asyncTest "Dialog button callback", ->
     do Dialog.close
 
     num = 1
@@ -58,15 +58,81 @@ define ( require ) ->
       button:
         "hehe": ->
           num = 2
-          do start
     .open()
 
-    do stop
+    Dialog.$dom.find(".modal-footer button.btn-success").trigger "click"
 
-    Dialog.$dom.find(".modal-footer button").trigger "click"
+    setTimeout ->
+      strictEqual num, 2
+      do start
+    , 300
 
-    strictEqual num, 2
-
+  asyncTest "Dialog button for cancel", ->
     do Dialog.close
+
+    Dialog
+      title: "small"
+      content: "big"
+    .open()
+
+    Dialog.$dom.find(".modal-footer button[aria-hidden=true]").trigger "click"
+
+    setTimeout ->
+      id = Dialog.$dom.attr "id"
+      ok not $("##{id}")[0]
+
+      do start
+    , 300
+    
+  asyncTest "Dialog Close Delay", ->
+    do Dialog.close
+
+    Dialog
+      title: "small"
+      content: "big"
+    .open()
+
+    Dialog.close 400
+
+    setTimeout ->
+      id = Dialog.$dom.attr "id"
+      ok not $("##{id}")[0]
+
+      do start
+    , 400
+
+  asyncTest "Dialog Config", ->
+    do Dialog.close
+
+    Dialog
+      title: "small"
+      content: "big"
+    .open()
+
+    Dialog.close 400
+
+    setTimeout ->
+      deepEqual Dialog.config,
+        title: "small"
+        content: "big"
+
+      do start
+    , 400
+
+  asyncTest "Chain Style", ->
+    do Dialog.close
+
+    Dialog
+      title: "small"
+      content: "big"
+    .open()
+    .close 400
+
+    setTimeout ->
+      id = Dialog.$dom.attr "id"
+      ok not $("##{id}")[0]
+
+      do start
+    , 400
 
 # END define

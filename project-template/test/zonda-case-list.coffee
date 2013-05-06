@@ -2,7 +2,7 @@
 #
 # just import cases
 define ( require ) ->
-  require "./case/zonda/base64"
-  require "./case/zonda/stateMachine"
-  require "./case/zonda/dialog"
+  require.async "./case/zonda/base64"
+  require.async "./case/zonda/stateMachine"
+  require.async "./case/zonda/dialog"
 # END define

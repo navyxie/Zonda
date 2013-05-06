@@ -38,7 +38,7 @@ define(function(require) {
     ok(Dialog.$dom.hasClass("haha"));
     return Dialog.close();
   });
-  return test("Dialog button callback", function() {
+  asyncTest("Dialog button callback", function() {
     var num;
 
     Dialog.close();
@@ -49,14 +49,73 @@ define(function(require) {
       "class": "haha",
       button: {
         "hehe": function() {
-          num = 2;
-          return start();
+          return num = 2;
         }
       }
     }).open();
-    stop();
-    Dialog.$dom.find(".modal-footer button").trigger("click");
-    strictEqual(num, 2);
-    return Dialog.close();
+    Dialog.$dom.find(".modal-footer button.btn-success").trigger("click");
+    return setTimeout(function() {
+      strictEqual(num, 2);
+      return start();
+    }, 300);
+  });
+  asyncTest("Dialog button for cancel", function() {
+    Dialog.close();
+    Dialog({
+      title: "small",
+      content: "big"
+    }).open();
+    Dialog.$dom.find(".modal-footer button[aria-hidden=true]").trigger("click");
+    return setTimeout(function() {
+      var id;
+
+      id = Dialog.$dom.attr("id");
+      ok(!$("#" + id)[0]);
+      return start();
+    }, 300);
+  });
+  asyncTest("Dialog Close Delay", function() {
+    Dialog.close();
+    Dialog({
+      title: "small",
+      content: "big"
+    }).open();
+    Dialog.close(400);
+    return setTimeout(function() {
+      var id;
+
+      id = Dialog.$dom.attr("id");
+      ok(!$("#" + id)[0]);
+      return start();
+    }, 400);
+  });
+  asyncTest("Dialog Config", function() {
+    Dialog.close();
+    Dialog({
+      title: "small",
+      content: "big"
+    }).open();
+    Dialog.close(400);
+    return setTimeout(function() {
+      deepEqual(Dialog.config, {
+        title: "small",
+        content: "big"
+      });
+      return start();
+    }, 400);
+  });
+  return asyncTest("Chain Style", function() {
+    Dialog.close();
+    Dialog({
+      title: "small",
+      content: "big"
+    }).open().close(400);
+    return setTimeout(function() {
+      var id;
+
+      id = Dialog.$dom.attr("id");
+      ok(!$("#" + id)[0]);
+      return start();
+    }, 400);
   });
 });
