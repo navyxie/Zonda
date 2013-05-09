@@ -1,5 +1,5 @@
 /**
- * Sea.js 2.0.0 | seajs.org/LICENSE.md
+ * Sea.js 2.0.1 | seajs.org/LICENSE.md
  */
 (function(global, undefined) {
 
@@ -11,7 +11,7 @@ if (_seajs && _seajs.version) {
 
 var seajs = global.seajs = {
   // The current version of Sea.js being used
-  version: "2.0.0"
+  version: "2.0.1"
 }
 
 
@@ -287,7 +287,7 @@ var loaderScript = doc.getElementById("seajsnode") ||
     scripts[scripts.length - 1]
 
 // When `sea.js` is inline, set loaderDir to current working directory
-var loaderDir = dirname(getScriptAbsoluteSrc(loaderScript)) || cwd
+var loaderDir = dirname(getScriptAbsoluteSrc(loaderScript) || cwd)
 
 function getScriptAbsoluteSrc(node) {
   return node.hasAttribute ? // non-IE6/7
@@ -300,6 +300,8 @@ function getScriptAbsoluteSrc(node) {
 seajs.cwd = function(val) {
   return val ? (cwd = realpath(val + "/")) : cwd
 }
+
+seajs.dir = loaderDir
 
 
 /**
@@ -572,7 +574,9 @@ function load(uris, callback) {
       function loadWaitings(cb) {
         cb || (cb = done)
 
-        var waitings = getUnloadedUris(mod.dependencies)
+        var waitings = mod.dependencies.length ?
+            getUnloadedUris(mod.dependencies) : []
+
         if (waitings.length === 0) {
           cb()
         }
@@ -1021,15 +1025,14 @@ if (_seajs && _seajs.args) {
 })(this);
 (function(h,e){function j(b,a){var c=e.ActiveXObject?new e.ActiveXObject("Microsoft.XMLHTTP"):new e.XMLHttpRequest;c.open("GET",b,!0);c.onreadystatechange=function(){if(4===c.readyState){if(399<c.status&&600>c.status)throw Error("Could not load: "+b+", status = "+c.status);a(c.responseText)}};return c.send(null)}function k(b){b&&/\S/.test(b)&&(e.execScript||function(a){(e.eval||eval).call(e,a)})(b)}var f={},l={},d={name:"text",ext:[".tpl",".html"],exec:function(b,a){k('define("'+b+'#", [], "'+a.replace(/(["\\])/g,
 "\\$1").replace(/[\f]/g,"\\f").replace(/[\b]/g,"\\b").replace(/[\n]/g,"\\n").replace(/[\t]/g,"\\t").replace(/[\r]/g,"\\r").replace(/[\u2028]/g,"\\u2028").replace(/[\u2029]/g,"\\u2029")+'")')}};f[d.name]=d;d={name:"json",ext:[".json"],exec:function(b,a){k('define("'+b+'#", [], '+a+")")}};f[d.name]=d;h.on("resolve",function(b){var a=b.id;if(!a)return"";var c,g;if((g=a.match(/^(\w+)!(.+)$/))&&g[1]&&f.hasOwnProperty(g[1]))c=g[1],a=g[2];var a=h.resolve(a,b.refUri),e=a.replace(/\.(?:js|css)(\?|$)/,"$1");
-if(!c&&(g=e.match(/[^?]+(\.\w+)(?:\?|$)/)))a:{c=g[1];for(var d in f)if(d&&f.hasOwnProperty(d)&&-1<(","+f[d].ext.join(",")+",").indexOf(","+c+",")){c=d;break a}c=void 0}c&&(a=a.replace(/\.js(?=$|\?)/,""),l[a]=c);b.uri=a});h.on("request",function(b){var a=l[b.uri];a&&(j(b.requestUri,function(c){f[a].exec(b.uri,c);b.callback()}),b.requested=!0)});"undefined"!==typeof module&&(j=function(b,a){a(require("fs").readFileSync(b.replace(/\?.*$/,""),"utf8"))})})(seajs,this);
-(function(e,a,c,d){function f(a){var b=new Date;b.setTime(b.getTime()+2592E6);c.cookie="seajs-debug="+a.debug+"`"+a.mapfile+"`"+a.console+"; path=/; expires="+b.toUTCString()}function k(a){l++;c.body?c.body.appendChild(a):l<m&&setTimeout(function(){k(a)},200)}var b;a="";var h;if(h=c.cookie.match(/(?:^| )seajs-debug(?:(?:=([^;]*))|;|$)/))a=h[1]?decodeURIComponent(h[1]):"";a=a.split("`");b={debug:Number(a[0])||0,mapfile:a[1]||"",console:Number(a[2])||0};-1<d.search.indexOf("seajs-debug")&&(b.debug=
-1,b.console=1,f(b));b.debug&&e.config({debug:!0});b.mapfile&&(c.title="[seajs debug mode] - "+c.title,e.config({preload:b.mapfile}));if(b.console){a='<div id="seajs-debug-console">  <h3>Sea.js Debug Console</h3>  <label>Map file: <input value="'+b.mapfile+'"/></label><br/>  <button>Exit</button>  <button>Hide</button>  <button>Save</button></div>';var g=c.createElement("div");g.innerHTML=a;a=c.createElement("style");c.getElementsByTagName("head")[0].appendChild(a);a.styleSheet?a.styleSheet.cssText=
+if(!c&&(g=e.match(/[^?]+(\.\w+)(?:\?|$)/)))a:{c=g[1];for(var d in f)if(d&&f.hasOwnProperty(d)&&-1<(","+f[d].ext.join(",")+",").indexOf(","+c+",")){c=d;break a}c=void 0}c&&(a=a.replace(/\.js(?=$|\?)/,""),l[a]=c);b.uri=a});h.on("request",function(b){var a=l[b.uri];a&&(j(b.requestUri,function(c){f[a].exec(b.uri,c);b.callback()}),b.requested=!0)});"undefined"!==typeof module&&(j=function(b,a){a(require("fs").readFileSync(b.replace(/\?.*$/,""),"utf8"))});define(h.dir+"plugin-text",[],{})})(seajs,this);
+(function(d,a,c,e){function f(a){var b=new Date;b.setTime(b.getTime()+2592E6);c.cookie="seajs-debug="+a.debug+"`"+a.mapfile+"`"+a.console+"; path=/; expires="+b.toUTCString()}function k(a){l++;c.body?c.body.appendChild(a):l<m&&setTimeout(function(){k(a)},200)}var m=100,l=0,b;a="";var h;if(h=c.cookie.match(/(?:^| )seajs-debug(?:(?:=([^;]*))|;|$)/))a=h[1]?decodeURIComponent(h[1]):"";a=a.split("`");b={debug:Number(a[0])||0,mapfile:a[1]||"",console:Number(a[2])||0};-1<e.search.indexOf("seajs-debug")&&
+(b.debug=1,b.console=1,f(b));b.debug&&d.config({debug:!0});b.mapfile&&(c.title="[seajs debug mode] - "+c.title,d.config({preload:b.mapfile}));if(b.console){a='<div id="seajs-debug-console">  <h3>Sea.js Debug Console</h3>  <label>Map file: <input value="'+b.mapfile+'"/></label><br/>  <button>Exit</button>  <button>Hide</button>  <button>Save</button></div>';var g=c.createElement("div");g.innerHTML=a;a=c.createElement("style");c.getElementsByTagName("head")[0].appendChild(a);a.styleSheet?a.styleSheet.cssText=
 "#seajs-debug-console {   position: fixed; bottom: 10px;   *position: absolute; *top: 10px; *width: 465px;   right: 10px; z-index: 999999999;  background: #fff; color: #000; font: 12px arial;  border: 2px solid #000; padding: 0 10px 10px;}#seajs-debug-console h3 {  margin: 3px 0 6px -6px; padding: 0;  font-weight: bold; font-size: 14px;}#seajs-debug-console input {  width: 400px; margin-left: 10px;}#seajs-debug-console button {  float: right; margin: 6px 0 0 10px;  box-shadow: #ddd 0 1px 2px;  font-size: 14px; padding: 4px 10px;  color: #211922; background: #f9f9f9;  text-shadow: 0 1px #eaeaea;  border: 1px solid #bbb; border-radius: 3px;  cursor: pointer; opacity: .8}#seajs-debug-console button:hover {  background: #e8e8e8; text-shadow: none; opacity: 1}#seajs-debug-console a {  position: relative; top: 10px; text-decoration: none;}":
 a.appendChild(c.createTextNode("#seajs-debug-console {   position: fixed; bottom: 10px;   *position: absolute; *top: 10px; *width: 465px;   right: 10px; z-index: 999999999;  background: #fff; color: #000; font: 12px arial;  border: 2px solid #000; padding: 0 10px 10px;}#seajs-debug-console h3 {  margin: 3px 0 6px -6px; padding: 0;  font-weight: bold; font-size: 14px;}#seajs-debug-console input {  width: 400px; margin-left: 10px;}#seajs-debug-console button {  float: right; margin: 6px 0 0 10px;  box-shadow: #ddd 0 1px 2px;  font-size: 14px; padding: 4px 10px;  color: #211922; background: #f9f9f9;  text-shadow: 0 1px #eaeaea;  border: 1px solid #bbb; border-radius: 3px;  cursor: pointer; opacity: .8}#seajs-debug-console button:hover {  background: #e8e8e8; text-shadow: none; opacity: 1}#seajs-debug-console a {  position: relative; top: 10px; text-decoration: none;}"));
-k(g);a=g.getElementsByTagName("button");a[2].onclick=function(){var a=g.getElementsByTagName("input")[0].value||"";b.mapfile=a;f(b);d.reload()};a[1].onclick=function(){b.console=0;f(b);d.replace(d.href.replace("seajs-debug",""))};a[0].onclick=function(){b.debug=0;f(b);d.replace(d.href.replace("seajs-debug",""))}}if(!e.find){var j=e.cache;e.find=function(a){var b=[],c;for(c in j)if(j.hasOwnProperty(c)&&("string"===typeof a&&-1<c.indexOf(a)||a instanceof RegExp&&a.test(c))){var d=j[c];d.exports&&b.push(d.exports)}return b}}var m=
-100,l=0})(seajs,this,document,location);
-(function(d,e){function a(c){if(c){c=c.alias;for(var a in c)(function(b){b.src&&(b.deps&&define(b.src,b.deps),define(a,[d.resolve(b.src)],function(){var a=b.exports;return"function"===typeof a?a():"string"===typeof a?e[a]:a}))})(c[a])}}d.on("config",a);a(d.config.data)})(seajs,"undefined"===typeof global?this:global);
-(function(d){var e={},f=/\/(?:\d+\.){1,2}\d+\/|\D(?:\d+\.){1,2}\d+[^/]*\.(?:js|css)\W?/;d.on("fetch",function(a){a=a.uri;if(f.test(a)){var b=a.replace(f,"{version}"),b=e[b]||(e[b]=[]);-1===g(b,a)&&b.push(a);1<b.length&&d.log("This module has multiple versions:\n"+b.join("\n"),"warn")}});var g=[].indexOf?function(a,b){return a.indexOf(b)}:function(a,b){for(var c=0;c<a.length;c++)if(a[c]===b)return c;return-1}})(seajs);
+k(g);a=g.getElementsByTagName("button");a[2].onclick=function(){var a=g.getElementsByTagName("input")[0].value||"";b.mapfile=a;f(b);e.reload()};a[1].onclick=function(){b.console=0;f(b);e.replace(e.href.replace("seajs-debug",""))};a[0].onclick=function(){b.debug=0;f(b);e.replace(e.href.replace("seajs-debug",""))}}if(!d.find){var j=d.cache;d.find=function(a){var b=[],c;for(c in j)if(j.hasOwnProperty(c)&&("string"===typeof a&&-1<c.indexOf(a)||a instanceof RegExp&&a.test(c))){var d=j[c];d.exports&&b.push(d.exports)}return b}}define(d.dir+
+"plugin-debug",[],{})})(seajs,this,document,location);
+(function(d){var e={},f=/\/(?:\d+\.){1,2}\d+\/|\D(?:\d+\.){1,2}\d+[^/]*\.(?:js|css)\W?/;d.on("fetch",function(a){a=a.uri;if(f.test(a)){var b=a.replace(f,"{version}"),b=e[b]||(e[b]=[]);-1===g(b,a)&&b.push(a);1<b.length&&d.log("This module has multiple versions:\n"+b.join("\n"),"warn")}});var g=[].indexOf?function(a,b){return a.indexOf(b)}:function(a,b){for(var c=0;c<a.length;c++)if(a[c]===b)return c;return-1};define(d.dir+"plugin-warning",[],{})})(seajs);
 seajs.config({
   server_root: "",
   base: "/assets",

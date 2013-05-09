@@ -1,7 +1,11 @@
-###
+# Zonda Util base64
+# - - -
+# Base on Bootstrap@Twitter Modal.
+# - - -
+### Copyright(c)
 
-Zonda Base64.coffee (c) Degas
-https://github.com/smallsmallwolf/Zonda
+Zonda Util.base64 (c) 2013 Degas / smallsmallwolf@gmail.com
+This version for Zonda, fix the Chinese bug.
 
 jQuery port (c) 2010 Carlo Zottmann
 http://github.com/carlo/jquery-base64
@@ -37,7 +41,7 @@ define ( require, exports, module ) ->
   _PADCHAR = "="
   _ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
-  # 转成字符串，中文转成Unicode形式
+  # change Chinese to Unicode style
   JSON_stringify = (string) ->
     json = JSON.stringify string
     json.replace /[\u007f-\uffff]/g, (c) ->

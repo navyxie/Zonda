@@ -18,7 +18,7 @@ css_version=dev
 app_version=dev
 framework_version=dev
 
-sea_version=2.0.0
+sea_version=2.0.1
 # --------------
 # Config Versio
 
@@ -97,7 +97,6 @@ function frameMaker () {
   cat sea-debug.js \
       plugin-text.js \
       plugin-debug.js \
-      plugin-shim.js \
       plugin-warning.js \
       $project_dir/etc/env.js \
       > $dist_dir/framework-$framework_version.js

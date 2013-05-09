@@ -1,7 +1,14 @@
-# Util.StateMachine
-#
+# Zonda Util StateMachine
+# - - -
+# Base on Backbone Events.
+# - - -
 # state machine for View
 # control the UI
+# - - -
+### Usage:
+ too much to say...
+ wait this later maybe...
+###
 
 define ( require, exports, module ) ->
   _ = require "underscore"
@@ -12,7 +19,7 @@ define ( require, exports, module ) ->
   _.extend StateMachine::, Backbone.Events
 
   StateMachine::add = (view) ->
-    @on "change", (curr) ->
+    @on "view:change", (curr) ->
       if curr is view
         view.activate()
       else
@@ -20,7 +27,7 @@ define ( require, exports, module ) ->
     , @
 
     view.active = =>
-      @.trigger "change", view
+      @.trigger "view:change", view
 
   module.exports = StateMachine
 
