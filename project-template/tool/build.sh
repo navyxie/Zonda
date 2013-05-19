@@ -11,12 +11,17 @@
 server_root=''
 prod_server_root=''
 
+app_name="APP power by Zonda"
 app_root=/assets
 mobile_root=/android_asset/www
 
 css_version=dev
 app_version=dev
 framework_version=dev
+
+# Relative the Zonda Project
+deploy_dir=../
+deploy_file=mobile.html
 
 sea_version=2.0.1
 # --------------
@@ -47,6 +52,7 @@ cd $dir
 # @project_dir: root path of this project
 # @seajs_dir: SeaJS path with its version
 # @dist_dir: build output dir
+# @deploy_file: the real path of deploy_file
 cd ../
 project_dir=`pwd`
 
@@ -60,6 +66,12 @@ dist_dir=`pwd`
 cd $project_dir
 cd mobile-dist/
 mobile_dist_dir=`pwd`
+
+cd $project_dir
+cd $deploy_dir
+deploy_dir=`pwd`
+deploy_file=$deploy_dir/$deploy_file
+
 # --------
 # Set Path
 
@@ -75,6 +87,10 @@ function cacheConfig () {
 
   echo $app_version > .app_version
   echo $framework_version > .framework_version
+
+  echo $deploy_file > .deploy_file
+
+  echo $app_name > .app_name
 }
 # --------------------
 # Function cacheConfig
@@ -124,6 +140,11 @@ case $1 in
   # just load the app.js
   echo "seajs.use(\"$app_root/src/app\");" > $dist_dir/app-dev.js
 
+  echo "Deploy to $deploy_file"
+  echo "------------------------------------------------------------------------"
+  cd $project_dir/tool
+  node module/deploy.js
+
   echo "Zonda in 'DEV' status Now."
   echo "------------------------------------------------------------------------"
 
@@ -166,6 +187,11 @@ case $1 in
 
   # add SeaJS bootstrap
   echo "seajs.use(\"$app_root/dist/app\");" >> $dist_dir/app-$app_version.js
+
+  echo "Deploy to $deploy_file"
+  echo "------------------------------------------------------------------------"
+  cd $project_dir/tool
+  node module/deploy.js
 
   echo "Zonda in 'PROD' status Now."
   echo "------------------------------------------------------------------------"

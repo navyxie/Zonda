@@ -4,7 +4,7 @@
     <h3>{{title}}</h3>
   </div>
   <div class="modal-body">
-    {{content}}
+    {{{content}}}
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>

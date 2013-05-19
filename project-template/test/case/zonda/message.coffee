@@ -7,4 +7,7 @@ define ( require ) ->
   Message = Util.message
 
   test "API", ->
-    ok Message.error "info"
+    ok Message.error
+    ok Message.success
+    ok Message.tip
+    ok Message.loading

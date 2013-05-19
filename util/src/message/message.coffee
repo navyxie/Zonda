@@ -8,8 +8,6 @@ define ( require, exports, module ) ->
   Backbone = require "backbone"
   Mustache = require "mustache"
 
-  # Config
-  # ------
   prefix = "#zonda-util-message"
   delay = 1300
 

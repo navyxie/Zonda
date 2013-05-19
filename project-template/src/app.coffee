@@ -1,8 +1,6 @@
 # app.coffee
 # setup the app
 define ( require, exports, module ) ->
-  TPL = require "text!./tpl/hehe.jade"
-
-  console.log jade
+  Util = require "util"
 
 # END define

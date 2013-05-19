@@ -6,6 +6,9 @@ define(function(require) {
   Util = require("util");
   Message = Util.message;
   return test("API", function() {
-    return ok(Message.error("info"));
+    ok(Message.error);
+    ok(Message.success);
+    ok(Message.tip);
+    return ok(Message.loading);
   });
 });
