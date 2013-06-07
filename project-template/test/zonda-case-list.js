@@ -2,6 +2,5 @@
 define(function(require) {
   require.async("./case/zonda/base64");
   require.async("./case/zonda/stateMachine");
-  require.async("./case/zonda/dialog");
-  return require.async("./case/zonda/message");
+  return require.async("./case/zonda/dialog");
 });

@@ -2,5 +2,10 @@
 define(function(require, exports, module) {
   var Util;
 
-  return Util = require("util");
+  Util = require("util");
+  return Util.dialog({
+    title: "1",
+    content: "1",
+    "class": "hehe"
+  }).open().close(1300);
 });

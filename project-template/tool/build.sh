@@ -133,6 +133,10 @@ case $1 in
   # -----------
   # change project's status to "dev"
   dev)
+  # Use File to Mark the Zonda's Status
+  cd $project_dir/tool
+  echo dev > .status
+
   # Initialize framework.js
   frameMaker;
 
@@ -156,6 +160,10 @@ case $1 in
   # ------------
   # change project's status to "prod"
   prod)
+  # Use File to Mark the Zonda's Status
+  cd $project_dir/tool
+  echo prod > .status
+
   if [ -z $2 ]; then
     echo "No Version => "dev""
   else

@@ -7,7 +7,7 @@ alias = {
 }
 */
 
-var app_root, fs, main, path, project_dir;
+var app_root, fs, main, path, project_dir, status;
 
 fs = require("fs");
 
@@ -18,6 +18,10 @@ project_dir = path.resolve('./', '../');
 app_root = fs.readFileSync("" + project_dir + "/tool/.app_root", "utf8");
 
 app_root = app_root.replace("\n", "");
+
+status = fs.readFileSync("" + project_dir + "/tool/.status", "utf8");
+
+status = status.replace("\n", "");
 
 main = function(vendor_root_dir, relative_root_dir) {
   var alias, dependencies, info, list, vendor_name, version_list, _i, _len;
@@ -32,12 +36,23 @@ main = function(vendor_root_dir, relative_root_dir) {
   for (_i = 0, _len = list.length; _i < _len; _i++) {
     vendor_name = list[_i];
     version_list = fs.readdirSync("" + vendor_root_dir + "/" + vendor_name);
-    alias[vendor_name] = "" + relative_root_dir + "/" + vendor_name + "/" + version_list[0] + "/" + vendor_name;
-    dependencies[vendor_name] = "" + vendor_name;
-    info[vendor_name] = "" + version_list[0];
+    if (status === "dev") {
+      alias[vendor_name] = "" + relative_root_dir + "/" + vendor_name + "/" + version_list[0] + "/src/" + vendor_name;
+      dependencies[vendor_name] = "" + vendor_name;
+      info[vendor_name] = "" + version_list[0];
+    } else {
+      alias[vendor_name] = "" + relative_root_dir + "/" + vendor_name + "/" + version_list[0] + "/" + vendor_name;
+      dependencies[vendor_name] = "" + vendor_name;
+      info[vendor_name] = "" + version_list[0];
+    }
   }
-  alias.util = "vendor/Zonda/util/util";
-  dependencies.util = "util";
+  if (status === "dev") {
+    alias.util = "vendor/Zonda/util/src/util";
+    dependencies.util = "util";
+  } else {
+    alias.util = "vendor/Zonda/util/util";
+    dependencies.util = "util";
+  }
   delete alias.sea;
   delete dependencies.sea;
   delete info.sea;

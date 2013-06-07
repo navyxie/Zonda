@@ -6,6 +6,4 @@ define ( require, exports, module ) ->
     base64:       require "./base64/base64"
     dialog:       require "./dialog/dialog"
 
-    message:      require "./message/message"
-
 # END define
