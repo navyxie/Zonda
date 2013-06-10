@@ -1,4 +1,4 @@
-# Zonda Util dialog
+# Zonda Util Dialog
 # - - -
 # Base on Bootstrap@Twitter Modal.
 # - - -

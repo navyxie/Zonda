@@ -4,7 +4,7 @@ define ( require ) ->
 
   Util = require "util"
 
-  Base64 = Util.base64
+  Base64 = Util.Base64
 
   CN = "悲剧就是将有价值的东西毁灭给人看。"
   syb = "~!@#$%^&*()_+`-=\\][{}|;\"',./<?>"
