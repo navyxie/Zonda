@@ -10,7 +10,7 @@ define ( require, exports, module ) ->
     Object::toString.call target
 
   class Genre
-    constructor: ( @API, @NAME ) ->
+    constructor: ( @NAME, @API ) ->
       @GENRE = {}
 
       @recursive @API.genre, ( key, value, position ) =>

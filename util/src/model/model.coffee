@@ -6,14 +6,27 @@ define ( require, exports, module ) ->
   _ = require "underscore"
   Backbone = require "backbone"
 
-  API = Zonda.API
+  Genre = require "../genre/genre"
   Http = require "../http/http"
 
   class Model
-    constructor: (@name) ->
+    constructor: ( @NAME, @API ) ->
       _.extend @, Backbone.Events
 
-      _.each API[@name], ( detail, act ) =>
+      # Build Genre for this Model
+      # - - -
+      @genre = new Genre @API, "@#{@NAME}"
+
+      # Generate Namespace of this Model
+      # - - -
+      if @id
+        @namespace = "#{@NAME}:#{@id}"
+      else
+        @namespace = "#{@NAME}"
+
+      # Generate all Actions of this Model
+      # - - -
+      _.each @API, ( detail, act ) =>
         if act is "genre"
           return
 
@@ -22,19 +35,16 @@ define ( require, exports, module ) ->
 
     sync: ( act, request ) ->
       if request isnt undefined and typeof request isnt "object"
-        throw "Model.sync ERROR: request is not a object!"
+        throw "[#{@NAME}] Model.sync ERROR: request is not a object!"
 
-      if @id
-        namespace = "#{@name}:#{@id}:#{act}"
-      else
-        namespace = "#{@name}:#{act}"
+      @genre.inspect  request
+      @genre.toRemote request
 
       Http
-        url:       API[@name][act].url
-        data:      data
+        url:       @API[act].url
+        data:      request
         caller:    @
-        map:       API[@name].map
-        namespace: namespace
+        namespace: "#{@namespace}:#{act}"
 
   # END class Model
 

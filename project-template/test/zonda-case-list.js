@@ -3,5 +3,6 @@ define(function(require) {
   require.async("./case/zonda/base64");
   require.async("./case/zonda/stateMachine");
   require.async("./case/zonda/dialog");
-  return require.async("./case/zonda/genre");
+  require.async("./case/zonda/genre");
+  return require.async("./case/zonda/model");
 });

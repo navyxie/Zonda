@@ -7,11 +7,11 @@ define(function(require, exports, module) {
     return Object.prototype.toString.call(target);
   };
   Genre = (function() {
-    function Genre(API, NAME) {
+    function Genre(NAME, API) {
       var _this = this;
 
-      this.API = API;
       this.NAME = NAME;
+      this.API = API;
       this.GENRE = {};
       this.recursive(this.API.genre, function(key, value, position) {
         var alias_position, info;

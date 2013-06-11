@@ -4,6 +4,7 @@ define(function(require, exports, module) {
     Base64: require("./base64/base64"),
     Dialog: require("./dialog/dialog"),
     StateMachine: require("./stateMachine/stateMachine"),
-    Genre: require("./genre/genre")
+    Genre: require("./genre/genre"),
+    Model: require("./model/model")
   };
 });

@@ -2,8 +2,7 @@
 # - - -
 # For Type System
 
-define ( require, exports, module ) ->
-
+define "Zonda/API", [], ( require, exports, module ) ->
   API =
     dog: require "./genre/dog"
 

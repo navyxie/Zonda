@@ -50,7 +50,7 @@ define(function(require) {
       expire: 1300
     }
   };
-  dog = new Genre(API, "@dog");
+  dog = new Genre("@dog", API);
   test("API", function() {
     ok(dog.inspect);
     ok(dog.toLocal);

@@ -1,4 +1,5 @@
-# util.coffee
+# Zonda Util
+# - - -
 define ( require, exports, module ) ->
 
   module.exports =
@@ -10,7 +11,9 @@ define ( require, exports, module ) ->
     # Class
     # - - -
     StateMachine: require "./stateMachine/stateMachine"
-    #Model:        require "./model/model"
+
     Genre:        require "./genre/genre"
+    Model:        require "./model/model"
+    #Collection: require "./collection/collection"
 
 # END define

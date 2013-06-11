@@ -52,3 +52,12 @@ echo "Nice, Update Zonda Success ~"
 echo "------------------------------------------------------------------------"
 # ---------------------------------------
 # Copy the list to Zonda/project-template
+
+# Go to Zonda
+# -----------
+cd $project_dir/vendor/Zonda
+git status
+git add ./
+git status
+# -----------
+# Go to Zonda

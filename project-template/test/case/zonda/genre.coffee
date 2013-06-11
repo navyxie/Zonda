@@ -55,7 +55,7 @@ define ( require ) ->
 
   # Test Genre
   # - - -
-  dog = new Genre API, "@dog"
+  dog = new Genre "@dog", API
   # - - -
   # Test Genre
 
