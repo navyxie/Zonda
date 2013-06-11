@@ -36,38 +36,22 @@ define ( require ) ->
     CREATE:
       url: "/FAKE_CREATE_dog"
       expire: 1
-      input:
-        variety: not null
-        lifetime: not null
-        wool: not null
-      output:
-        id: not null
 
     UPDATE:
       url: "/FAKE_UPDATE_dog"
       expire: 1
-      input: "@dog"
-      output: null
 
     READ:
       url: "/FAKE_READ_dog"
       expire: 1300
-      input:
-        id: not null
-      output: "@dog"
 
     READ_LIST:
       url: "/FAKE_READ_LIST_dog"
       expire: 1300
-      input: null
-      output: ": @Array : @dog"
 
     DELELE:
       url: "/FAKE_DELETE_dog"
       expire: 1300
-      input:
-        id: not null
-      output: null
 
   # Test Genre
   # - - -
@@ -193,7 +177,7 @@ define ( require ) ->
           ]
           color: [
             {
-              id: 2
+              id: 1
               name: "asdfasdfa"
             }
           ]
@@ -202,6 +186,25 @@ define ( require ) ->
 
     ok dog.inspect b
 
-    console.dir dog
-  
+  test "Useless information", ->
+    b = dog.toRemote
+      list: [
+        {
+          a: 1
+          b: 3
+        }
+        {
+          a: 2
+          c:
+            a: 1
+        }
+      ]
+
+    console.log b
+
+    ok b.list
+    ok b.list[1].a
+    ok b.list[1].c.a
+    strictEqual b.list[1].c.a, 1
+
 # END define

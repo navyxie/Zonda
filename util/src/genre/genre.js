@@ -19,7 +19,7 @@ define(function(require, exports, module) {
         position = (position.replace(/\s*/g, "")).split("/");
         alias_position = _.clone(position);
         _.each(position, function(cell, index) {
-          position[index] = (cell.split("~"))[0].replace(/^!/g, "");
+          position[index] = (cell.split("~"))[0];
           return alias_position[index] = (function() {
             var name_list;
 
@@ -36,10 +36,10 @@ define(function(require, exports, module) {
         key = key.replace(/\s*/g, "");
         info = key.split(":");
         _this.GENRE[position] = {
-          local_name: ((info[0].replace(/^!/g, "")).split("~"))[0],
+          local_name: (info[0].split("~"))[0],
           remote_name: (info[0].split("~"))[1],
-          is_essential: /^!/.test(info[0]),
-          genre: info[1].replace(/^@/g, "")
+          genre: info[1].replace(/^@/g, ""),
+          essential_act: (function() {})()
         };
         return _this.GENRE[alias_position] = _this.GENRE[position];
       });
@@ -77,7 +77,7 @@ define(function(require, exports, module) {
         });
         return result;
       }
-      return result;
+      return source;
     };
 
     Genre.prototype.genre_map = {

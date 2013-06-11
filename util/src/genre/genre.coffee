@@ -21,14 +21,18 @@ define ( require, exports, module ) ->
 
         _.each position, ( cell, index ) ->
 
-          position[index] = (cell.split "~")[0].replace /^!/g, ""
+          position[index] = (cell.split "~")[0]
 
+          # For remote_name
+          # - - -
           alias_position[index] = do ->
             name_list = (((cell.split ":")[0]).split "~")
             if name_list.length < 2
               return name_list[0]
             else
               return name_list[1]
+          # - - -
+          # For remote_name
 
         # END _.each
 
@@ -45,12 +49,12 @@ define ( require, exports, module ) ->
         info = key.split ":"
 
         @GENRE[position] =
-          local_name: ((info[0].replace /^!/g, "").split "~")[0]
+          local_name: (info[0].split "~")[0]
           remote_name: (info[0].split "~")[1]
 
-          is_essential: /^!/.test info[0]
-
           genre: info[1].replace /^@/g, ""
+
+          essential_act: do ->
 
         @GENRE[alias_position] = @GENRE[position]
         # - - -
@@ -104,7 +108,7 @@ define ( require, exports, module ) ->
 
       # Other
       # - - -
-      return result
+      return source
       # - - -
       # Other
 

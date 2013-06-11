@@ -31,43 +31,23 @@ define(function(require) {
     },
     CREATE: {
       url: "/FAKE_CREATE_dog",
-      expire: 1,
-      input: {
-        variety: !null,
-        lifetime: !null,
-        wool: !null
-      },
-      output: {
-        id: !null
-      }
+      expire: 1
     },
     UPDATE: {
       url: "/FAKE_UPDATE_dog",
-      expire: 1,
-      input: "@dog",
-      output: null
+      expire: 1
     },
     READ: {
       url: "/FAKE_READ_dog",
-      expire: 1300,
-      input: {
-        id: !null
-      },
-      output: "@dog"
+      expire: 1300
     },
     READ_LIST: {
       url: "/FAKE_READ_LIST_dog",
-      expire: 1300,
-      input: null,
-      output: ": @Array : @dog"
+      expire: 1300
     },
     DELELE: {
       url: "/FAKE_DELETE_dog",
-      expire: 1300,
-      input: {
-        id: !null
-      },
-      output: null
+      expire: 1300
     }
   };
   dog = new Genre(API, "@dog");
@@ -156,7 +136,7 @@ define(function(require) {
     ok(b.wool[1].color[0].id);
     return ok(b.wool[1].color[0].name);
   });
-  return test("Inspect Complex structures", function() {
+  test("Inspect Complex structures", function() {
     var b;
 
     b = dog.toRemote({
@@ -187,14 +167,35 @@ define(function(require) {
           ],
           color: [
             {
-              id: 2,
+              id: 1,
               name: "asdfasdfa"
             }
           ]
         }
       ]
     });
-    ok(dog.inspect(b));
-    return console.dir(dog);
+    return ok(dog.inspect(b));
+  });
+  return test("Useless information", function() {
+    var b;
+
+    b = dog.toRemote({
+      list: [
+        {
+          a: 1,
+          b: 3
+        }, {
+          a: 2,
+          c: {
+            a: 1
+          }
+        }
+      ]
+    });
+    console.log(b);
+    ok(b.list);
+    ok(b.list[1].a);
+    ok(b.list[1].c.a);
+    return strictEqual(b.list[1].c.a, 1);
   });
 });
