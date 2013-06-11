@@ -15,7 +15,10 @@ define ( require, exports, module ) ->
           error,
           config.data
 
-        # TODO:ERROR
+        console.error config.url
+        console.error error.status
+        console.error error.statusText
+        console.error error.responseText
 
       success: (respond) ->
         if (respond.status and respond.status isnt 1) or (respond.err and respond.err isnt null)

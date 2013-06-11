@@ -13,12 +13,12 @@ define(function(require, exports, module) {
       this.NAME = NAME;
       this.API = API;
       _.extend(this, Backbone.Events);
-      this.genre = new Genre(this.API, "@" + this.NAME);
       if (this.id) {
         this.namespace = "" + this.NAME + ":" + this.id;
       } else {
         this.namespace = "" + this.NAME;
       }
+      this.genre = new Genre("@" + this.NAME, this.API);
       _.each(this.API, function(detail, act) {
         if (act === "genre") {
           return;
@@ -30,11 +30,17 @@ define(function(require, exports, module) {
     }
 
     Model.prototype.sync = function(act, request) {
+      var _this = this;
+
       if (request !== void 0 && typeof request !== "object") {
         throw "[" + this.NAME + "] Model.sync ERROR: request is not a object!";
       }
       this.genre.inspect(request);
       this.genre.toRemote(request);
+      this.once("" + this.namespace + ":" + act + ":HTTP:success", function(respond) {
+        respond = _this.genre.toLocal(respond);
+        return _this.trigger("" + _this.namespace + ":" + act + ":success", respond);
+      });
       return Http({
         url: this.API[act].url,
         data: request,

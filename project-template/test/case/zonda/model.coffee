@@ -65,4 +65,13 @@ define ( require ) ->
     ok dog_Model.UPDATE
     ok dog_Model.DELELE
 
+    ok dog_Model.genre
+    ok dog_Model.NAME
+    ok dog_Model.namespace
+
+  asyncTest "act", ->
+    dog_Model.once "#{dog_Model.NAME}:READ:success", (respond) ->
+
+    dog_Model.READ id: 1
+
 # END define

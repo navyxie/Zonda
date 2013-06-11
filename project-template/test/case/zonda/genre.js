@@ -192,7 +192,6 @@ define(function(require) {
         }
       ]
     });
-    console.log(b);
     ok(b.list);
     ok(b.list[1].a);
     ok(b.list[1].c.a);

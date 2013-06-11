@@ -13,16 +13,16 @@ define ( require, exports, module ) ->
     constructor: ( @NAME, @API ) ->
       _.extend @, Backbone.Events
 
-      # Build Genre for this Model
-      # - - -
-      @genre = new Genre @API, "@#{@NAME}"
-
       # Generate Namespace of this Model
       # - - -
       if @id
         @namespace = "#{@NAME}:#{@id}"
       else
         @namespace = "#{@NAME}"
+
+      # Build Genre for this Model
+      # - - -
+      @genre = new Genre "@#{@NAME}", @API
 
       # Generate all Actions of this Model
       # - - -
@@ -33,6 +33,7 @@ define ( require, exports, module ) ->
         @[act] = (request) =>
           @sync act, request
 
+
     sync: ( act, request ) ->
       if request isnt undefined and typeof request isnt "object"
         throw "[#{@NAME}] Model.sync ERROR: request is not a object!"
@@ -40,13 +41,15 @@ define ( require, exports, module ) ->
       @genre.inspect  request
       @genre.toRemote request
 
+      @once "#{@namespace}:#{act}:HTTP:success", (respond) =>
+        respond = @genre.toLocal respond
+        @trigger "#{@namespace}:#{act}:success", respond
+
       Http
         url:       @API[act].url
         data:      request
         caller:    @
         namespace: "#{@namespace}:#{act}"
-
-  # END class Model
 
   module.exports = Model
 

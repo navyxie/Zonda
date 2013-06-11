@@ -51,10 +51,19 @@ define(function(require) {
   Util = require("util");
   Model = Util.Model;
   dog_Model = new Model("dog", API);
-  return test("API", function() {
+  test("API", function() {
     ok(dog_Model.CREATE);
     ok(dog_Model.READ);
     ok(dog_Model.UPDATE);
-    return ok(dog_Model.DELELE);
+    ok(dog_Model.DELELE);
+    ok(dog_Model.genre);
+    ok(dog_Model.NAME);
+    return ok(dog_Model.namespace);
+  });
+  return asyncTest("act", function() {
+    dog_Model.once("" + dog_Model.NAME + ":READ:success", function(respond) {});
+    return dog_Model.READ({
+      id: 1
+    });
   });
 });

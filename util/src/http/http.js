@@ -8,7 +8,11 @@ define(function(require, exports, module) {
       dataType: "JSON",
       type: "POST",
       error: function(error) {
-        return config.caller.trigger("" + config.namespace + ":HTTP:error", error, config.data);
+        config.caller.trigger("" + config.namespace + ":HTTP:error", error, config.data);
+        console.error(config.url);
+        console.error(error.status);
+        console.error(error.statusText);
+        return console.error(error.responseText);
       },
       success: function(respond) {
         if ((respond.status && respond.status !== 1) || (respond.err && respond.err !== null)) {
