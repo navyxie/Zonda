@@ -65,7 +65,7 @@ git status
 echo "GIT commit message: ..."
 read message
 
-git commit -am $message
+git commit -m '$message'
 
 git status
 
@@ -74,6 +74,7 @@ echo "Ready for 'GIT PUSH' (y/n) ?"
 read isPush
 
 if [ "$isPush" == "y" ]; then
+  echo "Go to PUSH!"
   git push
 fi
 
