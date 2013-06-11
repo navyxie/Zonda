@@ -7,6 +7,7 @@ define ( require, exports, module ) ->
     # - - -
     Base64:       require "./base64/base64"
     Dialog:       require "./dialog/dialog"
+    Exception:    require "./exception/exception"
 
     # Class
     # - - -

@@ -5,6 +5,8 @@
 define ( require, exports, module ) ->
   $ = require "jquery"
 
+  Exception = require "../exception/exception"
+
   Http = (config) ->
     $.ajaxSetup
       dataType : "JSON"
@@ -15,10 +17,12 @@ define ( require, exports, module ) ->
           error,
           config.data
 
-        console.error config.url
-        console.error error.status
-        console.error error.statusText
-        console.error error.responseText
+        Exception "network",
+          caller: config.caller
+          url: config.url
+          status: error.status
+          statusText: error.statusText
+          responseText: error.responseText
 
       success: (respond) ->
         if (respond.status and respond.status isnt 1) or (respond.err and respond.err isnt null)

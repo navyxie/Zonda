@@ -33,7 +33,6 @@ define ( require, exports, module ) ->
         @[act] = (request) =>
           @sync act, request
 
-
     sync: ( act, request ) ->
       if request isnt undefined and typeof request isnt "object"
         throw "[#{@NAME}] Model.sync ERROR: request is not a object!"

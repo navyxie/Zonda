@@ -4,6 +4,8 @@
 define ( require, exports, module ) ->
   _ = require "underscore"
 
+  Exception = require "../exception/exception"
+
   # Typeof
   # - - -
   getType = (target) ->
@@ -126,8 +128,7 @@ define ( require, exports, module ) ->
         return null unless @GENRE[position]
 
         if @genre_map[@GENRE[position].genre] isnt getType value
-          throw Error """
-            Genre Error:
+          throw Error """ Genre Error!
             Genre location: #{position},
             expect: #{@genre_map[@GENRE[position].genre]},
             not: #{getType value}
