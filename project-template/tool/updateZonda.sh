@@ -56,8 +56,26 @@ echo "------------------------------------------------------------------------"
 # Go to Zonda
 # -----------
 cd $project_dir/vendor/Zonda
+pwd
+
 git status
 git add ./
 git status
+
+echo "GIT commit message: ..."
+read message
+
+git commit -am $message
+
+git status
+
+echo "Ready for 'GIT PUSH' (y/n) ?"
+
+read isPush
+
+if [ "$isPush" == "y" ]; then
+  git push
+fi
+
 # -----------
 # Go to Zonda
