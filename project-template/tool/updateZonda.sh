@@ -76,6 +76,7 @@ read isPush
 if [ "$isPush" == "y" ]; then
   echo "Go to PUSH!"
   git push
+  git push dev master
 fi
 
 # -----------
