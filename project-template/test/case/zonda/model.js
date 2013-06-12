@@ -67,7 +67,6 @@ define(function(require) {
   });
   return asyncTest("act", function() {
     dog_Model.once("" + dog_Model.NAME + ":READ:success", function(respond) {
-      console.log(respond);
       strictEqual(respond.variety, "中华田园犬");
       strictEqual(respond.id, 1);
       return start();

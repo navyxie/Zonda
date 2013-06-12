@@ -78,7 +78,6 @@ define ( require ) ->
   asyncTest "act", ->
 
     dog_Model.once "#{dog_Model.NAME}:READ:success", (respond) ->
-      console.log respond
 
       strictEqual respond.variety, "中华田园犬"
       strictEqual respond.id, 1

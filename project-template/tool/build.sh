@@ -21,7 +21,7 @@ framework_version=dev
 
 # Relative the Zonda Project
 deploy_dir=../
-deploy_file=mobile.html
+deploy_file=index.html
 
 sea_version=2.0.1
 # --------------
