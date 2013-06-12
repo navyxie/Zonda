@@ -59,7 +59,7 @@ define(function(require, exports, module) {
     Collection.prototype.factory = function(id) {
       var model, view;
 
-      model = new this.Model("" + this.NAME);
+      model = new this.Model("" + this.NAME, this.API);
       model.id = id;
       view = new this.View(model);
       this.model_list[id] = model;

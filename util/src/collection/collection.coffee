@@ -52,7 +52,7 @@ define ( require, exports, module ) ->
           delete @view_list[id]
 
     factory: (id) ->
-      model = new @Model "#{@NAME}"
+      model = new @Model "#{@NAME}", @API
 
       model.id = id
 
