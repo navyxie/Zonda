@@ -115,7 +115,6 @@ function frameMaker () {
       plugin-debug.js \
       plugin-warning.js \
       $project_dir/etc/env.js \
-      $project_dir/src/API.js \
       > $dist_dir/framework-$framework_version.js
 
   echo "Framework ready..."
