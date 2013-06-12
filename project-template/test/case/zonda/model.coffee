@@ -76,6 +76,7 @@ define ( require ) ->
     ok dog_Model.namespace
 
   asyncTest "act", ->
+
     dog_Model.once "#{dog_Model.NAME}:READ:success", (respond) ->
       console.log respond
 
