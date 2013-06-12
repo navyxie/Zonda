@@ -8,6 +8,7 @@ define ( require, exports, module ) ->
   Exception = require "../exception/exception"
 
   Http = (config) ->
+
     $.ajaxSetup
       dataType : "JSON"
       type : "POST"
@@ -34,14 +35,18 @@ define ( require, exports, module ) ->
 
         else
           config.caller.trigger "#{config.namespace}:HTTP:success",
-            data,
+            respond.data,
             config.data
 
     # END $.ajaxSetup
 
-    return $.ajax config
-    # TODO:fakeServer
-    # TODO:abort the ajax
+    if config.fake
+      require.async "test/fake/server", (server) ->
+        $.ajax config
+        server config.url
+
+    else
+      return $.ajax config
 
   module.exports = Http
   

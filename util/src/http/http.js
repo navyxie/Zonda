@@ -23,11 +23,18 @@ define(function(require, exports, module) {
           console.log("ERROR");
           return config.caller.trigger("" + config.namespace + ":HTTP:error", respond.info, config.data);
         } else {
-          return config.caller.trigger("" + config.namespace + ":HTTP:success", data, config.data);
+          return config.caller.trigger("" + config.namespace + ":HTTP:success", respond.data, config.data);
         }
       }
     });
-    return $.ajax(config);
+    if (config.fake) {
+      return require.async("test/fake/server", function(server) {
+        $.ajax(config);
+        return server(config.url);
+      });
+    } else {
+      return $.ajax(config);
+    }
   };
   return module.exports = Http;
 });

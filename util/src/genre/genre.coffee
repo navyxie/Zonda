@@ -128,11 +128,11 @@ define ( require, exports, module ) ->
         return null unless @GENRE[position]
 
         if @genre_map[@GENRE[position].genre] isnt getType value
-          throw Error """ Genre Error!
-            Genre location: #{position},
-            expect: #{@genre_map[@GENRE[position].genre]},
-            not: #{getType value}
-          """
+          Exception "genre",
+            position: position
+            expect: @genre_map[@GENRE[position].genre]
+            not: getType value
+
         else
           genre[position].is_inspected = true
 

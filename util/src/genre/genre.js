@@ -99,7 +99,11 @@ define(function(require, exports, module) {
           return null;
         }
         if (_this.genre_map[_this.GENRE[position].genre] !== getType(value)) {
-          throw Error(" Genre Error!\nGenre location: " + position + ",\nexpect: " + _this.genre_map[_this.GENRE[position].genre] + ",\nnot: " + (getType(value)));
+          return Exception("genre", {
+            position: position,
+            expect: _this.genre_map[_this.GENRE[position].genre],
+            not: getType(value)
+          });
         } else {
           return genre[position].is_inspected = true;
         }

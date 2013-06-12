@@ -13,6 +13,7 @@ define(function(require, exports, module) {
       this.NAME = NAME;
       this.API = API;
       _.extend(this, Backbone.Events);
+      this.connection_stack = [];
       if (this.id) {
         this.namespace = "" + this.NAME + ":" + this.id;
       } else {
@@ -41,11 +42,18 @@ define(function(require, exports, module) {
         respond = _this.genre.toLocal(respond);
         return _this.trigger("" + _this.namespace + ":" + act + ":success", respond);
       });
-      return Http({
+      return this.connection_stack.push(Http({
         url: this.API[act].url,
         data: request,
         caller: this,
-        namespace: "" + this.namespace + ":" + act
+        namespace: "" + this.namespace + ":" + act,
+        fake: this.API[act].fake
+      }));
+    };
+
+    Model.prototype.abort = function() {
+      return _.each(this.connection_stack, function(con) {
+        return con.abort();
       });
     };
 

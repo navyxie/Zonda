@@ -6,6 +6,9 @@ define(function(require, exports, module) {
     switch (type) {
       case "network":
         throw " HTTP ERROR!\ncaller: " + error.caller.NAME + "\nurl: " + error.url + "\nstatus: " + error.status + "\nresponseText: \n" + error.responseText;
+        break;
+      case "genre":
+        throw " Genre ERROR!\nposition: " + error.position + "\nexpect: " + error.expect + "\nnot: " + error.not;
     }
   };
   return module.exports = Exception;

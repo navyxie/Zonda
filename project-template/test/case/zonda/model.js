@@ -28,24 +28,29 @@ define(function(require) {
       ]
     },
     CREATE: {
-      url: "/FAKE_CREATE_dog",
-      expire: 1
+      url: "/dog/create",
+      expire: 1,
+      fake: true
     },
     UPDATE: {
-      url: "/FAKE_UPDATE_dog",
-      expire: 1
+      url: "/dog/update",
+      expire: 1,
+      fake: true
     },
     READ: {
-      url: "/FAKE_READ_dog",
-      expire: 1300
+      url: "/dog/read",
+      expire: 1300,
+      fake: true
     },
     READ_LIST: {
-      url: "/FAKE_READ_LIST_dog",
-      expire: 1300
+      url: "/dog/read_list",
+      expire: 1300,
+      fake: true
     },
     DELELE: {
-      url: "/FAKE_DELETE_dog",
-      expire: 1300
+      url: "/dog/delete",
+      expire: 1300,
+      fake: true
     }
   };
   Util = require("util");
@@ -61,7 +66,12 @@ define(function(require) {
     return ok(dog_Model.namespace);
   });
   return asyncTest("act", function() {
-    dog_Model.once("" + dog_Model.NAME + ":READ:success", function(respond) {});
+    dog_Model.once("" + dog_Model.NAME + ":READ:success", function(respond) {
+      console.log(respond);
+      strictEqual(respond.variety, "中华田园犬");
+      strictEqual(respond.id, 1);
+      return start();
+    });
     return dog_Model.READ({
       id: 1
     });

@@ -1,0 +1,36 @@
+# Zonda Fake HTTP Server
+# - - -
+# Base on Sinon
+define ( require, exports, module ) ->
+  require "sinon"
+  sinon = window.sinon
+
+  server = do sinon.sandbox.useFakeServer
+
+  Analyzer = (url) ->
+    url = (url.replace /^\//, "").replace /\s*/g, ""
+
+    url = url.split "/"
+
+    return url
+
+  module.exports = (url) ->
+    request_path = Analyzer url
+
+    data_path = "./data/#{request_path.join "/"}"
+
+    server.respondWith url, (xhr) ->
+      request = xhr.requestBody
+
+      console.log "HTTP Request: #{url}"
+      console.log "HTTP Request: #{request}"
+
+      xhr.respond 200,
+        "Content-Type": "application/json",
+        JSON.stringify
+          err: null
+          data: data[request]
+
+    do server.respond
+
+# END define

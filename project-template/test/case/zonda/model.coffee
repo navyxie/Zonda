@@ -32,24 +32,30 @@ define ( require ) ->
       ]
 
     CREATE:
-      url: "/FAKE_CREATE_dog"
+      url: "/dog/create"
       expire: 1
+      fake: true
 
     UPDATE:
-      url: "/FAKE_UPDATE_dog"
+      url: "/dog/update"
       expire: 1
+      fake: true
 
     READ:
-      url: "/FAKE_READ_dog"
+      url: "/dog/read"
       expire: 1300
+      fake: true
 
     READ_LIST:
-      url: "/FAKE_READ_LIST_dog"
+      url: "/dog/read_list"
       expire: 1300
+      fake: true
 
     DELELE:
-      url: "/FAKE_DELETE_dog"
+      url: "/dog/delete"
       expire: 1300
+      fake: true
+
   # - - -
   # Test API
 
@@ -71,6 +77,11 @@ define ( require ) ->
 
   asyncTest "act", ->
     dog_Model.once "#{dog_Model.NAME}:READ:success", (respond) ->
+      console.log respond
+
+      strictEqual respond.variety, "中华田园犬"
+      strictEqual respond.id, 1
+      do start
 
     dog_Model.READ id: 1
 

@@ -13,6 +13,10 @@ define ( require, exports, module ) ->
     constructor: ( @NAME, @API ) ->
       _.extend @, Backbone.Events
 
+      # Keep the Status of Network
+      # - - -
+      @connection_stack = []
+
       # Generate Namespace of this Model
       # - - -
       if @id
@@ -44,11 +48,16 @@ define ( require, exports, module ) ->
         respond = @genre.toLocal respond
         @trigger "#{@namespace}:#{act}:success", respond
 
-      Http
+      @connection_stack.push Http
         url:       @API[act].url
         data:      request
         caller:    @
         namespace: "#{@namespace}:#{act}"
+        fake:      @API[act].fake
+
+    abort: ->
+      _.each @connection_stack, (con) ->
+        do con.abort
 
   module.exports = Model
 
