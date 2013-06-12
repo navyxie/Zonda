@@ -15,7 +15,8 @@ define ( require, exports, module ) ->
     StateMachine: require "./stateMachine/stateMachine"
 
     Genre:        require "./genre/genre"
+
     Model:        require "./model/model"
-    #Collection: require "./collection/collection"
+    Collection:   require "./collection/collection"
 
 # END define

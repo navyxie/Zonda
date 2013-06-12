@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     Http: require("./http/http"),
     StateMachine: require("./stateMachine/stateMachine"),
     Genre: require("./genre/genre"),
-    Model: require("./model/model")
+    Model: require("./model/model"),
+    Collection: require("./collection/collection")
   };
 });

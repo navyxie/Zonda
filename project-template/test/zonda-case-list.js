@@ -4,5 +4,6 @@ define(function(require) {
   require.async("./case/zonda/stateMachine");
   require.async("./case/zonda/dialog");
   require.async("./case/zonda/genre");
-  return require.async("./case/zonda/model");
+  require.async("./case/zonda/model");
+  return require.async("./case/zonda/collection");
 });
