@@ -27,16 +27,6 @@ define(function(require) {
         }
       ]
     },
-    CREATE: {
-      url: "/dog/create",
-      expire: 1,
-      fake: true
-    },
-    UPDATE: {
-      url: "/dog/update",
-      expire: 1,
-      fake: true
-    },
     READ: {
       url: "/dog/read",
       expire: 1300,
@@ -46,11 +36,6 @@ define(function(require) {
       url: "/dog/read_list",
       expire: 1300,
       fake: true
-    },
-    DELELE: {
-      url: "/dog/delete",
-      expire: 1300,
-      fake: true
     }
   };
   Backbone = require("backbone");
@@ -58,10 +43,28 @@ define(function(require) {
   Model = Util.Model;
   View = Backbone.View;
   Collection = Util.Collection;
-  return collection = new Collection({
+  collection = new Collection({
     NAME: "dog",
     API: API,
     Model: Model,
     View: View
+  });
+  test("API", function() {
+    ok(collection.sync, "'sync' from Model");
+    ok(collection.fetch, "Get Model list");
+    ok(collection.update, "Updata collection");
+    return ok(collection.factory, "Make Model and View");
+  });
+  test("Property", function() {
+    strictEqual(typeof collection.model_list, "object");
+    return strictEqual(typeof collection.view_list, "object");
+  });
+  return asyncTest("Fetch", function() {
+    collection.on("dog:READ_LIST:success", function(respond) {
+      ok(respond, "Get respond");
+      strictEqual(collection.model_list["1"].NAME, "dog", "Model Name");
+      return start();
+    });
+    return collection.fetch();
   });
 });

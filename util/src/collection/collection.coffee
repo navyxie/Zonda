@@ -3,16 +3,19 @@
 # Just like the Collection of Backbone
 define ( require, exports, module ) ->
   _ = require "underscore"
-
-  Model = require "../model/model"
+  Backbone = require "backbone"
 
   Exception = require "../exception/exception"
 
-  class Collection extends ModelClass
+  Genre = require "../genre/genre"
+  Model = require "../model/model"
+
+  class Collection extends Model
     constructor: (config)->
       _.extend @, Backbone.Events
 
       @NAME       = config.NAME
+      @namespace  = @NAME
       @API        = config.API
       @Model      = config.Model
       @View       = config.View
@@ -20,13 +23,17 @@ define ( require, exports, module ) ->
       @model_list = {}
       @view_list  = {}
 
+      @genre      = new Genre "@#{@NAME}", @API
+
+      @connection_stack = []
+
     fetch: ->
-      @once "#{@NAME}:READ_LIST:success", @update, @
+      @once "#{@NAME}:READ_LIST:HTTP:success", @update, @
 
       @sync "READ_LIST"
 
     update: (respond) ->
-      if typeof respond isnt "array"
+      if "[object Array]" isnt Object::toString.call respond
         Exception "genre",
           position: "Collection:#{@NAME}:READ_LIST"
           expect: "array"

@@ -177,7 +177,7 @@ define(function(require) {
     return ok(dog.inspect(b));
   });
   return test("Useless information", function() {
-    var b;
+    var a, b;
 
     b = dog.toRemote({
       list: [
@@ -195,6 +195,12 @@ define(function(require) {
     ok(b.list);
     ok(b.list[1].a);
     ok(b.list[1].c.a);
-    return strictEqual(b.list[1].c.a, 1);
+    strictEqual(b.list[1].c.a, 1);
+    a = dog.toRemote(void 0);
+    strictEqual(a, void 0, "handle undefined");
+    a = dog.toRemote(null);
+    strictEqual(a, null, "handle null");
+    a = dog.toRemote("");
+    return strictEqual(a, "", "handle \"\"");
   });
 });

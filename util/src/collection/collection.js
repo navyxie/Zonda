@@ -3,33 +3,38 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(function(require, exports, module) {
-  var Collection, Exception, Model, _;
+  var Backbone, Collection, Exception, Genre, Model, _;
 
   _ = require("underscore");
-  Model = require("../model/model");
+  Backbone = require("backbone");
   Exception = require("../exception/exception");
+  Genre = require("../genre/genre");
+  Model = require("../model/model");
   Collection = (function(_super) {
     __extends(Collection, _super);
 
     function Collection(config) {
       _.extend(this, Backbone.Events);
       this.NAME = config.NAME;
+      this.namespace = this.NAME;
       this.API = config.API;
       this.Model = config.Model;
       this.View = config.View;
       this.model_list = {};
       this.view_list = {};
+      this.genre = new Genre("@" + this.NAME, this.API);
+      this.connection_stack = [];
     }
 
     Collection.prototype.fetch = function() {
-      this.once("" + this.NAME + ":READ_LIST:success", this.update, this);
+      this.once("" + this.NAME + ":READ_LIST:HTTP:success", this.update, this);
       return this.sync("READ_LIST");
     };
 
     Collection.prototype.update = function(respond) {
       var _this = this;
 
-      if (typeof respond !== "array") {
+      if ("[object Array]" !== Object.prototype.toString.call(respond)) {
         Exception("genre", {
           position: "Collection:" + this.NAME + ":READ_LIST",
           expect: "array",
@@ -71,6 +76,6 @@ define(function(require, exports, module) {
 
     return Collection;
 
-  })(ModelClass);
+  })(Model);
   return module.exports = Collection;
 });

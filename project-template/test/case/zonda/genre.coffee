@@ -205,4 +205,13 @@ define ( require ) ->
     ok b.list[1].c.a
     strictEqual b.list[1].c.a, 1
 
+    a = dog.toRemote undefined
+    strictEqual a, undefined, "handle undefined"
+
+    a = dog.toRemote null
+    strictEqual a, null, "handle null"
+
+    a = dog.toRemote ""
+    strictEqual a, "", "handle \"\""
+
 # END define

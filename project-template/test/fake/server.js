@@ -11,6 +11,9 @@ define(function(require, exports, module) {
       var request;
 
       request = xhr.requestBody;
+      if (request === null || request === void 0) {
+        request = "";
+      }
       console.log("HTTP Request: " + url);
       console.log("HTTP Request: " + request);
       return xhr.respond(200, {

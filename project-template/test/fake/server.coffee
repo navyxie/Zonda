@@ -13,6 +13,8 @@ define ( require, exports, module ) ->
     server.respondWith url, (xhr) ->
       request = xhr.requestBody
 
+      request = "" if request is null or request is undefined
+
       console.log "HTTP Request: #{url}"
       console.log "HTTP Request: #{request}"
 
