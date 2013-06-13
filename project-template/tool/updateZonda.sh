@@ -65,6 +65,10 @@ git status
 echo "GIT commit message: ..."
 read message
 
+if [ "$message" == "" ]; then
+  exit;
+fi
+
 git commit -m '$message'
 
 git status
