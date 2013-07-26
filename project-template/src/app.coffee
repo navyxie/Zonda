@@ -4,10 +4,10 @@ define ( require, exports, module ) ->
 
   Util = require "util"
 
-  Util.dialog
+  Util.Dialog
     title: "1"
     content: "1"
     class: "hehe"
-  .open().close(1300)
+  .open()
 
 # END define
