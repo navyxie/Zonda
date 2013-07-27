@@ -27,8 +27,9 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 `git clone https://github.com/smallsmallwolf/Zonda.git` 将Zonda拉到Web服务的文件根目录(Web服务器`/`的位置，放到这里主要是为了方便)，然后执行：
 
 ```shell
-cd Zonda/tool
-./setup.sh
+cd Zonda/
+npm install
+./tool/setup.sh
 ```
 
 执行完毕后，Zonda会根据`Zonda/project-template`创建一个前端项目模板，目录结构大致是这样的：
