@@ -85,14 +85,12 @@ define(function ( require, exports, module ) {
 	function removeAllCookie () {
 
 		var cookieText = dom.cookie,	
-			arr = cookieText.split("=");
+			arr = cookieText.split(";");
 
 		for ( var i=arr.length; i--; ) {
-			var newArr = arr[i].split(';');	
-			if ( newArr.length > 1 ) {
-				removeCookie( trim ( newArr[1] ) );
-			} else {
-				removeCookie( trim ( newArr[0] ) );
+			var newArr = arr[i].split('=');	
+			for ( var j=0, len=newArr.length; j<len; j++ ){
+				removeCookie( trim ( newArr[j] ) );
 			}
 		}
 
