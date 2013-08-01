@@ -29,7 +29,7 @@ fs.readdir "#{project_dir}/dist", (err) ->
 # Generate simple framework
 # - - -
 # Combo Seajs, Seajs Plugin, Seajs Config
-console.log "\n   Generate simple framework-#{CONFIG.version}.js...:  ".bold + "#{project_dir}/dist"
+console.log "\n   Generate simple framework-#{CONFIG.version}.js...:  ".bold
 
 sea = fs.readFileSync "#{project_dir}/vendor/Zonda/vendor/sea/#{CONFIG.sea_version}/sea-debug.js"
 
@@ -40,3 +40,26 @@ sea_config = fs.readFileSync "#{project_dir}/etc/seajs_config.js"
 fs.writeFileSync "#{project_dir}/dist/framework-#{CONFIG.version}.js", sea+sea_plugin_text+sea_config
 
 console.log "   >>".bold + " Success!".green
+
+# Generate Combo framework
+# - - -
+# Combo all vendor into framework
+
+if CONFIG.pattern is "prod"
+  zonda_vendor_dir = "vendor/Zonda/vendor"
+
+  aliasGenerator = require "./alias.generator"
+  vendor_list = aliasGenerator "#{project_dir}/#{zonda_vendor_dir}", zonda_vendor_dir
+
+  console.log "\n   Combo vendors into framework-#{CONFIG.version}.js...:  ".bold
+
+  for name of vendor_list.dependencies
+    console.log "\n     Combining: ".bold + "#{name}" + "[#{vendor_list.info[name]}]".yellow
+    _vendor_content = fs.readFileSync "#{project_dir}/#{vendor_list.alias[name]}.js"
+    fs.appendFileSync "#{project_dir}/dist/framework-#{CONFIG.version}.js", _vendor_content
+    console.log "     >>".bold + " Success!".green
+  # END for
+
+# END if
+
+console.log "\n\n Zonda Tool".bold + " >> " + "Generate framework-#{CONFIG.version}.js" + " Success!\n".bold.yellow

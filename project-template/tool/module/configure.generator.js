@@ -60,3 +60,5 @@ less_path_config = "// Path of Web root\n@root: \"" + CONFIG.web_root + "\";\n\n
 fs.writeFileSync("" + project_dir + "/etc/less_path_config.less", less_path_config);
 
 console.log("   >>".bold + " Success!".green);
+
+console.log("\n\n Zonda Tool".bold + " >> " + "Generate Configure" + " Success!\n".bold.yellow);

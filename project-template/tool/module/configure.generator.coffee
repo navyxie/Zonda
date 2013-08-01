@@ -80,4 +80,5 @@ less_path_config = """
 
 fs.writeFileSync "#{project_dir}/etc/less_path_config.less", less_path_config
 console.log "   >>".bold + " Success!".green
-###
+
+console.log "\n\n Zonda Tool".bold + " >> " + "Generate Configure" + " Success!\n".bold.yellow
