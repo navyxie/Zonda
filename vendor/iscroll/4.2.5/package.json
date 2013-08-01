@@ -1,8 +1,1 @@
-{
-  "name": "iscroll",
-  "root": "/assets/vendor/Zonda/vendor",
-  "version": "4.2.5",
-  "output": {
-    "iscroll.js": "."
-  }
-}
+{"family":"/assets/vendor/Zonda/vendor","name":"iscroll","version":"4.2.5","spm":{"output":["iscroll.js"]}}

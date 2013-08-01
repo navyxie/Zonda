@@ -1,8 +1,1 @@
-{
-  "name": "hammer",
-  "root": "/assets/vendor/Zonda/vendor",
-  "version": "1.0.4",
-  "output": {
-    "hammer.js": "."
-  }
-}
+{"family":"/assets/vendor/Zonda/vendor","name":"hammer","version":"1.0.4","spm":{"output":["hammer.js"]}}

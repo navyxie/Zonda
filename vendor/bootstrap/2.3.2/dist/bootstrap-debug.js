@@ -1,4 +1,4 @@
-define("/assets/vendor/Zonda/vendor/bootstrap/2.3.2/bootstrap-debug", [], function() {
+define("/assets/vendor/Zonda/vendor/bootstrap/2.3.2/bootstrap-debug", [ "jquery-debug" ], function(require, exports, module) {
     var $ = require("jquery-debug");
     var jQuery = $;
     /* ===================================================

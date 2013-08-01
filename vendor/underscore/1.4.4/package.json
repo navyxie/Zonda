@@ -1,8 +1,1 @@
-{
-  "name": "underscore",
-  "root": "/assets/vendor/Zonda/vendor",
-  "version": "1.4.4",
-  "output": {
-    "underscore.js": "."
-  }
-}
+{"family":"/assets/vendor/Zonda/vendor","name":"underscore","version":"1.4.4","spm":{"output":["underscore.js"]}}

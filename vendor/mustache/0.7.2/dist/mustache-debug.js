@@ -8,7 +8,7 @@ define("/assets/vendor/Zonda/vendor/mustache/0.7.2/mustache-debug", [], function
         if (typeof exports === "object" && exports) {
             module.exports = factory;
         } else if (typeof define === "function" && define.amd) {
-            define("/assets/vendor/Zonda/vendor/mustache/0.7.2/mustache-debug", [], factory);
+            define(factory);
         } else {
             root.Mustache = factory;
         }
