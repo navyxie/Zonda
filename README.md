@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/smallsmallwolf/Zonda.png?branch=master)](https://travis-ci.org/smallsmallwolf/Zonda)
 
+正在重构中...该文档已经部分失效...
+
 - - -
 
 Zonda——Degas自家用的前端框架。
