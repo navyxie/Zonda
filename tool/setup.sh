@@ -35,3 +35,7 @@ cd $assets_dir
 echo "Zonda project is ready now!"
 
 ls -al
+
+make config
+
+make
