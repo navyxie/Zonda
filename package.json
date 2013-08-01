@@ -6,6 +6,7 @@
   },
   "scripts": {
     "preinstall": "npm install -g grunt-cli",
+    "postinstall": "./tool/setup.sh",
     "test": "grunt test"
   },
   "dependencies": {

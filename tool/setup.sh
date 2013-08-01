@@ -35,9 +35,3 @@ cd $assets_dir
 echo "Zonda project is ready now!"
 
 ls -al
-
-# Install Grunt CLI
-npm uninstall -g grunt
-npm install -g grunt-cli
-
-bash tool/test.sh
