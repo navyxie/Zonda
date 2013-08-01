@@ -1,0 +1,32 @@
+name: Zonda Test
+
+version: dev
+
+# Project Pattern
+# - - -
+pattern: dev
+
+# Use the SeaJS for CommonJS Modules
+sea_version: 2.0.1
+
+domain_dev: /
+
+domain_prod: /
+
+web_root: /assets
+
+# Relative the web_root
+image_path: ui/images
+
+# Relative the web_root
+FontAwesomePath: vendor/Zonda/ui/less/Font-Awesome/font
+
+# Relative the web_root
+BootstrapPath: vendor/Zonda/ui/less/bootstrap/bootstrap
+
+# When you execute the "build dev" or "build prod",
+# Zonda will build the project and generate a new HTML to the deploy_dir
+# TODO
+deploy_dir: ../
+
+deploy_file: index.html

@@ -1,8 +1,0 @@
-{
-    "name": "dist",
-    "root": "/assets",
-    "dependencies": {"backbone":"backbone","bootstrap":"bootstrap","hammer":"hammer","iscroll":"iscroll","jquery":"jquery","modernizr":"modernizr","mustache":"mustache","sinon":"sinon","underscore":"underscore","util":"util"},
-    "output": {
-        "app.js" : "."
-    }
-}
