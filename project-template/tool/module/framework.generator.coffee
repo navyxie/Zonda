@@ -23,7 +23,9 @@ CONFIG = require "#{project_dir}/etc/zonda.yml"
 
 # Mkdir dist
 # - - -
-fs.readdir "#{project_dir}/dist", (err) ->
+try
+  fs.readdirSync "#{project_dir}/dist"
+catch err
   fs.mkdirSync "#{project_dir}/dist" if err isnt null
 
 # Generate simple framework
