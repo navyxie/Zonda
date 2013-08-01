@@ -33,6 +33,10 @@ cp -r src/ $zonda_project_template
 cp -r test/ $zonda_project_template
 cp -r tool/ $zonda_project_template
 cp -r ui/ $zonda_project_template
-cp -r Gruntfile.js $zonda_project_template
-cp -r Makefile $zonda_project_template
-cp -r package.json $zonda_project_template
+
+cp Gruntfile.js $zonda_project_template
+cp Makefile $zonda_project_template
+cp package.json $zonda_project_template
+
+cd $project_dir/vendor/Zonda
+cp project-template/package.json ./

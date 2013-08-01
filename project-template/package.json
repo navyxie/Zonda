@@ -5,6 +5,7 @@
     "node": ">= 0.10.13"
   },
   "scripts": {
+    "preinstall": "sudo npm install -g grunt-cli",
     "test": "grunt test"
   },
   "dependencies": {
