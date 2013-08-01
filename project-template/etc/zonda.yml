@@ -7,13 +7,15 @@ version: dev
 pattern: dev
 
 # Use the SeaJS for CommonJS Modules
-sea_version: 2.0.1
+sea_version: 2.1.1
 
 domain_dev: /
 
 domain_prod: /
 
 web_root: /assets
+
+app_bootstrap: app
 
 # Relative the web_root
 image_path: ui/images
