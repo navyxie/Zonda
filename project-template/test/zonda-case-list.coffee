@@ -2,10 +2,10 @@
 #
 # just import cases
 define ( require ) ->
-  require.async "./case/zonda/base64"
-  require.async "./case/zonda/stateMachine"
-  require.async "./case/zonda/dialog"
-  require.async "./case/zonda/genre"
-  require.async "./case/zonda/model"
-  require.async "./case/zonda/collection"
+  require "./case/zonda/base64"
+  require "./case/zonda/stateMachine"
+  require "./case/zonda/dialog"
+  require "./case/zonda/genre"
+  require "./case/zonda/model"
+  require "./case/zonda/collection"
 # END define
