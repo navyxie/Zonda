@@ -29,3 +29,8 @@ console.log "\n   Generate simple app-#{CONFIG.version}.js...:  ".bold
 fs.writeFileSync "#{project_dir}/dist/app-#{CONFIG.version}.js", """
   seajs.use("#{CONFIG.web_root}/src/app");
   """
+
+console.log "   >>".bold + " Success!".green
+
+# Generate Combo Framework
+# - - -
