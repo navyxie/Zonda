@@ -1,11 +1,14 @@
 build:
+	@./tool/configure.sh
 	@./tool/build.framework.sh
 	@./tool/build.app.sh
 
-prod:
+install:
+	@./tool/deploy.app.sh
 
 config:
 	@./tool/configure.sh
 
 update:
+	@./tool/configure.sh
 	@./tool/update.vendor.sh

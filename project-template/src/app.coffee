@@ -4,6 +4,8 @@ define ( require, exports, module ) ->
 
   do b
 
+  tpl = require "./d.tpl"
+
   Util.Dialog
     title: "Welcome~"
     content: "Hi Zonda~"
