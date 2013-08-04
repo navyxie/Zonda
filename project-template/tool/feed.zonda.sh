@@ -34,7 +34,7 @@ cp -r test/ $zonda_project_template
 cp -r tool/ $zonda_project_template
 cp -r ui/ $zonda_project_template
 
-cp Gruntfile.js $zonda_project_template
+cp Gruntfile.coffee $zonda_project_template
 cp Makefile $zonda_project_template
 cp package.json $zonda_project_template
 
