@@ -14,3 +14,4 @@ nohup*
 .DS_Store
 node_modules
 project-template/dist/
+Gruntfile.js
