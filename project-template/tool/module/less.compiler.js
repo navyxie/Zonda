@@ -38,6 +38,6 @@ exec(command, {
     return console.log("     " + err);
   } else {
     console.log("   >>".bold + " Success: ".green + ("" + CONFIG.less_compiler.destination + "-" + CONFIG.version).yellow);
-    return console.log("\n\n Zonda Tool".bold + " >> " + ("Generate " + CONFIG.less_compiler.destination + "-" + CONFIG.version + ".js") + " Success!\n".bold.yellow);
+    return console.log("\n\n Zonda Tool".bold + " >> " + ("Generate " + CONFIG.less_compiler.destination + "-" + CONFIG.version + ".css") + " Success!\n".bold.yellow);
   }
 });
