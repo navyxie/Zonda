@@ -4,7 +4,7 @@ version: dev
 
 # Project Pattern
 # - - -
-pattern: prod
+pattern: dev
 
 # Use the SeaJS for CommonJS Modules
 sea_version: 2.1.1
