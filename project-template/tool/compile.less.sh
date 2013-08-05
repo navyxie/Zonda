@@ -13,4 +13,4 @@ cd $dir
 # - - -
 # Get path
 
-node module/jit.less.compiler.js
+node module/less.compiler.js

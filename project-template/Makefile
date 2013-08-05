@@ -4,6 +4,7 @@ build:
 	$(CONFIGURE)
 	@./tool/build.framework.sh
 	@./tool/build.app.sh
+	@./tool/compile.less.sh
 
 install:
 	@./tool/deploy.app.sh

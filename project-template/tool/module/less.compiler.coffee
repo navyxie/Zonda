@@ -1,7 +1,7 @@
 # Zonda Tool
-# Less to CSS Compiler
+# Simple Less to CSS Compiler
 # - - -
-# Compile less to css when files changed
+# Compile less to css once!
 
 require "js-yaml"
 colors = require "colors"
@@ -12,11 +12,7 @@ recursivePath = require "./path.recursive"
 
 # Welcome
 # - - -
-console.log "\n\n Zonda Tool".bold + ":  JIT Less Compiler Running..."
-
-# Command of Less
-# - - -
-lessc_command = "lessc -x"
+console.log "\n\n Zonda Tool".bold + ":  Simple Less Compiler Running..."
 
 # Path config
 # - - -
@@ -27,71 +23,18 @@ output_dir = "#{project_dir}/dist"
 input_dir = "#{project_dir}/ui/less"
 main_file = "#{CONFIG.less_compiler.bootstrap}.less"
 
-# Queue
+# Command of Less
 # - - -
-# Queue of file Compiling
-queue = {}
+lessc_command = "lessc -x "
 
-# Compile
-# - - -
-# invoke lessc to compile
-Compile = (file, callback)->
-  command = "#{lessc_command} #{file} > #{output_dir}/#{CONFIG.less_compiler.destination}-#{CONFIG.version}.css"
+command = "#{lessc_command} #{input_dir}/#{main_file} > #{output_dir}/#{CONFIG.less_compiler.destination}-#{CONFIG.version}.css"
 
-  exec command, encoding: "", callback
-# END compiler
-
-# Main
-# - - -
-# compiler
-Main = ( file_name, file_path ) ->
-
-  if not /\.less$/.test file_name
-    return false
-
-  # Queue ID
-  # - - -
-  id = (file_path.replace input_dir, "") + file_name
-
-  # Check the Queue
-  # - - -
-  if queue[id] is undefined
-    queue[id] = "compiling"
+exec command, encoding: "", (err)->
+  if err isnt null
+    console.log "   >>".bold + " Error!".red.bold
+    console.log "     #{main_file}".yellow
+    console.log "     #{err}"
+    
   else
-    return null
-
-  base_name = path.basename file_name, ".less"
-
-  console.log "\n   <- ".bold + "compiling:".green
-  console.log "     #{file_path.replace input_dir, "" }" + " #{file_name}".yellow
-
-  # At first, try to compile main file
-  # - - -
-  Compile "#{input_dir}/#{main_file}", ( err, stdout, stderr ) ->
-    # Remove this file from Queue
-    # - - -
-    delete queue[id]
-
-    if err isnt null
-      console.log "   >>".bold + " Error!".red.bold
-      console.log "     #{file_path.replace input_dir, "" }" + " #{file_name}".yellow
-      console.log "     #{err}"
-      
-    else
-      console.log "   >>".bold + " Success!".green + "#{file_path.replace input_dir, "" }" + " #{file_name}".yellow
-
-# END main
-
-Main main_file, "#{input_dir}"
-
-# watch the input_dir
-recursivePath "#{input_dir}", ( type, path_cell ) ->
-  if type is "dir"
-    fs.watch path_cell.realpath, ( event, name ) ->
-      if event is "change"
-        Main name, path_cell.realpath
-, 10
-
-fs.watch "#{input_dir}", ( event, name ) ->
-  if event is "change"
-    Main name, "#{input_dir}"
+    console.log "   >>".bold + " Success: ".green + "#{CONFIG.less_compiler.destination}-#{CONFIG.version}".yellow
+    console.log "\n\n Zonda Tool".bold + " >> " + "Generate #{CONFIG.less_compiler.destination}-#{CONFIG.version}.js" + " Success!\n".bold.yellow
