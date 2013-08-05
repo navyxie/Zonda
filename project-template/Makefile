@@ -1,7 +1,7 @@
-configure = @./tool/configure.sh
+CONFIGURE = @./tool/configure.sh
 
 build:
-	$(configure)
+	$(CONFIGURE)
 	@./tool/build.framework.sh
 	@./tool/build.app.sh
 
@@ -9,10 +9,10 @@ install:
 	@./tool/deploy.app.sh
 
 config:
-	$(configure)
+	$(CONFIGURE)
 
 update-vendor:
-	$(configure)
+	$(CONFIGURE)
 	@./tool/update.vendor.sh
 
 test:
