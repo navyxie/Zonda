@@ -29,6 +29,8 @@ main_file = "#{CONFIG.less_compiler.bootstrap}.less"
 
 # Queue
 # - - -
+# Queue of file Compiling
+queue = {}
 
 # Compile
 # - - -
@@ -47,6 +49,17 @@ Main = ( file_name, file_path ) ->
   if not /\.less$/.test file_name
     return false
 
+  # Queue ID
+  # - - -
+  id = (file_path.replace input_dir, "") + file_name
+
+  # Check the Queue
+  # - - -
+  if queue[id] is undefined
+    queue[id] = "compiling"
+  else
+    return null
+
   base_name = path.basename file_name, ".less"
 
   console.log "\n   <- ".bold + "compiling:".green
@@ -55,6 +68,9 @@ Main = ( file_name, file_path ) ->
   # At first, try to compile main file
   # - - -
   Compile "#{input_dir}/#{main_file}", ( err, stdout, stderr ) ->
+    # Remove this file from Queue
+    # - - -
+    delete queue[id]
 
     if err isnt null
       console.log "   >>".bold + " Error!".red.bold
