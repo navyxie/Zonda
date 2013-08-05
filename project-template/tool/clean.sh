@@ -14,4 +14,5 @@ cd $dir
 # Get path
 
 rm ../dist/*
+rm -rf ../dist/.build/
 rm ../Gruntfile.js

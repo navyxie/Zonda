@@ -1,4 +1,3 @@
-define(function(require, exports, module) {
 /**
  * Sinon.JS 1.6.0, 2013/02/18
  *
@@ -4222,5 +4221,3 @@ if (typeof module == "object" && typeof require == "function") {
 }(typeof sinon == "object" && sinon || null, typeof window != "undefined" ? window : global));
 
 return sinon;}.call(typeof window != 'undefined' && window || {}));
-
-});
