@@ -31,6 +31,7 @@ switch (CONFIG.pattern) {
     console.log(("\n   Generate simple " + CONFIG.app_bootstrap + "-" + CONFIG.version + ".js...:  ").bold);
     fs.writeFileSync("" + project_dir + "/dist/" + CONFIG.app_bootstrap + "-" + CONFIG.version + ".js", "seajs.use(\"" + CONFIG.web_root + "/src/" + CONFIG.app_bootstrap + "\");");
     console.log("   >>".bold + " Success!".green);
+    console.log("\n\n Zonda Tool".bold + " >> " + "Generate App" + " Success!\n".bold.yellow);
     break;
   case "prod":
     console.log(("\n   Generate combo " + CONFIG.app_bootstrap + "-" + CONFIG.version + ".js...:  ").bold);
@@ -46,6 +47,7 @@ switch (CONFIG.pattern) {
       _app_content = fs.readFileSync("" + project_dir + "/dist/.build/" + CONFIG.app_bootstrap + ".js");
       fs.writeFileSync("" + project_dir + "/dist/" + CONFIG.app_bootstrap + "-" + CONFIG.version + ".js", _app_content);
       fs.appendFileSync("" + project_dir + "/dist/" + CONFIG.app_bootstrap + "-" + CONFIG.version + ".js", ";seajs.use(\"" + CONFIG.app_bootstrap + "\");");
-      return console.log("   >>".bold + " Success!".green);
+      console.log("   >>".bold + " Success!".green);
+      return console.log("\n\n Zonda Tool".bold + " >> " + "Generate App" + " Success!\n".bold.yellow);
     });
 }

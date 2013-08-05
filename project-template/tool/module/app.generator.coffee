@@ -32,6 +32,7 @@ switch CONFIG.pattern
       seajs.use("#{CONFIG.web_root}/src/#{CONFIG.app_bootstrap}");
       """
     console.log "   >>".bold + " Success!".green
+    console.log "\n\n Zonda Tool".bold + " >> " + "Generate App" + " Success!\n".bold.yellow
 
   when "prod"
     console.log "\n   Generate combo #{CONFIG.app_bootstrap}-#{CONFIG.version}.js...:  ".bold
@@ -49,3 +50,4 @@ switch CONFIG.pattern
         ;seajs.use("#{CONFIG.app_bootstrap}");
       """
       console.log "   >>".bold + " Success!".green
+      console.log "\n\n Zonda Tool".bold + " >> " + "Generate App" + " Success!\n".bold.yellow

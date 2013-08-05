@@ -1,78 +1,81 @@
-# lessCompiler.coffee
-#
-# compile less to css when files changed
+# Zonda Tool
+# Less to CSS Compiler
+# - - -
+# Compile less to css when files changed
 
-colors = require "/usr/local/lib/node_modules/colors"
-
-console.log "\nLess Compiler Start!".bold.underline + "\n"
-
+require "js-yaml"
+colors = require "colors"
 fs = require 'fs'
 exec = require('child_process').exec
 path = require 'path'
-
 recursivePath = require "./path.recursive"
 
-# command of Less
+# Welcome
+# - - -
+console.log "\n\n Zonda Tool".bold + ":  JIT Less Compiler Running..."
+
+# Command of Less
+# - - -
 lessc_command = "lessc -x"
 
-# path config
+# Path config
+# - - -
 project_dir = path.resolve './', '../'
-output_dir = "dist"
-input_dir = "ui/less"
-main_file = "config.less"
+CONFIG = require "#{project_dir}/etc/zonda.yml"
 
-# compile
+output_dir = "#{project_dir}/dist"
+input_dir = "#{project_dir}/ui/less"
+main_file = "#{CONFIG.less_compiler.bootstrap}.less"
+
+# Queue
+# - - -
+
+# Compile
+# - - -
 # invoke lessc to compile
-compile = (file, callback)->
-  command = "#{lessc_command} #{file} > #{project_dir}/dist/app-dev.css"
+Compile = (file, callback)->
+  command = "#{lessc_command} #{file} > #{output_dir}/#{CONFIG.less_compiler.destination}-#{CONFIG.version}.css"
 
   exec command, encoding: "", callback
 # END compiler
 
-# main
+# Main
+# - - -
 # compiler
-main = ( file_name, file_path ) ->
+Main = ( file_name, file_path ) ->
 
   if not /\.less$/.test file_name
     return false
 
-  console.log "Compiling...".yellow.bold.inverse
-  console.log "file name: ".green + file_name
-  console.log "file path: ".green + "#{file_path}/#{file_name}\n"
-
   base_name = path.basename file_name, ".less"
 
-  # at first, try to compile main file
-  compile "#{project_dir}/#{input_dir}/#{main_file}", ( err, stdout, stderr ) ->
+  console.log "\n   <- ".bold + "compiling:".green
+  console.log "     #{file_path.replace input_dir, "" }" + " #{file_name}".yellow
+
+  # At first, try to compile main file
+  # - - -
+  Compile "#{input_dir}/#{main_file}", ( err, stdout, stderr ) ->
 
     if err isnt null
-      console.log "ERROR".red
-      console.log "#{err}"
-      
-      ###
-      if file_name isnt main_file
-        # then try to compile the file changed
-        compile "#{file_path}/#{file_name}", ( err, stdout, stderr ) ->
-          if err isnt null
-            console.log "ERR".magenta.inverse
-            console.log "File: #{file_path}/#{file_name}".underline
-            console.log "Fail to compile!".red.inverse
-      ###
+      console.log "   >>".bold + " Error!".red.bold
+      console.log "     #{file_path.replace input_dir, "" }" + " #{file_name}".yellow
+      console.log "     #{err}"
       
     else
-      console.log "Success!".green.inverse
+      console.log "   >>".bold + " Success!".green + "#{file_path.replace input_dir, "" }" + " #{file_name}".yellow
 
 # END main
-main main_file, "#{project_dir}/#{input_dir}"
+
+Main main_file, "#{input_dir}"
 
 # watch the input_dir
-recursivePath "#{project_dir}/#{input_dir}", ( type, path_cell ) ->
+recursivePath "#{input_dir}", ( type, path_cell ) ->
   if type is "dir"
     fs.watch path_cell.realpath, ( event, name ) ->
       if event is "change"
-        main name, path_cell.realpath
+        Main name, path_cell.realpath
 , 10
 
-fs.watch "#{project_dir}/#{input_dir}", ( event, name ) ->
+fs.watch "#{input_dir}", ( event, name ) ->
   if event is "change"
-    main name, "#{project_dir}/#{input_dir}"
+    Main name, "#{input_dir}"
