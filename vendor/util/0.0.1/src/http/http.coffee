@@ -5,6 +5,7 @@
 define ( require, exports, module ) ->
   $ = require "jquery"
 
+  FakeServer = require "test/fake/server"
   Exception = require "../exception/exception"
 
   Http = (config) ->
@@ -40,7 +41,8 @@ define ( require, exports, module ) ->
 
     # END $.ajaxSetup
 
-    return $.ajax config
+    $.ajax config
+    FakeServer config.url
 
   module.exports = Http
   
