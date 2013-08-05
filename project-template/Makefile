@@ -1,5 +1,7 @@
+configure = @./tool/configure.sh
+
 build:
-	@./tool/configure.sh
+	$(configure)
 	@./tool/build.framework.sh
 	@./tool/build.app.sh
 
@@ -7,11 +9,14 @@ install:
 	@./tool/deploy.app.sh
 
 config:
-	@./tool/configure.sh
+	$(configure)
 
-update:
-	@./tool/configure.sh
+update-vendor:
+	$(configure)
 	@./tool/update.vendor.sh
+
+test:
+	@grunt test
 
 clean:
 	@./tool/clean.sh
