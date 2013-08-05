@@ -12,3 +12,6 @@ config:
 update:
 	@./tool/configure.sh
 	@./tool/update.vendor.sh
+
+clean:
+	@./tool/clean.sh

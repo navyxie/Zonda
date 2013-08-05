@@ -24,6 +24,10 @@ fs.writeFileSync "#{project_dir}/etc/local_path.yml", """
 console.log "\n   Local Project Path is:  ".bold + project_dir
 console.log "   Generate the " + "local_path.yml".underline + " to etc/"
 
+console.log "\n   >> ".bold + "Project Name:  ".bold.green + "   [" + "#{CONFIG.name}".bold.yellow + "]"
+console.log "\n   >> ".bold + "Project Pattern:  ".bold.green + "[" + "#{CONFIG.pattern}".bold.inverse.yellow + "]"
+console.log "\n   >> ".bold + "Project Version:  ".bold.green + "[" + "#{CONFIG.version}".bold.inverse.yellow + "]"
+
 aliasGenerator = require "./alias.generator"
 
 zonda_vendor_dir = "vendor/Zonda/vendor"

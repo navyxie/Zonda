@@ -22,15 +22,15 @@ try
 catch err
   fs.mkdirSync "#{project_dir}/dist" if err isnt null
 
-# Generate a simple app
+# Generate app depends on CONFIG.pattern
 # - - -
-console.log "\n   Generate simple app-#{CONFIG.version}.js...:  ".bold
+switch CONFIG.pattern
+  when "dev"
+    console.log "\n   Generate simple app-#{CONFIG.version}.js...:  ".bold
+    fs.writeFileSync "#{project_dir}/dist/app-#{CONFIG.version}.js", """
+      seajs.use("#{CONFIG.web_root}/src/#{app_bootstrap}");
+      """
+    console.log "   >>".bold + " Success!".green
 
-fs.writeFileSync "#{project_dir}/dist/app-#{CONFIG.version}.js", """
-  seajs.use("#{CONFIG.web_root}/src/app");
-  """
-
-console.log "   >>".bold + " Success!".green
-
-# Generate Combo Framework
-# - - -
+  when "prod"
+    console.log "\n   Generate combo app-#{CONFIG.version}.js...:  ".bold

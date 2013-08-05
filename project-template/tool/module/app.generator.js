@@ -24,8 +24,12 @@ try {
   }
 }
 
-console.log(("\n   Generate simple app-" + CONFIG.version + ".js...:  ").bold);
-
-fs.writeFileSync("" + project_dir + "/dist/app-" + CONFIG.version + ".js", "seajs.use(\"" + CONFIG.web_root + "/src/app\");");
-
-console.log("   >>".bold + " Success!".green);
+switch (CONFIG.pattern) {
+  case "dev":
+    console.log(("\n   Generate simple app-" + CONFIG.version + ".js...:  ").bold);
+    fs.writeFileSync("" + project_dir + "/dist/app-" + CONFIG.version + ".js", "seajs.use(\"" + CONFIG.web_root + "/src/" + app_bootstrap + "\");");
+    console.log("   >>".bold + " Success!".green);
+    break;
+  case "prod":
+    console.log(("\n   Generate combo app-" + CONFIG.version + ".js...:  ").bold);
+}
