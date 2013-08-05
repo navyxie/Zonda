@@ -1,3 +1,6 @@
+require "js-yaml"
+CONFIG = require "./etc/zonda.yml"
+
 module.exports = (grunt) ->
   transport = require "grunt-cmd-transport"
   style = transport.style.init grunt
@@ -32,7 +35,7 @@ module.exports = (grunt) ->
           {
             cwd: "src"
             src: "**/*"
-            dest: ".build/"
+            dest: "dist/.build/"
           }
         ]
 
@@ -45,23 +48,23 @@ module.exports = (grunt) ->
         files: [
           {
             expand: true
-            cwd: ".build/"
-            src: ["app.js"]
-            dest: "dist/"
+            cwd: "dist/.build/"
+            src: ["#{CONFIG.app_bootstrap}.js"]
+            dest: "dist/.build/"
             ext: ".js"
           }
         ]
 
-    # END transport
+    # END concat
 
     uglify:
       app:
         files: [
           {
             expand: true
-            cwd: "dist/"
+            cwd: "dist/.build/"
             src: ["**/*.js", "!**/*-debug.js"]
-            dest: "dist/"
+            dest: "dist/.build/"
             ext: ".js"
           }
         ]
@@ -83,4 +86,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-connect"
 
   grunt.registerTask "test", ["connect", "qunit"]
-  grunt.registerTask "build", ["transport:app", "concat:app", "uglify:app", "clean"]
+  grunt.registerTask "build", ["transport:app", "concat:app", "clean"]

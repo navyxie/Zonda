@@ -15,6 +15,7 @@ domain_prod: /
 
 web_root: /assets
 
+# If you want to change this, then you must change the Gruntfile
 app_bootstrap: app
 
 # Relative the web_root
