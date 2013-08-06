@@ -16,8 +16,5 @@ update-vendor:
 	$(CONFIGURE)
 	@./tool/update.vendor.sh
 
-test:
-	@grunt test
-
 clean:
 	@./tool/clean.sh
