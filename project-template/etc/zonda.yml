@@ -31,6 +31,6 @@ FontAwesomePath: vendor/Zonda/ui/less/Font-Awesome/font
 # Relative the web_root
 BootstrapPath: vendor/Zonda/ui/less/bootstrap/bootstrap
 
-deploy_dir: ../
-
-deploy_file: index.html
+# You can make more html fragment for deloy your app
+deploy_map:
+  index.html: ../

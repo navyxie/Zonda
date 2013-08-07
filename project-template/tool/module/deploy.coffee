@@ -1,5 +1,5 @@
 # Zonda Tool
-# Deploy the HTML within Zonda's CSS/JS
+# Deploy the HTML Fragments within Zonda's CSS/JS
 # - - -
 
 require "js-yaml"

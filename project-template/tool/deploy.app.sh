@@ -13,4 +13,4 @@ cd $dir
 # - - -
 # Get path
 
-node deploy/deploy.js
+node module/deploy.js
