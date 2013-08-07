@@ -1,13 +1,11 @@
 CONFIGURE = @./tool/configure.sh
+DEPLOY = @./tool/deploy.fragment.sh
 
 build:
 	$(CONFIGURE)
 	@./tool/build.framework.sh
 	@./tool/build.app.sh
 	@./tool/compile.less.sh
-
-install:
-	@./tool/deploy.app.sh
 
 config:
 	$(CONFIGURE)
@@ -20,4 +18,7 @@ clean:
 	@./tool/clean.sh
 
 deploy:
-	@./tool/deploy.fragment.sh
+	$(DEPLOY)
+
+install:
+	$(DEPLOY)
