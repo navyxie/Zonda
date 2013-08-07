@@ -26,13 +26,18 @@ Deploy = ( rel_path, frag_name ) ->
 
   console.log "\n   Deploying: ".bold + "#{deploy_dir}/" + " #{frag_name}".bold.yellow + "..."
 
-  tpl = fs.readFileSync "#{project_dir}/tool/deploy_fragment/#{frag_name}", encoding: "utf8"
+  try
+    tpl = fs.readFileSync "#{project_dir}/tool/deploy_fragment/#{frag_name}", encoding: "utf8"
 
-  res_content = Mustache.render tpl, CONFIG: CONFIG
+    res_content = Mustache.render tpl, CONFIG: CONFIG
 
-  fs.writeFileSync "#{deploy_dir}/#{frag_name}", res_content
+    fs.writeFileSync "#{deploy_dir}/#{frag_name}", res_content
 
-  console.log "   >>".bold + " Success!".green
+    console.log "   >>".bold + " Success!".green
+  catch err
+    console.log "   >>".bold + " Error!".red.inverse
+    console.log "   >>".bold + " #{err}".red.inverse.bold
+
 # END Deploy
 
 # Deploy all fragment
