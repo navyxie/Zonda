@@ -18,3 +18,6 @@ update-vendor:
 
 clean:
 	@./tool/clean.sh
+
+deploy:
+	@./tool/deploy.app.sh

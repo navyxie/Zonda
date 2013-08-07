@@ -31,9 +31,6 @@ FontAwesomePath: vendor/Zonda/ui/less/Font-Awesome/font
 # Relative the web_root
 BootstrapPath: vendor/Zonda/ui/less/bootstrap/bootstrap
 
-# When you execute the "build dev" or "build prod",
-# Zonda will build the project and generate a new HTML to the deploy_dir
-# TODO
 deploy_dir: ../
 
 deploy_file: index.html

@@ -13,5 +13,4 @@ cd $dir
 # - - -
 # Get path
 
-# TODO
-# Deploy the app
+node deploy/deploy.js
