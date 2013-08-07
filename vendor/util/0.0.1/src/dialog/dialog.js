@@ -50,12 +50,25 @@
 */
 
 define(function(require, exports, module) {
-  var $, Dialog, Mustache, prefix, tpl, _;
+  var $, Dialog, Mustache, buttonNameFilter, prefix, tpl, _;
   $ = require("bootstrap");
   _ = require("underscore");
   Mustache = require("mustache");
   tpl = require("./tpl/dialog.tpl");
   prefix = "zonda-util";
+  buttonNameFilter = function(name) {
+    var class_name, _class_name;
+    _class_name = name.match(/\[~.*\]/);
+    if (_class_name === null) {
+      class_name = "btn-primary";
+    } else {
+      class_name = (_class_name[0].replace(/\[~/, "")).replace(/\]/, "");
+    }
+    return {
+      class_name: class_name,
+      button_name: name.replace(/\[~.*\]/, "")
+    };
+  };
   Dialog = function(config) {
     var dialog_html;
     Dialog.config = config;
@@ -74,9 +87,10 @@ define(function(require, exports, module) {
       $("#" + prefix + "-dialog").addClass(config["class"]);
     }
     _.each(config.button, function(button_callback, button_name) {
-      var uid;
+      var button_info, uid;
       uid = _.uniqueId("" + prefix + "-dialog-button-");
-      $("#" + prefix + "-dialog .modal-footer").append("<button id=\"" + uid + "\" class=\"btn btn-primary\">\n  " + button_name + "\n</button>");
+      button_info = buttonNameFilter(button_name);
+      $("#" + prefix + "-dialog .modal-footer").append("<button id=\"" + uid + "\" class=\"btn " + button_info.class_name + "\">\n  " + button_info.button_name + "\n</button>");
       return $("#" + uid).on("click", function() {
         if ($(this).hasClass("disabled")) {
           return false;

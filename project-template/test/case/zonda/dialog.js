@@ -111,7 +111,7 @@ define(function(require) {
     });
     return $("#zonda-util-dialog").on("hidden.bs.modal", start);
   });
-  return test("Chain Style", function() {
+  test("Chain Style", function() {
     stop();
     Dialog({
       title: "Test Chain Style Method",
@@ -126,5 +126,31 @@ define(function(require) {
       ok(!$("#" + id)[0]);
       return start();
     });
+  });
+  return test("Add class to button", function() {
+    stop();
+    Dialog({
+      title: "Add other Class to button",
+      content: "Has some colorful buttons~~~",
+      button: {
+        "Danger[~btn-danger]": function() {},
+        "Warning[~btn-warning]": function() {},
+        "Info[~btn-info]": function() {},
+        "Success[~btn-success]": function() {},
+        "Link[~btn-link]": function() {},
+        "Default[~btn-default]": function() {},
+        "hehe[~]": function() {}
+      }
+    }).open();
+    $("#zonda-util-dialog").on("shown.bs.modal", function() {
+      ok(Dialog.$dom.find(".btn-danger")[0]);
+      ok(Dialog.$dom.find(".btn-warning")[0]);
+      ok(Dialog.$dom.find(".btn-info")[0]);
+      ok(Dialog.$dom.find(".btn-success")[0]);
+      ok(Dialog.$dom.find(".btn-link")[0]);
+      ok(Dialog.$dom.find(".btn-default")[0]);
+      return Dialog.close(1300);
+    });
+    return $("#zonda-util-dialog").on("hidden.bs.modal", start);
   });
 });

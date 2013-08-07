@@ -126,3 +126,29 @@ define ( require ) ->
       id = Dialog.$dom.attr "id"
       ok not $("##{id}")[0]
       do start
+
+  test "Add class to button", ->
+    do stop
+    Dialog
+      title: "Add other Class to button"
+      content: "Has some colorful buttons~~~"
+      button:
+        "Danger[~btn-danger]": ->
+        "Warning[~btn-warning]": ->
+        "Info[~btn-info]": ->
+        "Success[~btn-success]": ->
+        "Link[~btn-link]": ->
+        "Default[~btn-default]": ->
+        "hehe[~]": ->
+    .open()
+
+    $("#zonda-util-dialog").on "shown.bs.modal", ->
+      ok Dialog.$dom.find(".btn-danger")[0]
+      ok Dialog.$dom.find(".btn-warning")[0]
+      ok Dialog.$dom.find(".btn-info")[0]
+      ok Dialog.$dom.find(".btn-success")[0]
+      ok Dialog.$dom.find(".btn-link")[0]
+      ok Dialog.$dom.find(".btn-default")[0]
+      Dialog.close 1300
+
+    $("#zonda-util-dialog").on "hidden.bs.modal", start

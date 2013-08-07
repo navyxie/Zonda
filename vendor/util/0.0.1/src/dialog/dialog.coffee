@@ -61,6 +61,23 @@ define ( require, exports, module ) ->
 
   prefix = "zonda-util"
 
+  # Helper
+  # - - -
+  buttonNameFilter = (name) ->
+    _class_name = name.match /\[~.*\]/
+
+    if _class_name is null
+      class_name = "btn-primary"
+    else
+      class_name = (_class_name[0].replace /\[~/, "").replace /\]/, ""
+
+    return {
+      class_name: class_name
+      button_name: name.replace /\[~.*\]/, ""
+    }
+
+  # Main
+  # - - -
   Dialog = (config) ->
 
     Dialog.config = config
@@ -93,9 +110,11 @@ define ( require, exports, module ) ->
     _.each config.button, ( button_callback, button_name ) ->
       uid = _.uniqueId("#{prefix}-dialog-button-")
 
+      button_info = buttonNameFilter button_name
+
       $("##{prefix}-dialog .modal-footer").append """
-        <button id="#{uid}" class="btn btn-primary">
-          #{button_name}
+        <button id="#{uid}" class="btn #{button_info.class_name}">
+          #{button_info.button_name}
         </button>
       """
 
@@ -123,7 +142,7 @@ define ( require, exports, module ) ->
 
     return Dialog
   
-  # END dialog define
+  # END Dialog
 
   Dialog.open = ->
     # Set height of dialog
