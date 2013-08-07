@@ -11,13 +11,19 @@
     <h1 id="qunit-header">App base on Zonda Test Suite</h1>
     <h2 id="qunit-banner"></h2>
     <h2 id="qunit-userAgent"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
     <ol id="qunit-tests"></ol>
-    <div id="qunit-fixture"></div>
   </div>
+  <script src="/assets/test/qunit/qunit.js"></script>
+  <script src="/assets/dist/framework-dev.js"></script>
+  <script type="text/javascript">
+  case_path = "/assets/test/case/zonda/"
+  seajs.use(case_path+"dialog");
+  seajs.use(case_path+"base64");
+  seajs.use(case_path+"stateMachine");
+  seajs.use(case_path+"genre");
+  seajs.use(case_path+"model");
+  seajs.use(case_path+"collection");
+  </script>
 </body>
-<script src="/assets/test/qunit/qunit.js"></script>
-<script src="/assets/dist/framework-dev.js"></script>
-<script type="text/javascript">
-  seajs.use("/assets/test/zonda-case-list");
-</script>
 </html>
