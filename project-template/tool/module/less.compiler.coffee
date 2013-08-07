@@ -31,7 +31,7 @@ command = "#{lessc_command} #{input_dir}/#{main_file} > #{output_dir}/#{CONFIG.l
 
 exec command, encoding: "", (err)->
   if err isnt null
-    console.log "   >>".bold + " Error!".red.bold
+    console.log "   >>".bold + " Error!".red.inverse
     console.log "     #{main_file}".yellow
     console.log "     #{err}"
     

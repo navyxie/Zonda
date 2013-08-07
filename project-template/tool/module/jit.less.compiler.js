@@ -54,11 +54,10 @@ Main = function(file_name, file_path) {
   return Compile("" + input_dir + "/" + main_file, function(err, stdout, stderr) {
     delete queue[id];
     if (err !== null) {
-      console.log("   >>".bold + " Error!".red.bold);
-      console.log(("     " + (file_path.replace(input_dir, ""))) + (" " + file_name).yellow);
+      console.log("   >>".bold + " Error!".red.inverse);
       return console.log("     " + err);
     } else {
-      return console.log("   >>".bold + " Success!".green + ("" + (file_path.replace(input_dir, ""))) + (" " + file_name).yellow);
+      return console.log("   >>".bold + " Success!".green + " no errro.");
     }
   });
 };

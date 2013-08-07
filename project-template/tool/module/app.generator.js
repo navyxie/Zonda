@@ -40,7 +40,7 @@ switch (CONFIG.pattern) {
     }, function(err, stdout, stderr) {
       var _app_content;
       if (err !== null) {
-        console.log("   >>".bold + " Error!".red.bold);
+        console.log("   >>".bold + " Error!".red.inverse);
         console.log("     >>".bold + err);
         return null;
       }

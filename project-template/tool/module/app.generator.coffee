@@ -38,7 +38,7 @@ switch CONFIG.pattern
     console.log "\n   Generate combo #{CONFIG.app_bootstrap}-#{CONFIG.version}.js...:  ".bold
     exec "cd #{project_dir}/ && grunt build", encoding: "", ( err, stdout, stderr ) ->
       if err isnt null
-        console.log "   >>".bold + " Error!".red.bold
+        console.log "   >>".bold + " Error!".red.inverse
         console.log "     >>".bold + err
         return null
 

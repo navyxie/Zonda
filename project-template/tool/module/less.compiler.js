@@ -33,7 +33,7 @@ exec(command, {
   encoding: ""
 }, function(err) {
   if (err !== null) {
-    console.log("   >>".bold + " Error!".red.bold);
+    console.log("   >>".bold + " Error!".red.inverse);
     console.log(("     " + main_file).yellow);
     return console.log("     " + err);
   } else {

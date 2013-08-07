@@ -73,12 +73,12 @@ Main = ( file_name, file_path ) ->
     delete queue[id]
 
     if err isnt null
-      console.log "   >>".bold + " Error!".red.bold
-      console.log "     #{file_path.replace input_dir, "" }" + " #{file_name}".yellow
+      console.log "   >>".bold + " Error!".red.inverse
       console.log "     #{err}"
       
     else
-      console.log "   >>".bold + " Success!".green + "#{file_path.replace input_dir, "" }" + " #{file_name}".yellow
+      #console.log "   >>".bold + " Success!".green + "#{file_path.replace input_dir, "" }" + " #{file_name}".yellow
+      console.log "   >>".bold + " Success!".green + " no errro."
 
 # END main
 
