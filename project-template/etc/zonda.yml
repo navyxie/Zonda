@@ -34,3 +34,5 @@ BootstrapPath: vendor/Zonda/ui/less/bootstrap/bootstrap
 # You can make more html fragment for deloy your app
 deploy_map:
   index.html: ../
+  header.html: ../
+  footer.html: ../

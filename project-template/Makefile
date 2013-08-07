@@ -20,4 +20,4 @@ clean:
 	@./tool/clean.sh
 
 deploy:
-	@./tool/deploy.app.sh
+	@./tool/deploy.fragment.sh
