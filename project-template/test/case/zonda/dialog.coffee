@@ -9,11 +9,11 @@ define ( require ) ->
   test "API", ->
     ok Dialog.open
     ok Dialog.close
-
     strictEqual typeof Dialog.open, "function"
     strictEqual typeof Dialog.close, "function"
 
   test "Dialog Render", ->
+    do stop
     Dialog
       title: "small"
       content: "big"
@@ -21,19 +21,17 @@ define ( require ) ->
         "hehe": ->
     .open()
 
-    ok Dialog.$dom[0]
+    $("#zonda-util-dialog").on "shown.bs.modal", ->
+      ok Dialog.$dom[0]
+      strictEqual Dialog.$dom.find(".modal-title").text(), "small"
+      ok /big/.test Dialog.$dom.find(".modal-body").text()
+      ok /hehe/.test Dialog.$dom.find(".modal-footer button[id]").text()
+      do Dialog.close
 
-    strictEqual Dialog.$dom.find(".modal-header h3").text(), "small"
+    $("#zonda-util-dialog").on "hidden.bs.modal", start
 
-    ok /big/.test Dialog.$dom.find(".modal-body").text()
-
-    ok /hehe/.test Dialog.$dom.find(".modal-footer button[id]").text()
-
-    do Dialog.close
-    
   test "Dialog Style", ->
-    do Dialog.close
-
+    do stop
     Dialog
       title: "small"
       content: "big"
@@ -42,15 +40,16 @@ define ( require ) ->
         "hehe": ->
     .open()
 
-    ok Dialog.$dom.hasClass "haha"
+    $("#zonda-util-dialog").on "shown.bs.modal", ->
+      ok Dialog.$dom.hasClass "haha"
+      do Dialog.close
 
-    do Dialog.close
+    $("#zonda-util-dialog").on "hidden.bs.modal", start
+
     
-  asyncTest "Dialog button callback", ->
-    do Dialog.close
-
+  test "Dialog button callback", ->
+    do stop
     num = 1
-
     Dialog
       title: "small"
       content: "big"
@@ -60,80 +59,70 @@ define ( require ) ->
           num = 2
     .open()
 
-    Dialog.$dom.find(".modal-footer button.btn-success").trigger "click"
-
-    setTimeout ->
+    $("#zonda-util-dialog").on "shown.bs.modal", ->
+      Dialog.$dom.find(".modal-footer button.btn-primary").trigger "click"
       strictEqual num, 2
-      ok Dialog.$dom.find(".modal-footer button.btn-success").hasClass "disabled"
-      do start
-    , 300
+      ok Dialog.$dom.find(".modal-footer button.btn-primary").hasClass "disabled"
+      do Dialog.close
 
-  asyncTest "Dialog button for cancel", ->
-    do Dialog.close
+    $("#zonda-util-dialog").on "hidden.bs.modal", start
 
+  test "Dialog button for cancel", ->
+    do stop
     Dialog
       title: "small"
       content: "big"
     .open()
 
-    Dialog.$dom.find(".modal-footer button[aria-hidden=true]").trigger "click"
+    $("#zonda-util-dialog").on "shown.bs.modal", ->
+      Dialog.$dom.find(".modal-footer button[aria-hidden=true]").trigger "click"
 
-    setTimeout ->
+    $("#zonda-util-dialog").on "hidden.bs.modal", ->
       id = Dialog.$dom.attr "id"
       ok not $("##{id}")[0]
-
       do start
-    , 300
     
-  asyncTest "Dialog Close Delay", ->
-    do Dialog.close
-
+  test "Dialog Close Delay", ->
+    do stop
     Dialog
-      title: "small"
-      content: "big"
+      title: "Test the 'Delay Close'"
+      content: "This dialog will auto close after 2 seconds."
     .open()
 
-    Dialog.close 400
+    Dialog.close 2000
 
-    setTimeout ->
+    $("#zonda-util-dialog").on "hidden.bs.modal", ->
       id = Dialog.$dom.attr "id"
       ok not $("##{id}")[0]
-
       do start
-    , 400
 
-  asyncTest "Dialog Config", ->
-    do Dialog.close
-
+  test "Dialog Config", ->
+    do stop
     Dialog
       title: "small"
       content: "big"
     .open()
 
-    Dialog.close 400
-
-    setTimeout ->
+    $("#zonda-util-dialog").on "shown.bs.modal", ->
       deepEqual Dialog.config,
         title: "small"
         content: "big"
+      do Dialog.close
 
-      do start
-    , 400
+    $("#zonda-util-dialog").on "hidden.bs.modal", start
 
-  asyncTest "Chain Style", ->
-    do Dialog.close
-
+  test "Chain Style", ->
+    do stop
     Dialog
-      title: "small"
-      content: "big"
+      title: "Test Chain Style Method"
+      content: "This dialog will auto open, and auto close after 1.3 seconds."
     .open()
-    .close 400
+    .close 1300
 
-    setTimeout ->
+    $("#zonda-util-dialog").on "shown.bs.modal", ->
+      ok Dialog.$dom[0]
+
+    $("#zonda-util-dialog").on "hidden.bs.modal", ->
       id = Dialog.$dom.attr "id"
       ok not $("##{id}")[0]
-
       do start
-    , 400
-
-# END define

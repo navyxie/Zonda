@@ -1,12 +1,12 @@
 # Zonda Util Dialog
 # - - -
-# Base on Bootstrap@Twitter Modal.
+# Base on Bootstrap Modal.
 # - - -
 ### Usage:
 ```coffeescript
 
-  # Define a new dialog
-  Util.dialog
+  # Define a new Dialog
+  Util.Dialog
     title: "I am the title"
 
     content: "some text/HTML, or Mustache.render output"
@@ -20,35 +20,40 @@
       "Yes": ->
         # Generate the a button named "Yes", and do callback when you click the button
 
+      "Sure[class_name]": ->
+        # Use [~class_name] to add class to this button,
+        # if class_name is null or you don't use [~...],
+        # the button's class_name will be "primary" as default.
+
       "Other Button": ->
         # callback
 
   # Open it!
-  do Util.dialog.open
+  do Util.Dialog.open
 
   # Close it!
-  do Util.dialog.close
+  do Util.Dialog.close
 
   # Close dialog delay a moment
-  Util.dialog.close 1200
+  Util.Dialog.close 1200
 
   # Chain style
-  Util.dialog.open().close(1300)
+  Util.Dialog.open().close(1300)
 
   # Return the dialog jQuery object
-  console.log Util.dialog.$dom
+  console.log Util.Dialog.$dom
 
   # Return the dialog config
-  console.log Util.dialog.config
+  console.log Util.Dialog.config
 
   # If you want to update the position and height of this dialog, just call:
-  do Util.dialog.open
+  do Util.Dialog.open
 
 ```
 ###
 
 define ( require, exports, module ) ->
-  $ = require "bootstrap" # use Bootstrap
+  $ = require "bootstrap"
   _ = require "underscore"
   Mustache = require "mustache"
 
@@ -56,12 +61,12 @@ define ( require, exports, module ) ->
 
   prefix = "zonda-util"
 
-  dialog = (config) ->
+  Dialog = (config) ->
 
-    dialog.config = config
+    Dialog.config = config
 
     # Generate DOM of dialog
-    # ----------------------
+    # - - -
     if $("##{prefix}-dialog:visible")[0]
       return false
 
@@ -70,26 +75,26 @@ define ( require, exports, module ) ->
       content: config.content
       
     $(document.body).append dialog_html
-    # ----------------------
+    # - - -
     # Generate DOM of dialog
 
     # Add Style
-    # ---------
+    # - - -
     if config.css
       $("##{prefix}-dialog").css config.css
 
     if config.class
       $("##{prefix}-dialog").addClass config.class
-    # ---------
+    # - - -
     # Add Style
 
     # Make button
-    # -----------
+    # - - -
     _.each config.button, ( button_callback, button_name ) ->
       uid = _.uniqueId("#{prefix}-dialog-button-")
 
       $("##{prefix}-dialog .modal-footer").append """
-        <button id="#{uid}" class="btn btn-success">
+        <button id="#{uid}" class="btn btn-primary">
           #{button_name}
         </button>
       """
@@ -103,43 +108,39 @@ define ( require, exports, module ) ->
 
         do button_callback
 
-    # -----------
+    # - - -
     # Make button
 
-    dialog.$dom = $("##{prefix}-dialog")
+    Dialog.$dom = $("##{prefix}-dialog")
 
     # Destroy when closing the dialog
-    $("##{prefix}-dialog").on "hide", ->
+    # - - -
+    $("##{prefix}-dialog").on "hidden.bs.modal", ->
       delete $("##{prefix}-dialog").modal
-      $("##{prefix}-dialog").remove()
-      $(".modal-backdrop").remove()
+      do $("##{prefix}-dialog").remove
+      do $(".modal-backdrop").remove
+      $("body").removeClass "modal-open"
 
-    return dialog
+    return Dialog
   
   # END dialog define
 
-  dialog.open = ->
+  Dialog.open = ->
     # Set height of dialog
-    # --------------------
+    # - - -
     $("##{prefix}-dialog .modal-body").css
       "max-height": window.innerHeight-141
 
-    outerHeight = $("##{prefix}-dialog").outerHeight()
-
-    # Vertically center
-    $("##{prefix}-dialog").css
-      "margin-top": -outerHeight/2
-
     $("##{prefix}-dialog").modal
       show: true
-      backdrop: dialog.config.backdrop
-    # --------------------
+      backdrop: Dialog.config.backdrop
+    # - - -
     # Set height of dialog
 
-    return dialog
+    return Dialog
   # END dialog.open
 
-  dialog.close = (delay) ->
+  Dialog.close = (delay) ->
     if delay
       setTimeout ->
         $("##{prefix}-dialog").modal "hide"
@@ -147,9 +148,9 @@ define ( require, exports, module ) ->
     else
       $("##{prefix}-dialog").modal "hide"
 
-    return dialog
+    return Dialog
   # END dialog.close
 
-  module.exports = dialog
+  module.exports = Dialog
   
 # END define

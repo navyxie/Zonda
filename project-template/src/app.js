@@ -5,8 +5,16 @@ define(function(require, exports, module) {
   b = require("./b");
   b();
   tpl = require("./d.tpl");
-  return Util.Dialog({
+  Util.Dialog({
     title: "Welcome~",
-    content: "Hi Zonda~"
-  }).open();
+    content: "Hi Zonda~",
+    button: {
+      "hehe": function() {
+        return alert(1);
+      }
+    }
+  });
+  return setTimeout(function() {
+    return Util.Dialog.open();
+  }, 1300);
 });

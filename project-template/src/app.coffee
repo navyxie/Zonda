@@ -9,6 +9,12 @@ define ( require, exports, module ) ->
   Util.Dialog
     title: "Welcome~"
     content: "Hi Zonda~"
-  .open()
+    button:
+      "hehe": ->
+        alert 1
+
+  setTimeout ->
+    do Util.Dialog.open
+  , 1300
   
 # END define
