@@ -12,8 +12,6 @@ define(function(require, exports, module) {
       if (request === null || request === void 0) {
         request = "";
       }
-      console.log("HTTP Request: " + url);
-      console.log("HTTP Request: " + request);
       return xhr.respond(200, {
         "Content-Type": "application/json"
       }, JSON.stringify({

@@ -15,9 +15,6 @@ define ( require, exports, module ) ->
 
       request = "" if request is null or request is undefined
 
-      console.log "HTTP Request: #{url}"
-      console.log "HTTP Request: #{request}"
-
       xhr.respond 200,
         "Content-Type": "application/json",
         JSON.stringify
