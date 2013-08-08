@@ -7,9 +7,14 @@ define(function(require, exports, module) {
     function Queue(name) {
       this.name = name;
       _.extend(this, Backbone.Events);
+      this.data = [];
     }
 
-    Queue.prototype.checkStatus = function() {};
+    Queue.prototype.checkAll = function() {};
+
+    Queue.prototype.setter = function(name, status) {
+      return checkAll();
+    };
 
     return Queue;
 

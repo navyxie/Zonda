@@ -8,10 +8,10 @@ define(function(require) {
     queue = new Util.Queue("test");
     ok(Util.Queue);
     strictEqual(typeof Util.Queue, "function");
+    strictEqual(typeof Util.Queue, "function");
+    strictEqual(queue.NAME, "test");
     strictEqual(typeof queue, "object");
-    strictEqual(typeof queue.dump, "function");
-    strictEqual(typeof queue.add, "function");
-    strictEqual(typeof queue.remove, "function");
-    return strictEqual(typeof queue.update, "function");
+    strictEqual(typeof queue.setter, "function");
+    return strictEqual(typeof queue.checkAll, "function");
   });
 });
