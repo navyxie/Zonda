@@ -1,4 +1,4 @@
-# test case base64
+# test case dialog
 define ( require ) ->
   module "Dialog"
 
