@@ -14,7 +14,9 @@ define ( require, exports, module ) ->
     # - - -
     StateMachine: require "./stateMachine/stateMachine"
 
-    Form: require "./form/form"
+    Queue:        require "./queue/queue"
+
+    Form:         require "./form/form"
 
     Genre:        require "./genre/genre"
 

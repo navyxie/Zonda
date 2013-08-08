@@ -6,6 +6,7 @@ define(function(require, exports, module) {
     Exception: require("./exception/exception"),
     Http: require("./http/http"),
     StateMachine: require("./stateMachine/stateMachine"),
+    Queue: require("./queue/queue"),
     Form: require("./form/form"),
     Genre: require("./genre/genre"),
     Model: require("./model/model"),
