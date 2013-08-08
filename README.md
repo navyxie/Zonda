@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/smallsmallwolf/Zonda.png?branch=master)](https://travis-ci.org/smallsmallwolf/Zonda)
 
-正在重构中...该文档已经部分失效...
+基本重构完成。重新写文档，写测试中...
 
 - - -
 
@@ -14,13 +14,14 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 
 ## Zonda行车手册
 
-### 依赖
+### 开发环境依赖
 - - -
-- Linux/Unix/Mac OS X
-- NodeJs v0.8.21
-- SPM v1.8.0-dev
-- Less v1.3.3
-- CoffeeScript v1.6.1
+- Linux/Unix/Mac OS X **No Windows at all**
+- NodeJs v0.10.13
+- SPM v2.1.9
+- CoffeeScript v1.6.3
+- Less v1.4.2
+- Grunt v0.4.1+
 
 
 ### 点火，起步！
@@ -31,7 +32,6 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 ```shell
 cd Zonda/
 npm install
-./tool/setup.sh
 ```
 
 执行完毕后，Zonda会根据`Zonda/project-template`创建一个前端项目模板，目录结构大致是这样的：
@@ -39,16 +39,16 @@ npm install
 ```coffeescript
 assets/ # 前端项目根目录
   etc/ # 项目配置文件  
-    env.js # for Seajs
-    package.json # for spm build
+    zonda.yml # Zonda 全局配置
   vendor/ # 第三方组件
-    Zonda/
+    Zonda/ # Zonda 源码
   src/ # 你的应用程序源代码 
   ui/ # 你的应用程序的UI文件
     less/
       config.less
       mixin.less
       responsive.less
+      ...
     images/
     ie/
       ie.css      
