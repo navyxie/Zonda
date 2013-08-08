@@ -16,5 +16,13 @@ define ( require, exports, module ) ->
   setTimeout ->
     do Util.Dialog.open
   , 1300
+
+  $ = require "jquery-ui"
+
+  $("body").append """
+  <input id="hehe" type="text" name="" />
+  """
+
+  do $("#hehe").datepicker
   
 # END define
