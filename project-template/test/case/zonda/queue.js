@@ -3,7 +3,7 @@ define(function(require) {
   var Util;
   Util = require("util");
   module("Queue");
-  return test("API", function() {
+  test("API", function() {
     var queue;
     queue = new Util.Queue("test");
     ok(Util.Queue);
@@ -13,5 +13,82 @@ define(function(require) {
     strictEqual(typeof queue, "object");
     strictEqual(typeof queue.setter, "function");
     return strictEqual(typeof queue.checkAll, "function");
+  });
+  test("setter CREATE", function() {
+    var queue;
+    queue = new Util.Queue("QueA");
+    queue.setter("say", "running");
+    queue.setter("run", "running");
+    strictEqual(queue.data.length, 2);
+    strictEqual(queue.data[0].name, "say");
+    strictEqual(queue.data[0].status, "running");
+    strictEqual(queue.data[1].name, "run");
+    return strictEqual(queue.data[1].status, "running");
+  });
+  test("setter CREATE/UPDATE", function() {
+    var queue;
+    queue = new Util.Queue("QueA");
+    queue.setter("a", "running");
+    queue.setter("b", "running");
+    strictEqual(queue.data.length, 2);
+    strictEqual(queue.data[0].name, "a");
+    strictEqual(queue.data[0].status, "running");
+    strictEqual(queue.data[1].name, "b");
+    strictEqual(queue.data[1].status, "running");
+    queue.setter("a", "success");
+    return strictEqual(queue.data[0].status, "success");
+  });
+  test("queue error", function() {
+    var queue;
+    queue = new Util.Queue("QueB");
+    queue.on("" + queue.NAME + ":queue:error", function() {
+      strictEqual(queue.data.length, 4);
+      strictEqual(queue.data[1].status, "error");
+      return start();
+    });
+    queue.setter("say", "running");
+    queue.setter("run", "running");
+    queue.setter("hehe", "running");
+    queue.setter("xixi", "running");
+    stop();
+    setTimeout(function() {
+      return queue.setter("say", "success");
+    }, 500);
+    return setTimeout(function() {
+      return queue.setter("run", "error");
+    }, 600);
+  });
+  return test("queue success", function() {
+    var queue;
+    queue = new Util.Queue("QueC");
+    queue.on("" + queue.NAME + ":queue:success", function() {
+      strictEqual(queue.data[0].status, "success");
+      strictEqual(queue.data[1].status, "success");
+      strictEqual(queue.data[2].status, "success");
+      strictEqual(queue.data[3].status, "success");
+      strictEqual(queue.data[4].status, "success");
+      return start();
+    });
+    queue.setter("a", "running");
+    queue.setter("b", "running");
+    queue.setter("c", "running");
+    queue.setter("d", "running");
+    queue.setter("e", "running");
+    stop();
+    setTimeout(function() {
+      return queue.setter("a", "success");
+    }, 100);
+    setTimeout(function() {
+      return queue.setter("b", "success");
+    }, 200);
+    setTimeout(function() {
+      return queue.setter("c", "success");
+    }, 300);
+    setTimeout(function() {
+      return queue.setter("d", "success");
+    }, 400);
+    return setTimeout(function() {
+      return queue.setter("e", "success");
+    }, 500);
   });
 });
