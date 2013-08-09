@@ -13,7 +13,6 @@ define ( require, exports, module ) ->
   # Main
   # - - -
   # @wrap: the Form DOM
-
   class Form
     constructor: (@wrap) ->
 
