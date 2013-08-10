@@ -8,6 +8,7 @@ define(function(require, exports, module) {
   Form = (function() {
     function Form(form) {
       this.form = form;
+      this.cells = Cell(this.form);
     }
 
     Form.prototype.listen = function() {};

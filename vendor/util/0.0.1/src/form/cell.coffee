@@ -16,6 +16,7 @@ define ( require, exports, module ) ->
   # - - -
   # @form: the jQuery selector of Form DOM
   Wrap = (form) ->
+    console.log ($(form).find "INPUT:text")[0]
 
   # Main
   # - - -

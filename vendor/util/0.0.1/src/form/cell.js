@@ -9,7 +9,9 @@ define(function(require, exports, module) {
     "TEXTAREA": "textarea",
     "SELECT": "select"
   };
-  Wrap = function(form) {};
+  Wrap = function(form) {
+    return console.log(($(form).find("INPUT:text"))[0]);
+  };
   Cell = (function() {
     function Cell(type, cell) {
       this.type = type;
