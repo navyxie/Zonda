@@ -38,17 +38,25 @@ define ( require, exports, module ) ->
       namespace = "#{@name}:#{cell.name}:taskRunner"
       task_queue = new Queue namespace
 
-      task_queue.once "#{namespace}:queue:error", ->
+      task_queue.once "#{namespace}:queue:error", (err_cell) ->
         cell.status = "error"
         cell.dom.parents(".form-group")
           .removeClass("has-success")
           .addClass("has-warning")
+          .find(".help-block")
+          .html """
+            <i class="icon-remove-sign"></i> #{err_cell.info}
+          """
 
       task_queue.once "#{namespace}:queue:success", ->
         cell.status = "success"
         cell.dom.parents(".form-group")
           .removeClass("has-warning")
           .addClass("has-success")
+          .find(".help-block")
+          .html """
+            <i class="icon-ok-sign"></i>
+          """
 
       for name of cell.tasks
         throw "No such task named #{name}!" unless name of @tasks
@@ -73,9 +81,9 @@ define ( require, exports, module ) ->
         exp = new RegExp exp
 
         if exp.test cell.dom.val()
-          task_queue.setter "regexp", "success"
+          task_queue.setter "regexp", "success", "nice~"
         else
-          task_queue.setter "regexp", "error"
+          task_queue.setter "regexp", "error", "shit!"
 
   module.exports = Form
   

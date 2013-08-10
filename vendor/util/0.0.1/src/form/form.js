@@ -29,13 +29,13 @@ define(function(require, exports, module) {
       }
       namespace = "" + this.name + ":" + cell.name + ":taskRunner";
       task_queue = new Queue(namespace);
-      task_queue.once("" + namespace + ":queue:error", function() {
+      task_queue.once("" + namespace + ":queue:error", function(err_cell) {
         cell.status = "error";
-        return cell.dom.parents(".form-group").removeClass("has-success").addClass("has-warning");
+        return cell.dom.parents(".form-group").removeClass("has-success").addClass("has-warning").find(".help-block").html("<i class=\"icon-remove-sign\"></i> " + err_cell.info);
       });
       task_queue.once("" + namespace + ":queue:success", function() {
         cell.status = "success";
-        return cell.dom.parents(".form-group").removeClass("has-warning").addClass("has-success");
+        return cell.dom.parents(".form-group").removeClass("has-warning").addClass("has-success").find(".help-block").html("<i class=\"icon-ok-sign\"></i>");
       });
       _results = [];
       for (name in cell.tasks) {
@@ -59,9 +59,9 @@ define(function(require, exports, module) {
         exp = exp.replace(/\/$/, "");
         exp = new RegExp(exp);
         if (exp.test(cell.dom.val())) {
-          return task_queue.setter("regexp", "success");
+          return task_queue.setter("regexp", "success", "nice~");
         } else {
-          return task_queue.setter("regexp", "error");
+          return task_queue.setter("regexp", "error", "shit!");
         }
       }
     };
