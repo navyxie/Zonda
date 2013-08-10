@@ -1,5 +1,6 @@
 # test case form
 define ( require ) ->
+  Backbone = require "backbone"
   Util = require "util"
   Mustache = require "mustache"
 
@@ -128,7 +129,7 @@ define ( require ) ->
 
   test "taskRunner", ->
     # success and error
-    expect 2
+    expect 1
 
     Util.Dialog
       title: "Form Test"
@@ -145,11 +146,18 @@ define ( require ) ->
         if cell.name is "test-text"
           test_cell = cell # Test Form Cell
 
-      form.on "#{form.name}:test-text:taskRunner:queue:error", ->
-        ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-error")
+      namespace = "#{form.name}:test-text:taskRunner"
 
-      form.on "#{form.name}:test-text:taskRunner:queue:success", ->
-        do Util.Dialog.close
+      Backbone.Events.once "#{namespace}:queue:error", ->
+        setTimeout ->
+          ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-error")
+        , 500
+
+      Backbone.Events.once "#{namespace}:queue:success", ->
+        setTimeout ->
+          ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-success")
+          do Util.Dialog.close
+        , 500
 
       # Simulate Error
       # - - -
@@ -161,7 +169,7 @@ define ( require ) ->
       # Simulate Error
       # - - -
       setTimeout ->
-        test_cell.dom.val "  1  "
+        test_cell.dom.val "  not null  "
         form.taskRunner test_cell
       , 2600
 

@@ -22,8 +22,21 @@ define(function(require, exports, module) {
 
     Form.prototype.taskRunner = function(cell) {
       var name, namespace, task_queue, _results;
+      if (cell.status === "running") {
+        return null;
+      } else {
+        cell.status = "running";
+      }
       namespace = "" + this.name + ":" + cell.name + ":taskRunner";
       task_queue = new Queue(namespace);
+      task_queue.once("" + namespace + ":queue:error", function() {
+        cell.status = "error";
+        return cell.dom.parents(".form-group").addClass("has-error");
+      });
+      task_queue.once("" + namespace + ":queue:success", function() {
+        cell.status = "success";
+        return cell.dom.parents(".form-group").addClass("has-success");
+      });
       _results = [];
       for (name in cell.tasks) {
         if (!(name in this.tasks)) {
@@ -45,15 +58,10 @@ define(function(require, exports, module) {
         exp = cell.tasks.regexp.replace(/^\//, "");
         exp = exp.replace(/\/$/, "");
         exp = new RegExp(exp);
-        console.log(exp);
         if (exp.test(cell.dom.val())) {
-          return task_queue.setter({
-            "regexp": "success"
-          });
+          return task_queue.setter("regexp", "success");
         } else {
-          return task_queue.setter({
-            "regexp": "error"
-          });
+          return task_queue.setter("regexp", "error");
         }
       }
     };

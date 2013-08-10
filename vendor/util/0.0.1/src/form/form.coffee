@@ -30,8 +30,21 @@ define ( require, exports, module ) ->
     listen: ->
 
     taskRunner: (cell) ->
+      if cell.status is "running"
+        return null
+      else
+        cell.status = "running"
+
       namespace = "#{@name}:#{cell.name}:taskRunner"
       task_queue = new Queue namespace
+
+      task_queue.once "#{namespace}:queue:error", ->
+        cell.status = "error"
+        cell.dom.parents(".form-group").addClass("has-error")
+
+      task_queue.once "#{namespace}:queue:success", ->
+        cell.status = "success"
+        cell.dom.parents(".form-group").addClass("has-success")
 
       for name of cell.tasks
         throw "No such task named #{name}!" unless name of @tasks
@@ -56,12 +69,10 @@ define ( require, exports, module ) ->
 
         exp = new RegExp exp
 
-        console.log exp
-
         if exp.test cell.dom.val()
-          task_queue.setter "regexp": "success"
+          task_queue.setter "regexp", "success"
         else
-          task_queue.setter "regexp": "error"
+          task_queue.setter "regexp", "error"
 
   module.exports = Form
   
