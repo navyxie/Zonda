@@ -1,8 +1,21 @@
 # Zonda Util Form Cell
 # - - -
 # Generate Form Cell Object
+# Base on Bootstrap
 
 define ( require, exports, module ) ->
+
+  # Helper
+  # - - -
+  # task attributes filter
+  filter = ( attrs ) ->
+    tasks = {}
+
+    for attr of attrs
+      return null if not /task-/.test attrs.name
+      tasks[attrs.name] = attrs.value
+
+    return tasks
 
   ALIAS =
     "INPUT:text":     "text"
@@ -16,17 +29,31 @@ define ( require, exports, module ) ->
   # - - -
   # @form: the jQuery selector of Form DOM
   Wrap = (form) ->
-    console.log ($(form).find "INPUT:text")[0]
+    cells = []
+
+    for sel, type of ALIAS
+      $(form).find(sel).each ->
+        cells.push new Cell type, @
+
+    return cells
 
   # Main
   # - - -
   # Make a Form cell to Cell Object
   class Cell
     constructor: ( @type, cell ) ->
+      cell = $ cell
       @name = cell.attr "name"
+      @default = cell.attr "default"
+      value = cell.attr "value"
+
+      if @default isnt undefined and value is undefined
+        cell.val @default
 
       # Generate the task list of this cell
       # - - -
+      attrs = cell.prop "attributes"
+      @tasks = filter attrs
 
   module.exports = Wrap
   

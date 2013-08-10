@@ -11,7 +11,7 @@ define ( require ) ->
         <div class="form-group">
           <label for="test-text" class="col-lg-2 control-label">text</label>
           <div class="col-lg-5">
-            <input id="test-text" class="form-control" type="text" name="test-text" />
+            <input id="test-text" class="form-control" type="text" name="test-text" task-RegExp="/\./" />
           </div>
           <span class="col-lg-5 help-block">msg</span>
         </div>
@@ -36,7 +36,7 @@ define ( require ) ->
           <div class="col-lg-offset-2 col-lg-5">
             <div class="checkbox">
               <label>
-                <input id="test-radio" name="test-radio" type="checkbox"> checkbox
+                <input id="test-checkbox" name="test-checkbox" type="checkbox"> checkbox
               </label>
             </div>
           </div>
@@ -73,7 +73,7 @@ define ( require ) ->
         <div class="form-group">
           <label class="col-lg-2 control-label" for="test-select">select</label>
           <div class="col-lg-5">
-            <select id="test-select" class="form-control" name="test-select">
+            <select default="2" id="test-select" class="form-control" name="test-select">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -110,4 +110,5 @@ define ( require ) ->
 
     Util.Dialog.$dom.on "shown.bs.modal", ->
       form = new Util.Form "form[name=test-form]"
+      ok 1
       do start

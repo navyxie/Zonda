@@ -17,6 +17,7 @@ define ( require, exports, module ) ->
   class Form
     constructor: (@form) ->
       @cells = Cell @form
+      console.log @cells
 
     listen: ->
 
