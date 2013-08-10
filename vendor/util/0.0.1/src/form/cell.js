@@ -2,13 +2,15 @@
 define(function(require, exports, module) {
   var ALIAS, Cell, Wrap, filter;
   filter = function(attrs) {
-    var attr, tasks;
+    var attr, key, name, tasks;
     tasks = {};
-    for (attr in attrs) {
-      if (!/task-/.test(attrs.name)) {
-        return null;
+    for (key in attrs) {
+      attr = attrs[key];
+      if (!(/^task-/.test(attr.name))) {
+        continue;
       }
-      tasks[attrs.name] = attrs.value;
+      name = attr.name.replace(/^task-/, "");
+      tasks[name] = attr.value;
     }
     return tasks;
   };

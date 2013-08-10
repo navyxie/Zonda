@@ -11,7 +11,7 @@ define ( require ) ->
         <div class="form-group">
           <label for="test-text" class="col-lg-2 control-label">text</label>
           <div class="col-lg-5">
-            <input id="test-text" class="form-control" type="text" name="test-text" task-RegExp="/\./" />
+            <input id="test-text" class="form-control" type="text" name="test-text" task-RegExp="/[^^\s{0,}$]/" />
           </div>
           <span class="col-lg-5 help-block">msg</span>
         </div>

@@ -11,9 +11,10 @@ define ( require, exports, module ) ->
   filter = ( attrs ) ->
     tasks = {}
 
-    for attr of attrs
-      return null if not /task-/.test attrs.name
-      tasks[attrs.name] = attrs.value
+    for key, attr of attrs
+      continue if not (/^task-/.test attr.name)
+      name = attr.name.replace /^task-/, ""
+      tasks[name] = attr.value
 
     return tasks
 
