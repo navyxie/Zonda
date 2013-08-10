@@ -1,19 +1,21 @@
 # Zonda Util Form Cell
 # - - -
+# Generate Form Cell Object
 
 define ( require, exports, module ) ->
+
+  ALIAS =
+    "INPUT:text":     "text"
+    "INPUT:password": "password"
+    "INPUT:radio":    "radio"
+    "INPUT:checkbox": "checkbox"
+    "TEXTAREA":       "textarea"
+    "SELECT":         "select"
 
   # Factory
   # - - -
   # @form: the jQuery selector of Form DOM
   Wrap = (form) ->
-    alias =
-      "INPUT:text": "text"
-      "INPUT:password": "password"
-      "INPUT:radio": "radio"
-      "INPUT:checkbox": "checkbox"
-      "TEXTAREA": "textarea"
-      "SELECT": "select"
 
   # Main
   # - - -
