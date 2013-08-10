@@ -4,6 +4,22 @@ define ( require ) ->
   Util = require "util"
   Mustache = require "mustache"
 
+  form_html_mini = """
+    <form name="test-form" class="form-horizontal">
+      <fieldset>
+       <legend>Mini Form</legend>
+
+        <div class="form-group">
+          <label for="test-text" class="col-lg-2 control-label">text</label>
+          <div class="col-lg-5">
+            <input id="test-text" class="form-control" type="text" name="test-text" task-RegExp="/[^^\\s{0,}$]/" placeholder="something..." />
+          </div>
+          <span class="col-lg-5 help-block"></span>
+        </div>
+      </fieldset>
+    </form>
+  """
+
   form_html = """
     <form name="test-form" class="form-horizontal">
       <fieldset>
@@ -133,7 +149,7 @@ define ( require ) ->
 
     Util.Dialog
       title: "Form Test"
-      content: form_html
+      content: form_html_mini
       backdrop: false
     .open()
 
@@ -156,6 +172,7 @@ define ( require ) ->
       Backbone.Events.once "#{namespace}:queue:success", ->
         setTimeout ->
           ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-success")
+          do Util.Dialog.close
         , 500
 
       # Simulate Error
@@ -163,13 +180,13 @@ define ( require ) ->
       setTimeout ->
         test_cell.dom.val "    "
         form.taskRunner test_cell
-      , 1300
+      , 300
 
       # Simulate Error
       # - - -
       setTimeout ->
         test_cell.dom.val "not null"
         form.taskRunner test_cell
-      , 2600
+      , 1600
 
     Util.Dialog.$dom.on "hidden.bs.modal", start
