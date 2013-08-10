@@ -30,15 +30,16 @@ define ( require, exports, module ) ->
 
     # Update / Create
     # - - -
-    setter: ( name, status ) ->
+    setter: ( name, status, info ) ->
       _is_new = true
 
       for cell in @data
         if cell.name is name
           _is_new = false
           cell.status = status
+          cell.info = info
 
-      @data.push { name: name, status: status } if _is_new
+      @data.push { name: name, status: status, info: info } if _is_new
 
       do @checkAll
 

@@ -28,7 +28,7 @@ define(function(require, exports, module) {
       }
     };
 
-    Queue.prototype.setter = function(name, status) {
+    Queue.prototype.setter = function(name, status, info) {
       var cell, _i, _is_new, _len, _ref;
       _is_new = true;
       _ref = this.data;
@@ -37,12 +37,14 @@ define(function(require, exports, module) {
         if (cell.name === name) {
           _is_new = false;
           cell.status = status;
+          cell.info = info;
         }
       }
       if (_is_new) {
         this.data.push({
           name: name,
-          status: status
+          status: status,
+          info: info
         });
       }
       return this.checkAll();
