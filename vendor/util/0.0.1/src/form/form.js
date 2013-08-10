@@ -31,11 +31,11 @@ define(function(require, exports, module) {
       task_queue = new Queue(namespace);
       task_queue.once("" + namespace + ":queue:error", function() {
         cell.status = "error";
-        return cell.dom.parents(".form-group").addClass("has-error");
+        return cell.dom.parents(".form-group").removeClass("has-success").addClass("has-warning");
       });
       task_queue.once("" + namespace + ":queue:success", function() {
         cell.status = "success";
-        return cell.dom.parents(".form-group").addClass("has-success");
+        return cell.dom.parents(".form-group").removeClass("has-warning").addClass("has-success");
       });
       _results = [];
       for (name in cell.tasks) {

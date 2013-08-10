@@ -40,11 +40,15 @@ define ( require, exports, module ) ->
 
       task_queue.once "#{namespace}:queue:error", ->
         cell.status = "error"
-        cell.dom.parents(".form-group").addClass("has-error")
+        cell.dom.parents(".form-group")
+          .removeClass("has-success")
+          .addClass("has-warning")
 
       task_queue.once "#{namespace}:queue:success", ->
         cell.status = "success"
-        cell.dom.parents(".form-group").addClass("has-success")
+        cell.dom.parents(".form-group")
+          .removeClass("has-warning")
+          .addClass("has-success")
 
       for name of cell.tasks
         throw "No such task named #{name}!" unless name of @tasks
@@ -66,7 +70,6 @@ define ( require, exports, module ) ->
       regexp: ( cell, task_queue ) ->
         exp = cell.tasks.regexp.replace /^\//, ""
         exp = exp.replace /\/$/, ""
-
         exp = new RegExp exp
 
         if exp.test cell.dom.val()

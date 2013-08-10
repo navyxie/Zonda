@@ -12,7 +12,7 @@ define ( require ) ->
         <div class="form-group">
           <label for="test-text" class="col-lg-2 control-label">text</label>
           <div class="col-lg-5">
-            <input id="test-text" class="form-control" type="text" name="test-text" task-RegExp="/[^^\s{0,}$]/" />
+            <input id="test-text" class="form-control" type="text" name="test-text" task-RegExp="/[^^\\s{0,}$]/" />
           </div>
           <span class="col-lg-5 help-block">msg</span>
         </div>
@@ -121,7 +121,7 @@ define ( require ) ->
       for cell in form.cells
         if cell.type is "text"
           ok cell.tasks.regexp
-          strictEqual cell.tasks.regexp, "/[^^\s{0,}$]/"
+          strictEqual cell.tasks.regexp, "/[^^\\s{0,}$]/"
 
       do Util.Dialog.close
 
@@ -129,7 +129,7 @@ define ( require ) ->
 
   test "taskRunner", ->
     # success and error
-    expect 1
+    expect 2
 
     Util.Dialog
       title: "Form Test"
@@ -150,13 +150,12 @@ define ( require ) ->
 
       Backbone.Events.once "#{namespace}:queue:error", ->
         setTimeout ->
-          ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-error")
+          ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-warning")
         , 500
 
       Backbone.Events.once "#{namespace}:queue:success", ->
         setTimeout ->
           ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-success")
-          do Util.Dialog.close
         , 500
 
       # Simulate Error
@@ -169,7 +168,7 @@ define ( require ) ->
       # Simulate Error
       # - - -
       setTimeout ->
-        test_cell.dom.val "  not null  "
+        test_cell.dom.val "not null"
         form.taskRunner test_cell
       , 2600
 
