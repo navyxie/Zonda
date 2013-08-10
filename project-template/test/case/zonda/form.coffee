@@ -110,5 +110,39 @@ define ( require ) ->
 
     Util.Dialog.$dom.on "shown.bs.modal", ->
       form = new Util.Form "form[name=test-form]"
-      ok 1
-      do start
+      ok form.cells
+      strictEqual (Object::toString.call form.cells), "[object Array]"
+      strictEqual form.cells.length, 8
+
+      for cell in form.cells
+        if cell.type is "text"
+          ok cell.tasks.regexp
+          strictEqual cell.tasks.regexp, "/[^^\s{0,}$]/"
+
+      do Util.Dialog.close
+
+    Util.Dialog.$dom.on "hidden.bs.modal", start
+
+  test "taskRunner", ->
+    Util.Dialog
+      title: "Form Test"
+      content: form_html
+      backdrop: false
+    .open()
+
+    do stop
+
+    Util.Dialog.$dom.on "shown.bs.modal", ->
+      form = new Util.Form "form[name=test-form]"
+
+      form.on "#{form.name}:test-text:queue:error", ->
+        ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-error")
+
+      form.on "#{form.name}:test-text:queue:success", ->
+        do Util.Dialog.close
+
+      for cell in form.cells
+        if cell.name is "test-text"
+          form.taskRunner cell
+
+    Util.Dialog.$dom.on "hidden.bs.modal", start

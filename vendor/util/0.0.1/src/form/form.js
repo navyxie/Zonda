@@ -6,9 +6,9 @@ define(function(require, exports, module) {
   Backbone = require("backbone");
   Cell = require("./cell");
   Form = (function() {
-    function Form(form) {
-      this.form = form;
-      this.cells = Cell(this.form);
+    function Form(sel) {
+      this.sel = sel;
+      this.cells = Cell(this.sel);
       console.log(this.cells);
     }
 

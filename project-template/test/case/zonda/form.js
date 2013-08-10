@@ -16,18 +16,59 @@ define(function(require) {
     ok(Util.Form.prototype.registerTask);
     return strictEqual(typeof Util.Form.prototype.registerTask, "function");
   });
-  return test("cells / initialize / constructe", function() {
+  test("cells / initialize / constructe", function() {
     Util.Dialog({
       title: "Form Test",
       content: form_html,
       backdrop: false
     }).open();
     stop();
-    return Util.Dialog.$dom.on("shown.bs.modal", function() {
-      var form;
+    Util.Dialog.$dom.on("shown.bs.modal", function() {
+      var cell, form, _i, _len, _ref;
       form = new Util.Form("form[name=test-form]");
-      ok(1);
-      return start();
+      ok(form.cells);
+      strictEqual(Object.prototype.toString.call(form.cells), "[object Array]");
+      strictEqual(form.cells.length, 8);
+      _ref = form.cells;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        cell = _ref[_i];
+        if (cell.type === "text") {
+          ok(cell.tasks.regexp);
+          strictEqual(cell.tasks.regexp, "/[^^\s{0,}$]/");
+        }
+      }
+      return Util.Dialog.close();
     });
+    return Util.Dialog.$dom.on("hidden.bs.modal", start);
+  });
+  return test("taskRunner", function() {
+    Util.Dialog({
+      title: "Form Test",
+      content: form_html,
+      backdrop: false
+    }).open();
+    stop();
+    Util.Dialog.$dom.on("shown.bs.modal", function() {
+      var cell, form, _i, _len, _ref, _results;
+      form = new Util.Form("form[name=test-form]");
+      form.on("" + form.name + ":test-text:queue:error", function() {
+        return ok($(form.sel).find("input:text").parents(".form-group").hasClass("has-error"));
+      });
+      form.on("" + form.name + ":test-text:queue:success", function() {
+        return Util.Dialog.close();
+      });
+      _ref = form.cells;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        cell = _ref[_i];
+        if (cell.name === "test-text") {
+          _results.push(form.taskRunner(cell));
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    });
+    return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });
 });

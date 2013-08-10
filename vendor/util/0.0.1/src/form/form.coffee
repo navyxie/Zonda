@@ -15,8 +15,8 @@ define ( require, exports, module ) ->
   # - - -
   # @form: the jQuery selector of Form DOM
   class Form
-    constructor: (@form) ->
-      @cells = Cell @form
+    constructor: (@sel) ->
+      @cells = Cell @sel
       console.log @cells
 
     listen: ->
