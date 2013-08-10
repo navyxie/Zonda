@@ -16,7 +16,7 @@ BUG还很多，发现一个修复一个。已在几个项目中使用，不断�
 
 ### 开发环境依赖
 - - -
-- Linux/Unix/Mac OS X **No Windows at all**
+- Linux/Unix/Mac OS X (**No Windows at all**)
 - NodeJs v0.10.13
 - SPM v2.1.9
 - CoffeeScript v1.6.3
@@ -99,6 +99,20 @@ assets/ # 前端项目根目录
 ```
 
 Nice，Zonda现在已经发动了，驾驶着它在前端的赛道上驰骋吧~
+
+### Form
+- - -
+表单模块，采用`Task`模式对表单项进行各种操作（每个操作为一个`task`），非常容易扩展。
+
+无论是输入值格式验证或是发送输入值至服务器验证，都会被作为一个`task`异步的执行。
+
+可以为不同的`Form`注册各种`task`，然后在该`Form`的表单项`HTML`中以属性节点的方式为该`task`传参即可，例如验证某个`input:text`的值是否符合“非空”（正则验证`task`为内置`task`）：
+
+```html
+<input type="text" name="test-text" task-regexp="/[^^\\s{0,}$]/" />
+```
+
+这时，如果调用该`Form`的`taskRunner`，则会将`task-regexp`的值传给`regexp`这个`task`，并放入`queue`中执行。
 
 ### 基本命令 / make ...
 - - -
