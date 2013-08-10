@@ -9,12 +9,13 @@ define ( require, exports, module ) ->
   $ = require "jquery"
   _ = require "underscore"
   Backbone = require "backbone"
+  Cell = require "./cell"
 
   # Main
   # - - -
-  # @wrap: the Form DOM
+  # @form: the jQuery selector of Form DOM
   class Form
-    constructor: (@wrap) ->
+    constructor: (@form) ->
 
     listen: ->
 

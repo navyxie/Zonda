@@ -6,7 +6,7 @@ define ( require ) ->
   form_html = """
     <form name="test-form" class="form-horizontal">
       <fieldset>
-       <legend>Legend</legend>
+       <legend>All kind of form cell</legend>
 
         <div class="form-group">
           <label for="test-text" class="col-lg-2 control-label">text</label>
@@ -89,6 +89,17 @@ define ( require ) ->
   module "Form"
 
   test "API", ->
+    ok Util.Form
+    ok Util.Form::taskRunner
+    strictEqual typeof Util.Form::taskRunner, "function"
+    ok Util.Form::dump
+    strictEqual typeof Util.Form::dump, "function"
+    ok Util.Form::listen
+    strictEqual typeof Util.Form::listen, "function"
+    ok Util.Form::registerTask
+    strictEqual typeof Util.Form::registerTask, "function"
+
+  test "cells / initialize / constructe", ->
     Util.Dialog
       title: "Form Test"
       content: form_html
@@ -97,9 +108,6 @@ define ( require ) ->
 
     do stop
 
-    ok Util.Form
-
     Util.Dialog.$dom.on "shown.bs.modal", ->
       form = new Util.Form "form[name=test-form]"
       do start
-
