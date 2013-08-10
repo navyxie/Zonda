@@ -102,3 +102,9 @@ define ( require ) ->
     setTimeout ->
       queue.setter "e","success"
     , 500
+  test "queue info", ->
+    queue = new Util.Queue "QueD"
+
+    queue.setter "say", "running", "hello"
+
+    strictEqual queue.data[0].info, "hello"

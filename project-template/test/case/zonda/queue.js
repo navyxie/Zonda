@@ -58,7 +58,7 @@ define(function(require) {
       return queue.setter("run", "error");
     }, 600);
   });
-  return test("queue success", function() {
+  test("queue success", function() {
     var queue;
     queue = new Util.Queue("QueC");
     queue.on("" + queue.NAME + ":queue:success", function() {
@@ -90,5 +90,11 @@ define(function(require) {
     return setTimeout(function() {
       return queue.setter("e", "success");
     }, 500);
+  });
+  return test("queue info", function() {
+    var queue;
+    queue = new Util.Queue("QueD");
+    queue.setter("say", "running", "hello");
+    return strictEqual(queue.data[0].info, "hello");
   });
 });
