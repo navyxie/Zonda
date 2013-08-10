@@ -111,6 +111,9 @@ define ( require ) ->
     Util.Dialog.$dom.on "shown.bs.modal", ->
       form = new Util.Form "form[name=test-form]"
       ok form.cells
+      ok form.sel
+      ok form.dom
+
       strictEqual (Object::toString.call form.cells), "[object Array]"
       strictEqual form.cells.length, 8
 
@@ -124,6 +127,9 @@ define ( require ) ->
     Util.Dialog.$dom.on "hidden.bs.modal", start
 
   test "taskRunner", ->
+    # success and error
+    expect 2
+
     Util.Dialog
       title: "Form Test"
       content: form_html
@@ -135,14 +141,28 @@ define ( require ) ->
     Util.Dialog.$dom.on "shown.bs.modal", ->
       form = new Util.Form "form[name=test-form]"
 
-      form.on "#{form.name}:test-text:queue:error", ->
-        ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-error")
-
-      form.on "#{form.name}:test-text:queue:success", ->
-        do Util.Dialog.close
-
       for cell in form.cells
         if cell.name is "test-text"
-          form.taskRunner cell
+          test_cell = cell # Test Form Cell
+
+      form.on "#{form.name}:test-text:taskRunner:queue:error", ->
+        ok ($(form.sel).find("input:text").parents(".form-group").hasClass "has-error")
+
+      form.on "#{form.name}:test-text:taskRunner:queue:success", ->
+        do Util.Dialog.close
+
+      # Simulate Error
+      # - - -
+      setTimeout ->
+        test_cell.dom.val "    "
+        form.taskRunner test_cell
+      , 1300
+
+      # Simulate Error
+      # - - -
+      setTimeout ->
+        test_cell.dom.val "  1  "
+        form.taskRunner test_cell
+      , 2600
 
     Util.Dialog.$dom.on "hidden.bs.modal", start

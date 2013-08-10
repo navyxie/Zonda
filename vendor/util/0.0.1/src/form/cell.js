@@ -38,6 +38,8 @@ define(function(require, exports, module) {
       var attrs, value;
       this.type = type;
       cell = $(cell);
+      this.dom = cell;
+      this.group_dom = this.dom.parents(".form-group");
       this.name = cell.attr("name");
       this["default"] = cell.attr("default");
       value = cell.attr("value");

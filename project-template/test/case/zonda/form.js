@@ -27,6 +27,8 @@ define(function(require) {
       var cell, form, _i, _len, _ref;
       form = new Util.Form("form[name=test-form]");
       ok(form.cells);
+      ok(form.sel);
+      ok(form.dom);
       strictEqual(Object.prototype.toString.call(form.cells), "[object Array]");
       strictEqual(form.cells.length, 8);
       _ref = form.cells;
@@ -42,6 +44,7 @@ define(function(require) {
     return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });
   return test("taskRunner", function() {
+    expect(2);
     Util.Dialog({
       title: "Form Test",
       content: form_html,
@@ -49,25 +52,29 @@ define(function(require) {
     }).open();
     stop();
     Util.Dialog.$dom.on("shown.bs.modal", function() {
-      var cell, form, _i, _len, _ref, _results;
+      var cell, form, test_cell, _i, _len, _ref;
       form = new Util.Form("form[name=test-form]");
-      form.on("" + form.name + ":test-text:queue:error", function() {
-        return ok($(form.sel).find("input:text").parents(".form-group").hasClass("has-error"));
-      });
-      form.on("" + form.name + ":test-text:queue:success", function() {
-        return Util.Dialog.close();
-      });
       _ref = form.cells;
-      _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         cell = _ref[_i];
         if (cell.name === "test-text") {
-          _results.push(form.taskRunner(cell));
-        } else {
-          _results.push(void 0);
+          test_cell = cell;
         }
       }
-      return _results;
+      form.on("" + form.name + ":test-text:taskRunner:queue:error", function() {
+        return ok($(form.sel).find("input:text").parents(".form-group").hasClass("has-error"));
+      });
+      form.on("" + form.name + ":test-text:taskRunner:queue:success", function() {
+        return Util.Dialog.close();
+      });
+      setTimeout(function() {
+        test_cell.dom.val("    ");
+        return form.taskRunner(test_cell);
+      }, 1300);
+      return setTimeout(function() {
+        test_cell.dom.val("  1  ");
+        return form.taskRunner(test_cell);
+      }, 2600);
     });
     return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });

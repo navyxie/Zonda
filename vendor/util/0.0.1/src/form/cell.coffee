@@ -44,6 +44,9 @@ define ( require, exports, module ) ->
   class Cell
     constructor: ( @type, cell ) ->
       cell = $ cell
+      @dom = cell
+      @group_dom = @dom.parents ".form-group"
+      
       @name = cell.attr "name"
       @default = cell.attr "default"
       value = cell.attr "value"
