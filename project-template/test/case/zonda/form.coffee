@@ -95,4 +95,11 @@ define ( require ) ->
       backdrop: false
     .open()
 
+    do stop
+
     ok Util.Form
+
+    Util.Dialog.$dom.on "shown.bs.modal", ->
+      form = new Util.Form "form[name=test-form]"
+      do start
+

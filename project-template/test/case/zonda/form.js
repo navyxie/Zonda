@@ -11,6 +11,12 @@ define(function(require) {
       content: form_html,
       backdrop: false
     }).open();
-    return ok(Util.Form);
+    stop();
+    ok(Util.Form);
+    return Util.Dialog.$dom.on("shown.bs.modal", function() {
+      var form;
+      form = new Util.Form("form[name=test-form]");
+      return start();
+    });
   });
 });
