@@ -13,6 +13,7 @@ define ( require ) ->
           <div class="col-lg-5">
             <input id="test-text" class="form-control" type="text" name="test-text" />
           </div>
+          <span class="col-lg-5 help-block">msg</span>
         </div>
 
         <div class="form-group">
@@ -20,6 +21,7 @@ define ( require ) ->
           <div class="col-lg-5">
             <input id="test-password" class="form-control" type="password" name="test-password" />
           </div>
+          <span class="col-lg-5 help-block">msg</span>
         </div>
 
         <div class="form-group">
@@ -27,6 +29,7 @@ define ( require ) ->
           <div class="col-lg-5">
             <input id="test-password-retype" class="form-control" type="password" name="test-password-retype" />
           </div>
+          <span class="col-lg-5 help-block">msg</span>
         </div>
 
         <div class="form-group">
@@ -37,6 +40,7 @@ define ( require ) ->
               </label>
             </div>
           </div>
+          <span class="col-lg-5 help-block">msg</span>
         </div>
 
         <div class="form-group">
@@ -44,6 +48,7 @@ define ( require ) ->
           <div class="col-lg-5">
             <textarea id="test-textarea" class="form-control" name="test-textarea" rows="3"></textarea>
           </div>
+          <span class="col-lg-5 help-block">msg</span>
         </div>
 
         <div class="form-group">
@@ -62,6 +67,7 @@ define ( require ) ->
               </label>
             </div>
           </div>
+          <span class="col-lg-5 help-block">msg</span>
         </div>
 
         <div class="form-group">
@@ -73,6 +79,7 @@ define ( require ) ->
               <option value="2">2</option>
             </select>
           </div>
+          <span class="col-lg-5 help-block">msg</span>
         </div>
 
       </fieldset>
