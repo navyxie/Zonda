@@ -30,6 +30,9 @@ define ( require, exports, module ) ->
     listen: ->
 
     taskRunner: (cell) ->
+      if cell.dom.is ":hidden"
+        return null
+
       if cell.status is "running"
         return null
       else
@@ -81,9 +84,9 @@ define ( require, exports, module ) ->
         exp = new RegExp exp
 
         if exp.test cell.dom.val()
-          task_queue.setter "regexp", "success", "nice~"
+          task_queue.setter "regexp", "success"
         else
-          task_queue.setter "regexp", "error", "shit!"
+          task_queue.setter "regexp", "error", "Type Error"
 
   module.exports = Form
   

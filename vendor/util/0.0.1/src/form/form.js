@@ -22,6 +22,9 @@ define(function(require, exports, module) {
 
     Form.prototype.taskRunner = function(cell) {
       var name, namespace, task_queue, _results;
+      if (cell.dom.is(":hidden")) {
+        return null;
+      }
       if (cell.status === "running") {
         return null;
       } else {
@@ -59,9 +62,9 @@ define(function(require, exports, module) {
         exp = exp.replace(/\/$/, "");
         exp = new RegExp(exp);
         if (exp.test(cell.dom.val())) {
-          return task_queue.setter("regexp", "success", "nice~");
+          return task_queue.setter("regexp", "success");
         } else {
-          return task_queue.setter("regexp", "error", "shit!");
+          return task_queue.setter("regexp", "error", "Type Error");
         }
       }
     };
