@@ -9,7 +9,7 @@ define(function(require) {
     ok(Util.Queue);
     strictEqual(typeof Util.Queue, "function");
     strictEqual(typeof Util.Queue, "function");
-    strictEqual(queue.NAME, "test");
+    strictEqual(queue.name, "test");
     strictEqual(typeof queue, "object");
     strictEqual(typeof queue.setter, "function");
     return strictEqual(typeof queue.checkAll, "function");
@@ -41,7 +41,7 @@ define(function(require) {
   test("queue error [delay setter]", function() {
     var queue;
     queue = new Util.Queue("QueB");
-    queue.on("" + queue.NAME + ":queue:error", function() {
+    queue.on("" + queue.name + ":queue:error", function() {
       strictEqual(queue.data.length, 4);
       strictEqual(queue.data[1].status, "error");
       return start();
@@ -61,7 +61,7 @@ define(function(require) {
   test("queue success [delay setter]", function() {
     var queue;
     queue = new Util.Queue("QueC", 5);
-    queue.on("" + queue.NAME + ":queue:success", function() {
+    queue.on("" + queue.name + ":queue:success", function() {
       strictEqual(queue.data[0].status, "success");
       strictEqual(queue.data[1].status, "success");
       strictEqual(queue.data[2].status, "success");
@@ -101,10 +101,10 @@ define(function(require) {
     var queue;
     expect(1);
     queue = new Util.Queue("QueE", 3);
-    queue.once("" + queue.NAME + ":queue:success", function() {
+    queue.once("" + queue.name + ":queue:success", function() {
       return ok(1);
     });
-    queue.once("" + queue.NAME + ":queue:error", function() {
+    queue.once("" + queue.name + ":queue:error", function() {
       ok(1);
       return start();
     });

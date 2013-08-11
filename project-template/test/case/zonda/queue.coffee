@@ -9,7 +9,7 @@ define ( require ) ->
     ok Util.Queue
     strictEqual typeof Util.Queue, "function"
     strictEqual typeof Util.Queue, "function"
-    strictEqual queue.NAME, "test"
+    strictEqual queue.name, "test"
     strictEqual typeof queue, "object"
     strictEqual typeof queue.setter, "function"
     strictEqual typeof queue.checkAll, "function"
@@ -44,7 +44,7 @@ define ( require ) ->
   test "queue error [delay setter]", ->
     queue = new Util.Queue "QueB"
 
-    queue.on "#{queue.NAME}:queue:error", ->
+    queue.on "#{queue.name}:queue:error", ->
       strictEqual queue.data.length, 4
       strictEqual queue.data[1].status, "error"
       do start
@@ -67,7 +67,7 @@ define ( require ) ->
   test "queue success [delay setter]", ->
     queue = new Util.Queue "QueC", 5
 
-    queue.on "#{queue.NAME}:queue:success", ->
+    queue.on "#{queue.name}:queue:success", ->
       strictEqual queue.data[0].status, "success"
       strictEqual queue.data[1].status, "success"
       strictEqual queue.data[2].status, "success"
@@ -115,10 +115,10 @@ define ( require ) ->
 
     queue = new Util.Queue "QueE", 3
 
-    queue.once "#{queue.NAME}:queue:success", ->
+    queue.once "#{queue.name}:queue:success", ->
       ok 1
 
-    queue.once "#{queue.NAME}:queue:error", ->
+    queue.once "#{queue.name}:queue:error", ->
       ok 1
       do start
 
