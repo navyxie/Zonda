@@ -113,6 +113,9 @@ define(function(require) {
       }, 500);
       return setTimeout(function() {
         $("#test-text").val("hehe");
+        $("#test-password").val("hehe");
+        $("#test-password-retype").val("hehe");
+        $("#test-textarea").val("hehe");
         return form.dump();
       }, 1500);
     });

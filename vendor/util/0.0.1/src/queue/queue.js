@@ -4,32 +4,34 @@ define(function(require, exports, module) {
   _ = require("underscore");
   Backbone = require("backbone");
   return Queue = (function() {
-    function Queue(NAME, SIZE) {
-      this.NAME = NAME;
-      this.SIZE = SIZE;
+    function Queue(name, size) {
+      this.name = name;
+      this.size = size;
       _.extend(this, Backbone.Events);
       this.data = [];
     }
 
     Queue.prototype.checkAll = function() {
       var cell, counter, _i, _len, _ref;
-      if (this.SIZE) {
-        counter = this.SIZE;
+      if (this.size) {
+        counter = this.size;
       } else {
         counter = this.data.length;
       }
+      console.log(counter);
       _ref = this.data;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         cell = _ref[_i];
         if (cell.status === "error") {
-          this.trigger("" + this.NAME + ":queue:error", cell);
+          this.trigger("" + this.name + ":queue:error", cell);
+          break;
         }
         if (cell.status === "success") {
           counter -= 1;
         }
       }
       if (counter === 0) {
-        return this.trigger("" + this.NAME + ":queue:success");
+        return this.trigger("" + this.name + ":queue:success");
       }
     };
 

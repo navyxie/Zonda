@@ -7,7 +7,7 @@ define ( require, exports, module ) ->
   Backbone = require "backbone"
 
   class Queue
-    constructor: ( @NAME, @SIZE )->
+    constructor: ( @name, @size )->
       _.extend @, Backbone.Events
 
       @data = []
@@ -17,20 +17,23 @@ define ( require, exports, module ) ->
     # if all status is "success", queue trigger "success"
     # if some status is "error", queue trigger "error"
     checkAll: ->
-      if @SIZE
-        counter = @SIZE
+      if @size
+        counter = @size
       else
         counter = @data.length
 
+      console.log counter
+
       for cell in @data
         if cell.status is "error"
-          @trigger "#{@NAME}:queue:error", cell
+          @trigger "#{@name}:queue:error", cell
+          break
 
         if cell.status is "success"
           counter -= 1
 
       if counter is 0
-        @trigger "#{@NAME}:queue:success"
+        @trigger "#{@name}:queue:success"
 
     # Update / Create
     # - - -

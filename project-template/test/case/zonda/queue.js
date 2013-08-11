@@ -97,7 +97,7 @@ define(function(require) {
     queue.setter("say", "running", "hello");
     return strictEqual(queue.data[0].info, "hello");
   });
-  return test("queue error [half error] [immediately setter]", function() {
+  return test("queue error [half error] [determine length of Queue] [immediately setter]", function() {
     var queue;
     expect(1);
     queue = new Util.Queue("QueE", 3);

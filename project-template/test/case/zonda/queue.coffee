@@ -110,7 +110,7 @@ define ( require ) ->
 
     strictEqual queue.data[0].info, "hello"
 
-  test "queue error [half error] [immediately setter]", ->
+  test "queue error [half error] [determine length of Queue] [immediately setter]", ->
     expect 1
 
     queue = new Util.Queue "QueE", 3

@@ -39,7 +39,8 @@ define ( require, exports, module ) ->
         cell.status = "running"
 
       namespace = "#{@name}:#{cell.name}:taskRunner"
-      task_queue = new Queue namespace
+      task_number = (_.keys cell.tasks).length
+      task_queue = new Queue namespace, task_number
 
       task_queue.once "#{namespace}:queue:error", (err_cell) ->
         cell.status = "error"
@@ -61,6 +62,8 @@ define ( require, exports, module ) ->
             <i class="icon-ok-sign"></i>
           """
 
+      # Run Task
+      # - - -
       for name of cell.tasks
         throw "No such task named #{name}!" unless name of @tasks
         task_queue.setter name, "running"
@@ -71,17 +74,45 @@ define ( require, exports, module ) ->
     # Dump the Form Data
     # - - -
     # Use "form_name:dump:queue:success" Event to get the data.
-    dump: (callback)->
-      dump_queue = new Queue "#{@name}:dump"
+    dump: ( callback, context )->
+      # Helper
+      # - - -
+      _callback = =>
+        _.each @cells, (cell) ->
+          cell.dom.disabled = false
 
-      window.dump_queue = dump_queue
+        if callback and not context
+          callback arguments
+
+        if callback and context
+          callback.call context, arguments
+
+      # 1.Disabled All cells of this Form
+      # 2.Find out which cells should run task
+      # - - -
+      task_cells = []
 
       _.each @cells, (cell) =>
+        cell.dom.disabled = true
+
         if _.keys(cell.tasks).length is 0
           return null
 
-        namespace = "#{@name}:#{cell.name}:taskRunner:queue"
+        task_cells.push cell
 
+      # Generate a Queue
+      # - - -
+      dump_queue = new Queue "#{@name}:dump", task_cells.length
+
+      # Listen to all Events of dump_queue
+      # - - -
+      dump_queue.once "#{@name}:dump:queue:success", _callback
+      dump_queue.once "#{@name}:dump:queue:error", _callback
+
+      # Run each Cells's Task
+      # - - -
+      _.each task_cells, (cell) =>
+        namespace = "#{@name}:#{cell.name}:taskRunner:queue"
         dump_queue.setter cell.name, "running"
 
         Backbone.Events.once "#{namespace}:success", ->
@@ -93,8 +124,6 @@ define ( require, exports, module ) ->
           dump_queue.setter cell.name, "error", err_cell
 
         @taskRunner cell
-
-      # END _.each
 
     # END dump
 

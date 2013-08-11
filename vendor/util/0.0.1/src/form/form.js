@@ -21,7 +21,7 @@ define(function(require, exports, module) {
     Form.prototype.listen = function() {};
 
     Form.prototype.taskRunner = function(cell) {
-      var name, namespace, task_queue, _results;
+      var name, namespace, task_number, task_queue, _results;
       if (cell.dom.is(":hidden")) {
         return null;
       }
@@ -31,7 +31,8 @@ define(function(require, exports, module) {
         cell.status = "running";
       }
       namespace = "" + this.name + ":" + cell.name + ":taskRunner";
-      task_queue = new Queue(namespace);
+      task_number = (_.keys(cell.tasks)).length;
+      task_queue = new Queue(namespace, task_number);
       task_queue.once("" + namespace + ":queue:error", function(err_cell) {
         cell.status = "error";
         return cell.dom.parents(".form-group").removeClass("has-success").addClass("has-warning").find(".help-block").html("<i class=\"icon-warning-sign\"></i> " + err_cell.info);
@@ -51,16 +52,33 @@ define(function(require, exports, module) {
       return _results;
     };
 
-    Form.prototype.dump = function(callback) {
-      var dump_queue,
+    Form.prototype.dump = function(callback, context) {
+      var dump_queue, task_cells, _callback,
         _this = this;
-      dump_queue = new Queue("" + this.name + ":dump");
-      window.dump_queue = dump_queue;
-      return _.each(this.cells, function(cell) {
-        var namespace;
+      _callback = function() {
+        _.each(_this.cells, function(cell) {
+          return cell.dom.disabled = false;
+        });
+        if (callback && !context) {
+          callback(arguments);
+        }
+        if (callback && context) {
+          return callback.call(context, arguments);
+        }
+      };
+      task_cells = [];
+      _.each(this.cells, function(cell) {
+        cell.dom.disabled = true;
         if (_.keys(cell.tasks).length === 0) {
           return null;
         }
+        return task_cells.push(cell);
+      });
+      dump_queue = new Queue("" + this.name + ":dump", task_cells.length);
+      dump_queue.once("" + this.name + ":dump:queue:success", _callback);
+      dump_queue.once("" + this.name + ":dump:queue:error", _callback);
+      return _.each(task_cells, function(cell) {
+        var namespace;
         namespace = "" + _this.name + ":" + cell.name + ":taskRunner:queue";
         dump_queue.setter(cell.name, "running");
         Backbone.Events.once("" + namespace + ":success", function() {

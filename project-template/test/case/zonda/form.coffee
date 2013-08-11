@@ -228,8 +228,9 @@ define ( require ) ->
       # - - -
       setTimeout ->
         $("#test-text").val("hehe")
-        #$("#test-password").val("hehe")
-        #$("#test-password-retype").val("hehe")
+        $("#test-password").val("hehe")
+        $("#test-password-retype").val("hehe")
+        $("#test-textarea").val("hehe")
         do form.dump
       , 1500
 
