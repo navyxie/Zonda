@@ -21,6 +21,19 @@ define ( require ) ->
   """
 
   form_html_mid = """
+    <form name="test-form" class="form-horizontal">
+      <fieldset>
+       <legend>Mini Form</legend>
+
+        <div class="form-group">
+          <label for="test-text" class="col-lg-2 control-label">text</label>
+          <div class="col-lg-5">
+            <input id="test-text" class="form-control" type="text" name="test-text" task-RegExp="/[^^\\s{0,}$]/" task-foo="hehe" placeholder="something..." />
+          </div>
+          <span class="col-lg-5 help-block"></span>
+        </div>
+      </fieldset>
+    </form>
   """
 
   form_html = """
@@ -283,5 +296,44 @@ define ( require ) ->
         ok $("#test-text").parents(".form-group").hasClass "has-success"
         do Util.Dialog.close
       , 1000
+
+    Util.Dialog.$dom.on "hidden.bs.modal", start
+
+  test "registerTask", ->
+    Util.Dialog
+      title: "Form Test"
+      content: form_html_mid
+      backdrop: false
+    .open()
+
+    do stop
+
+    foo = ( cell, task_queue ) ->
+      value = do cell.dom.val
+
+      if value is "hehe"
+        task_queue.setter "foo", "success"
+      else
+        task_queue.setter "foo", "error", "Where is 'hehe'?"
+
+    Util.Dialog.$dom.on "shown.bs.modal", ->
+      form = new Util.Form "form[name=test-form]"
+
+      form.registerTask "foo", foo
+      form.listen "change"
+
+      # Simulate
+      # - - -
+      $("#test-text").val("xixi").trigger("change")
+
+      setTimeout ->
+        ok $("#test-text").parents(".form-group").hasClass "has-warning"
+        $("#test-text").val("hehe").trigger("change")
+      , 1000
+
+      setTimeout ->
+        ok $("#test-text").parents(".form-group").hasClass "has-success"
+        do Util.Dialog.close
+      , 2500
 
     Util.Dialog.$dom.on "hidden.bs.modal", start

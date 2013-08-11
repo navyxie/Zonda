@@ -5,7 +5,7 @@ define(function(require) {
   Util = require("util");
   Mustache = require("mustache");
   form_html_mini = "<form name=\"test-form\" class=\"form-horizontal\">\n  <fieldset>\n   <legend>Mini Form</legend>\n\n    <div class=\"form-group\">\n      <label for=\"test-text\" class=\"col-lg-2 control-label\">text</label>\n      <div class=\"col-lg-5\">\n        <input id=\"test-text\" class=\"form-control\" type=\"text\" name=\"test-text\" task-RegExp=\"/[^^\\s{0,}$]/\" placeholder=\"something...\" />\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n  </fieldset>\n</form>";
-  form_html_mid = "";
+  form_html_mid = "<form name=\"test-form\" class=\"form-horizontal\">\n  <fieldset>\n   <legend>Mini Form</legend>\n\n    <div class=\"form-group\">\n      <label for=\"test-text\" class=\"col-lg-2 control-label\">text</label>\n      <div class=\"col-lg-5\">\n        <input id=\"test-text\" class=\"form-control\" type=\"text\" name=\"test-text\" task-RegExp=\"/[^^\\s{0,}$]/\" task-foo=\"hehe\" placeholder=\"something...\" />\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n  </fieldset>\n</form>";
   form_html = "<form name=\"test-form\" class=\"form-horizontal\">\n  <fieldset> <legend>All kind of form cell</legend> \n    <div class=\"form-group\">\n      <label for=\"test-text\" class=\"col-lg-2 control-label\">text</label>\n      <div class=\"col-lg-5\">\n        <input id=\"test-text\" class=\"form-control\" type=\"text\" name=\"test-text\" task-RegExp=\"/[^^\\s{0,}$]/\" />\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-lg-2 control-label\" for=\"test-password\">password</label>\n      <div class=\"col-lg-5\">\n        <input id=\"test-password\" class=\"form-control\" type=\"password\" name=\"test-password\" task-RegExp=\"/[^^\\s{0,}$]/\" />\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-lg-2 control-label\" for=\"test-password-retype\">pd:retype</label>\n      <div class=\"col-lg-5\">\n        <input id=\"test-password-retype\" class=\"form-control\" type=\"password\" name=\"test-password-retype\" task-RegExp=\"/[^^\\s{0,}$]/\" />\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n\n    <div class=\"form-group\">\n      <div class=\"col-lg-offset-2 col-lg-5\">\n        <div class=\"checkbox\">\n          <label>\n            <input id=\"test-checkbox\" name=\"test-checkbox\" type=\"checkbox\"> checkbox\n          </label>\n        </div>\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-lg-2 control-label\" for=\"test-textarea\">textarea</label>\n      <div class=\"col-lg-5\">\n        <textarea id=\"test-textarea\" class=\"form-control\" name=\"test-textarea\" rows=\"3\" task-RegExp=\"/[^^\\s{0,}$]/\"></textarea>\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n\n    <div class=\"form-group\">\n      <div class=\"col-lg-offset-2 col-lg-5\">\n        <div class=\"radio\">\n          <label for=\"test-radio-a\">\n            <input id=\"test-radio-a\" type=\"radio\" name=\"test-radio\" />\n            radio a\n          </label>\n        </div>\n        <div class=\"radio\">\n          <label for=\"test-radio-b\">\n            <input id=\"test-radio-b\" type=\"radio\" name=\"test-radio\" />\n            radio b\n          </label>\n          </label>\n        </div>\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n\n    <div class=\"form-group\">\n      <label class=\"col-lg-2 control-label\" for=\"test-select\">select</label>\n      <div class=\"col-lg-5\">\n        <select default=\"2\" id=\"test-select\" class=\"form-control\" name=\"test-select\" task-RegExp=\"/[^^\\s{0,}$]/\">\n          <option value=\"0\">0</option>\n          <option value=\"1\">1</option>\n          <option value=\"2\">2</option>\n        </select>\n      </div>\n      <span class=\"col-lg-5 help-block\"></span>\n    </div>\n\n  </fieldset>\n</form>";
   module("Form");
   test("API", function() {
@@ -141,7 +141,7 @@ define(function(require) {
     });
     return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });
-  return test("listen and taskRunner", function() {
+  test("listen and taskRunner", function() {
     Util.Dialog({
       title: "Form Test",
       content: form_html,
@@ -161,6 +161,40 @@ define(function(require) {
         ok($("#test-text").parents(".form-group").hasClass("has-success"));
         return Util.Dialog.close();
       }, 1000);
+    });
+    return Util.Dialog.$dom.on("hidden.bs.modal", start);
+  });
+  return test("registerTask", function() {
+    var foo;
+    Util.Dialog({
+      title: "Form Test",
+      content: form_html_mid,
+      backdrop: false
+    }).open();
+    stop();
+    foo = function(cell, task_queue) {
+      var value;
+      value = cell.dom.val();
+      if (value === "hehe") {
+        return task_queue.setter("foo", "success");
+      } else {
+        return task_queue.setter("foo", "error", "Where is 'hehe'?");
+      }
+    };
+    Util.Dialog.$dom.on("shown.bs.modal", function() {
+      var form;
+      form = new Util.Form("form[name=test-form]");
+      form.registerTask("foo", foo);
+      form.listen("change");
+      $("#test-text").val("xixi").trigger("change");
+      setTimeout(function() {
+        ok($("#test-text").parents(".form-group").hasClass("has-warning"));
+        return $("#test-text").val("hehe").trigger("change");
+      }, 1000);
+      return setTimeout(function() {
+        ok($("#test-text").parents(".form-group").hasClass("has-success"));
+        return Util.Dialog.close();
+      }, 2500);
     });
     return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });

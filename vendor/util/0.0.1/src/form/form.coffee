@@ -133,7 +133,7 @@ define ( require, exports, module ) ->
     # END dump
 
     registerTask: ( name, task ) ->
-      throw "Task:#{name} existed!" unless name of @tasks
+      throw "Task:#{name} existed!" if name of @tasks
       @tasks[name] = task
 
     # Build-in task

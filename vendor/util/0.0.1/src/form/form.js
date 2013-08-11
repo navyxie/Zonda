@@ -104,7 +104,7 @@ define(function(require, exports, module) {
     };
 
     Form.prototype.registerTask = function(name, task) {
-      if (!(name in this.tasks)) {
+      if (name in this.tasks) {
         throw "Task:" + name + " existed!";
       }
       return this.tasks[name] = task;
