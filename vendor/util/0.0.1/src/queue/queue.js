@@ -4,15 +4,20 @@ define(function(require, exports, module) {
   _ = require("underscore");
   Backbone = require("backbone");
   return Queue = (function() {
-    function Queue(NAME) {
+    function Queue(NAME, SIZE) {
       this.NAME = NAME;
+      this.SIZE = SIZE;
       _.extend(this, Backbone.Events);
       this.data = [];
     }
 
     Queue.prototype.checkAll = function() {
-      var cell, _counter, _i, _len, _ref;
-      _counter = this.data.length;
+      var cell, counter, _i, _len, _ref;
+      if (this.SIZE) {
+        counter = this.SIZE;
+      } else {
+        counter = this.data.length;
+      }
       _ref = this.data;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         cell = _ref[_i];
@@ -20,10 +25,10 @@ define(function(require, exports, module) {
           this.trigger("" + this.NAME + ":queue:error", cell);
         }
         if (cell.status === "success") {
-          _counter -= 1;
+          counter -= 1;
         }
       }
-      if (_counter === 0) {
+      if (counter === 0) {
         return this.trigger("" + this.NAME + ":queue:success");
       }
     };
@@ -41,13 +46,14 @@ define(function(require, exports, module) {
         }
       }
       if (_is_new) {
-        this.data.push({
+        return this.data.push({
           name: name,
           status: status,
           info: info
         });
+      } else {
+        return this.checkAll();
       }
-      return this.checkAll();
     };
 
     return Queue;

@@ -41,7 +41,7 @@ define ( require ) ->
     queue.setter "a", "success"
     strictEqual queue.data[0].status, "success"
 
-  test "queue error", ->
+  test "queue error [delay setter]", ->
     queue = new Util.Queue "QueB"
 
     queue.on "#{queue.NAME}:queue:error", ->
@@ -64,8 +64,8 @@ define ( require ) ->
       queue.setter "run", "error"
     , 600
 
-  test "queue success", ->
-    queue = new Util.Queue "QueC"
+  test "queue success [delay setter]", ->
+    queue = new Util.Queue "QueC", 5
 
     queue.on "#{queue.NAME}:queue:success", ->
       strictEqual queue.data[0].status, "success"
@@ -102,9 +102,35 @@ define ( require ) ->
     setTimeout ->
       queue.setter "e","success"
     , 500
+
   test "queue info", ->
     queue = new Util.Queue "QueD"
 
     queue.setter "say", "running", "hello"
 
     strictEqual queue.data[0].info, "hello"
+
+  test "queue error [half error] [immediately setter]", ->
+    expect 1
+
+    queue = new Util.Queue "QueE", 3
+
+    queue.once "#{queue.NAME}:queue:success", ->
+      ok 1
+
+    queue.once "#{queue.NAME}:queue:error", ->
+      ok 1
+      do start
+
+    do stop
+
+    # Simulate
+    # - - -
+    queue.setter "a", "running"
+    queue.setter "a", "success"
+
+    queue.setter "b", "running"
+    queue.setter "b", "error"
+
+    queue.setter "c", "running"
+    queue.setter "c", "success"

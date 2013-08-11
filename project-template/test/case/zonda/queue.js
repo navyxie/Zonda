@@ -38,7 +38,7 @@ define(function(require) {
     queue.setter("a", "success");
     return strictEqual(queue.data[0].status, "success");
   });
-  test("queue error", function() {
+  test("queue error [delay setter]", function() {
     var queue;
     queue = new Util.Queue("QueB");
     queue.on("" + queue.NAME + ":queue:error", function() {
@@ -58,9 +58,9 @@ define(function(require) {
       return queue.setter("run", "error");
     }, 600);
   });
-  test("queue success", function() {
+  test("queue success [delay setter]", function() {
     var queue;
-    queue = new Util.Queue("QueC");
+    queue = new Util.Queue("QueC", 5);
     queue.on("" + queue.NAME + ":queue:success", function() {
       strictEqual(queue.data[0].status, "success");
       strictEqual(queue.data[1].status, "success");
@@ -91,10 +91,29 @@ define(function(require) {
       return queue.setter("e", "success");
     }, 500);
   });
-  return test("queue info", function() {
+  test("queue info", function() {
     var queue;
     queue = new Util.Queue("QueD");
     queue.setter("say", "running", "hello");
     return strictEqual(queue.data[0].info, "hello");
+  });
+  return test("queue error [half error] [immediately setter]", function() {
+    var queue;
+    expect(1);
+    queue = new Util.Queue("QueE", 3);
+    queue.once("" + queue.NAME + ":queue:success", function() {
+      return ok(1);
+    });
+    queue.once("" + queue.NAME + ":queue:error", function() {
+      ok(1);
+      return start();
+    });
+    stop();
+    queue.setter("a", "running");
+    queue.setter("a", "success");
+    queue.setter("b", "running");
+    queue.setter("b", "error");
+    queue.setter("c", "running");
+    return queue.setter("c", "success");
   });
 });
