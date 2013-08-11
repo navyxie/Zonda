@@ -271,5 +271,17 @@ define ( require ) ->
     Util.Dialog.$dom.on "shown.bs.modal", ->
       form = new Util.Form "form[name=test-form]"
       form.listen "change"
-      ok 1
-      do start
+
+      $("#test-text").val("    ").trigger("change")
+
+      setTimeout ->
+        ok $("#test-text").parents(".form-group").hasClass "has-warning"
+        $("#test-text").val("hehehe").trigger("change")
+      , 300
+
+      setTimeout ->
+        ok $("#test-text").parents(".form-group").hasClass "has-success"
+        do Util.Dialog.close
+      , 1000
+
+    Util.Dialog.$dom.on "hidden.bs.modal", start

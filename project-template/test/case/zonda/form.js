@@ -148,12 +148,20 @@ define(function(require) {
       backdrop: false
     }).open();
     stop();
-    return Util.Dialog.$dom.on("shown.bs.modal", function() {
+    Util.Dialog.$dom.on("shown.bs.modal", function() {
       var form;
       form = new Util.Form("form[name=test-form]");
       form.listen("change");
-      ok(1);
-      return start();
+      $("#test-text").val("    ").trigger("change");
+      setTimeout(function() {
+        ok($("#test-text").parents(".form-group").hasClass("has-warning"));
+        return $("#test-text").val("hehehe").trigger("change");
+      }, 300);
+      return setTimeout(function() {
+        ok($("#test-text").parents(".form-group").hasClass("has-success"));
+        return Util.Dialog.close();
+      }, 1000);
     });
+    return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });
 });
