@@ -251,12 +251,25 @@ define ( require ) ->
       # Simulate Error
       # - - -
       setTimeout ->
-
         form.dump (err_cell) ->
           ok err_cell
           strictEqual err_cell.status, "error"
           do Util.Dialog.close
-
       , 500
 
     Util.Dialog.$dom.on "hidden.bs.modal", start
+
+  test "listen and taskRunner", ->
+    Util.Dialog
+      title: "Form Test"
+      content: form_html
+      backdrop: false
+    .open()
+
+    do stop
+
+    Util.Dialog.$dom.on "shown.bs.modal", ->
+      form = new Util.Form "form[name=test-form]"
+      form.listen "change"
+      ok 1
+      do start

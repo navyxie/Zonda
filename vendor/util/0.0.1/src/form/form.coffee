@@ -27,7 +27,12 @@ define ( require, exports, module ) ->
       # - - -
       throw "From:#{@sel} must have a name!" if @name is undefined
 
-    listen: ->
+    listen: (evt) ->
+      _.each @cells, (cell) =>
+        if _.keys(cell.tasks).length is 0
+          return null
+        cell.dom.on evt, =>
+          @taskRunner cell
 
     taskRunner: (cell) ->
       if cell.dom.is ":hidden"

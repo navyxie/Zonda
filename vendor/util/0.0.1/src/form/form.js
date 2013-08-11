@@ -18,7 +18,17 @@ define(function(require, exports, module) {
       }
     }
 
-    Form.prototype.listen = function() {};
+    Form.prototype.listen = function(evt) {
+      var _this = this;
+      return _.each(this.cells, function(cell) {
+        if (_.keys(cell.tasks).length === 0) {
+          return null;
+        }
+        return cell.dom.on(evt, function() {
+          return _this.taskRunner(cell);
+        });
+      });
+    };
 
     Form.prototype.taskRunner = function(cell) {
       var name, namespace, task_number, task_queue, _results;

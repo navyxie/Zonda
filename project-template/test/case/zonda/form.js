@@ -121,7 +121,7 @@ define(function(require) {
     });
     return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });
-  return test("dump error callback", function() {
+  test("dump error callback", function() {
     Util.Dialog({
       title: "Form Test",
       content: form_html,
@@ -140,5 +140,20 @@ define(function(require) {
       }, 500);
     });
     return Util.Dialog.$dom.on("hidden.bs.modal", start);
+  });
+  return test("listen and taskRunner", function() {
+    Util.Dialog({
+      title: "Form Test",
+      content: form_html,
+      backdrop: false
+    }).open();
+    stop();
+    return Util.Dialog.$dom.on("shown.bs.modal", function() {
+      var form;
+      form = new Util.Form("form[name=test-form]");
+      form.listen("change");
+      ok(1);
+      return start();
+    });
   });
 });
