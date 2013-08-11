@@ -192,7 +192,7 @@ define ( require ) ->
 
     Util.Dialog.$dom.on "hidden.bs.modal", start
 
-  test "dump", ->
+  test "dump taskRunner", ->
     # success and error
     expect 2
 
@@ -233,5 +233,30 @@ define ( require ) ->
         $("#test-textarea").val("hehe")
         do form.dump
       , 1500
+
+    Util.Dialog.$dom.on "hidden.bs.modal", start
+
+  test "dump error callback", ->
+    Util.Dialog
+      title: "Form Test"
+      content: form_html
+      backdrop: false
+    .open()
+
+    do stop
+
+    Util.Dialog.$dom.on "shown.bs.modal", ->
+      form = new Util.Form "form[name=test-form]"
+
+      # Simulate Error
+      # - - -
+      setTimeout ->
+
+        form.dump (err_cell) ->
+          ok err_cell
+          strictEqual err_cell.status, "error"
+          do Util.Dialog.close
+
+      , 500
 
     Util.Dialog.$dom.on "hidden.bs.modal", start

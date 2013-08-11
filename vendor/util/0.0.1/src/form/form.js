@@ -55,15 +55,15 @@ define(function(require, exports, module) {
     Form.prototype.dump = function(callback, context) {
       var dump_queue, task_cells, _callback,
         _this = this;
-      _callback = function() {
+      _callback = function(err_cell) {
         _.each(_this.cells, function(cell) {
           return cell.dom.disabled = false;
         });
         if (callback && !context) {
-          callback(arguments);
+          callback(err_cell);
         }
         if (callback && context) {
-          return callback.call(context, arguments);
+          return callback.call(context, err_cell);
         }
       };
       task_cells = [];

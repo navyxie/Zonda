@@ -22,8 +22,6 @@ define ( require, exports, module ) ->
       else
         counter = @data.length
 
-      console.log counter
-
       for cell in @data
         if cell.status is "error"
           @trigger "#{@name}:queue:error", cell

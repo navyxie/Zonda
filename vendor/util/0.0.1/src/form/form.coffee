@@ -77,15 +77,15 @@ define ( require, exports, module ) ->
     dump: ( callback, context )->
       # Helper
       # - - -
-      _callback = =>
+      _callback = (err_cell) =>
         _.each @cells, (cell) ->
           cell.dom.disabled = false
 
         if callback and not context
-          callback arguments
+          callback err_cell
 
         if callback and context
-          callback.call context, arguments
+          callback.call context, err_cell
 
       # 1.Disabled All cells of this Form
       # 2.Find out which cells should run task

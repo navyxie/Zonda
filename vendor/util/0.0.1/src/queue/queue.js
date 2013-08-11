@@ -18,7 +18,6 @@ define(function(require, exports, module) {
       } else {
         counter = this.data.length;
       }
-      console.log(counter);
       _ref = this.data;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         cell = _ref[_i];

@@ -87,7 +87,7 @@ define(function(require) {
     });
     return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });
-  return test("dump", function() {
+  test("dump taskRunner", function() {
     expect(2);
     Util.Dialog({
       title: "Form Test",
@@ -118,6 +118,26 @@ define(function(require) {
         $("#test-textarea").val("hehe");
         return form.dump();
       }, 1500);
+    });
+    return Util.Dialog.$dom.on("hidden.bs.modal", start);
+  });
+  return test("dump error callback", function() {
+    Util.Dialog({
+      title: "Form Test",
+      content: form_html,
+      backdrop: false
+    }).open();
+    stop();
+    Util.Dialog.$dom.on("shown.bs.modal", function() {
+      var form;
+      form = new Util.Form("form[name=test-form]");
+      return setTimeout(function() {
+        return form.dump(function(err_cell) {
+          ok(err_cell);
+          strictEqual(err_cell.status, "error");
+          return Util.Dialog.close();
+        });
+      }, 500);
     });
     return Util.Dialog.$dom.on("hidden.bs.modal", start);
   });
