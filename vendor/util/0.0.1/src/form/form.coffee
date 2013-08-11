@@ -48,7 +48,7 @@ define ( require, exports, module ) ->
           .addClass("has-warning")
           .find(".help-block")
           .html """
-            <i class="icon-remove-sign"></i> #{err_cell.info}
+            <i class="icon-warning-sign"></i> #{err_cell.info}
           """
 
       task_queue.once "#{namespace}:queue:success", ->
@@ -66,11 +66,41 @@ define ( require, exports, module ) ->
         task_queue.setter name, "running"
         @tasks[name] cell, task_queue
 
-    dump: (callback)->
+    # END taskRunner
 
-    # Register a task to a cell of this form
+    # Dump the Form Data
     # - - -
-    registerTask: ( task, cell ) ->
+    # Use "form_name:dump:queue:success" Event to get the data.
+    dump: (callback)->
+      dump_queue = new Queue "#{@name}:dump"
+
+      window.dump_queue = dump_queue
+
+      _.each @cells, (cell) =>
+        if _.keys(cell.tasks).length is 0
+          return null
+
+        namespace = "#{@name}:#{cell.name}:taskRunner:queue"
+
+        dump_queue.setter cell.name, "running"
+
+        Backbone.Events.once "#{namespace}:success", ->
+          Backbone.Events.off "#{namespace}:error"
+          dump_queue.setter cell.name, "success"
+
+        Backbone.Events.once "#{namespace}:error", (err_cell) ->
+          Backbone.Events.off "#{namespace}:success"
+          dump_queue.setter cell.name, "error", err_cell
+
+        @taskRunner cell
+
+      # END _.each
+
+    # END dump
+
+    registerTask: ( name, task ) ->
+      throw "Task:#{name} existed!" unless name of @tasks
+      @tasks[name] = task
 
     # Build-in task
     # - - -

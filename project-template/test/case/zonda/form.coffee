@@ -20,11 +20,12 @@ define ( require ) ->
     </form>
   """
 
+  form_html_mid = """
+  """
+
   form_html = """
     <form name="test-form" class="form-horizontal">
-      <fieldset>
-       <legend>All kind of form cell</legend>
-
+      <fieldset> <legend>All kind of form cell</legend> 
         <div class="form-group">
           <label for="test-text" class="col-lg-2 control-label">text</label>
           <div class="col-lg-5">
@@ -36,7 +37,7 @@ define ( require ) ->
         <div class="form-group">
           <label class="col-lg-2 control-label" for="test-password">password</label>
           <div class="col-lg-5">
-            <input id="test-password" class="form-control" type="password" name="test-password" />
+            <input id="test-password" class="form-control" type="password" name="test-password" task-RegExp="/[^^\\s{0,}$]/" />
           </div>
           <span class="col-lg-5 help-block"></span>
         </div>
@@ -44,7 +45,7 @@ define ( require ) ->
         <div class="form-group">
           <label class="col-lg-2 control-label" for="test-password-retype">pd:retype</label>
           <div class="col-lg-5">
-            <input id="test-password-retype" class="form-control" type="password" name="test-password-retype" />
+            <input id="test-password-retype" class="form-control" type="password" name="test-password-retype" task-RegExp="/[^^\\s{0,}$]/" />
           </div>
           <span class="col-lg-5 help-block"></span>
         </div>
@@ -63,7 +64,7 @@ define ( require ) ->
         <div class="form-group">
           <label class="col-lg-2 control-label" for="test-textarea">textarea</label>
           <div class="col-lg-5">
-            <textarea id="test-textarea" class="form-control" name="test-textarea" rows="3"></textarea>
+            <textarea id="test-textarea" class="form-control" name="test-textarea" rows="3" task-RegExp="/[^^\\s{0,}$]/"></textarea>
           </div>
           <span class="col-lg-5 help-block"></span>
         </div>
@@ -90,7 +91,7 @@ define ( require ) ->
         <div class="form-group">
           <label class="col-lg-2 control-label" for="test-select">select</label>
           <div class="col-lg-5">
-            <select default="2" id="test-select" class="form-control" name="test-select">
+            <select default="2" id="test-select" class="form-control" name="test-select" task-RegExp="/[^^\\s{0,}$]/">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -182,11 +183,54 @@ define ( require ) ->
         form.taskRunner test_cell
       , 300
 
-      # Simulate Error
+      # Simulate Success
       # - - -
       setTimeout ->
         test_cell.dom.val "not null"
         form.taskRunner test_cell
       , 1600
+
+    Util.Dialog.$dom.on "hidden.bs.modal", start
+
+  test "dump", ->
+    # success and error
+    expect 2
+
+    Util.Dialog
+      title: "Form Test"
+      content: form_html
+      backdrop: false
+    .open()
+
+    do stop
+
+    Util.Dialog.$dom.on "shown.bs.modal", ->
+      form = new Util.Form "form[name=test-form]"
+
+      namespace = "#{form.name}:dump:queue"
+
+      Backbone.Events.once "#{namespace}:error", ->
+        ok 1
+
+      Backbone.Events.once "#{namespace}:success", ->
+        ok 1
+        setTimeout ->
+          do Util.Dialog.close
+        , 1300
+
+      # Simulate Error
+      # - - -
+      setTimeout ->
+        do form.dump
+      , 500
+
+      # Simulate Success
+      # - - -
+      setTimeout ->
+        $("#test-text").val("hehe")
+        #$("#test-password").val("hehe")
+        #$("#test-password-retype").val("hehe")
+        do form.dump
+      , 1500
 
     Util.Dialog.$dom.on "hidden.bs.modal", start

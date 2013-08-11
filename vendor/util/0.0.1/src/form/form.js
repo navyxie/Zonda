@@ -34,7 +34,7 @@ define(function(require, exports, module) {
       task_queue = new Queue(namespace);
       task_queue.once("" + namespace + ":queue:error", function(err_cell) {
         cell.status = "error";
-        return cell.dom.parents(".form-group").removeClass("has-success").addClass("has-warning").find(".help-block").html("<i class=\"icon-remove-sign\"></i> " + err_cell.info);
+        return cell.dom.parents(".form-group").removeClass("has-success").addClass("has-warning").find(".help-block").html("<i class=\"icon-warning-sign\"></i> " + err_cell.info);
       });
       task_queue.once("" + namespace + ":queue:success", function() {
         cell.status = "success";
@@ -51,9 +51,36 @@ define(function(require, exports, module) {
       return _results;
     };
 
-    Form.prototype.dump = function(callback) {};
+    Form.prototype.dump = function(callback) {
+      var dump_queue,
+        _this = this;
+      dump_queue = new Queue("" + this.name + ":dump");
+      window.dump_queue = dump_queue;
+      return _.each(this.cells, function(cell) {
+        var namespace;
+        if (_.keys(cell.tasks).length === 0) {
+          return null;
+        }
+        namespace = "" + _this.name + ":" + cell.name + ":taskRunner:queue";
+        dump_queue.setter(cell.name, "running");
+        Backbone.Events.once("" + namespace + ":success", function() {
+          Backbone.Events.off("" + namespace + ":error");
+          return dump_queue.setter(cell.name, "success");
+        });
+        Backbone.Events.once("" + namespace + ":error", function(err_cell) {
+          Backbone.Events.off("" + namespace + ":success");
+          return dump_queue.setter(cell.name, "error", err_cell);
+        });
+        return _this.taskRunner(cell);
+      });
+    };
 
-    Form.prototype.registerTask = function(task, cell) {};
+    Form.prototype.registerTask = function(name, task) {
+      if (!(name in this.tasks)) {
+        throw "Task:" + name + " existed!";
+      }
+      return this.tasks[name] = task;
+    };
 
     Form.prototype.tasks = {
       regexp: function(cell, task_queue) {
