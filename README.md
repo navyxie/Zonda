@@ -118,6 +118,18 @@ Nice，Zonda现在已经发动了，驾驶着它在前端的赛道上驰骋吧~
 
 这时，如果调用该`Form`的`taskRunner`，则会将`task-regexp`的值传给`regexp`这个`task`，并放入`queue`中执行。
 
+### Dialog
+- - -
+可生成按钮，按钮名可使用特殊标记加`class`，如：
+
+```coffee
+Util.Dialog
+  title: xxx
+  content: xxx
+  button:
+    "Hello[~class-name]": -> callback
+```
+
 ### 基本命令 / make ...
 - - -
 
