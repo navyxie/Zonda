@@ -6,10 +6,13 @@ define ( require, exports, module ) ->
 
     dis = cells.first().parent().outerWidth()
 
+    ###
+    # It seem do not need this
     if @is_first_run_slide
       cells.eq(now).fadeIn "fast"
       @is_first_run_slide = false
       return null
+    ###
 
     if now is 0 and where is (cells.size() - 1)
       cells.eq(where).show().css left: -dis

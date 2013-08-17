@@ -34,6 +34,8 @@ define ( require, exports, module ) ->
       @config.delay = 1000 unless @config.delay
       @config.autoPlay = true unless @config.autoPlay
 
+      @now.dom.fadeIn "fast"
+
       # Page of Slide
       # - - -
       Page.call @, config if config.page

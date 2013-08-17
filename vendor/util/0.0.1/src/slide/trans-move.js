@@ -4,11 +4,14 @@ define(function(require, exports, module) {
     var dis;
 
     dis = cells.first().parent().outerWidth();
-    if (this.is_first_run_slide) {
-      cells.eq(now).fadeIn("fast");
-      this.is_first_run_slide = false;
-      return null;
-    }
+    /*
+    # It seem do not need this
+    if @is_first_run_slide
+      cells.eq(now).fadeIn "fast"
+      @is_first_run_slide = false
+      return null
+    */
+
     if (now === 0 && where === (cells.size() - 1)) {
       cells.eq(where).show().css({
         left: -dis

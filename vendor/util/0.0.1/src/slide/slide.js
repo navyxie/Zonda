@@ -27,6 +27,7 @@ define(function(require, exports, module) {
       if (!this.config.autoPlay) {
         this.config.autoPlay = true;
       }
+      this.now.dom.fadeIn("fast");
       if (config.page) {
         Page.call(this, config);
       }
