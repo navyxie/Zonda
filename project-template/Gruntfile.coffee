@@ -86,4 +86,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-connect"
 
   grunt.registerTask "test", ["connect", "qunit"]
-  grunt.registerTask "build", ["transport:app", "concat:app", "clean"]
+  grunt.registerTask "build", ["transport:app", "concat:app", "uglify:app"]

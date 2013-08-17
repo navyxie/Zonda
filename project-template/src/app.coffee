@@ -1,4 +1,5 @@
 define ( require, exports, module ) ->
+  $ = require "jquery"
   Util = require "util"
   b = require "./b"
 
