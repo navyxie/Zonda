@@ -36,7 +36,7 @@ define ( require, exports, module ) ->
 
       # Page of Slide
       # - - -
-      Page.call @, config
+      Page.call @, config if config.page
 
       @autoPlay 0
 

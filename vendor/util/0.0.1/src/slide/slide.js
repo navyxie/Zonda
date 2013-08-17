@@ -27,7 +27,9 @@ define(function(require, exports, module) {
       if (!this.config.autoPlay) {
         this.config.autoPlay = true;
       }
-      Page.call(this, config);
+      if (config.page) {
+        Page.call(this, config);
+      }
       this.autoPlay(0);
       this.cells.on("mouseover", function() {
         return _this.stop();
