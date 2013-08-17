@@ -128,6 +128,8 @@ Util.Dialog
   content: xxx
   button:
     "Hello[~class-name]": -> callback
+
+do Util.Dialog.open
 ```
 
 ### 基本命令 / make ...
