@@ -13,10 +13,10 @@ define(function(require, exports, module) {
       cells.eq(where).show().css({
         left: -dis
       });
-      cells.eq(now).animate({
+      cells.eq(now).stop().animate({
         left: dis
       });
-      cells.eq(where).animate({
+      cells.eq(where).stop().animate({
         left: 0
       });
       return null;
@@ -25,10 +25,10 @@ define(function(require, exports, module) {
       cells.eq(where).show().css({
         left: dis
       });
-      cells.eq(now).animate({
+      cells.eq(now).stop().animate({
         left: -dis
       });
-      cells.eq(where).animate({
+      cells.eq(where).stop().animate({
         left: 0
       });
       return null;
@@ -37,10 +37,10 @@ define(function(require, exports, module) {
       cells.eq(where).show().css({
         left: dis
       });
-      cells.eq(now).animate({
+      cells.eq(now).stop().animate({
         left: -dis
       });
-      cells.eq(where).animate({
+      cells.eq(where).stop().animate({
         left: 0
       });
       return null;
@@ -49,10 +49,10 @@ define(function(require, exports, module) {
       cells.eq(where).show().css({
         left: -dis
       });
-      cells.eq(now).animate({
+      cells.eq(now).stop().animate({
         left: dis
       });
-      cells.eq(where).animate({
+      cells.eq(where).stop().animate({
         left: 0
       });
       return null;

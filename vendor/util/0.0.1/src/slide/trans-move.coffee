@@ -14,10 +14,10 @@ define ( require, exports, module ) ->
     if now is 0 and where is (cells.size() - 1)
       cells.eq(where).show().css left: -dis
 
-      cells.eq(now).animate
+      cells.eq(now).stop().animate
         left: dis
 
-      cells.eq(where).animate
+      cells.eq(where).stop().animate
         left: 0
 
       return null
@@ -25,10 +25,10 @@ define ( require, exports, module ) ->
     if where > now
       cells.eq(where).show().css left: dis
 
-      cells.eq(now).animate
+      cells.eq(now).stop().animate
         left: -dis
 
-      cells.eq(where).animate
+      cells.eq(where).stop().animate
         left: 0
 
       return null
@@ -36,10 +36,10 @@ define ( require, exports, module ) ->
     if where is 0 and now is (cells.size() - 1)
       cells.eq(where).show().css left: dis
 
-      cells.eq(now).animate
+      cells.eq(now).stop().animate
         left: -dis
 
-      cells.eq(where).animate
+      cells.eq(where).stop().animate
         left: 0
 
       return null
@@ -47,10 +47,10 @@ define ( require, exports, module ) ->
     if where < now
       cells.eq(where).show().css left: -dis
 
-      cells.eq(now).animate
+      cells.eq(now).stop().animate
         left: dis
 
-      cells.eq(where).animate
+      cells.eq(where).stop().animate
         left: 0
 
       return null
