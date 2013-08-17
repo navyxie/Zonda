@@ -28,7 +28,7 @@ define(function(require, exports, module) {
       }
       this.autoPlay(0);
       this.cells.on("mouseover", function() {
-        return _this.goto(_this.now.index);
+        return _this.stop();
       });
       this.cells.on("mouseout", function() {
         return _this.autoPlay();
@@ -79,6 +79,10 @@ define(function(require, exports, module) {
     Slide.prototype.prev = function() {
       this.goto(this.now.index - 1);
       return this.autoPlay();
+    };
+
+    Slide.prototype.stop = function() {
+      return this.goto(this.now.index);
     };
 
     Slide.prototype.trans = {

@@ -1,4 +1,4 @@
-# Zonda Util Dialog
+# Zonda Util Slide
 # - - -
 define ( require, exports, module ) ->
   $ = require "jquery-ui"
@@ -11,6 +11,12 @@ define ( require, exports, module ) ->
   #   sel: "ul" of this Slide's selector
   #   autoPlay: true/false
   #   delay: millisecond of autoPlay delay
+  #   trans: transition of "goto"
+  #
+  #   page:
+  #     sel: "ul" of page
+  #     tpl: Support the Mustache
+
   class Slide
     constructor: (@config) ->
       _.extend @, Backbone.Events
@@ -29,7 +35,7 @@ define ( require, exports, module ) ->
 
       # MouseEvent Handle
       # - - -
-      @cells.on "mouseover", => @goto @now.index
+      @cells.on "mouseover", => do @stop
       @cells.on "mouseout", => do @autoPlay
 
     # Kernel Part
@@ -79,6 +85,8 @@ define ( require, exports, module ) ->
     prev: ->
       @goto @now.index-1
       do @autoPlay
+
+    stop: -> @goto @now.index
 
     trans:
       is_first_run_slide: true
