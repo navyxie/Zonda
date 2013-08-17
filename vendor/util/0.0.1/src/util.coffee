@@ -12,6 +12,8 @@ define ( require, exports, module ) ->
 
     # Class
     # - - -
+    Slide:        require "./slide/slide"
+
     StateMachine: require "./stateMachine/stateMachine"
 
     Queue:        require "./queue/queue"
