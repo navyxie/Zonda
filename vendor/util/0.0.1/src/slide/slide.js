@@ -91,9 +91,11 @@ define(function(require, exports, module) {
 
     Slide.prototype.trans = {
       is_first_run_slide: true,
-      fade: function(where, now, cells) {
-        cells.eq(now).fadeOut("slow");
-        return cells.eq(where).fadeIn("slow");
+      fade: function() {
+        var fade;
+
+        fade = require("./trans-fade");
+        return fade.apply(this, arguments);
       },
       move: function() {
         var move;

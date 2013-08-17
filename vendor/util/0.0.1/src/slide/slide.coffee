@@ -98,9 +98,9 @@ define ( require, exports, module ) ->
     trans:
       is_first_run_slide: true
 
-      fade: ( where, now, cells ) ->
-        cells.eq(now).fadeOut "slow"
-        cells.eq(where).fadeIn "slow"
+      fade: ->
+        fade = require "./trans-fade"
+        fade.apply @, arguments
 
       move: ->
         move = require "./trans-move"
