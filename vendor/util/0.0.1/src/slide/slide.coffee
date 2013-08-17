@@ -5,6 +5,9 @@ define ( require, exports, module ) ->
   _ = require "underscore"
   Backbone = require "backbone"
 
+  Page = require "./page"
+  
+
   # Main Class
   # - - -
   # Slide.config
@@ -30,6 +33,10 @@ define ( require, exports, module ) ->
       @config.trans = "fade" unless @config.trans
       @config.delay = 1000 unless @config.delay
       @config.autoPlay = true unless @config.autoPlay
+
+      # Page of Slide
+      # - - -
+      Page.call @, config
 
       @autoPlay 0
 
