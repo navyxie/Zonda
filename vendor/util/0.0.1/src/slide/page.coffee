@@ -7,13 +7,18 @@ define ( require, exports, module ) ->
   timer = ""
 
   module.exports = (config) ->
+    if config.page.event
+      evt = config.page.event
+    else
+      evt = "mouseover"
+
     # Generate Page
     # - - -
     for index in [0...@length]
       $(config.page.sel).append Mustache.render config.page.tpl, page: index
 
     $(config.page.sel).children().each (index) =>
-      $(config.page.sel).children().eq(index).on "mouseover", =>
+      $(config.page.sel).children().eq(index).on evt, =>
         clearTimeout timer
         timer = setTimeout =>
           @goto index

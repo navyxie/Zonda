@@ -6,16 +6,21 @@ define(function(require, exports, module) {
   Mustache = require("mustache");
   timer = "";
   return module.exports = function(config) {
-    var index, _i, _ref,
+    var evt, index, _i, _ref,
       _this = this;
 
+    if (config.page.event) {
+      evt = config.page.event;
+    } else {
+      evt = "mouseover";
+    }
     for (index = _i = 0, _ref = this.length; 0 <= _ref ? _i < _ref : _i > _ref; index = 0 <= _ref ? ++_i : --_i) {
       $(config.page.sel).append(Mustache.render(config.page.tpl, {
         page: index
       }));
     }
     $(config.page.sel).children().each(function(index) {
-      return $(config.page.sel).children().eq(index).on("mouseover", function() {
+      return $(config.page.sel).children().eq(index).on(evt, function() {
         clearTimeout(timer);
         return timer = setTimeout(function() {
           _this.goto(index);
