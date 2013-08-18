@@ -132,6 +132,7 @@ define ( require, exports, module ) ->
     # END dump
 
     registerTask: ( name, task ) ->
+      name = do name.toLowerCase
       throw "Task:#{name} existed!" if name of @tasks
       @tasks[name] = task
 

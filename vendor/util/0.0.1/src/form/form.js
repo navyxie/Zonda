@@ -109,6 +109,7 @@ define(function(require, exports, module) {
     };
 
     Form.prototype.registerTask = function(name, task) {
+      name = name.toLowerCase();
       if (name in this.tasks) {
         throw "Task:" + name + " existed!";
       }
