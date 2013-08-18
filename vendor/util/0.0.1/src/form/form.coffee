@@ -78,7 +78,6 @@ define ( require, exports, module ) ->
 
     # Dump the Form Data
     # - - -
-    # Use "form_name:dump:queue:success" Event to get the data.
     dump: ( callback, context )->
       # Helper
       # - - -
