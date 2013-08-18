@@ -63,11 +63,13 @@ define ( require, exports, module ) ->
       # - - -
       @trans[@config.trans] where, @now.index, @cells
 
+      old = @now
+
       @now =
         index: where
         dom: @cells.eq where
 
-      @trigger "#{@config.sel}:goto:slide:success", @now
+      @trigger "#{@config.sel}:goto:slide:success", @now, old
 
     # Auto Play
     # - - -

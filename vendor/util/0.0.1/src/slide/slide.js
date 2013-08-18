@@ -41,6 +41,8 @@ define(function(require, exports, module) {
     }
 
     Slide.prototype.goto = function(where) {
+      var old;
+
       clearTimeout(this.timer);
       if (where < 0) {
         where = this.length + where;
@@ -49,11 +51,12 @@ define(function(require, exports, module) {
         where = where - this.length;
       }
       this.trans[this.config.trans](where, this.now.index, this.cells);
+      old = this.now;
       this.now = {
         index: where,
         dom: this.cells.eq(where)
       };
-      return this.trigger("" + this.config.sel + ":goto:slide:success", this.now);
+      return this.trigger("" + this.config.sel + ":goto:slide:success", this.now, old);
     };
 
     Slide.prototype.timer = "";
