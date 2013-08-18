@@ -12,8 +12,12 @@ define ( require, exports, module ) ->
     tasks = {}
 
     for key, attr of attrs
-      continue if not (/^task-/.test attr.name)
-      name = attr.name.replace /^task-/, ""
+      continue unless typeof attr is "object"
+
+      name = attr.name.toLowerCase()
+
+      continue unless /^task-/.test name
+      name = name.replace /^task-/, ""
       tasks[name] = attr.value
 
     return tasks
@@ -43,6 +47,8 @@ define ( require, exports, module ) ->
   # Make a Form cell to Cell Object
   class Cell
     constructor: ( @type, cell ) ->
+      attrs = cell.attributes
+
       cell = $ cell
       @dom = cell
       @group_dom = @dom.parents ".form-group"
@@ -56,7 +62,6 @@ define ( require, exports, module ) ->
 
       # Generate the task list of this cell
       # - - -
-      attrs = cell.prop "attributes"
       @tasks = filter attrs
 
   module.exports = Wrap

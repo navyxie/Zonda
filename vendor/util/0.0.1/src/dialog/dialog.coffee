@@ -56,6 +56,7 @@ define ( require, exports, module ) ->
   $ = require "bootstrap"
   _ = require "underscore"
   Mustache = require "mustache"
+  Backbone = require "backbone"
 
   tpl = require "./tpl/dialog.tpl"
 
@@ -145,6 +146,9 @@ define ( require, exports, module ) ->
   # END Dialog
 
   Dialog.open = ->
+
+    Backbone.Events.trigger "zonda:dialog:open", Dialog
+
     # Set height of dialog
     # - - -
     $("##{prefix}-dialog .modal-body").css
@@ -160,6 +164,9 @@ define ( require, exports, module ) ->
   # END dialog.open
 
   Dialog.close = (delay) ->
+
+    Backbone.Events.trigger "zonda:dialog:close", Dialog
+
     if delay
       setTimeout ->
         $("##{prefix}-dialog").modal "hide"

@@ -150,7 +150,7 @@ define ( require, exports, module ) ->
         if exp.test cell.dom.val()
           task_queue.setter "regexp", "success"
         else
-          task_queue.setter "regexp", "error", "Type Error"
+          task_queue.setter "regexp", "error", "格式错误"
 
   module.exports = Form
   
