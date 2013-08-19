@@ -131,9 +131,9 @@ define ( require, exports, module ) ->
 
     # END dump
 
-    registerTask: ( name, task ) ->
+    registerTask: ( name, task, is_global ) ->
       name = do name.toLowerCase
-      throw "Task:#{name} existed!" if name of @tasks
+      # throw "Task:#{name} existed!" if name of @tasks
       @tasks[name] = task
 
     # Build-in task

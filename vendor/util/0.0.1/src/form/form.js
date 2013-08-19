@@ -108,11 +108,8 @@ define(function(require, exports, module) {
       });
     };
 
-    Form.prototype.registerTask = function(name, task) {
+    Form.prototype.registerTask = function(name, task, is_global) {
       name = name.toLowerCase();
-      if (name in this.tasks) {
-        throw "Task:" + name + " existed!";
-      }
       return this.tasks[name] = task;
     };
 
