@@ -36,6 +36,10 @@ define ( require, exports, module ) ->
 
       @now.dom.fadeIn "fast"
 
+      # Don't Start Slide
+      # - - -
+      return null if @length <= 1
+
       # Page of Slide
       # - - -
       Page.call @, config if config.page

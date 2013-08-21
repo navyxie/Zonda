@@ -109,8 +109,7 @@ define(function(require, exports, module) {
       delete $("#" + prefix + "-dialog").modal;
       $("#" + prefix + "-dialog").remove();
       $(".modal-backdrop").remove();
-      $("body").removeClass("modal-open");
-      return Backbone.Events.trigger("zonda:dialog:close", Dialog);
+      return $("body").removeClass("modal-open");
     });
     return Dialog;
   };
@@ -126,6 +125,7 @@ define(function(require, exports, module) {
     return Dialog;
   };
   Dialog.close = function(delay) {
+    Backbone.Events.trigger("zonda:dialog:close", Dialog);
     if (delay) {
       setTimeout(function() {
         return $("#" + prefix + "-dialog").modal("hide");

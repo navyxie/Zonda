@@ -28,6 +28,9 @@ define(function(require, exports, module) {
         this.config.autoPlay = true;
       }
       this.now.dom.fadeIn("fast");
+      if (this.length <= 1) {
+        return null;
+      }
       if (config.page) {
         Page.call(this, config);
       }

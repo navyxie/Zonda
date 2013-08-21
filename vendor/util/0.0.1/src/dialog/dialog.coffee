@@ -141,8 +141,6 @@ define ( require, exports, module ) ->
       do $(".modal-backdrop").remove
       $("body").removeClass "modal-open"
 
-      Backbone.Events.trigger "zonda:dialog:close", Dialog
-
     return Dialog
   
   # END Dialog
@@ -166,6 +164,8 @@ define ( require, exports, module ) ->
   # END dialog.open
 
   Dialog.close = (delay) ->
+
+    Backbone.Events.trigger "zonda:dialog:close", Dialog
 
     if delay
       setTimeout ->
