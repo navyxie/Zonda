@@ -5,6 +5,7 @@ define(function(require, exports, module) {
     Dialog: require("./dialog/dialog"),
     Exception: require("./exception/exception"),
     Http: require("./http/http"),
+    Pagination: require("./pagination/pagination"),
     Slide: require("./slide/slide"),
     StateMachine: require("./stateMachine/stateMachine"),
     Queue: require("./queue/queue"),

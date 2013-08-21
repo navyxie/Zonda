@@ -126,7 +126,7 @@ define ( require, exports, module ) ->
         else
           $(@).addClass "disabled"
 
-        do button_callback
+        button_callback.call @
 
     # - - -
     # Make button
@@ -140,6 +140,8 @@ define ( require, exports, module ) ->
       do $("##{prefix}-dialog").remove
       do $(".modal-backdrop").remove
       $("body").removeClass "modal-open"
+
+      Backbone.Events.trigger "zonda:dialog:close", Dialog
 
     return Dialog
   
@@ -164,8 +166,6 @@ define ( require, exports, module ) ->
   # END dialog.open
 
   Dialog.close = (delay) ->
-
-    Backbone.Events.trigger "zonda:dialog:close", Dialog
 
     if delay
       setTimeout ->

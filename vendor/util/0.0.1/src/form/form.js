@@ -70,6 +70,9 @@ define(function(require, exports, module) {
         _this = this;
 
       _callback = function(err_cell) {
+        var data;
+
+        data = {};
         _.each(_this.cells, function(cell) {
           return cell.dom.disabled = false;
         });

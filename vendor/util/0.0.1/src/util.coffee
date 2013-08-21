@@ -9,6 +9,7 @@ define ( require, exports, module ) ->
     Dialog:       require "./dialog/dialog"
     Exception:    require "./exception/exception"
     Http:         require "./http/http"
+    Pagination:   require "./pagination/pagination"
 
     # Class
     # - - -

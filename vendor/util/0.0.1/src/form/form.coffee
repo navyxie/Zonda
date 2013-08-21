@@ -82,6 +82,8 @@ define ( require, exports, module ) ->
       # Helper
       # - - -
       _callback = (err_cell) =>
+        data = {}
+
         _.each @cells, (cell) ->
           cell.dom.disabled = false
 

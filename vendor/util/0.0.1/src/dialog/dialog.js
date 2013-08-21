@@ -101,7 +101,7 @@ define(function(require, exports, module) {
         } else {
           $(this).addClass("disabled");
         }
-        return button_callback();
+        return button_callback.call(this);
       });
     });
     Dialog.$dom = $("#" + prefix + "-dialog");
@@ -109,7 +109,8 @@ define(function(require, exports, module) {
       delete $("#" + prefix + "-dialog").modal;
       $("#" + prefix + "-dialog").remove();
       $(".modal-backdrop").remove();
-      return $("body").removeClass("modal-open");
+      $("body").removeClass("modal-open");
+      return Backbone.Events.trigger("zonda:dialog:close", Dialog);
     });
     return Dialog;
   };
@@ -125,7 +126,6 @@ define(function(require, exports, module) {
     return Dialog;
   };
   Dialog.close = function(delay) {
-    Backbone.Events.trigger("zonda:dialog:close", Dialog);
     if (delay) {
       setTimeout(function() {
         return $("#" + prefix + "-dialog").modal("hide");
