@@ -13,7 +13,4 @@ cd $dir
 # - - -
 # Get path
 
-rm ../dist/*
-rm ../dist/.*
-rm -rf ../dist/.build/
-rm ../Gruntfile.js
+node module/file.hash.js

@@ -56,6 +56,8 @@ Build = ( name, version, vendor_path ) ->
   exec "cd #{vendor_real_path} && spm build && cp ./dist/#{name}.js ./", ( err, stdout ) ->
     if err isnt null
       console.log "\n   >>".bold + " ERROR".red.inverse + " #{name}" + "[#{version}]".yellow
+      console.log err
+      console.log stdout
       return false
 
     console.log "\n   >>".bold + " Build Success!".green + " #{name}" + "[#{version}]".yellow
